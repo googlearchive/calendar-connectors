@@ -296,28 +296,12 @@ namespace Google.GCalExchangeSync.Library
 
                     List<Appointment> appointments = future.getResult(user);
 
-                    DateTime userRespectiveStartDate = DateTime.MinValue;
-
-                    if (window.Start != DateTime.MinValue)
-                    {
-                        userRespectiveStartDate =
-                            OlsonUtil.ConvertFromUTC(window.Start, user.TimeZone);
-                    }
-
-                    DateTime userRespectiveEndDate = DateTime.MaxValue;
-
-                    if (window.End != DateTime.MaxValue)
-                    {
-                        userRespectiveEndDate =
-                            OlsonUtil.ConvertFromUTC(window.End, user.TimeZone);
-                    }
-
                     MergeFreeBusyWithAppointments(
                         user,
                         freeBusy,
                         appointments,
-                        userRespectiveStartDate,
-                        userRespectiveEndDate);
+                        window.Start,
+                        window.End);
                 }
             }
         }

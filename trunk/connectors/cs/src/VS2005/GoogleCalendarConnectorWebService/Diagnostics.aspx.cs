@@ -27,6 +27,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
 using Google.GCalExchangeSync.Library;
+using Google.GCalExchangeSync.Library.Util;
 using Google.GCalExchangeSync.Tests.Diagnostics;
 using Google.GData.Calendar;
 
@@ -161,7 +162,6 @@ namespace GCalExchangeLookup
                         sb.AppendFormat("<li>Email: {0}</li>", user.Email);
                         sb.AppendFormat("<li>Account Name: {0}</li>", user.AccountName);
                         sb.AppendFormat("<li>Mail Nickname: {0}</li>", user.MailNickname);
-                        sb.AppendFormat("<li>Time Zone: {0}</li>", user.TimeZone.StandardName);
                         sb.AppendFormat("<li>Busy Times:");
                         sb.AppendFormat("<ul>");
 
@@ -194,7 +194,7 @@ namespace GCalExchangeLookup
         {
             try
             {
-                ExchangeTester.WriteAppointment(TextBoxExchWriterEmail.Text, DateTime.Now);
+                ExchangeTester.WriteAppointment(TextBoxExchWriterEmail.Text, DateUtil.NowUtc);
                 LabelWriteAppointmentSummary.Text = "Verified";
                 SyncServiceWriteAppointment.CssClass = "verified";
                 LabelWriteAppointmentDetail.Text = string.Format("Wrote Appointment for {0}", TextBoxFreeBusyName.Text);

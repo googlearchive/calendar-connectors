@@ -83,15 +83,15 @@ namespace Google.GCalExchangeSync.Library.WebDav
             _requestor.ValidMethod = Method.SEARCH;
             _requestor.ResponseBody = getResponseXML("AppointmentResponse.xml");
 
-            DateTime start = DateTime.Now.AddDays(-7);
-            DateTime end = DateTime.Now.AddDays(+7);
+            DateTime start = DateUtil.NowUtc.AddDays(-7);
+            DateTime end = DateUtil.NowUtc.AddDays(+7);
 
             List<Appointment> result = _webdav.LoadAppointments(calendarUrl, start, end);
             Assert.AreEqual(result.Count, 6);
 
-            Assert.AreEqual(result[0].Created, DateTime.Parse("2007-12-30T05:16:11.844Z"));
-            Assert.AreEqual(result[0].StartDate, DateTime.Parse("2008-01-02T21:00:00.000Z"));
-            Assert.AreEqual(result[0].EndDate, DateTime.Parse("2008-01-03T00:00:00.000Z"));
+            Assert.AreEqual(result[0].Created, DateUtil.ParseDateToUtc("2007-12-30T05:16:11.844Z"));
+            Assert.AreEqual(result[0].StartDate, DateUtil.ParseDateToUtc("2008-01-02T21:00:00.000Z"));
+            Assert.AreEqual(result[0].EndDate, DateUtil.ParseDateToUtc("2008-01-03T00:00:00.000Z"));
             
             Assert.IsEmpty(result[0].Body);
             Assert.AreEqual(result[0].Subject, "fefefewfew");
@@ -111,8 +111,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
             _requestor.ResponseBody = getResponseXML("FreeBusyResponse.xml");
 
             // These dates correspond to when the response XML was captured
-            DateTime start = DateTime.Parse("12/25/2007 01:42:50");
-            DateTime end = DateTime.Parse("01/08/2008 01:42:50");
+            DateTime start = DateUtil.ParseDateToUtc("2007-12-25T01:42:50Z");
+            DateTime end = DateUtil.ParseDateToUtc("2008-01-08T01:42:50Z");
             DateTimeRange range = new DateTimeRange(start, end);
 
             _webdav.FastFreeBusyLookup = true;
@@ -133,14 +133,14 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
             //dumpFreeBusy(fb.Busy);
 
-            Assert.AreEqual(DateTime.Parse("12/26/2007 18:00:00"), fb.Busy[0].Start);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 18:30:00"), fb.Busy[0].End);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 20:30:00"), fb.Busy[1].Start);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 21:00:00"), fb.Busy[1].End);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 17:30:00"), fb.Busy[2].Start);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 18:00:00"), fb.Busy[2].End);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 21:00:00"), fb.Busy[3].Start);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 21:30:00"), fb.Busy[3].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T18:00:00Z"), fb.Busy[0].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T18:30:00Z"), fb.Busy[0].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T20:30:00Z"), fb.Busy[1].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T21:00:00Z"), fb.Busy[1].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T17:30:00Z"), fb.Busy[2].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T18:00:00Z"), fb.Busy[2].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T21:00:00Z"), fb.Busy[3].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T21:30:00Z"), fb.Busy[3].End);
         }
 
         [Test]
@@ -150,8 +150,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
             _requestor.ResponseBody = getResponseXML("FreeBusyPublicFolderResponse.xml");
 
             // These dates correspond to when the response XML was captured
-            DateTime start = DateTime.Parse("12/25/2007 01:42:50");
-            DateTime end = DateTime.Parse("01/08/2008 01:42:50");
+            DateTime start = DateUtil.ParseDateToUtc("2007-12-25T01:42:50Z");
+            DateTime end = DateUtil.ParseDateToUtc("2008-01-08T01:42:50Z");
             DateTimeRange range = new DateTimeRange(start, end);
 
             _webdav.FastFreeBusyLookup = false;
@@ -172,17 +172,17 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
             //dumpFreeBusy(fb.Busy);
 
-            Assert.AreEqual(DateTime.Parse("12/11/2007 12:30:00"), fb.Busy[0].Start);
-            Assert.AreEqual(DateTime.Parse("12/11/2007 13:00:00"), fb.Busy[0].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-11T20:30:00Z"), fb.Busy[0].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-11T21:00:00Z"), fb.Busy[0].End);
 
-            Assert.AreEqual(DateTime.Parse("12/26/2007 18:00:00Z"), fb.Busy[7].Start);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 18:30:00Z"), fb.Busy[7].End);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 20:30:00Z"), fb.Busy[8].Start);
-            Assert.AreEqual(DateTime.Parse("12/26/2007 21:00:00Z"), fb.Busy[8].End);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 17:30:00Z"), fb.Busy[9].Start);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 18:00:00Z"), fb.Busy[9].End);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 21:00:00Z"), fb.Busy[10].Start);
-            Assert.AreEqual(DateTime.Parse("12/31/2007 21:30:00Z"), fb.Busy[10].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T18:00:00Z"), fb.Busy[7].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T18:30:00Z"), fb.Busy[7].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T20:30:00Z"), fb.Busy[8].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-26T21:00:00Z"), fb.Busy[8].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T17:30:00Z"), fb.Busy[9].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T18:00:00Z"), fb.Busy[9].End);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T21:00:00Z"), fb.Busy[10].Start);
+            Assert.AreEqual(DateUtil.ParseDateToUtc("2007-12-31T21:30:00Z"), fb.Busy[10].End);
 
         }
 

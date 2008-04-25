@@ -25,7 +25,6 @@ using System.Web.Security;
 
 using Google.GCalExchangeSync.Library.Util;
 using Google.GData.AccessControl;
-using Google.GData.Apps;
 using Google.GData.Calendar;
 using Google.GData.Client;
 using Google.GData.Extensions;

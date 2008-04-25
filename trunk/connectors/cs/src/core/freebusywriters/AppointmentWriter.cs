@@ -24,7 +24,6 @@ using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 
-using Google.GData.Apps;
 using Google.GData.Calendar;
 using Google.GData.Client;
 using Google.GData.Extensions;
@@ -233,8 +232,8 @@ namespace Google.GCalExchangeSync.Library
             if ( googleAppsEvent.Times != null && googleAppsEvent.Times.Count > 0 )
             {
                 When eventTime = googleAppsEvent.Times[0];
-                appt.StartDate = OlsonUtil.ConvertToTimeZone(eventTime.StartTime, srcTimeZone, user.TimeZone);
-                appt.EndDate = OlsonUtil.ConvertToTimeZone(eventTime.EndTime, srcTimeZone, user.TimeZone);
+                appt.StartDate = DateTime.SpecifyKind(eventTime.StartTime.ToUniversalTime(), DateTimeKind.Unspecified);
+                appt.EndDate = DateTime.SpecifyKind(eventTime.EndTime.ToUniversalTime(), DateTimeKind.Unspecified);
 
                 log.DebugFormat("Create - [{0}] {1}", appt.Range, appt.Range.Start.Kind);
 
@@ -261,7 +260,7 @@ namespace Google.GCalExchangeSync.Library
                 appt.MeetingStatus = MeetingStatus.Confirmed;
             }
 
-            appt.Created = DateTime.Now;
+            appt.Created = DateUtil.NowUtc;
             appt.InstanceType = InstanceType.Single;
             appt.BusyStatus = BusyStatus.Busy;
 

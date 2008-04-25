@@ -23,7 +23,6 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Reflection;
 
-using Google.GData.Apps;
 using Google.GData.Calendar;
 using Google.GData.Client;
 using Google.GData.Extensions;
@@ -31,6 +30,7 @@ using Google.GData.Extensions;
 using Google.GCalExchangeSync.Library.WebDav;
 using Google.GCalExchangeSync.Library.Util;
 
+using TZ4Net;
 using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library
@@ -46,12 +46,11 @@ namespace Google.GCalExchangeSync.Library
 		List<DateTimeRange> _createEvents = new List<DateTimeRange>();
 		List<DateTimeRange> _deleteEvents = new List<DateTimeRange>();
 
-
 		[SetUp]
 		public void Init()
 		{
 			_service = new CalendarService("AppointmentWriterTest");
-			_base = DateTime.Parse("2007-07-30T00:00:00.000Z");
+            _base = DateUtil.ParseDateToUtc("2007-07-30T00:00:00.000Z");
 
 			_gcalEvents.Clear();
 			_exchEvents.Clear();
@@ -102,7 +101,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
         public void TestMissingAppointmentDetail()
         {
-            DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
             DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
             AddEventGCal(start, start.AddHours(1));
@@ -125,7 +124,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
 		public void TestOverlappingStartEvent()
 		{
-			DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
 			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
 			// Test overlapping events
@@ -155,7 +154,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
         public void TestOverlappingContainedEvent()
         {
-            DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
             DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
             // Test overlapping events
@@ -186,7 +185,7 @@ namespace Google.GCalExchangeSync.Library
 		[Test]
 		public void TestOverlappingExactEvent()
 		{
-			DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
 			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
 			// Test overlapping events
@@ -216,7 +215,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
         public void TestDuplicateGCalStartTimes()
         {
-            DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
             DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
             // Test overlapping events
@@ -247,7 +246,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
         public void TestNoOverlapEvent()
         {
-            DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
             DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
             // Test overlapping events
@@ -276,7 +275,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
 		public void TestOverlappingEndEvent()
 		{
-			DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
 			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
 			// Test overlapping events
@@ -306,7 +305,7 @@ namespace Google.GCalExchangeSync.Library
         [Test]
         public void TestAdjacentEvent()
         {
-            DateTime start = DateTime.Parse("2007-07-30T13:00:00.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
             DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
             // Test overlapping events
@@ -426,7 +425,6 @@ namespace Google.GCalExchangeSync.Library
 			result.Email = email;
 			result.MailNickname = name;
 			result.LegacyExchangeDN = "/o=Microsoft/ou=APPS-ABC/cn=RECIPIENTS/cn=ASAMPLE";
-			result.TimeZone = OlsonUtil.GetTimeZone("EST");
             result.HaveAppointmentDetail = true;
 			return result;
 		}
@@ -435,12 +433,15 @@ namespace Google.GCalExchangeSync.Library
 		{
 			Uri uri = new Uri("http://localhost");
 			EventFeed result = new EventFeed(uri, null);
-			result.TimeZone = new Google.GData.Calendar.TimeZone("CST");
+			result.TimeZone = new Google.GData.Calendar.TimeZone("EST");
 
 			foreach (DateTimeRange r in events)
 			{
 				EventEntry e = result.CreateFeedEntry() as EventEntry;
-				e.Times.Add(new When(r.Start, r.End));
+
+                DateTime start = DateTime.SpecifyKind(r.Start, DateTimeKind.Utc).ToLocalTime();
+                DateTime end = DateTime.SpecifyKind(r.End, DateTimeKind.Utc).ToLocalTime();
+                e.Times.Add(new When(start, end));
 				result.Entries.Add(e);
 			}
 

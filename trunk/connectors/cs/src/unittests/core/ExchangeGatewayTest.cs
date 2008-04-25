@@ -56,7 +56,7 @@ namespace Google.GCalExchangeSync.Library
 			_freeBusy = new List<DateTimeRange>();
 			_appointments = new List<Appointment>();
 
-			DateTime start = DateTime.Parse("2007-06-30T05:16:11.000Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-06-30T05:16:11.000Z");
 			_window = new DateTimeRange(start, start.AddDays(60));
 
 			// One hour block as free busy AND appointment
@@ -81,7 +81,7 @@ namespace Google.GCalExchangeSync.Library
 			_appointments.Add(createAppointment(start.AddMinutes(45), start.AddMinutes(50)));
 
 			// Add all day appointment
-			start = DateTime.Parse("2007-07-30T00:00:00.000Z");
+            start = DateUtil.ParseDateToUtc("2007-07-30T00:00:00.000Z");
 
 			_appointments.Add(createAppointment(start, start.AddHours(24), true));
 			_freeBusy.Add(new DateTimeRange(start, start.AddHours(24)));
@@ -105,7 +105,7 @@ namespace Google.GCalExchangeSync.Library
 		{
 			Appointment result = new Appointment();
 			result.StartDate = start;
-			result.Created = DateTime.Now;
+            result.Created = DateUtil.NowUtc;
 			result.BusyStatus = BusyStatus.Busy;
 			result.EndDate = end;
 			result.AllDayEvent = isAllDay;

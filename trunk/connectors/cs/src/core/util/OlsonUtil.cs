@@ -168,5 +168,11 @@ namespace Google.GCalExchangeSync.Library.Util
 
             return tz;
         }
+
+        /// <summary>
+        /// Default Time Zone for the system
+        /// </summary>
+        public static OlsonTimeZone DefaultTimeZone =
+            OlsonUtil.GetTimeZone(System.TimeZone.CurrentTimeZone.StandardName);
     }
 }

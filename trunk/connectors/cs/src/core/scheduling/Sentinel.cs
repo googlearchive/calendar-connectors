@@ -115,7 +115,6 @@ namespace Google.GCalExchangeSync.Library.Scheduling
                 if (_log.IsDebugEnabled)
                     _log.Debug("Timer stopped, spawning process");
 
-                //log.Info("Timer elapsed, looking for targets." + System.DateTime.Now.ToLongTimeString() );
                 SpawnWorker();
 
                 if (_log.IsDebugEnabled)
