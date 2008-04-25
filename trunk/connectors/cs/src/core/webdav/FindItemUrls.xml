@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<D:searchrequest xmlns:D="DAV:">
+  <D:sql>SELECT "DAV:contentclass", "urn:schemas:calendar:dtstart", "urn:schemas:calendar:dtend" FROM SCOPE(&apos;shallow traversal of &quot;{0}&quot;&apos;) WHERE "DAV:contentclass" = 'urn:content-classes:{1}' </D:sql>
+</D:searchrequest>

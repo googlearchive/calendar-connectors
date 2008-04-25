@@ -1,0 +1,2218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TZ4Net</name>
+    </assembly>
+    <members>
+        <member name="T:TZ4Net.BigEndianBitConverter">
+            <summary>
+            Implementation of EndianBitConverter which converts to/from big-endian
+            byte arrays.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.EndianBitConverter">
+            <summary>
+            Equivalent of System.BitConverter, but with either endianness.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.IsLittleEndian">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+            <remarks>
+            Different computer architectures store data using different byte orders. "Big-endian"
+            means the most significant byte is on the left end of a word. "Little-endian" means the 
+            most significant byte is on the right end of a word.
+            </remarks>
+            <returns>true if this converter is little-endian, false otherwise.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.DoubleToInt64Bits(System.Double)">
+            <summary>
+            Converts the specified double-precision floating point number to a 
+            64-bit signed integer. Note: the endianness of this converter does not
+            affect the returned value.
+            </summary>
+            <param name="value">The number to convert. </param>
+            <returns>A 64-bit signed integer whose value is equivalent to value.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.Int64BitsToDouble(System.Int64)">
+            <summary>
+            Converts the specified 64-bit signed integer to a double-precision 
+            floating point number. Note: the endianness of this converter does not
+            affect the returned value.
+            </summary>
+            <param name="value">The number to convert. </param>
+            <returns>A double-precision floating point number whose value is equivalent to value.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.SingleToInt32Bits(System.Single)">
+            <summary>
+            Converts the specified single-precision floating point number to a 
+            32-bit signed integer. Note: the endianness of this converter does not
+            affect the returned value.
+            </summary>
+            <param name="value">The number to convert. </param>
+            <returns>A 32-bit signed integer whose value is equivalent to value.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.Int32BitsToSingle(System.Int32)">
+            <summary>
+            Converts the specified 32-bit signed integer to a single-precision floating point 
+            number. Note: the endianness of this converter does not
+            affect the returned value.
+            </summary>
+            <param name="value">The number to convert. </param>
+            <returns>A single-precision floating point number whose value is equivalent to value.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToBoolean(System.Byte[],System.Int32)">
+            <summary>
+            Returns a Boolean value converted from one byte at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>true if the byte at startIndex in value is nonzero; otherwise, false.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToChar(System.Byte[],System.Int32)">
+            <summary>
+            Returns a Unicode character converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A character formed by two bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToDouble(System.Byte[],System.Int32)">
+            <summary>
+            Returns a double-precision floating point number converted from eight bytes 
+            at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A double precision floating point number formed by eight bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToSingle(System.Byte[],System.Int32)">
+            <summary>
+            Returns a single-precision floating point number converted from four bytes 
+            at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A single precision floating point number formed by four bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToInt16(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 16-bit signed integer converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 16-bit signed integer formed by two bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToInt32(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 32-bit signed integer converted from four bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 16-bit signed integer formed by four bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToInt64(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 64-bit signed integer converted from eight bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 64-bit signed integer formed by eight bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToUInt16(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 16-bit unsigned integer converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 16-bit unsigned integer formed by two bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToUInt32(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 32-bit unsigned integer converted from four bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 16-bit unsigned integer formed by four bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToUInt64(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 64-bit unsigned integer converted from eight bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A 64-bit unsigned integer formed by eight bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CheckByteArgument(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Checks the given argument for validity.
+            </summary>
+            <param name="value">The byte array passed in</param>
+            <param name="startIndex">The start index passed in</param>
+            <param name="bytesRequired">The number of bytes required</param>
+            <exception cref="T:System.ArgumentNullException">value is a null reference</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            startIndex is less than zero or greater than the length of value minus bytesRequired.
+            </exception>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CheckedFromBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Checks the arguments for validity before calling FromBytes
+            (which can therefore assume the arguments are valid).
+            </summary>
+            <param name="value">The bytes to convert after checking</param>
+            <param name="startIndex">The index of the first byte to convert</param>
+            <param name="bytesToConvert">The number of bytes to convert</param>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.FromBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Convert the given number of bytes from the given array, from the given start
+            position, into a long, using the bytes as the least significant part of the long.
+            By the time this is called, the arguments have been checked for validity.
+            </summary>
+            <param name="value">The bytes to convert</param>
+            <param name="startIndex">The index of the first byte to convert</param>
+            <param name="bytesToConvert">The number of bytes to use in the conversion</param>
+            <returns>The converted number</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToString(System.Byte[])">
+            <summary>
+            Returns a String converted from the elements of a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <remarks>All the elements of value are converted.</remarks>
+            <returns>
+            A String of hexadecimal pairs separated by hyphens, where each pair 
+            represents the corresponding element in value; for example, "7F-2C-4A".
+            </returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToString(System.Byte[],System.Int32)">
+            <summary>
+            Returns a String converted from the elements of a byte array starting at a specified array position.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <remarks>The elements from array position startIndex to the end of the array are converted.</remarks>
+            <returns>
+            A String of hexadecimal pairs separated by hyphens, where each pair 
+            represents the corresponding element in value; for example, "7F-2C-4A".
+            </returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Returns a String converted from a specified number of bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <param name="length">The number of bytes to convert.</param>
+            <remarks>The length elements from array position startIndex are converted.</remarks>
+            <returns>
+            A String of hexadecimal pairs separated by hyphens, where each pair 
+            represents the corresponding element in value; for example, "7F-2C-4A".
+            </returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.ToDecimal(System.Byte[],System.Int32)">
+            <summary>
+            Returns a decimal value converted from sixteen bytes 
+            at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within value.</param>
+            <returns>A decimal  formed by sixteen bytes beginning at startIndex.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Decimal)">
+            <summary>
+            Returns the specified decimal value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 16.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Decimal,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified decimal value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">A character to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Int64,System.Int32)">
+            <summary>
+            Returns an array with the given number of bytes formed
+            from the least significant bytes of the specified value.
+            This is used to implement the other GetBytes methods.
+            </summary>
+            <param name="value">The value to get bytes for</param>
+            <param name="bytes">The number of significant bytes to return</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Boolean)">
+            <summary>
+            Returns the specified Boolean value as an array of bytes.
+            </summary>
+            <param name="value">A Boolean value.</param>
+            <returns>An array of bytes with length 1.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Char)">
+            <summary>
+            Returns the specified Unicode character value as an array of bytes.
+            </summary>
+            <param name="value">A character to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Double)">
+            <summary>
+            Returns the specified double-precision floating point value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Int16)">
+            <summary>
+            Returns the specified 16-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Int32)">
+            <summary>
+            Returns the specified 32-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Int64)">
+            <summary>
+            Returns the specified 64-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.Single)">
+            <summary>
+            Returns the specified single-precision floating point value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.UInt16)">
+            <summary>
+            Returns the specified 16-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.UInt32)">
+            <summary>
+            Returns the specified 32-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.GetBytes(System.UInt64)">
+            <summary>
+            Returns the specified 64-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Int64,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the given number of bytes from the least-specific
+            end of the specified value into the specified byte array, beginning
+            at the specified index.
+            This is used to implement the other CopyBytes methods.
+            </summary>
+            <param name="value">The value to copy bytes for</param>
+            <param name="bytes">The number of significant bytes to copy</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytesImpl(System.Int64,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the given number of bytes from the least-specific
+            end of the specified value into the specified byte array, beginning
+            at the specified index.
+            This must be implemented in concrete derived classes, but the implementation
+            may assume that the value will fit into the buffer.
+            </summary>
+            <param name="value">The value to copy bytes for</param>
+            <param name="bytes">The number of significant bytes to copy</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Boolean,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified Boolean value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">A Boolean value.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Char,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified Unicode character value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">A character to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Double,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified double-precision floating point value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Int16,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 16-bit signed integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 32-bit signed integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Int64,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 64-bit signed integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.Single,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified single-precision floating point value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.UInt16,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 16-bit unsigned integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.UInt32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 32-bit unsigned integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.CopyBytes(System.UInt64,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified 64-bit unsigned integer value into the specified byte array,
+            beginning at the specified index.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <param name="buffer">The byte array to copy the bytes into</param>
+            <param name="index">The first index into the array to copy the bytes into</param>
+        </member>
+        <member name="P:TZ4Net.EndianBitConverter.Endianness">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBitConverter.Little">
+            <summary>
+            Returns a little-endian bit converter instance. The same instance is
+            always returned.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBitConverter.Big">
+            <summary>
+            Returns a big-endian bit converter instance. The same instance is
+            always returned.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.EndianBitConverter.Int32SingleUnion">
+            <summary>
+            Union used solely for the equivalent of DoubleToInt64Bits and vice versa.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBitConverter.Int32SingleUnion.i">
+            <summary>
+            Int32 version of the value.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBitConverter.Int32SingleUnion.f">
+            <summary>
+            Single version of the value.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.Int32SingleUnion.#ctor(System.Int32)">
+            <summary>
+            Creates an instance representing the given integer.
+            </summary>
+            <param name="i">The integer value of the new instance.</param>
+        </member>
+        <member name="M:TZ4Net.EndianBitConverter.Int32SingleUnion.#ctor(System.Single)">
+            <summary>
+            Creates an instance representing the given floating poing number.
+            </summary>
+            <param name="f">The floating point value of the new instance.</param>
+        </member>
+        <member name="P:TZ4Net.EndianBitConverter.Int32SingleUnion.AsInt32">
+            <summary>
+            Returns the value of the instance as an integer.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBitConverter.Int32SingleUnion.AsSingle">
+            <summary>
+            Returns the value of the instance as a floating point number.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.BigEndianBitConverter.IsLittleEndian">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+            <remarks>
+            Different computer architectures store data using different byte orders. "Big-endian"
+            means the most significant byte is on the left end of a word. "Little-endian" means the 
+            most significant byte is on the right end of a word.
+            </remarks>
+            <returns>true if this converter is little-endian, false otherwise.</returns>
+        </member>
+        <member name="M:TZ4Net.BigEndianBitConverter.CopyBytesImpl(System.Int64,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified number of bytes from value to buffer, starting at index.
+            </summary>
+            <param name="value">The value to copy</param>
+            <param name="bytes">The number of bytes to copy</param>
+            <param name="buffer">The buffer to copy the bytes into</param>
+            <param name="index">The index to start at</param>
+        </member>
+        <member name="M:TZ4Net.BigEndianBitConverter.FromBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Returns a value built from the specified number of bytes from the given buffer,
+            starting at index.
+            </summary>
+            <param name="buffer">The data in byte array format</param>
+            <param name="startIndex">The first index to use</param>
+            <param name="bytesToConvert">The number of bytes to use</param>
+            <returns>The value built from the given bytes</returns>
+        </member>
+        <member name="P:TZ4Net.BigEndianBitConverter.Endianness">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.EndianBinaryReader">
+            <summary>
+            Equivalent of System.IO.BinaryWriter, but with either endianness, depending on
+            the EndianBitConverter it is constructed with. No data is buffered in the
+            reader; the client may seek within the stream at will.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBinaryReader.disposed">
+            <summary>
+            Whether or not this reader has been disposed yet.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBinaryReader.decoder">
+            <summary>
+            Decoder to use for string conversions.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBinaryReader.buffer">
+            <summary>
+            Buffer used for temporary storage before conversion into primitives
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBinaryReader.charBuffer">
+            <summary>
+            Buffer used for temporary storage when reading a single character
+            </summary>
+        </member>
+        <member name="F:TZ4Net.EndianBinaryReader.minBytesPerChar">
+            <summary>
+            Minimum number of bytes used to encode a character
+            </summary>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.#ctor(TZ4Net.EndianBitConverter,System.IO.Stream)">
+            <summary>
+            Equivalent of System.IO.BinaryWriter, but with either endianness, depending on
+            the EndianBitConverter it is constructed with.
+            </summary>
+            <param name="bitConverter">Converter to use when reading data</param>
+            <param name="stream">Stream to read data from</param>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.#ctor(TZ4Net.EndianBitConverter,System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Constructs a new binary reader with the given bit converter, reading
+            to the given stream, using the given encoding.
+            </summary>
+            <param name="bitConverter">Converter to use when reading data</param>
+            <param name="stream">Stream to read data from</param>
+            <param name="encoding">Encoding to use when reading character data</param>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Close">
+            <summary>
+            Closes the reader, including the underlying stream..
+            </summary>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Seek(System.Int32,System.IO.SeekOrigin)">
+            <summary>
+            Seeks within the stream.
+            </summary>
+            <param name="offset">Offset to seek to.</param>
+            <param name="origin">Origin of seek operation.</param>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadByte">
+            <summary>
+            Reads a single byte from the stream.
+            </summary>
+            <returns>The byte read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadSByte">
+            <summary>
+            Reads a single signed byte from the stream.
+            </summary>
+            <returns>The byte read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadBoolean">
+            <summary>
+            Reads a boolean from the stream. 1 byte is read.
+            </summary>
+            <returns>The boolean read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadInt16">
+            <summary>
+            Reads a 16-bit signed integer from the stream, using the bit converter
+            for this reader. 2 bytes are read.
+            </summary>
+            <returns>The 16-bit integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadInt32">
+            <summary>
+            Reads a 32-bit signed integer from the stream, using the bit converter
+            for this reader. 4 bytes are read.
+            </summary>
+            <returns>The 32-bit integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadInt64">
+            <summary>
+            Reads a 64-bit signed integer from the stream, using the bit converter
+            for this reader. 8 bytes are read.
+            </summary>
+            <returns>The 64-bit integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadUInt16">
+            <summary>
+            Reads a 16-bit unsigned integer from the stream, using the bit converter
+            for this reader. 2 bytes are read.
+            </summary>
+            <returns>The 16-bit unsigned integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadUInt32">
+            <summary>
+            Reads a 32-bit unsigned integer from the stream, using the bit converter
+            for this reader. 4 bytes are read.
+            </summary>
+            <returns>The 32-bit unsigned integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadUInt64">
+            <summary>
+            Reads a 64-bit unsigned integer from the stream, using the bit converter
+            for this reader. 8 bytes are read.
+            </summary>
+            <returns>The 64-bit unsigned integer read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadSingle">
+            <summary>
+            Reads a single-precision floating-point value from the stream, using the bit converter
+            for this reader. 4 bytes are read.
+            </summary>
+            <returns>The floating point value read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadDouble">
+            <summary>
+            Reads a double-precision floating-point value from the stream, using the bit converter
+            for this reader. 8 bytes are read.
+            </summary>
+            <returns>The floating point value read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadDecimal">
+            <summary>
+            Reads a decimal value from the stream, using the bit converter
+            for this reader. 16 bytes are read.
+            </summary>
+            <returns>The decimal value read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Read">
+            <summary>
+            Reads a single character from the stream, using the character encoding for
+            this reader. If no characters have been fully read by the time the stream ends,
+            -1 is returned.
+            </summary>
+            <returns>The character read, or -1 for end of stream.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Read(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reads the specified number of characters into the given buffer, starting at
+            the given index.
+            </summary>
+            <param name="data">The buffer to copy data into</param>
+            <param name="index">The first index to copy data into</param>
+            <param name="count">The number of characters to read</param>
+            <returns>The number of characters actually read. This will only be less than
+            the requested number of characters if the end of the stream is reached.
+            </returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the specified number of bytes into the given buffer, starting at
+            the given index.
+            </summary>
+            <param name="buffer">The buffer to copy data into</param>
+            <param name="index">The first index to copy data into</param>
+            <param name="count">The number of bytes to read</param>
+            <returns>The number of bytes actually read. This will only be less than
+            the requested number of bytes if the end of the stream is reached.
+            </returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadBytes(System.Int32)">
+            <summary>
+            Reads the specified number of bytes, returning them in a new byte array.
+            If not enough bytes are available before the end of the stream, this
+            method will return what is available.
+            </summary>
+            <param name="count">The number of bytes to read</param>
+            <returns>The bytes read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadBytesOrThrow(System.Int32)">
+            <summary>
+            Reads the specified number of bytes, returning them in a new byte array.
+            If not enough bytes are available before the end of the stream, this
+            method will throw an IOException.
+            </summary>
+            <param name="count">The number of bytes to read</param>
+            <returns>The bytes read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Read7BitEncodedInt">
+            <summary>
+            Reads a 7-bit encoded integer from the stream. This is stored with the least significant
+            information first, with 7 bits of information per byte of value, and the top
+            bit as a continuation flag. This method is not affected by the endianness
+            of the bit converter.
+            </summary>
+            <returns>The 7-bit encoded integer read from the stream.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadBigEndian7BitEncodedInt">
+            <summary>
+            Reads a 7-bit encoded integer from the stream. This is stored with the most significant
+            information first, with 7 bits of information per byte of value, and the top
+            bit as a continuation flag. This method is not affected by the endianness
+            of the bit converter.
+            </summary>
+            <returns>The 7-bit encoded integer read from the stream.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadString">
+            <summary>
+            Reads a length-prefixed string from the stream, using the encoding for this reader.
+            A 7-bit encoded integer is first read, which specifies the number of bytes 
+            to read from the stream. These bytes are then converted into a string with
+            the encoding for this reader.
+            </summary>
+            <returns>The string read from the stream.</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.CheckDisposed">
+            <summary>
+            Checks whether or not the reader has been disposed, throwing an exception if so.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.ReadInternal(System.Byte[],System.Int32)">
+            <summary>
+            Reads the given number of bytes from the stream, throwing an exception
+            if they can't all be read.
+            </summary>
+            <param name="data">Buffer to read into</param>
+            <param name="size">Number of bytes to read</param>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.TryReadInternal(System.Byte[],System.Int32)">
+            <summary>
+            Reads the given number of bytes from the stream if possible, returning
+            the number of bytes actually read, which may be less than requested if
+            (and only if) the end of the stream is reached.
+            </summary>
+            <param name="data">Buffer to read into</param>
+            <param name="size">Number of bytes to read</param>
+            <returns>Number of bytes actually read</returns>
+        </member>
+        <member name="M:TZ4Net.EndianBinaryReader.Dispose">
+            <summary>
+            Disposes of the underlying stream.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBinaryReader.BitConverter">
+            <summary>
+            The bit converter used to read values from the stream
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBinaryReader.Encoding">
+            <summary>
+            The encoding used to read strings
+            </summary>
+        </member>
+        <member name="P:TZ4Net.EndianBinaryReader.BaseStream">
+            <summary>
+            Gets the underlying stream of the EndianBinaryReader.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.Endianness">
+            <summary>
+            Endianness of a converter
+            </summary>
+        </member>
+        <member name="F:TZ4Net.Endianness.LittleEndian">
+            <summary>
+            Little endian - least significant byte first
+            </summary>
+        </member>
+        <member name="F:TZ4Net.Endianness.BigEndian">
+            <summary>
+            Big endian - most significant byte first
+            </summary>
+        </member>
+        <member name="T:TZ4Net.LittleEndianBitConverter">
+            <summary>
+            Implementation of EndianBitConverter which converts to/from little-endian
+            byte arrays.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.LittleEndianBitConverter.IsLittleEndian">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+            <remarks>
+            Different computer architectures store data using different byte orders. "Big-endian"
+            means the most significant byte is on the left end of a word. "Little-endian" means the 
+            most significant byte is on the right end of a word.
+            </remarks>
+            <returns>true if this converter is little-endian, false otherwise.</returns>
+        </member>
+        <member name="M:TZ4Net.LittleEndianBitConverter.CopyBytesImpl(System.Int64,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies the specified number of bytes from value to buffer, starting at index.
+            </summary>
+            <param name="value">The value to copy</param>
+            <param name="bytes">The number of bytes to copy</param>
+            <param name="buffer">The buffer to copy the bytes into</param>
+            <param name="index">The index to start at</param>
+        </member>
+        <member name="M:TZ4Net.LittleEndianBitConverter.FromBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Returns a value built from the specified number of bytes from the given buffer,
+            starting at index.
+            </summary>
+            <param name="buffer">The data in byte array format</param>
+            <param name="startIndex">The first index to use</param>
+            <param name="bytesToConvert">The number of bytes to use</param>
+            <returns>The value built from the given bytes</returns>
+        </member>
+        <member name="P:TZ4Net.LittleEndianBitConverter.Endianness">
+            <summary>
+            Indicates the byte order ("endianess") in which data is converted using this class.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.CldrInfoResGenUpdateArgs">
+            <summary>
+            Argumens class of <see cref="T:TZ4Net.CldrInfoResGenUpdateHandler"/> delegate.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.CldrInfoResGenUpdateArgs.fileName">
+            <summary>
+            Caches the message to be reported to the listeners;
+            </summary>
+        </member>
+        <member name="M:TZ4Net.CldrInfoResGenUpdateArgs.#ctor(System.String)">
+            <summary>
+            Creates the event arguments instance.
+            </summary>
+            <param name="fileName">File name the events refers to.</param>
+        </member>
+        <member name="P:TZ4Net.CldrInfoResGenUpdateArgs.FileName">
+            <summary>
+            Gets the message to be reported to the listeners;
+            </summary>
+        </member>
+        <member name="T:TZ4Net.CldrInfoResGenUpdateHandler">
+            <summary>
+            Handler for the Message event of the <see cref="T:TZ4Net.CldrInfoResGen"/> class.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.CldrInfoResGen">
+            <summary>
+            Utility class that generates the .NET resource containig CldrInfo files.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.CldrInfoResGen.Generate(System.String[],System.String)">
+            <summary>
+            Adds specified CLDR files into .NET resource file.
+            </summary>
+            <param name="CldrFilePaths">The array of full path names to Unicode CLDR's data files.</param>
+            <param name="resourceDir">Output directory of the .NET resource file to be generated.</param>
+        </member>
+        <member name="M:TZ4Net.CldrInfoResGen.AddFile(System.String,System.Resources.ResourceWriter)">
+            <summary>
+            Helper method which adds the file supplemental to the resources
+            </summary>
+            <param name="fileName">Full path to file.</param>
+            <param name="writer">Resource writer to add to.</param>
+        </member>
+        <member name="M:TZ4Net.CldrInfoResGen.OnAdded(System.String)">
+            <summary>
+            Propagates the message to all listeners about added resources.
+            </summary>
+            <param name="fileName">Name of the file which was addded to resources.</param>
+        </member>
+        <member name="M:TZ4Net.CldrInfoResGen.OnGenerated(System.String)">
+            <summary>
+            Propagates the message to all listeners about new resource file being generated.
+            </summary>
+            <param name="fileName">Name of the newly generated resource file.</param>
+        </member>
+        <member name="E:TZ4Net.CldrInfoResGen.Added">
+            <summary>
+            Informs the clients about the generation progress. Fired when new CldrInfo file was added to resources.
+            </summary>
+        </member>
+        <member name="E:TZ4Net.CldrInfoResGen.Generated">
+            <summary>
+            Informs the clients about the generation progress. Fired after resource file was generated.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.CldrInfoResGen.ResourceFileName">
+            <summary>
+            Gets the resource file name. Name it taken from <see cref="T:TZ4Net.OlsonTimeZone"/> class.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.StandardTime">
+            <summary>
+            Olson database contains also offset change information in addition to daylight-saving periods.
+            Offset changes manifest themselves as two consecutive non-DST rules. This information
+            might be useful, for example for validating the input dates. 
+            We can subclass <see cref="T:System.Globalization.DaylightTime"/> type to represent that data.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.StandardTime.#ctor(System.DateTime,System.DateTime,System.TimeSpan)">
+            <summary>
+            Constructs non-DST period of time.
+            </summary>
+            <param name="start">The <see cref="T:System.DateTime"/> that represents the date and time 
+            when the daylight-saving period begins. The value must be in local time. </param>
+            <param name="end">The <see cref="T:System.DateTime"/> that represents the date and time when the daylight-saving 
+            period ends. The value must be in local time. </param>
+            <param name="delta">The <see cref="T:System.TimeSpan"/> that represents the difference 
+            between the standard time and the daylight-saving time in ticks.</param>
+        </member>
+        <member name="T:TZ4Net.TimeCheckResult">
+            <summary>
+            Enumeration that represents the result of time validation.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.TimeCheckResult.LessThanUnixMin">
+            <summary>
+            Value less than minimum value supported by Unix.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.TimeCheckResult.GreaterThanUnixMax">
+            <summary>
+            Value greater than maximum value supported by Unix.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.TimeCheckResult.Valid">
+            <summary>
+            Value is valid.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.TimeCheckResult.InFallBackRange">
+            <summary>
+            Value in fall-back range.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.TimeCheckResult.InSpringForwardGap">
+            <summary>
+            Value in spring-forward range.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.OlsonTimeZone">
+            <summary>
+            Thin wrapper around <see cref="P:TZ4Net.OlsonTimeZone.ZoneInfo"/> which conforms to <see cref="T:System.TimeZone"/> interface.
+            Uses "zoneinfo" directory by default, as <see cref="T:System.DateTime"/> does not support leap seconds.
+            Implements caching.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.CldrBaseName">
+            <summary>
+            Caches the base name of the CLDR database resource.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.CldrSupplementalFileName">
+            <summary>
+            CLDR supplemental file and resource name;
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.CldrZoneLogFileName">
+            <summary>
+            CLDR zone log file and resource name;
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.TimeOutOfRangeMsgFormat">
+            <summary>
+            Common format for time check error message.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.CldrResourceFileName">
+            <summary>
+            Caches the resource file name of the CLDR database resource, like MyResource.resources.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.CldrResouceRootName">
+            <summary>
+            Root name of the CLDR database resource, like MyAssembly.MyResource.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.MinTime">
+            <summary>
+            Min. value of time as constrained by 32-bit Unix clock;
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.MaxTime">
+            <summary>
+            Max. value of time as constrained by 32-bit Unix clock;
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.zoneInfo">
+            <summary>
+            Storage for underlying <see cref="P:TZ4Net.OlsonTimeZone.ZoneInfo"/> object.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.allTimeChanges">
+            <summary>
+            Caches all time changes for later reuse. It contains both daylight and standard changes.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.allNames">
+            <summary>
+            Caches all timezone names for later reuse.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.primaryNames">
+            <summary>
+            Caches primary timezone names for later reuse.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.foreignAliases">
+            <summary>
+            Caches foreign aliases for later reuse.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.currentTimeZone">
+            <summary>
+            Holds the current timezone defined by the client. If not null, 
+            it overrides the the setting from TZ environment variable. 
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.defaultUtcTimeZone">
+            <summary>
+            Returned if current timezone is not defined by the client and both TZ
+            environment variable and registry default values are not defined.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.cache">
+            <summary>
+            Caches the instances of constructed timezones.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.unicodeWin32Map">
+            <summary>
+            Caches the map of Win32 Id to Olson name and Win32 name as defined in CLDR supplemental data.
+            string win32Id -> string[3] {olsonName, win32Prefix, win32Name}
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.olsonToWin32IdMap">
+            <summary>
+            Caches the map of Olson name to Win32 Id based on Unicode's CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.olsonToWin32NameMap">
+            <summary>
+            Caches the map of Olson name to Win32 name based on Unicode's CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.win32NameToOlsonMap">
+            <summary>
+            Caches the map of Win32 name to Olson Name based on Unicode's CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.unicodeAliasMap">
+            <summary>
+            Caches the map of Unicode alias alternate name to Olson main name as proposed in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.registryMap">
+            <summary>
+            Caches the map of Win32 Id to Win32 name as defined in registry.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.registryWin32NameToOlsonMap">
+            <summary>
+            Caches the map of registry Win32 name to Olson name based on registry and Unicode definitions.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateUnicodeWin32Map">
+            <summary>
+            Creates the Win32 Id to Olson name map;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateRegistryMap">
+            <summary>
+            Creates the registry Win32 Id to Win32 name map;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateUnicodeAliasMap">
+            <summary>
+            Creates the Unicode alias to Olson name map;
+            We should have used the html parser here, but to avoid the dependency
+            on third-party components we use a simple manual parsing instead.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateOlsonToWin32IdMap">
+            <summary>
+            Creates the Olson name to Win32 Id map;
+            </summary>
+            <returns>Hashtable mapping the Olson name to Win32 Id.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateRegistryWin32NameToOlsonMap">
+            <summary>
+            Creates the registry Win32 name to Olson name map;
+            </summary>
+            <returns>Hashtable mapping the registry Win32 name to Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateOlsonToWin32NameMap">
+            <summary>
+            Creates the Olson name to Win32 Id map;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.CreateWin32NameToOlsonMap">
+            <summary>
+            Creates the Win32 name to Olson name map;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetDaylightChanges(System.Int32)">
+            <summary>
+             Returns the daylight saving time period for a particular year.  
+            </summary>
+            <param name="year">The year to which the daylight saving time period applies.</param>
+            <returns> A <see cref="T:System.Globalization.DaylightTime"/> instance containing the start and end date for daylight saving time in year.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.IsDaylightSavingTime(System.DateTime)">
+            <summary>
+            Returns a value indicating whether the specified date and time is within a daylight saving time period. 
+            </summary>
+            <param name="time">A date and time.</param>
+            <returns> true if time is in a daylight saving time period; false otherwise, or if time is null.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when time value is invalid within current timezone.</exception>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.ToLocalTime(System.DateTime)">
+            <summary>
+            Converts the UTC time to the local time of timezone.
+            </summary>
+            <param name="time">UTC time./// </param>
+            <returns>
+            Local time of converter's timezone corresponding to UTC time.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when time value is invalid within current timezone.</exception>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.ToUniversalTime(System.DateTime)">
+            <summary>
+            Converts the local time of timezone to the UTC time.
+            </summary>
+            <param name="time">
+            Local time of the given timezone. Note: It is not a local time of the machine !!!
+            </param>
+            <returns>
+            UTC time corresponding to the local time of timezone.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when time value is invalid within current timezone.</exception>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetUtcOffset(System.DateTime)">
+            <summary>
+            Returns the coordinated universal time (UTC) offset for the specified local time.
+            </summary>
+            <param name="time">The local date and time.</param>
+            <returns>The UTC offset from time, measured in ticks.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when time value is invalid within current timezone.</exception>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstanceFromOlsonName(System.String)">
+            <summary>
+            Factory, that provides the client with instance of timezone with a given Olson name.
+            </summary>
+            <param name="olsonName">Olson name of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstanceFromWin32Id(System.String)">
+            <summary>
+            Helper factory, that provides the client with instance of timezone from given Win32 Id.
+            </summary>
+            <param name="win32Id">Win32 Id of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstanceFromWin32Name(System.String)">
+            <summary>
+            Helper factory, that provides the client with instance of timezone from given Win32 Name.
+            </summary>
+            <param name="win32Name">Win32 name of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstanceFromRegistryWin32Name(System.String)">
+            <summary>
+            Helper factory, that provides the client with instance of timezone from given registry Win32 name.
+            </summary>
+            <param name="registryWin32Name">Registry Win32 name of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstanceFromAlias(System.String)">
+            <summary>
+            Helper factory, that provides the client with instance of timezone from given Unicode alias.
+            </summary>
+            <param name="alias">Unicode alias of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetInstance(System.String)">
+            <summary>
+            Helper factory, that provides the client with instance of timezone from given arbitrary name (Olson name, Win32 id, Win32 name, Unicode alias).
+            </summary>
+            <param name="name">Arbitrary name of the timezone to be provided.</param>
+            <returns>Instance of <see cref="T:TZ4Net.OlsonTimeZone"/> type.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.Check(System.DateTime)">
+            <summary>
+            Local times can be ambiguous and should be used carefully. This method allows to check
+            the time value within the current timezone.
+            </summary>
+            <param name="time">Time to check.</param>
+            <returns>Value of type <see cref="T:TZ4Net.TimeCheckResult"/>indicating the result of the check.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.Convert(System.String,System.DateTime,System.String)">
+            <summary>
+            Helper method which allows to convertion between arbitrary timezones.
+            </summary>
+            <param name="fromZoneName">Arbitrary name of the source timezone.</param>
+            <param name="fromTime">Time to convert.</param>
+            <param name="toZoneName">Arbitrary name of the destintation timezone.</param>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetNameFromWin32Id(System.String)">
+            <summary>
+            Gets the corresponding Olson name for specified Win32 Id based on Unicode CLDR supplemental data.
+            </summary>
+            <param name="win32Id">Win32 Id for which the corresponding Olson name is requested. Supports both Unicode (short) and Registry (long) formats.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetNameFromWin32Name(System.String)">
+            <summary>
+            Gets the corresponding Olson name for specified Win32 name based on Unicode CLDR supplemental data.
+            </summary>
+            <param name="win32Name">Win32 name for which the corresponding Olson name is requested.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetNameFromRegistryWin32Name(System.String)">
+            <summary>
+            Gets the corresponding Olson name for specified registry Win32 name.
+            </summary>
+            <param name="registryWin32Name">Registry Win32 name for which the corresponding Olson name is requested.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetNameFromAlias(System.String)">
+            <summary>
+            Gets the corresponding Olson name for specified Unicode alias as defined in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html
+            </summary>
+            <param name="alias">Unicode alias for which the corresponding Olson name is requested.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.FindNameFromAlias(System.String)">
+            <summary>
+            Finds the corresponding leaf Olson name for specified Unicode alias as defined in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html
+            </summary>
+            <param name="alias">Unicode alias for which the corresponding Olson name is requested.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.LookupName(System.String)">
+            <summary>
+            Finds the corresponding Olson name for specified arbitrary name (Olson name, Win32 id, Win32 name, Unicode alias).
+            </summary>
+            <param name="name">Arbitrary name for which the corresponding Olson name is requested.</param>
+            <returns>Corresponding Olson name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.GetWin32NameFromWin32Id(System.String)">
+            <summary>
+            Gets the corresponding Win32 name for specified Win32 Id based on Unicode CLDR supplemental data.
+            </summary>
+            <param name="win32Id">Win32 Id for which the corresponding Olson name is reauired.</param>
+            <returns>Corresponding Win32 name.</returns>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.NormalizeWin32Id(System.String)">
+            <summary>
+            Normalizes Win32 Id, if passed in registry format, i.e. with 'Standard Time' suffix.
+            </summary>
+            <param name="win32Id">Win32 Id to be normalized.</param>
+            <returns>Win32 Id of timezone as used in Unicode mapping.</returns>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeWin32Map">
+            <summary>
+            Gets the map of Win32 Id to Olson name and Win32 name as defined in CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeAliasMap">
+            <summary>
+            Gets the map of Unicode alternate name to Olson main name as proposed in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.RegistryMap">
+            <summary>
+            Gets the map of Win32 Id to Win32 name as defined in registry.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.OlsonToWin32IdMap">
+            <summary>
+            Gets the map of Olson name to Win32 Id.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.OlsonToWin32NameMap">
+            <summary>
+            Gets the map of Olson name to Win32 name. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.Win32NameToOlsonMap">
+            <summary>
+            Gets the map of Win32 name to Olson name. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.RegistryWin32NameToOlsonMap">
+            <summary>
+            Gets the map of reigistry Win32 name to Olson name. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.CurrentRegistryWin32Id">
+            <summary>
+            Gets the current timezone's registry Win32 Id.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.CurrentTimeZone">
+            <summary>
+            Gets the timezone of the current computer system.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.DaylightName">
+            <summary>
+            Gets the daylight saving timezone name.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.StandardName">
+            <summary>
+            Gets the standard timezone name.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.ZoneInfo">
+            <summary>
+            Gets the underlying <see cref="P:TZ4Net.OlsonTimeZone.ZoneInfo"/> object.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllNames">
+            <summary>
+            Gets all Olson timezone names.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllPrimaryNames">
+            <summary>
+            Gets primary Olson timezone names obtained by mapping all Unicode aliased defined in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html for more details.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.Name">
+            <summary>
+            Gets the short name of the timezone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.RawUtcOffset">
+            <summary>
+            Gets the amount of time, measured in ticks, to add to UTC to get standard time in this timezone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllTimeChanges">
+            <summary>
+             Gets zone's all daylight saving time periods.  
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UsesDaylightTime">
+            <summary>
+            Returns true if this timezone has transitions between various offsets
+            from universal time, such as standard time and daylight time.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.DefaultUtcTimeZone">
+            <summary>
+            Gets the default time zone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.ZoneInfoDir">
+            <summary>
+            Gets the zoneinfo directory name used to instantiate the undelrlying <see cref="P:TZ4Net.OlsonTimeZone.ZoneInfo"/> 
+            objects. By design this is leapsecond free directory, which is a default directory
+            of <see cref="P:TZ4Net.OlsonTimeZone.ZoneInfo"/> class.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllWin32Ids">
+            <summary>
+            Gets all supported Win32 Ids defined by Unicode CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllWin32Names">
+            <summary>
+            Gets all supported Win32 names defined by Unicode CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllAliases">
+            <summary>
+            Gets all supported Unicode aliases defined in 'Time Zone Localization' draft document.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.ForeignAliases">
+            <summary>
+            Gets Unicode aliases defined in 'Time Zone Localization' draft document which are not the supported olson names.
+            See http://www.unicode.org/cldr/data/docs/design/formatting/time_zone_localization.html for more details.
+            Added to list new supported TZIDs introduced by Unicode mapping, like "PST", "EST" etc.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.AllRegistryWin32Names">
+            <summary>
+            Gets all supported registry Win32 names.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.Win32Id">
+            <summary>
+            Gets corresponding Win32 Id as defined in Unicode CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.Win32Name">
+            <summary>
+            Gets corresponding Win32 name as defined in Unicode CLDR supplemental data.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.win32Id">
+            <summary>
+            Caches Win32 Id.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.olsonName">
+            <summary>
+            Caches Olson name corresponding to Win32 Id.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.win32Prefix">
+            <summary>
+            Caches Win32 prefix corresponding to Win32 Id.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.win32Name">
+            <summary>
+            Caches Win32 name corresponding to Win32 Id.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.#ctor(System.String,System.String)">
+            <summary>
+            Creates the instance of CLDR map value.
+            </summary>
+            <param name="win32Id">Win32 timezone id.</param>
+            <param name="olsonName">Olson timezone name.</param>			
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.Win32Id">
+            <summary>
+            Gets Win32 timezone Id.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.OlsonName">
+            <summary>
+            Gets Olson tinezone name.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.Win32Prefix">
+            <summary>
+            Gets Win32 tinezone prefix.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.OlsonTimeZone.UnicodeWin32MapValue.Win32Name">
+            <summary>
+            Gets Win32 timezone name.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfo">
+            <summary>
+            A TimeZone Implementation with Historical Changes and Leapseconds.
+            Implementation of the local time zone conversion based on Olson database.
+            This public-domain time zone database contains code and data that represent the history of local time 
+            for many representative locations around the globe. It is updated periodically to reflect changes made 
+            by political bodies to UTC offsets and daylight-saving rules. This database (often called tz or zoneinfo) 
+            is used by several implementations, including the GNU C Library used in GNU/Linux, FreeBSD, NetBSD, 
+            OpenBSD, Cygwin, DJGPP, HP-UX, IRIX, Mac OS X, OpenVMS, Solaris, Tru64, and UnixWare.
+            As opposite to Win32/.NET API, it allows to perform convertion in arbitrary time zone
+            
+            The code is based on Stuart D. Gathman's Java translation of the  Unix "tz" package (formerly known as 
+            "localtime"). See http://www.twinsun.com/tz/tz-link.htm and http://www.bmsi.com/java/#TZ for more details.
+            It uses Jon Skeet's EndianBitConverter. See http://www.yoda.arachsys.com/csharp/miscutil/ for more details.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.secsPerThreeMonths">
+            <summary>
+            Constants denoting number of seconds per 3 months.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.baseName">
+            <summary>
+            Caches the base name of the TZ database resource.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.DefaultDir">
+            <summary>
+            Holds the default zoneinfo directory name. Used when consturctor with no
+            zoneinfo directory name is used.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.UtcName">
+            <summary>
+            Holds the UTC name string.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.MinClock">
+            <summary>
+            Smallest value of unix clock.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.MaxClock">
+            <summary>
+            Biggest value of unix clock.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.unixEpochTicks">
+            <summary>
+            Number of .NET ticks at unix epoch.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.transTimes">
+            <summary>
+            Transition times.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.transTypes">
+            <summary>
+            Rule index for each transition.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.rules">
+            <summary>
+            Transition rules.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.leapSecs">
+            <summary>
+            Leapseconds.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.name">
+            <summary>
+            Caches the name of this zoneinfo passed in constructor.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.dir">
+            <summary>
+            Caches the directory name of this zoneinfo passed in constructor.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.resFileName">
+            <summary>
+            Caches the resource file name of the TZ database resource, like MyResource.resources.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.resRootName">
+            <summary>
+            Root name of the TZ database resource, like MyAssembly.MyResource.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.resManifestName">
+            <summary>
+            Manifest name of the TZ database resource, like MyAssembly.MyResource.resources
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.resMetaInfoName">
+            <summary>
+            Name of the resource containing the names of databases embedded as assembly resources.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.DefaultUtcName">
+            <summary>
+            Holds the default UTC name string. Can be used to find out if default name comes from TZ variable.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.#ctor(System.String,System.String)">
+            <summary>
+            Constructs the zoneinfo instance from given name and zoneinfo directory.
+            </summary>
+            <param name="name">Name of zoneinfo.</param>
+            <param name="dir">Directory name.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.#ctor(System.String)">
+            <summary>
+            Constructs zoneinfo instance from the given name and default zoneinfo directory.
+            </summary>
+            <param name="name">Name of zoneinfo.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.#ctor">
+            <summary>
+            Constructs default zoneinfo instance.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.FindNearestRule(System.Int64,System.Boolean)">
+            <summary>
+            Finds a DST rule close to the given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <param name="isDst">Type of the rule to find.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing next DST rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.FindNearestNonDstRule(System.Int64)">
+            <summary>
+            When calculating "normaltz" (the default rule) for timezone,
+            we originally took the first non-DST rule for the current TZ.
+            But this produces nonsensical results for areas where historical
+            non-integer time zones were used, e.g. if GMT-2:33 was used until 1918.
+            This loop, based on a suggestion by Ophir Bleibergh, tries to find a 
+            non-DST rule close to the given unix time. This is somewhat of a hack, 
+            but much better than the previous solution taking first non-DST rule.
+            Tricky: we need to get either the next or previous non-DST TZ.
+            We shall take the most recent non-DST value.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing most recent non-DST rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.FindNearestDstRule(System.Int64)">
+            <summary>
+            Finds a DST rule close to the given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing next DST rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetNearestNonDstRule(System.Int64)">
+            <summary>
+            Gets non-DST rule close to the given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing most recent non-DST rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetNearestDstRule(System.Int64)">
+            <summary>
+            Gets DST rule close to the given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing most recent non-DST rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetNormalRule(System.Int64)">
+            <summary>
+            Returns the "normaltz" (the default rule) for this zoneinfo for a given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing default rule.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetRule(System.Int64)">
+            <summary>
+            Returns rule for a specified unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing rule for a given unix time.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.FindTransitionIndex(System.Int64)">
+            <summary>
+            Finds transition index the instance should use for given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Index in transition tables.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.FindRule(System.Int64)">
+            <summary>
+            Finds a rule the instance should use for given unix time.
+            </summary>
+            <param name="clock">Unix time clock i.e number of seconds since epoch.</param>
+            <returns>Instance of <see cref="T:TZ4Net.ZoneInfo.Rule"></see> object representing the rule to be used for a given time clock.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.ApplyRule(System.Int64,TZ4Net.ZoneInfo.Rule,TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Applies the rule and leapsecond correction to given unix time.
+            The result is passed in computed properties of <see cref="T:TZ4Net.ZoneInfo.Time"/> local time.
+            </summary>
+            <param name="clock">Seconds since 1970.</param>
+            <param name="rule">Rule to apply.</param>
+            <param name="t">Local time properties to set.</param>
+            <returns>The offset from GMT including rule, DST, and leap seconds.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetClock(TZ4Net.ZoneInfo.Time,System.Boolean)">
+            <summary>
+            Calculates seconds since the epoch, the reverse of GetLocalTime() and GetUtcTime(). Unused fields are computed and stored in time.
+            </summary>
+            <param name="time"> Time to convert. The Year, Mon, MDay, Hour, Min, Sec fields are used and validated. Other fields are computed.</param>
+            <param name="local">Flag indicating whether the passed time is a local or utc for the zone.</param>
+            <returns>Seconds since the epoch.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetAllNames(System.String)">
+            <summary>
+            Returns all zoneinfo names for given zoneinfo directory.
+            </summary>
+            <param name="dir">Name of zoneinfo directory.</param>
+            <returns>List of  all zoneinfo names from given zoneinfo directory.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetTransitionClocks(System.Int32)">
+            <summary>
+            Gets the unix times of transitions observed in given year for this zoneinfo.
+            </summary>
+            <param name="year">Year for which the transitions were observed.
+            </param>
+            <returns>Array of unix times at which the transitions were observed.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetTransitionRule(System.Int64)">
+            <summary>
+            Gets the tranzition rule for a given transition time.
+            </summary>
+            <param name="transitionClock">Transition time obtained earlier from 
+            <see cref="P:TZ4Net.ZoneInfo.AllTransitionClocks"/> property.
+            </param>
+            <returns>An instance of <see cref="T:TZ4Net.ZoneInfo.Rule"/> representing the 
+            type of transition associated with a given transition time.
+            </returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetLeapSecondCorrection(System.Int64)">
+            <summary>
+            Gets the leap second correction value for a given correction time.
+            </summary>
+            <param name="correctionClock">Leap second correction time obtained 
+            earlier from <see cref="P:TZ4Net.ZoneInfo.AllLeapSecondCorrectionClocks"/> property.</param>
+            <returns>Integer value representing the leap second correction.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.InDaylightTime(TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Returns true if a particular date is considered part of daylight time in this zoneinfo.
+            </summary>
+            <param name="localTime">Local time of the given zoneinfo. Note: It is not a local time of the machine !!!</param>
+            <returns>true if a particular time is considered part of daylight time in this zoneinfo.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetClockFromLocal(TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Calculates seconds since the epoch, the reverse of GetLocalTime(). Unused fields are computed and stored in localTime.
+            </summary>
+            <param name="localTime">Zone's local time to convert. The Year, Mon, MDay, Hour, Min, Sec fields are used and validated. Other fields are computed.</param>
+            <returns>Seconds since the epoch.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetClockFromUtc(TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Calculates seconds since the epoch, the reverse of GetUtcTime(). Unused fields are computed and stored in localTime.
+            </summary>
+            <param name="utcTime">Utc time to convert. The Year, Mon, MDay, Hour, Min, Sec fields are used and validated. Other fields are computed.</param>
+            <returns>Seconds since the epoch.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetOffset(TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Return the offset of this zoneinfo from UTC for a calendar date and time.
+            </summary>
+            <param name="localTime">Zone's local time to convert.</param>
+            <returns>The offset in milliseconds to add to UTC to get local time.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetLocalTime(System.Int64)">
+            <summary>
+            Calculates local time from seconds since the epoch.
+            </summary>
+            <param name="clock">seconds since 1970.</param>
+            <returns>Local time instance.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.GetUtcTime(System.Int64)">
+            <summary>
+            Compute UTC from clock.  This includes leap second corrections if
+            compiled into the current zoneinfo file.
+            </summary>
+            <param name="clock">Clock seconds since 1970.</param>
+            <returns>New <see cref="T:TZ4Net.ZoneInfo.Time"/> object with all time fields computed.</returns>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.DefaultStdRule">
+            <summary>
+            Gets "normaltz" (the default rule) for timezone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.DefaultDstRule">
+            <summary>
+            Gets default DST for timezone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.BaseName">
+            <summary>
+            Gets the base name of the zoneinfo database.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.MetaInfoResourceName">
+            <summary>
+            Gets the name of the resource containing the names of databases embedded as assembly resources.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.ResourceFileName">
+            <summary>
+            Gets the resource file name of the zoneinfo database.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.AllDirs">
+            <summary>
+            Gets all zoneinfo directories stored in zoneinfo database.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.AllNames">
+            <summary>
+            Gets all zoneinfo names in default zoneinfo directory.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Name">
+            <summary>
+            Gets the name of this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Dir">
+            <summary>
+            Gets the directory name of this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.ID">
+            <summary>
+            Gets the ID of this zoneinfo. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.RawOffset">
+            <summary>
+            Gets the amount of time in milliseconds to add to UTC to get standard time in this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.AllTransitionClocks">
+            <summary>
+            Gets the unix times of all transitions for this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.AllRules">
+            <summary>
+            Gets all transition rules of this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.NormalRule">
+            <summary>
+            Gets default transition rule for this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.AllLeapSecondCorrectionClocks">
+            <summary>
+            Gets the unix times of all leap second corrections for this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.UsesDaylightTime">
+            <summary>
+            Returns true if this zoneinfo has transitions between various offsets
+            from UT, such as standard time and daylight time.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.NearestDstRule">
+            <summary>
+            Gets the nearest DST rule of this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.NearestNonDstRule">
+            <summary>
+            Gets the nearest non-DST rule of this zoneinfo.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.CurrentClock">
+            <summary>
+            Gets the current unix time of the host machine;
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.DefaultName">
+            <summary>
+            Gets default zoneinfo name.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfo.Time">
+            <summary>
+            Container for time local variables.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.hour">
+            <summary>
+            Hour of day, 0 - 23.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.min">
+            <summary>
+            Minute of hour, 0 - 59.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.sec">
+            <summary>
+            Second of minute, 0 - 60.
+            Note: that value may be 60 on a leap second. 
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.wday">
+            <summary>
+            Day of week, 0 - 6, 0 = Sunday
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.year">
+            <summary>
+            Years since 1900.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.yday">
+            <summary>
+            Day of year, 1 - 366.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.mon">
+            <summary>
+            Month of year, 0 - 11.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.mday">
+            <summary>
+            Day of month, 1 - 31.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.isDst">
+            <summary>
+            True if time is DST.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.zone">
+            <summary>
+            Timezone name.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.MinValue">
+            <summary>
+            Min. time represented by signed 32-bits integer.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Time.MaxValue">
+            <summary>
+            Max. time represented by signed 32-bits integer.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initialize a new <see cref="T:TZ4Net.ZoneInfo.Time"/> object to calendar day and time offset.
+            </summary>
+            <param name="year">Years since 1900.</param>
+            <param name="mon">Month 0-11</param>
+            <param name="day">Day of month 1-31.</param>
+            <param name="secs">Seconds in day.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates the instance from "normalized" values.
+            </summary>
+            <param name="year">Year.</param>
+            <param name="mon">Month of year 1-12.</param>
+            <param name="day">Day of month 1-31.</param>
+            <param name="hour">Hour 0-23.</param>
+            <param name="min">Minute 0-59.</param>
+            <param name="sec">Second 0-60.</param>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.#ctor(System.DateTime)">
+            <summary>
+            Creates the instance from "normalized" values.
+            </summary>
+            <param name="dt">DateTime instance to create the object from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.ToString">
+            <summary>
+            String representation of the object.
+            </summary>
+            <returns><see cref="T:System.String"></see> representation of the object.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <param name="obj">Object instance to compare to.</param>
+            <returns><see cref="T:System.Boolean"></see> value indicating if both objects are equal.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.GetHashCode">
+            <summary>
+            Types that override Equals must also override GetHashCode.
+            </summary>
+            <returns>Hashcode of the instance.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.SetClock(System.Int64,System.Int32)">
+            <summary>
+            Set the local time fields from a clock and GMT offset.
+            </summary>
+            <param name="clock">Seconds since 1970</param>
+            <param name="offset">Offset from UT in seconds</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.CompareTo(TZ4Net.ZoneInfo.Time)">
+            <summary>
+            Compares to other instance of <see cref="T:TZ4Net.ZoneInfo.Time"></see> object.
+            </summary>
+            <param name="time">Instance to compare current object to.</param>
+            <returns>-1, 0 or 1 indicating the comparison result.</returns>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Time.SetSecs(System.Int32)">
+            <summary>
+            Calculates time values from the number of seconds.
+            </summary>
+            <param name="secs">Number of seconds.</param>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.DateTime">
+            <summary>
+            Gets the equivalent DateTime instance.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Hour">
+            <summary>
+            Hour of day, 0 - 23.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Min">
+            <summary>
+            Minute of hour, 0 - 59.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Sec">
+            <summary>
+            Second of minute, 0 - 60.
+            Note: that value may be 60 on a leap second. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.WDay">
+            <summary>
+            Day of week, 0 - 6, 0 = Sunday
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Year">
+            <summary>
+            Year.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.YDay">
+            <summary>
+            Day of year, 1 - 366.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Mon">
+            <summary>
+            Month of year, 1 - 12.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.MDay">
+            <summary>
+            Day of month, 1 - 31.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.IsDst">
+            <summary>
+            True if time is DST.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Time.Zone">
+            <summary>
+            Timezone name.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfo.Rule">
+            <summary>
+            Summary description for Rule.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Rule.offset">
+            <summary>
+            Offset from GMT in seconds. 
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Rule.name">
+            <summary>
+            Name of the rule. 
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfo.Rule.isDst">
+            <summary>
+            True if daylight savings time. 
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Rule.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Creates the instance from name, offset and the DST flag.
+            </summary>
+            <param name="name">Name of the rule.</param>
+            <param name="offset">Offset of the rule.</param>
+            <param name="isDst">Flag indicating if this is DST rule.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfo.Rule.ToString">
+            <summary>
+            Converts the instance to a string.
+            </summary>
+            <returns>String representation of the instance.</returns>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Rule.Offset">
+            <summary>
+            Gets the offset of the zone.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Rule.Name">
+            <summary>
+            Gets the name of the rule. 
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfo.Rule.IsDST">
+            <summary>
+            Gets the True if daylight savings time. 
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfoResGenUpdateArgs">
+            <summary>
+            Argumens class of <see cref="T:TZ4Net.ZoneInfoResGenUpdateHandler"/> delegate.
+            </summary>
+        </member>
+        <member name="F:TZ4Net.ZoneInfoResGenUpdateArgs.fileName">
+            <summary>
+            Caches the message to be reported to the listeners;
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGenUpdateArgs.#ctor(System.String)">
+            <summary>
+            Creates the event arguments instance.
+            </summary>
+            <param name="fileName">File name the events refers to.</param>
+        </member>
+        <member name="P:TZ4Net.ZoneInfoResGenUpdateArgs.FileName">
+            <summary>
+            Gets the message to be reported to the listeners;
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfoResGenUpdateHandler">
+            <summary>
+            Handler for the Message event of the <see cref="T:TZ4Net.ZoneInfoResGen"/> class.
+            </summary>
+        </member>
+        <member name="T:TZ4Net.ZoneInfoResGen">
+            <summary>
+            Utility class that generates the .NET resource containig zoneinfo files.
+            </summary>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.Generate(System.String[],System.String)">
+            <summary>
+            This method scans the zoneinfo directory and its subdirectories and puts
+            all found zoneinfo files into .NET resource file named zoneinfo.resources.
+            </summary>
+            <param name="zoneinfoDirs">The full name of zoneinfo directory.</param>
+            <param name="resourceDir">Output directory of the .NET resource file to be generated.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.Process(System.IO.DirectoryInfo,System.Resources.ResourceWriter,System.String)">
+            <summary>
+            Helper recursive method which adds all zoneinfo files from the input directory to the given resource writer.
+            </summary>
+            <param name="dir">Directory info of the directory to be processed.</param>
+            <param name="writer">Resource writer to add zoneinfo files to.</param>
+            <param name="prefix">The prefix to add to each resource name.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.OnAdded(System.String)">
+            <summary>
+            Propagates the message to all listeners about added zoneinfo file.
+            </summary>
+            <param name="fileName">Name of the zoneinfo file which was addded to resources.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.OnSkipped(System.String)">
+            <summary>
+            Propagates the message to all listeners about skipped file from zoneinfo directory.
+            </summary>
+            <param name="fileName">Name of the file which was skipped.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.OnProcessed(System.String)">
+            <summary>
+            Propagates the message to all listeners about new zoneinfo directory being processed.
+            </summary>
+            <param name="zoneinfoDirName">Name of the newly processed zoneinfo directory.</param>
+        </member>
+        <member name="M:TZ4Net.ZoneInfoResGen.OnGenerated(System.String)">
+            <summary>
+            Propagates the message to all listeners about new resource file being generated.
+            </summary>
+            <param name="fileName">Name of the newly generated resource file.</param>
+        </member>
+        <member name="E:TZ4Net.ZoneInfoResGen.Added">
+            <summary>
+            Informs the clients about the generation progress. Fired when new zoneinfo file was added to resources.
+            </summary>
+        </member>
+        <member name="E:TZ4Net.ZoneInfoResGen.Skipped">
+            <summary>
+            Informs the clients about the generation progress. Fired when file from zoneinfo dir was ommitted because of lack of 'TZIf' header.
+            </summary>
+        </member>
+        <member name="E:TZ4Net.ZoneInfoResGen.Processed">
+            <summary>
+            Informs the clients about the generation progress. Fired after zoneinfo directory was processed.
+            </summary>
+        </member>
+        <member name="E:TZ4Net.ZoneInfoResGen.Generated">
+            <summary>
+            Informs the clients about the generation progress. Fired after resource file was generated.
+            </summary>
+        </member>
+        <member name="P:TZ4Net.ZoneInfoResGen.ResourceFileName">
+            <summary>
+            Gets the resource file name. Name it taken from <see cref="T:TZ4Net.ZoneInfo"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

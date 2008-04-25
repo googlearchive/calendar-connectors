@@ -1,0 +1,169 @@
+
+Google Calendar Connectors Changelog
+====================================
+
+v1.1 [30-Apr-2008]
+------------------
+* BUG FIX: Fixed various problems with syncing Appointments with Exchange
+* BUG FIX: Fixed appointment sync creation of duplicates if fetch failed
+* Added much more unittesting
+* Added setting for Appointment sync placeholder - SyncService.PlaceHolderMessage
+* Removed some obsolete/unnecessary settings from the config files
+* Added code comments and checked in API documentation
+* Added Diagnostics UI for encrypting web.config settings
+
+v1.00 Build 36 [18-Apr-2008]
+------------------
+* BUG FIX: Fix memory leak in GData.NET
+* BUG FIX: Improvements / fixes in appointment writing + unittests
+
+v1.00 Build 36 [30-Mar-2008]
+------------------
+* BUG FIX: Default writer is now SchedulePlus
+* BUG FIX: Fixed a bug with disable appointment lookup option
+* BUG FIX: Free Busy lookup now use Display Name rather than common name
+* BUG FIX: Web Service now returns LDAP display name rather than common name
+* BUG FIX: Default Sync Service interval is 15 mins
+* BUG FIX: Added debug logging of timezone conversion to FreeBusyWriter
+* BUG FIX: Force Sync Service to use x86 binary
+
+v1.00 Build 35 [12-Mar-2008]
+------------------
+* BUG FIX: Fixed a typo in config file
+* BUG FIX: Fixed bug with multithreading
+* BUG FIX: Handle exception for timezones in DST changeover period.
+* BUG FIX: Fixed bug with cross-domain mapping
+
+v1.00 [26-Feb-2008]
+------------------
+* BUG FIX: Fixed minor security issues
+* BUG FIX: Add version # to install
+* BUG FIX: Updated copyright messages
+* BUG FIX: Fixed an infinite loop when parsing empty UserModifiedTimes.xml
+* BUG FIX: Fixed a bug when accessing ExchangeQuerier.aspx from SSL
+* BUG FIX: Keep Alive was not being used due to Connection Group scope
+
+v0.33 [18-Jan-2008]
+------------------
+* FEATURE: Enabled futures to do parallel FB / Appointment lookups
+* BUG FIX: Fixed Appointment lookup problem with Sync Service by
+  making it respect sync window.
+* BUG FIX: Changed sync window to use days
+* BUG FIX: Exchange WebDAV calls now use Connection Groups to secure
+  keep-alive usage
+* FEATURE: New setting Exchange.FreeBusyServerName to override the
+  Exchange server used for FB lookup
+* BUG FIX: Changed setting Exchange.GCalQueryAdmin.DefaultDomain to 
+  Exchange.DefaultDomain
+* BUG FIX: Re-Enabled Keep-Alive for Google Calendar Connections
+* FEATURE: Added Exchange Server Connection Limit Setting -
+  Exchange.MaxConnections
+* FEATURE: Free/Busy and appointment lookup now uses parallel 
+  queries for multi user lookup
+* FEATURE: Optimized Free/Busy lookup now supports multi-user lookup
+  in a single query
+* BUG FIX: ExchangeQuerier.aspx now attempts to make Google Calendar
+  POST URL scheme match the scheme of the referring page
+* BUG FIX: Changed default number of Sync Service threads from 1 to 4
+* BUG FIX: Default user name in Free / Busy write diagnostic is fixed.
+* BUG FIX: Fixed comparison semantics of ExchangeUser and DateTimeRange
+* FEATURE: Implemented IntervalTree to make Appointment  / FB merge less costly
+* FEATURE: Added unittests for Appointment / FB merge, AppointmentWriter,
+  Futures, FreeBusyUrl, IntervalTree and DateTimeRange.
+* BUG FIX: Updated GData.NET libraries
+* BUG FIX: SchedulePlusFreeBusy writer didn't handle events that spanned
+  multiple months. It now breaks up DateTime ranges that span a month into
+  multiple ranges contained within a month - the underlying FreeBusy format
+  only supports dates within a month.
+* BUG FIX: Handle Google Calendar requests with malformed since parameters.
+* BUG FIX: Don't write to GoogleApps.GCal.LogDirectory if it is empty string
+
+v0.32 [03-Dec-2007]
+------------------
+* FEATURE: Implement futures to do free/busy lookups in parallel (not enabled).
+* BUG FIX: Refactored ExchangeGateway into AppointmentGateway / FreeBusyGatway
+* BUG FIX: Remove some unnecessary configuration options for GCalendar URLs.
+* FEATURE: Unit test framework and some initial tests
+* BUG FIX: Fixed some problems found with unit tests!
+* FEATURE: Add new config option (GoogleApps.GCal.SyncWindowInMonths) to limit
+  how many events are synchronized with Google Calendar.
+* BUG FIX: SyncService.XmlStorageDirectory is now set automatically in installer
+* BUG FIX: Enable Keep-Alive connections when talking to Exchange
+
+v0.31 [21-Dec-2007]
+------------------
+* NEW FEATURE: Support domain mapping between the Google Apps domain and the
+  local domain - e.g. example.org <-> example.corp.domain implies that
+  WebService queries for user@example.org will actually lookup 
+  user@example.corp.domain.
+* NEW FEATURE: Improved the Diagnostics page so it makes it easier to diagnose
+  problems and tell when something is not working. Remove the Google Calendar
+  user lookup diagnostic which required the Provisioning API enabled on the 
+  domain.
+* NEW FEATURE: New support for Appointment fetching using a single request.
+* NEW FEATURE: New support for Date Constrained Free Busy Lookup (optional).
+* BUG FIX: Schedule+ Free Busy writer now uses the GCalQuery Admin account
+* BUG FIX: Fix the Sync Service name to not have spaces, Display name stays
+  the same.
+* BUG FIX: New setting to disable appointment lookup
+* BUG FIX: Use SSL to communicate with Google Calendar
+* BUG FIX: Fixed a bug in the way the Free Busy Public Folder query was
+  computed
+
+v0.30 [13-Dec-2007]
+------------------
+* BUG FIX: Support authentication with Exchange clusters. WebDAV requests
+  that are redirected to another server were failing with authentication
+  failures. Redirection is now handled manually to allow reauthentcation
+  and the domains permitted to redirect can be controlled by an app setting.
+* Integrated with latest version of GData API
+
+v0.28 [4-Dec-2007]
+------------------
+* BUG FIX: Added configuration option to disable HTTP
+  KeepAlives.  This may solve situations where "The underlying connection
+  was closed" error occur during synchronization.  This option can be set 
+  in the config file as:
+  <add key="SyncService.EnableKeepAlive" value="true"/>
+
+* NEW FEATURE: The LDAP debug statement recorded in the log
+  now includes Active Directory "distinguishedName" and "objectclass"
+  properties for each user.
+
+
+v0.27 [30-Nov-2007]
+-------------------
+* BUG FIX: [From Barnaby] LDAP queries were previously limited to returning
+  a maximum of 1,000 users.  This limit has been removed.
+
+  
+v0.26 [2-Nov-2007]
+------------------
+* BUG FIX: Exchange user calendar URLs are now constucted using the Exchange
+  user's Primary SMTP address (as opposed to the mailnickname).  The Primary
+  SMTP address is found by querying Active Directory for the user's 
+  ProxyAddresses attributes, enumerating the results, and choosing the entry
+  that begins with "SMTP:" (this is case sensitive).
+
+  
+v0.25 [24-Oct-2007]
+-------------------
+* NEW FEATURE: Diagnostics web page now has a "Write Free Busy message" test
+  that will write a message directly to the SchedulePlus Free Busy folder.
+  Note that this requires the AdminGroup and and TemplateUserName config keys
+  to be set.
+
+
+v0.24 [22-Oct-2007]
+-------------------
+* NEW FEATURE: All LDAP attributes we're using are now logged as we read them
+  from the LDAP resultset.  This turned out to be less information (weight-
+  wise) than I was anticipating, so I put it in the regular debug logs.
+
+* NEW FEATURE: Diagnostics web page now has a "Query Active Directory" test 
+  where you can input an LDAP query and see what GCalExchange returns.  This 
+  follows the same code path as the AD query that is used in the sync process.
+
+* BUG FIX: Fixed an issue when querying f/b in Exchange for a user w/ an empty 
+  f/b message.  If the message was completely empty, we were throwing an error. 
+
