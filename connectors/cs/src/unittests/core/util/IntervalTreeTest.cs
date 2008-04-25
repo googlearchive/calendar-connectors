@@ -44,7 +44,7 @@ namespace Google.GCalExchangeSync.Library.Util
         [SetUp]
         public void Init()
         {
-            baseDate = DateTime.Parse("2007-06-30T05:16:11.000Z");
+            baseDate = DateUtil.ParseDateToUtc("2007-06-30T05:16:11.000Z");
             tree = new IntervalTree<DateTimeRange>();
         }
 

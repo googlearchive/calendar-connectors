@@ -43,8 +43,8 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
                 ConfigCache.ExchangeUserPassword );
 
 			DateTimeRange range = new DateTimeRange(
-				DateTime.Now.AddDays(-7),
-				DateTime.Now.AddDays(+7));
+				DateUtil.NowUtc.AddDays(-7),
+                DateUtil.NowUtc.AddDays(+7));
 
             return gw.SearchByEmail( range, email );
         }
@@ -73,7 +73,7 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
 					appt.StartDate = appointmentStart;
 					appt.EndDate = appointmentEnd;
 					appt.MeetingStatus = MeetingStatus.Confirmed;
-					appt.Created = DateTime.Now;
+                    appt.Created = DateUtil.NowUtc;
 					appt.InstanceType = InstanceType.Single;
 
 					List<Appointment> list = new List<Appointment>();
@@ -114,8 +114,8 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
                 userFreeBusyUrl,
                 new List<string>(), 
                 new List<string>(),
-                FreeBusyConverter.ConvertToSysTime(DateTime.Now.AddDays(-30)).ToString(),
-                FreeBusyConverter.ConvertToSysTime(DateTime.Now.AddDays(60)).ToString());
+                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(-30)).ToString(),
+                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(60)).ToString());
         }
     }
 }

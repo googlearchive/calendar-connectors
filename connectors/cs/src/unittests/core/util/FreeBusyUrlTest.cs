@@ -55,8 +55,8 @@ namespace Google.GCalExchangeSync.Library.Util
 		private static readonly string User1Email = "user1@example.org";
 		private static readonly string User2Email = "user2@example.org";
 
-		private static readonly DateTime start = DateTime.Parse("2007-06-30T05:16:11.000Z");
-		private static readonly DateTime end = DateTime.Parse("2007-06-30T08:16:11.000Z");
+		private static readonly DateTime start = DateUtil.ParseDateToUtc("2007-06-30T05:16:11.000Z");
+        private static readonly DateTime end = DateUtil.ParseDateToUtc("2007-06-30T08:16:11.000Z");
 
 		[SetUp]
 		public void Init()

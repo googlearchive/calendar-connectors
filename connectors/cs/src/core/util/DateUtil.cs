@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Google.GCalExchangeSync.Library.Util
@@ -54,7 +55,8 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>An ISO8601 date time string</returns>
 		public static string FormatDateForISO8601(DateTime dt)
 		{
-			return dt.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+			return dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
 		}
 
         /// <summary>
@@ -64,7 +66,8 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>An exchane style date string</returns>
 		public static string FormatDateForExchange(DateTime dt)
         {
-            return dt.ToUniversalTime().ToString( "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'" );
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
         }
 
         /// <summary>
@@ -74,28 +77,31 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>A DASL style date string</returns>
 		public static string FormatDateForDASL(DateTime dt)
 		{
-			return dt.ToUniversalTime().ToString("yyyy/MM/dd HH:mm:ss");
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return dt.ToString("yyyy/MM/dd HH:mm:ss");
 		}
 
 		/// <summary>
         /// Formats a DateTime into "yyyyMMdd" format
         /// </summary>
-        /// <param name="date">Datetime to convert</param>
+        /// <param name="dt">Datetime to convert</param>
         /// <returns>A Google Calendar style date string</returns>
-        public static string FormatDateForGoogle(DateTime date)
+        public static string FormatDateForGoogle(DateTime dt)
         {
-            return date.ToString( "yyyyMMdd" );
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return dt.ToString("yyyyMMdd");
         }
 
         /// <summary>
         /// Formats a DateTime into "yyyyMMddTHHmmss" format, where 
         /// "T" is the separator between date values and time values
         /// </summary>
-        /// <param name="date">Datetime to convert</param>
+        /// <param name="dt">Datetime to convert</param>
         /// <returns>A Google Calendar style date time string</returns>
-        public static string FormatDateTimeForGoogle(DateTime date)
+        public static string FormatDateTimeForGoogle(DateTime dt)
         {
-            return string.Format( "{0}T{1}", date.ToString( "yyyyMMdd" ), date.ToString( "HHmmss" ) );
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return string.Format("{0}T{1}", dt.ToString("yyyyMMdd"), dt.ToString("HHmmss"));
         }
 
         /// <summary>
@@ -104,7 +110,6 @@ namespace Google.GCalExchangeSync.Library.Util
         /// </summary>
         /// <param name="dateString">GCal date to parse</param>
         /// <returns>A DateTime parsed from the string</returns>
-
         public static DateTime ParseGoogleDate( string dateString )
         {
             DateTime dt = DateTime.MinValue;
@@ -112,7 +117,10 @@ namespace Google.GCalExchangeSync.Library.Util
             try
             {
                 dt = DateTime.ParseExact(
-                    dateString, new string[] { "yyyyMMdd'T'HHmmss", "yyyyMMdd" }, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.None );
+                    dateString, 
+                    new string[] { "yyyyMMdd'T'HHmmss", "yyyyMMdd" }, 
+                    DateTimeFormatInfo.InvariantInfo, 
+                    DateTimeStyles.None );
             }
             catch ( Exception ex )
             {
@@ -123,25 +131,45 @@ namespace Google.GCalExchangeSync.Library.Util
             return dt;
         }
 
+        /// <summary>
+        /// Parse a date to a UTC time - Kind will be set to indeterminate
+        /// </summary>
+        /// <param name="dateString">Date string to parse</param>
+        /// <returns>DateTime in UTC with Kind set to indeterminate</returns>
+        public static DateTime ParseDateToUtc(string dateString)
+        {
+            DateTime result = Convert.ToDateTime(dateString);
+            return OlsonUtil.ConvertToUTC(result, OlsonUtil.DefaultTimeZone);
+        }
+
 		/// <summary>
 		/// Return a date time at the start of the month after the one specified by val
 		/// </summary>
-		/// <param name="val">Date to return the EOM for</param>
+        /// <param name="dt">Date to return the EOM for</param>
         /// <returns>DateTime at the start of the month after val</returns>
-		public static DateTime StartOfNextMonth(DateTime val)
+        public static DateTime StartOfNextMonth(DateTime dt)
 		{
-			return StartOfMonth(val).AddMonths(1);
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return StartOfMonth(dt).AddMonths(1);
 		}
 
 		/// <summary>
 		/// Return a date time at the start of the month specified by val
 		/// </summary>
-		/// <param name="val">Date to return the SOM for</param>
+        /// <param name="dt">Date to return the SOM for</param>
         /// <returns>DateTime at the start of the current month</returns>
-		public static DateTime StartOfMonth(DateTime val)
+        public static DateTime StartOfMonth(DateTime dt)
 		{
-			return new DateTime(val.Year, val.Month , 1, 0, 0, 0, DateTimeKind.Utc);
+            Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
+            return new DateTime(dt.Year, dt.Month, 1, 0, 0, 0, DateTimeKind.Unspecified);
 		}
 
+        /// <summary>
+        /// Return the current time in UTC with unspecified kind
+        /// </summary>
+        public static DateTime NowUtc
+        {
+            get { return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified); }
+        }
     }
 }

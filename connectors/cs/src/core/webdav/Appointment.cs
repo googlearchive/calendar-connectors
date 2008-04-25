@@ -123,8 +123,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// </summary>
         public Appointment()
         {
-            Created = DateTime.Now;
-            range = new DateTimeRange(DateTime.Now, DateTime.Now);
+            Created = DateUtil.NowUtc;
+            range = new DateTimeRange(Created, Created);
 
             Body = string.Empty;
             Subject = string.Empty;

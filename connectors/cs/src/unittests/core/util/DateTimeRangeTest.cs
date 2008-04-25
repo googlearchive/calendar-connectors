@@ -36,7 +36,7 @@ namespace Google.GCalExchangeSync.Library.Util
 		[SetUp]
 		public void Init()
 		{
-			startDate = DateTime.Parse("2007-06-30T05:16:11.000Z");
+            startDate = DateUtil.ParseDateToUtc("2007-06-30T05:16:11.000Z");
 			endDate = startDate.AddHours(2);
 		}
 

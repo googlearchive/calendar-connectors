@@ -24,7 +24,6 @@ using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 
-using Google.GData.Apps;
 using Google.GData.Calendar;
 using Google.GData.Client;
 using Google.GData.Extensions;
@@ -229,7 +228,7 @@ namespace Google.GCalExchangeSync.Library
                     login = user.Email.ToLower();
 
                     DateTime modifiedDate = modifiedDateUtil.GetModifiedDateForUser(login);
-                    DateTime currentDate = DateTime.Now;
+                    DateTime currentDate = DateUtil.NowUtc;
 
                     // Pick a window to synchronize for:
                     //

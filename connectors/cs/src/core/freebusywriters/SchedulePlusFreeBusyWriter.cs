@@ -93,10 +93,9 @@ namespace Google.GCalExchangeSync.Library
             foreach ( EventEntry googleAppsEvent in googleAppsFeed.Entries )
             {
                 startDate = googleAppsEvent.Times[0].StartTime;
-                utcStartDate = OlsonUtil.ConvertToUTC( startDate, feedTimeZone );
-
+                utcStartDate = DateTime.SpecifyKind(startDate.ToUniversalTime(), DateTimeKind.Unspecified);
                 endDate = googleAppsEvent.Times[0].EndTime;
-                utcEndDate = OlsonUtil.ConvertToUTC( endDate, feedTimeZone );
+                utcEndDate = DateTime.SpecifyKind(endDate.ToUniversalTime(), DateTimeKind.Unspecified);
 
                 if ( minStartDate == DateTime.MinValue || utcStartDate < minStartDate )
                     minStartDate = utcStartDate;

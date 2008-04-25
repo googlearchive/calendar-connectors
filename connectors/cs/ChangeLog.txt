@@ -2,7 +2,7 @@
 Google Calendar Connectors Changelog
 ====================================
 
-v1.1 [30-Apr-2008]
+v1.1 [??-???-2008]
 ------------------
 * BUG FIX: Fixed various problems with syncing Appointments with Exchange
 * BUG FIX: Fixed appointment sync creation of duplicates if fetch failed
@@ -11,6 +11,7 @@ v1.1 [30-Apr-2008]
 * Removed some obsolete/unnecessary settings from the config files
 * Added code comments and checked in API documentation
 * Added Diagnostics UI for encrypting web.config settings
+* BUG FIX: Fixed how timezones are used
 
 v1.00 Build 36 [18-Apr-2008]
 ------------------

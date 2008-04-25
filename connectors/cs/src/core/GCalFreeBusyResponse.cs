@@ -115,14 +115,12 @@ namespace Google.GCalExchangeSync.Library
                                     sb.Append(",");
                                 }
 
-                                if( !appt.IsPrivate )
+                                if (!appt.IsPrivate)
                                 {
                                     sb.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Subject ),
-                                        DateUtil.FormatDateTimeForGoogle(
-                                            OlsonUtil.ConvertToTimeZone( appt.StartDate, user.TimeZone, request.TimeZone ) ),
-                                        DateUtil.FormatDateTimeForGoogle(
-                                            OlsonUtil.ConvertToTimeZone( appt.EndDate, user.TimeZone, request.TimeZone ) ),
+                                        DateUtil.FormatDateTimeForGoogle(appt.StartDate),
+                                        DateUtil.FormatDateTimeForGoogle(appt.EndDate),
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Location ),
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Organizer ),
                                         ConversionsUtil.ConvertExchangeResponseToGoogleResponse( appt.ResponseStatus ) );
@@ -165,10 +163,8 @@ namespace Google.GCalExchangeSync.Library
         {
             sb.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
                "",
-               DateUtil.FormatDateTimeForGoogle(
-                   OlsonUtil.ConvertToTimeZone( startDate, user.TimeZone, request.TimeZone ) ),
-               DateUtil.FormatDateTimeForGoogle(
-                   OlsonUtil.ConvertToTimeZone( endDate, user.TimeZone, request.TimeZone ) ),
+               DateUtil.FormatDateTimeForGoogle(startDate),
+               DateUtil.FormatDateTimeForGoogle(endDate),
                "",
                ConversionsUtil.EscapeNonAlphaNumeric( user.CommonName ),
                "1" );

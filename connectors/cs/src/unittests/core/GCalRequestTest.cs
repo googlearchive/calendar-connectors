@@ -72,9 +72,9 @@ namespace Google.GCalExchangeSync.Library
             emails.Add("user3@example.org");
             emails.Add("user4@example.org");
 
-            DateTime start = DateTime.Parse("2008-01-01T00:00:00.000");
-            DateTime end = DateTime.Parse("2008-01-31T00:00:00.000");
-            DateTime since = DateTime.Parse("2008-01-01T00:00:00.000");
+            DateTime start = DateUtil.ParseDateToUtc("2008-01-01T00:00:00.000Z");
+            DateTime end = DateUtil.ParseDateToUtc("2008-01-31T00:00:00.000Z");
+            DateTime since = DateUtil.ParseDateToUtc("2008-01-01T00:00:00.000Z");
             string tz = "America/Los_Angeles";
 
             string query = string.Format("[ 1, {0}, [{1}], {2}/{3}, {4}, {5}]",
@@ -117,9 +117,9 @@ namespace Google.GCalExchangeSync.Library
             dstEmails.Add("user3@woot.org");
             dstEmails.Add("user4@woot.org");
 
-            DateTime start = DateTime.Parse("2008-01-01T00:00:00.000");
-            DateTime end = DateTime.Parse("2008-01-31T00:00:00.000");
-            DateTime since = DateTime.Parse("2008-01-01T00:00:00.000");
+            DateTime start = DateUtil.ParseDateToUtc("2008-01-01T00:00:00.000Z");
+            DateTime end = DateUtil.ParseDateToUtc("2008-01-31T00:00:00.000Z");
+            DateTime since = DateUtil.ParseDateToUtc("2008-01-01T00:00:00.000Z");
             string tz = "America/Los_Angeles";
 
             string query = string.Format("[ 1, {0}, [{1}], {2}/{3}, {4}, {5}]",

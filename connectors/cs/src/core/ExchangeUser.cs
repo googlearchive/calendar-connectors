@@ -45,7 +45,6 @@ namespace Google.GCalExchangeSync.Library
         private string displayName = "";
         private bool isValid = true;
         private GCalAccessLevel accessLevel = 0;
-        private OlsonTimeZone timeZone;
         private FreeBusyCollection busyTimesBlocks;
         private bool haveAppointmentInfo = false;
      
@@ -92,15 +91,6 @@ namespace Google.GCalExchangeSync.Library
         {
             get { return this.commonName; }
             set { this.commonName = value; }
-        }
-
-        /// <summary>
-        /// Timezone the Exchange user is in
-        /// </summary>
-        public OlsonTimeZone TimeZone
-        {
-            get { return this.timeZone; }
-            set { this.timeZone = value; }
         }
 
         /// <summary>
@@ -189,8 +179,6 @@ namespace Google.GCalExchangeSync.Library
             
             this.freeBusyCommonName = parseFreeBusyCommonName(legacyExchangeDN);
             this.busyTimesBlocks = new FreeBusyCollection();
-
-            this.timeZone = OlsonUtil.GetTimeZone(System.TimeZone.CurrentTimeZone.StandardName);
 
             AdjustAccountName();
             Validate();

@@ -467,7 +467,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         private DateTime GetPropertyAsDateTime(XmlNode props, string id, XmlNamespaceManager ns)
         {
             XmlNode node = props.SelectSingleNode(id, ns);
-            return (node != null) ? Convert.ToDateTime(node.InnerXml) : DateTime.MinValue;
+            return (node != null) ? DateUtil.ParseDateToUtc(node.InnerXml) : DateTime.MinValue;
         }
 
         private bool GetPropertyAsBool(XmlNode props, string id, XmlNamespaceManager ns)
@@ -586,7 +586,9 @@ namespace Google.GCalExchangeSync.Library.WebDav
             // Convert interval in mins to Ticks
             // Ticks is in 100 Nanosecond = 1 E -7 s
             long interval = (long)freeBusyInterval * 60 * 10000000;
-            DateTime baseTime = new DateTime(window.Start.Ticks + (interval - (window.Start.Ticks % interval)), DateTimeKind.Utc);
+            DateTime baseTime = 
+                new DateTime(window.Start.Ticks + (interval - (window.Start.Ticks % interval)), 
+                DateTimeKind.Unspecified);
 
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(response);
@@ -769,8 +771,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
                 while (reader.BaseStream.Length - reader.BaseStream.Position >= 4)
                 {
-                    start = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16())).ToLocalTime();
-                    end = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16())).ToLocalTime();
+                    start = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
+                    end = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
 
                     fbBlocks.Add( new DateTimeRange( start, end ) );
                 }
