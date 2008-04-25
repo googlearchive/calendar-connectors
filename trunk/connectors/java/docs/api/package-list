@@ -1,0 +1,6 @@
+com.google.calendar.interoperability.connectorplugin
+com.google.calendar.interoperability.connectorplugin.base
+com.google.calendar.interoperability.connectorplugin.base.messages
+com.google.calendar.interoperability.connectorplugin.base.messages.util
+com.google.calendar.interoperability.connectorplugin.impl.google
+com.google.calendar.interoperability.connectorplugin.impl.mock
