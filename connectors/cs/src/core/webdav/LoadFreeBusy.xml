@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<D:searchrequest xmlns:D="DAV:">
+	<D:sql>
+		SELECT
+			"http://schemas.microsoft.com/mapi/subject",
+			"http://schemas.microsoft.com/mapi/proptag/x68501102",
+			"http://schemas.microsoft.com/mapi/proptag/x684f1003",
+			"http://schemas.microsoft.com/mapi/proptag/x68541102",
+			"http://schemas.microsoft.com/mapi/proptag/x68531003",
+			"http://schemas.microsoft.com/mapi/proptag/x68561102",
+			"http://schemas.microsoft.com/mapi/proptag/x68551003",
+			"http://schemas.microsoft.com/mapi/proptag/x68521102",
+			"http://schemas.microsoft.com/mapi/proptag/x68511003",
+			"http://schemas.microsoft.com/mapi/proptag/x68470003",
+			"http://schemas.microsoft.com/mapi/proptag/x68480003",
+			"http://schemas.microsoft.com/mapi/proptag/x68680040"
+		FROM "{0}"
+		WHERE "http://schemas.microsoft.com/mapi/subject" = '{1}'
+  </D:sql>
+</D:searchrequest>
