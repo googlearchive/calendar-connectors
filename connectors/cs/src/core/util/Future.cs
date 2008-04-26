@@ -25,17 +25,17 @@ namespace Google.GCalExchangeSync.Library.Util
     /// </summary>
     public abstract class Future : IDisposable
     {
-		private Thread taskThread;
+        private Thread taskThread;
 
         /// <summary>
         /// Initiate the task to be completed and return immediately
         /// </summary>
         public void start()
-		{
-			taskThread = new Thread(doTask);
-			taskThread.Name = this.TaskName;
-			taskThread.Start();
-		}
+        {
+            taskThread = new Thread(doTask);
+            taskThread.Name = this.TaskName;
+            taskThread.Start();
+        }
 
         /// <summary>
         /// Override this method with the operation to be completed
@@ -46,25 +46,25 @@ namespace Google.GCalExchangeSync.Library.Util
         /// Override this method to provide a unique ID for the task
         /// </summary>
         protected abstract string TaskName
-		{
-			get;
-		}
+        {
+            get;
+        }
 
         /// <summary>
         /// Block for the result to be available - this function should be called from a method in
         /// the subclass that returns results
         /// </summary>
         public void waitForCompletion()
-		{
-			taskThread.Join();
-		}
+        {
+            taskThread.Join();
+        }
 
         /// <summary>
         /// Dispose of the future
         /// </summary>
-		public void Dispose()
-		{
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     };
 }

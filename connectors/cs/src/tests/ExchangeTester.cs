@@ -32,18 +32,18 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
                 ConfigCache.ExchangeServerUrl, 
                 ConfigCache.ExchangeUserLogin, 
                 ConfigCache.ExchangeUserPassword );
-			return gw.QueryActiveDirectory( ldapFilter );
+            return gw.QueryActiveDirectory( ldapFilter );
         }
 
-		public static ExchangeUserDict QueryFreeBusy(string email)
+        public static ExchangeUserDict QueryFreeBusy(string email)
         {
             ExchangeService gw = new ExchangeService( 
                 ConfigCache.ExchangeServerUrl, 
                 ConfigCache.ExchangeUserLogin, 
                 ConfigCache.ExchangeUserPassword );
 
-			DateTimeRange range = new DateTimeRange(
-				DateUtil.NowUtc.AddDays(-7),
+            DateTimeRange range = new DateTimeRange(
+                DateUtil.NowUtc.AddDays(-7),
                 DateUtil.NowUtc.AddDays(+7));
 
             return gw.SearchByEmail( range, email );
@@ -62,31 +62,31 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             ExchangeUserDict users = 
                 gw.QueryActiveDirectory( string.Format("mail={0}", email ));
 
-			if (users.Count != 0)
-			{
-				foreach (ExchangeUser user in users.Values)
-				{
-					Appointment appt = new Appointment();
+            if (users.Count != 0)
+            {
+                foreach (ExchangeUser user in users.Values)
+                {
+                    Appointment appt = new Appointment();
 
-					appt.Subject = "GCalExchangeSync test appt";
-					appt.Location = "test";
-					appt.StartDate = appointmentStart;
-					appt.EndDate = appointmentEnd;
-					appt.MeetingStatus = MeetingStatus.Confirmed;
+                    appt.Subject = "GCalExchangeSync test appt";
+                    appt.Location = "test";
+                    appt.StartDate = appointmentStart;
+                    appt.EndDate = appointmentEnd;
+                    appt.MeetingStatus = MeetingStatus.Confirmed;
                     appt.Created = DateUtil.NowUtc;
-					appt.InstanceType = InstanceType.Single;
+                    appt.InstanceType = InstanceType.Single;
 
-					List<Appointment> list = new List<Appointment>();
-					list.Add(appt);
+                    List<Appointment> list = new List<Appointment>();
+                    list.Add(appt);
 
-					gw.Appointments.WriteAppointments(user, list);
-				}
-			}
-			else
-			{
-				string msg = string.Format("User {0} not found", email);
-				throw new Exception(msg);
-			}
+                    gw.Appointments.WriteAppointments(user, list);
+                }
+            }
+            else
+            {
+                string msg = string.Format("User {0} not found", email);
+                throw new Exception(msg);
+            }
         }
 
         public static void WriteFreeBusyMessage( string commonName )
@@ -102,10 +102,10 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             writer.Initialize( gw );
 
             string userFreeBusyUrl = FreeBusyUrl.GenerateUrl(
-				ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, commonName);
+                ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, commonName);
 
             string templateUrl = FreeBusyUrl.GenerateUrl(
-				ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, ConfigCache.TemplateUserName);
+                ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, ConfigCache.TemplateUserName);
 
             gw.FreeBusy.CopyFreeBusyMessage( 
                 templateUrl, userFreeBusyUrl, commonName );

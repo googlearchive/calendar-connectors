@@ -24,23 +24,23 @@ using log4net;
 
 namespace GCalExchangeLookup
 {
-	public class Global : System.Web.HttpApplication
-	{
-		protected static readonly log4net.ILog _log =
-		  log4net.LogManager.GetLogger(typeof(ExchangeQuerier));
+    public class Global : System.Web.HttpApplication
+    {
+        protected static readonly log4net.ILog _log =
+          log4net.LogManager.GetLogger(typeof(ExchangeQuerier));
 
-		protected void Application_Start(object sender, EventArgs e)
-		{
-		}
+        protected void Application_Start(object sender, EventArgs e)
+        {
+        }
 
-		protected void Application_End(object sender, EventArgs e)
-		{
-		}
+        protected void Application_End(object sender, EventArgs e)
+        {
+        }
 
-		protected void Application_Error(object sender, EventArgs e)
-		{
-			Exception ex = Server.GetLastError().GetBaseException();
-			_log.Error(ex.Message, ex);
-		}
-	}
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError().GetBaseException();
+            _log.Error(ex.Message, ex);
+        }
+    }
 }

@@ -24,7 +24,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
     public class Method
     {
         /// <summary>HTTP GET</summary>
-		public static Method GET = new Method("GET");
+        public static Method GET = new Method("GET");
         /// <summary>HTTP PUT</summary>
         public static Method PUT = new Method("PUT");
         /// <summary>HTTP POST</summary>

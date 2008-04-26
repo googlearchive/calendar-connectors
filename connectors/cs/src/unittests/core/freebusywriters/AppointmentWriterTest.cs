@@ -35,50 +35,50 @@ using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library
 {
-	[TestFixture]
-	public class AppointmentWriterTest : AppointmentWriter
-	{
-		IService _service;
-		DateTime _base;
+    [TestFixture]
+    public class AppointmentWriterTest : AppointmentWriter
+    {
+        IService _service;
+        DateTime _base;
 
-		List<DateTimeRange> _gcalEvents = new List<DateTimeRange>();
-		List<DateTimeRange> _exchEvents = new List<DateTimeRange>();
-		List<DateTimeRange> _createEvents = new List<DateTimeRange>();
-		List<DateTimeRange> _deleteEvents = new List<DateTimeRange>();
+        List<DateTimeRange> _gcalEvents = new List<DateTimeRange>();
+        List<DateTimeRange> _exchEvents = new List<DateTimeRange>();
+        List<DateTimeRange> _createEvents = new List<DateTimeRange>();
+        List<DateTimeRange> _deleteEvents = new List<DateTimeRange>();
 
-		[SetUp]
-		public void Init()
-		{
-			_service = new CalendarService("AppointmentWriterTest");
+        [SetUp]
+        public void Init()
+        {
+            _service = new CalendarService("AppointmentWriterTest");
             _base = DateUtil.ParseDateToUtc("2007-07-30T00:00:00.000Z");
 
-			_gcalEvents.Clear();
-			_exchEvents.Clear();
-			_createEvents.Clear();
-			_deleteEvents.Clear();
-		}
+            _gcalEvents.Clear();
+            _exchEvents.Clear();
+            _createEvents.Clear();
+            _deleteEvents.Clear();
+        }
 
-		[Test]
-		public void TestAppointmentOwnership()
-		{
-			Appointment appt = new Appointment();
-			Assert.IsFalse(this.ValidateOwnership(appt));
-			this.AssignOwnership(appt);
-			Assert.IsTrue(this.ValidateOwnership(appt));
-		}
+        [Test]
+        public void TestAppointmentOwnership()
+        {
+            Appointment appt = new Appointment();
+            Assert.IsFalse(this.ValidateOwnership(appt));
+            this.AssignOwnership(appt);
+            Assert.IsTrue(this.ValidateOwnership(appt));
+        }
 
-		protected void AddEventBoth(DateTime start, DateTime end)
-		{
-			DateTimeRange r = new DateTimeRange(start, end);
-			_gcalEvents.Add(r);
-			_exchEvents.Add(r);
-		}
+        protected void AddEventBoth(DateTime start, DateTime end)
+        {
+            DateTimeRange r = new DateTimeRange(start, end);
+            _gcalEvents.Add(r);
+            _exchEvents.Add(r);
+        }
 
-		protected void AddEventGCal(DateTimeRange r)
-		{
-			_gcalEvents.Add(r);
-			_createEvents.Add(r);
-		}
+        protected void AddEventGCal(DateTimeRange r)
+        {
+            _gcalEvents.Add(r);
+            _createEvents.Add(r);
+        }
 
         protected void AddEventGCal(DateTime start, DateTime end)
         {
@@ -87,10 +87,10 @@ namespace Google.GCalExchangeSync.Library
         }
 
         protected void AddEventExchange(DateTime start, DateTime end)
-		{
-			DateTimeRange r = new DateTimeRange(start, end);
+        {
+            DateTimeRange r = new DateTimeRange(start, end);
             AddEventExchange(r);
-		}
+        }
 
         protected void AddEventExchange(DateTimeRange r)
         {
@@ -122,34 +122,34 @@ namespace Google.GCalExchangeSync.Library
         }
 
         [Test]
-		public void TestOverlappingStartEvent()
-		{
+        public void TestOverlappingStartEvent()
+        {
             DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
-			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
+            DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
-			// Test overlapping events
-			// - 13:00 - 13:30 in Exchange
-			// - 13:00 - 14:00 in GCal
-			// Should create an exchange event [13:00-14:00]
-			AddEventExchange(start, start.AddMinutes(30));
-			AddEventGCal(start, start.AddHours(1));
+            // Test overlapping events
+            // - 13:00 - 13:30 in Exchange
+            // - 13:00 - 14:00 in GCal
+            // Should create an exchange event [13:00-14:00]
+            AddEventExchange(start, start.AddMinutes(30));
+            AddEventGCal(start, start.AddHours(1));
 
-			EventFeed feed = createEventFeedFromEvents(_gcalEvents);
-			FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
+            EventFeed feed = createEventFeedFromEvents(_gcalEvents);
+            FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
 
-			ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
-			user.BusyTimes = fb;
+            ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
+            user.BusyTimes = fb;
 
-			ExchangeGatewayMock gateway = new ExchangeGatewayMock();
-			this.SyncUser(user, feed, gateway, window);
+            ExchangeGatewayMock gateway = new ExchangeGatewayMock();
+            this.SyncUser(user, feed, gateway, window);
 
-			Assert.AreEqual(0, gateway.AppointmentsMock.Deleted.Count);
+            Assert.AreEqual(0, gateway.AppointmentsMock.Deleted.Count);
             Assert.AreEqual(1, gateway.AppointmentsMock.Written.Count);
             Assert.AreEqual(0, gateway.AppointmentsMock.Updated.Count);
 
             Assert.AreEqual(gateway.AppointmentsMock.Written[0].StartDate, start);
             Assert.AreEqual(gateway.AppointmentsMock.Written[0].EndDate, start.AddHours(1));
-		}
+        }
 
         [Test]
         public void TestOverlappingContainedEvent()
@@ -182,27 +182,27 @@ namespace Google.GCalExchangeSync.Library
         }
 
 
-		[Test]
-		public void TestOverlappingExactEvent()
-		{
+        [Test]
+        public void TestOverlappingExactEvent()
+        {
             DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
-			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
+            DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
-			// Test overlapping events
-			// - 13:00 - 13:30 in Exchange
-			// - 13:00 - 13:30 in GCal
-			// Should create an exchange event [13:00-13:30]
-			AddEventExchange(start, start.AddMinutes(30));
-			AddEventGCal(start, start.AddMinutes(30));
+            // Test overlapping events
+            // - 13:00 - 13:30 in Exchange
+            // - 13:00 - 13:30 in GCal
+            // Should create an exchange event [13:00-13:30]
+            AddEventExchange(start, start.AddMinutes(30));
+            AddEventGCal(start, start.AddMinutes(30));
 
-			EventFeed feed = createEventFeedFromEvents(_gcalEvents);
-			FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
+            EventFeed feed = createEventFeedFromEvents(_gcalEvents);
+            FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
 
-			ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
-			user.BusyTimes = fb;
+            ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
+            user.BusyTimes = fb;
 
-			ExchangeGatewayMock gateway = new ExchangeGatewayMock();
-			this.SyncUser(user, feed, gateway, window);
+            ExchangeGatewayMock gateway = new ExchangeGatewayMock();
+            this.SyncUser(user, feed, gateway, window);
 
             Assert.AreEqual(0, gateway.AppointmentsMock.Deleted.Count);
             Assert.AreEqual(1, gateway.AppointmentsMock.Written.Count);
@@ -273,26 +273,26 @@ namespace Google.GCalExchangeSync.Library
         }
 
         [Test]
-		public void TestOverlappingEndEvent()
-		{
+        public void TestOverlappingEndEvent()
+        {
             DateTime start = DateUtil.ParseDateToUtc("2007-07-30T13:00:00.000Z");
-			DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
+            DateTimeRange window = new DateTimeRange(start.AddDays(-7), start.AddDays(7));
 
-			// Test overlapping events
-			// - 13:30 - 14:00 in Exchange
-			// - 13:00 - 14:00 in GCal
-			// Should create an exchange event [13:00-14:00]
-			AddEventExchange(start, start.AddMinutes(30));
-			AddEventGCal(start, start.AddHours(1));
+            // Test overlapping events
+            // - 13:30 - 14:00 in Exchange
+            // - 13:00 - 14:00 in GCal
+            // Should create an exchange event [13:00-14:00]
+            AddEventExchange(start, start.AddMinutes(30));
+            AddEventGCal(start, start.AddHours(1));
 
-			EventFeed feed = createEventFeedFromEvents(_gcalEvents);
-			FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
+            EventFeed feed = createEventFeedFromEvents(_gcalEvents);
+            FreeBusyCollection fb = createFreeBusyFromExistingEvents(_exchEvents);
 
-			ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
-			user.BusyTimes = fb;
+            ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
+            user.BusyTimes = fb;
 
-			ExchangeGatewayMock gateway = new ExchangeGatewayMock();
-			this.SyncUser(user, feed, gateway, window);
+            ExchangeGatewayMock gateway = new ExchangeGatewayMock();
+            this.SyncUser(user, feed, gateway, window);
 
             Assert.AreEqual(0, gateway.AppointmentsMock.Deleted.Count);
             Assert.AreEqual(1, gateway.AppointmentsMock.Written.Count);
@@ -300,7 +300,7 @@ namespace Google.GCalExchangeSync.Library
 
             Assert.AreEqual(gateway.AppointmentsMock.Written[0].StartDate, start);
             Assert.AreEqual(gateway.AppointmentsMock.Written[0].EndDate, start.AddHours(1));
-		}
+        }
 
         [Test]
         public void TestAdjacentEvent()
@@ -345,108 +345,108 @@ namespace Google.GCalExchangeSync.Library
         }
 
         [Test]
-		public void TestSyncUser()
-		{
-			DateTime start = _base;
-			DateTimeRange window = new DateTimeRange(start, start.AddDays(30));
+        public void TestSyncUser()
+        {
+            DateTime start = _base;
+            DateTimeRange window = new DateTimeRange(start, start.AddDays(30));
 
-			// Add Event to both
-			AddEventBoth(start, start.AddHours(2));
+            // Add Event to both
+            AddEventBoth(start, start.AddHours(2));
 
-			// Add only to Google Calendar - i.e. Create in exchange
-			start = start.AddDays(2).AddHours(3);
-			AddEventGCal(start, start.AddHours(1));
+            // Add only to Google Calendar - i.e. Create in exchange
+            start = start.AddDays(2).AddHours(3);
+            AddEventGCal(start, start.AddHours(1));
 
-			// Add only to Exchange - i.e. Delete from exchange
-			start = start.AddDays(3).AddHours(3);
-			AddEventExchange(start, start.AddHours(1));
+            // Add only to Exchange - i.e. Delete from exchange
+            start = start.AddDays(3).AddHours(3);
+            AddEventExchange(start, start.AddHours(1));
 
-			start = start.AddDays(1).AddHours(-5);
-			AddEventExchange(start, start.AddMinutes(20));
+            start = start.AddDays(1).AddHours(-5);
+            AddEventExchange(start, start.AddMinutes(20));
 
-			// Add to Google Calendar
-			start = start.AddDays(2).AddHours(3);
-			AddEventGCal(start, start.AddHours(1));
+            // Add to Google Calendar
+            start = start.AddDays(2).AddHours(3);
+            AddEventGCal(start, start.AddHours(1));
 
-			// Add Event to both
-			start = start.AddDays(2).AddHours(3);
-			AddEventBoth(start, start.AddHours(2));
+            // Add Event to both
+            start = start.AddDays(2).AddHours(3);
+            AddEventBoth(start, start.AddHours(2));
 
-			// Add only to Exchange
-			start = start.AddDays(2).AddHours(3);
-			AddEventExchange(start, start.AddHours(1));
+            // Add only to Exchange
+            start = start.AddDays(2).AddHours(3);
+            AddEventExchange(start, start.AddHours(1));
 
-			// Add Event to both
-			start = start.AddDays(2).AddHours(14);
-			AddEventBoth(start, start.AddHours(1));
+            // Add Event to both
+            start = start.AddDays(2).AddHours(14);
+            AddEventBoth(start, start.AddHours(1));
 
-			// Add to Google Calendar
-			start = start.AddDays(2).AddHours(3);
-			AddEventGCal(start, start.AddHours(1));
+            // Add to Google Calendar
+            start = start.AddDays(2).AddHours(3);
+            AddEventGCal(start, start.AddHours(1));
 
-			// Add Event to both
-			start = start.AddDays(5).AddHours(12);
-			AddEventBoth(start, start.AddHours(6));
+            // Add Event to both
+            start = start.AddDays(5).AddHours(12);
+            AddEventBoth(start, start.AddHours(6));
 
-			EventFeed feed = createEventFeedFromEvents(_gcalEvents);
-			FreeBusyCollection fb = createFreeBusyFromSyncEvents(_exchEvents);
+            EventFeed feed = createEventFeedFromEvents(_gcalEvents);
+            FreeBusyCollection fb = createFreeBusyFromSyncEvents(_exchEvents);
 
-			ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
-			user.BusyTimes = fb;
+            ExchangeUser user = createFauxUser("test@example.org", "text@example.org");
+            user.BusyTimes = fb;
 
-			ExchangeGatewayMock gateway = new ExchangeGatewayMock();
-			this.SyncUser(user, feed, gateway, window);
+            ExchangeGatewayMock gateway = new ExchangeGatewayMock();
+            this.SyncUser(user, feed, gateway, window);
 
             Assert.AreEqual(_deleteEvents.Count, gateway.AppointmentsMock.Deleted.Count);
             Assert.AreEqual(_createEvents.Count, gateway.AppointmentsMock.Written.Count);
             Assert.AreEqual(0, gateway.AppointmentsMock.Updated.Count);
 
-			int idx = 0;
-			foreach (DateTimeRange e in _deleteEvents)
-			{
+            int idx = 0;
+            foreach (DateTimeRange e in _deleteEvents)
+            {
                 Assert.AreEqual(e.Start, gateway.AppointmentsMock.Deleted[idx].StartDate);
                 Assert.AreEqual(e.End, gateway.AppointmentsMock.Deleted[idx].EndDate);
-				idx++;
-			}
+                idx++;
+            }
 
-			idx = 0;
-			foreach (DateTimeRange e in _createEvents)
-			{
+            idx = 0;
+            foreach (DateTimeRange e in _createEvents)
+            {
                 Assert.AreEqual(e.Start, gateway.AppointmentsMock.Written[idx].StartDate);
                 Assert.AreEqual(e.End, gateway.AppointmentsMock.Written[idx].EndDate);
-				idx++;
-			}
+                idx++;
+            }
 
-		}
+        }
 
-		private ExchangeUser createFauxUser(string name, string email)
-		{
-			ExchangeUser result = new ExchangeUser();
-			result.Email = email;
-			result.MailNickname = name;
-			result.LegacyExchangeDN = "/o=Microsoft/ou=APPS-ABC/cn=RECIPIENTS/cn=ASAMPLE";
+        private ExchangeUser createFauxUser(string name, string email)
+        {
+            ExchangeUser result = new ExchangeUser();
+            result.Email = email;
+            result.MailNickname = name;
+            result.LegacyExchangeDN = "/o=Microsoft/ou=APPS-ABC/cn=RECIPIENTS/cn=ASAMPLE";
             result.HaveAppointmentDetail = true;
-			return result;
-		}
+            return result;
+        }
 
-		private EventFeed createEventFeedFromEvents(List<DateTimeRange> events)
-		{
-			Uri uri = new Uri("http://localhost");
-			EventFeed result = new EventFeed(uri, null);
-			result.TimeZone = new Google.GData.Calendar.TimeZone("EST");
+        private EventFeed createEventFeedFromEvents(List<DateTimeRange> events)
+        {
+            Uri uri = new Uri("http://localhost");
+            EventFeed result = new EventFeed(uri, null);
+            result.TimeZone = new Google.GData.Calendar.TimeZone("EST");
 
-			foreach (DateTimeRange r in events)
-			{
-				EventEntry e = result.CreateFeedEntry() as EventEntry;
+            foreach (DateTimeRange r in events)
+            {
+                EventEntry e = result.CreateFeedEntry() as EventEntry;
 
                 DateTime start = DateTime.SpecifyKind(r.Start, DateTimeKind.Utc).ToLocalTime();
                 DateTime end = DateTime.SpecifyKind(r.End, DateTimeKind.Utc).ToLocalTime();
                 e.Times.Add(new When(start, end));
-				result.Entries.Add(e);
-			}
+                result.Entries.Add(e);
+            }
 
-			return result;
-		}
+            return result;
+        }
 
         private void AddFreeBusyBlock(
             FreeBusyCollection result,
@@ -484,20 +484,20 @@ namespace Google.GCalExchangeSync.Library
         }
 
         private FreeBusyCollection createFreeBusyFromEvents(
-			List<DateTimeRange> syncEvents, 
-			List<DateTimeRange> exchEvents)
-		{
-			FreeBusyCollection result = new FreeBusyCollection();
-			foreach (DateTimeRange r in syncEvents)
-			{
+            List<DateTimeRange> syncEvents, 
+            List<DateTimeRange> exchEvents)
+        {
+            FreeBusyCollection result = new FreeBusyCollection();
+            foreach (DateTimeRange r in syncEvents)
+            {
                 AddFreeBusyBlock(result, r, true);
-			}
+            }
 
-			foreach (DateTimeRange r in exchEvents)
-			{
+            foreach (DateTimeRange r in exchEvents)
+            {
                 AddFreeBusyBlock(result, r, false);
             }
-			return result;
-		}
-	}
+            return result;
+        }
+    }
 }

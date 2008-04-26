@@ -47,8 +47,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <summary>
         /// Request template for finding a set of appointments 
         /// </summary>
-		public const string FindAppointments =
-		   "Google.GCalExchangeSync.Library.webdav.xml.FindAppointments.xml";
+        public const string FindAppointments =
+           "Google.GCalExchangeSync.Library.webdav.xml.FindAppointments.xml";
 
         /// <summary>
         /// Return the contents of one of the WebDAV XML resources
@@ -56,7 +56,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="resourceAddress">Name of the resource</param>
         /// <param name="formatArgs">A set of parameters to substitute into the resource</param>
         /// <returns>The resource with substitutions made</returns>
-		public static string GetText(string resourceAddress, params object[] formatArgs)
+        public static string GetText(string resourceAddress, params object[] formatArgs)
         {
             string text;
                         

@@ -27,16 +27,16 @@ using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library.Util
 {
-	[TestFixture]
-	public class OlsonUtilTest
-	{
-		static DateTime dateUnspec = new DateTime(2008, 03, 09, 2, 00, 00, DateTimeKind.Unspecified);
+    [TestFixture]
+    public class OlsonUtilTest
+    {
+        static DateTime dateUnspec = new DateTime(2008, 03, 09, 2, 00, 00, DateTimeKind.Unspecified);
         static DateTime dateUTC = new DateTime(2008, 03, 09, 02, 00, 00, DateTimeKind.Utc);
         static DateTime dateLocal = new DateTime(2008, 03, 09, 02, 00, 00, DateTimeKind.Local);
 
-		[Test]
-		public void TestDateCompare()
-		{
+        [Test]
+        public void TestDateCompare()
+        {
             Assert.That(dateUnspec.CompareTo(dateLocal) == 0);
             Assert.That(dateUnspec.Equals(dateLocal));
             Assert.AreEqual(dateUnspec.GetHashCode(), dateLocal.GetHashCode());
@@ -51,6 +51,6 @@ namespace Google.GCalExchangeSync.Library.Util
             Assert.That(rangeUnspec.Equals(rangeLocal));
             Assert.AreEqual(rangeUnspec.GetHashCode(), rangeLocal.GetHashCode());
         }
-	}
+    }
 }
 

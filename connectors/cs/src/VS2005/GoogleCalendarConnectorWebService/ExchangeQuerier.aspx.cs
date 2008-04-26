@@ -28,13 +28,13 @@ using Google.GCalExchangeSync.Library;
 
 namespace GCalExchangeLookup
 {
-	public partial class ExchangeQuerier : System.Web.UI.Page
-	{
+    public partial class ExchangeQuerier : System.Web.UI.Page
+    {
         protected static readonly log4net.ILog _log =
           log4net.LogManager.GetLogger(typeof(ExchangeQuerier));
 
         private string _responseString = string.Empty;
-		private bool _useSSL = false;
+        private bool _useSSL = false;
 
         protected string ResponseString
         {
@@ -44,18 +44,18 @@ namespace GCalExchangeLookup
         protected string GCalPostUrl
         {
             get 
-			{
-				// Try to make the scheme for  the Post URL
-				// match the scheme the page was requested with
+            {
+                // Try to make the scheme for  the Post URL
+                // match the scheme the page was requested with
 
-				_log.DebugFormat("Use SSL {0}", _useSSL);
-				_log.DebugFormat("Request URL {0}", Request.Url);
-				_log.DebugFormat("Referrer URL {0}", Request.UrlReferrer);
+                _log.DebugFormat("Use SSL {0}", _useSSL);
+                _log.DebugFormat("Request URL {0}", Request.Url);
+                _log.DebugFormat("Referrer URL {0}", Request.UrlReferrer);
 
-				return _useSSL ?
-					ConfigCache.GCalPostUrl :
-					ConfigCache.GCalPostUrl.Replace("https://", "http://");
-			}
+                return _useSSL ?
+                    ConfigCache.GCalPostUrl :
+                    ConfigCache.GCalPostUrl.Replace("https://", "http://");
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,30 +65,30 @@ namespace GCalExchangeLookup
                 ProcessGCalRequest();
             }
 
-			Response.Cache.SetNoStore();
-			Response.Expires = 0;
+            Response.Cache.SetNoStore();
+            Response.Expires = 0;
         }
 
         private void ProcessGCalRequest()
         {
             GCalFreeBusyRequest gcalRequest = null;
 
-			try
-			{
-				Uri referrer = new Uri(Request.ServerVariables["HTTP_REFERER"]);
-				if (referrer != null)
-				{
-					_useSSL = referrer.Scheme.Equals("https");
-				}
-			}
-			catch (System.ArgumentException)
-			{
-				// Missing referrer - use non-SSL
-			}
-			catch (System.UriFormatException)
-			{
-				// Bad referrer - use non-SSL
-			}
+            try
+            {
+                Uri referrer = new Uri(Request.ServerVariables["HTTP_REFERER"]);
+                if (referrer != null)
+                {
+                    _useSSL = referrer.Scheme.Equals("https");
+                }
+            }
+            catch (System.ArgumentException)
+            {
+                // Missing referrer - use non-SSL
+            }
+            catch (System.UriFormatException)
+            {
+                // Bad referrer - use non-SSL
+            }
 
             try
             {
@@ -118,5 +118,5 @@ namespace GCalExchangeLookup
                 _log.Error( ex );
             }
         }
-	}
+    }
 }

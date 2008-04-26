@@ -102,18 +102,18 @@ namespace Google.GCalExchangeSync.Library.Util
 
                         while ( reader.NodeType != XmlNodeType.EndElement )
                         {
-							if (reader.IsStartElement("entry"))
-							{
-								reader.ReadStartElement("entry");
+                            if (reader.IsStartElement("entry"))
+                            {
+                                reader.ReadStartElement("entry");
 
-								string key = reader.ReadElementString("user");
-								DateTime value = DateTime.Parse(reader.ReadElementString("modTime"));
-								reader.ReadEndElement();
-								reader.MoveToContent();
-								userModifiedTimes.Add(key, value);
-								log.DebugFormat("User Modified - {0} / {1}", key, value);
-							}
-							else break;
+                                string key = reader.ReadElementString("user");
+                                DateTime value = DateTime.Parse(reader.ReadElementString("modTime"));
+                                reader.ReadEndElement();
+                                reader.MoveToContent();
+                                userModifiedTimes.Add(key, value);
+                                log.DebugFormat("User Modified - {0} / {1}", key, value);
+                            }
+                            else break;
                         }
 
                         reader.ReadEndElement();
@@ -123,8 +123,8 @@ namespace Google.GCalExchangeSync.Library.Util
             }
             catch ( Exception ex )
             {
-				// If the file can't be read, just move on
-				log.Error(ex);
+                // If the file can't be read, just move on
+                log.Error(ex);
             }
         }
 
@@ -140,14 +140,14 @@ namespace Google.GCalExchangeSync.Library.Util
                     using (Stream str = File.Open(modifiedXMLFileName, FileMode.Create))
                     using (XmlWriter writer = XmlWriter.Create(str))
                     {
-						writer.WriteStartElement("lastModified");
+                        writer.WriteStartElement("lastModified");
 
                         foreach ( string login in userModifiedTimes.Keys )
                         {
                             DateTime value = userModifiedTimes[login];
-							writer.WriteStartElement("entry");
-							writer.WriteElementString("user", login);
-							writer.WriteElementString("modTime", value.ToString());
+                            writer.WriteStartElement("entry");
+                            writer.WriteElementString("user", login);
+                            writer.WriteElementString("modTime", value.ToString());
                             writer.WriteEndElement();
                         }
 
