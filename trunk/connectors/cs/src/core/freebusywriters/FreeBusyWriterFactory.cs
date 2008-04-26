@@ -35,8 +35,8 @@ namespace Google.GCalExchangeSync.Library
 
             switch ( ConfigCache.FreeBusyWriter )
             {
-				default:
-				case "SchedulePlus":
+                default:
+                case "SchedulePlus":
                     writer = new SchedulePlusFreeBusyWriter();
                     break;
                 case "Appointment":

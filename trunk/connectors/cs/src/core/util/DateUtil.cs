@@ -53,18 +53,18 @@ namespace Google.GCalExchangeSync.Library.Util
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
         /// <returns>An ISO8601 date time string</returns>
-		public static string FormatDateForISO8601(DateTime dt)
-		{
+        public static string FormatDateForISO8601(DateTime dt)
+        {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
-			return dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
-		}
+            return dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
+        }
 
         /// <summary>
         /// Formate a datetme as an exchange style date string
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
         /// <returns>An exchane style date string</returns>
-		public static string FormatDateForExchange(DateTime dt)
+        public static string FormatDateForExchange(DateTime dt)
         {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
             return dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
@@ -75,13 +75,13 @@ namespace Google.GCalExchangeSync.Library.Util
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
         /// <returns>A DASL style date string</returns>
-		public static string FormatDateForDASL(DateTime dt)
-		{
+        public static string FormatDateForDASL(DateTime dt)
+        {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
             return dt.ToString("yyyy/MM/dd HH:mm:ss");
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Formats a DateTime into "yyyyMMdd" format
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
@@ -142,27 +142,27 @@ namespace Google.GCalExchangeSync.Library.Util
             return OlsonUtil.ConvertToUTC(result, OlsonUtil.DefaultTimeZone);
         }
 
-		/// <summary>
-		/// Return a date time at the start of the month after the one specified by val
-		/// </summary>
+        /// <summary>
+        /// Return a date time at the start of the month after the one specified by val
+        /// </summary>
         /// <param name="dt">Date to return the EOM for</param>
         /// <returns>DateTime at the start of the month after val</returns>
         public static DateTime StartOfNextMonth(DateTime dt)
-		{
+        {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
             return StartOfMonth(dt).AddMonths(1);
-		}
+        }
 
-		/// <summary>
-		/// Return a date time at the start of the month specified by val
-		/// </summary>
+        /// <summary>
+        /// Return a date time at the start of the month specified by val
+        /// </summary>
         /// <param name="dt">Date to return the SOM for</param>
         /// <returns>DateTime at the start of the current month</returns>
         public static DateTime StartOfMonth(DateTime dt)
-		{
+        {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
             return new DateTime(dt.Year, dt.Month, 1, 0, 0, 0, DateTimeKind.Unspecified);
-		}
+        }
 
         /// <summary>
         /// Return the current time in UTC with unspecified kind

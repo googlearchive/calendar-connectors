@@ -46,10 +46,10 @@ namespace Google.GCalExchangeSync.Library.Util
                     }
                 case TimeCheckResult.InSpringForwardGap:
                 case TimeCheckResult.InFallBackRange:
-					_log.ErrorFormat("Source time in transition period - retry.  [date={0}, tz={1}]", srcTime, srcZone.Name );
-					return ConvertFromUTC(srcTime.AddHours(1), srcZone);
+                    _log.ErrorFormat("Source time in transition period - retry.  [date={0}, tz={1}]", srcTime, srcZone.Name );
+                    return ConvertFromUTC(srcTime.AddHours(1), srcZone);
 
-				default:
+                default:
                     {
                         string errorMessage = string.Format( 
                             "Source time out of range.  [date={0}, tz={1}]", srcTime, srcZone.Name );
@@ -92,8 +92,8 @@ namespace Google.GCalExchangeSync.Library.Util
                     }
                 case TimeCheckResult.InSpringForwardGap:
                 case TimeCheckResult.InFallBackRange:
-					_log.ErrorFormat("Source time in transition period - retry.  [date={0}, tz={1}]", srcTime, dstZone.Name);
-					return ConvertFromUTC(srcTime.AddHours(1), dstZone);
+                    _log.ErrorFormat("Source time in transition period - retry.  [date={0}, tz={1}]", srcTime, dstZone.Name);
+                    return ConvertFromUTC(srcTime.AddHours(1), dstZone);
 
                 default:
                     {

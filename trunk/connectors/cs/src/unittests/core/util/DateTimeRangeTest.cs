@@ -27,30 +27,30 @@ using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library.Util
 {
-	[TestFixture]
-	public class DateTimeRangeTest
-	{
-		private DateTime startDate;
-		private DateTime endDate;
+    [TestFixture]
+    public class DateTimeRangeTest
+    {
+        private DateTime startDate;
+        private DateTime endDate;
 
-		[SetUp]
-		public void Init()
-		{
+        [SetUp]
+        public void Init()
+        {
             startDate = DateUtil.ParseDateToUtc("2007-06-30T05:16:11.000Z");
-			endDate = startDate.AddHours(2);
-		}
+            endDate = startDate.AddHours(2);
+        }
 
-		[Test]
-		public void TestDateTimeRange()
-		{
-			DateTimeRange range = new DateTimeRange(startDate, endDate);
-			DateTimeRange compareRange = new DateTimeRange(startDate, endDate);
+        [Test]
+        public void TestDateTimeRange()
+        {
+            DateTimeRange range = new DateTimeRange(startDate, endDate);
+            DateTimeRange compareRange = new DateTimeRange(startDate, endDate);
 
-			Assert.AreEqual(startDate, range.Start);
-			Assert.AreEqual(endDate, range.End);
-			Assert.AreEqual(range, compareRange);
-			Assert.AreEqual(range.GetHashCode(), compareRange.GetHashCode());
-		}
+            Assert.AreEqual(startDate, range.Start);
+            Assert.AreEqual(endDate, range.End);
+            Assert.AreEqual(range, compareRange);
+            Assert.AreEqual(range.GetHashCode(), compareRange.GetHashCode());
+        }
 
         [Test]
         public void TestDateTimeCompare()
@@ -71,5 +71,5 @@ namespace Google.GCalExchangeSync.Library.Util
 
             Assert.AreNotEqual(r0, r1);
         }
-	}
+    }
 }

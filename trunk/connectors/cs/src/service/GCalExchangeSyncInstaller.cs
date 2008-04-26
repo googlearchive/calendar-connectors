@@ -38,7 +38,7 @@ namespace Google.GCalExchangeSync.Service
             // si
             // 
             this.si.DisplayName = "Google Calendar Sync Service";
-			this.si.ServiceName = "GcalSyncSvc";
+            this.si.ServiceName = "GcalSyncSvc";
             this.si.Description = "Synchronizes Google Calendar Free/Busy information with Exchange Server.";
             this.si.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
@@ -70,7 +70,7 @@ namespace Google.GCalExchangeSync.Service
           string rootPath = Path.GetPathRoot(absoluteDirectory);
           
           // Make sure the Log Directory exists
-		  string logDirectory = Path.Combine(rootPath, "\\Google\\logs");
+          string logDirectory = Path.Combine(rootPath, "\\Google\\logs");
           logDirectory = Path.GetFullPath(logDirectory);
           Directory.CreateDirectory(logDirectory);
 
@@ -79,13 +79,13 @@ namespace Google.GCalExchangeSync.Service
           xmlStorage = Path.GetFullPath(xmlStorage);
           Directory.CreateDirectory(xmlStorage);
 
-		  XmlDocument doc = new XmlDocument();
+          XmlDocument doc = new XmlDocument();
           doc.Load(srcPath);
 
           EventLog.WriteEntry("Doc", doc == null ? "NULL" : "Not Null");
           setLogFileLocation(doc, Path.Combine(logDirectory, "SyncService.log"));
 
-		  setValue(doc, "SyncService.XmlStorageDirectory", xmlStorage);
+          setValue(doc, "SyncService.XmlStorageDirectory", xmlStorage);
 
           doc.Save(dstPath);
         }

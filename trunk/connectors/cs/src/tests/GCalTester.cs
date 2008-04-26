@@ -34,13 +34,13 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
                     ConfigCache.GoogleAppsPassword,
                     ConfigCache.GoogleAppsDomain );
 
-			DateTime start = DateTime.Now.AddDays(-7);
-			DateTime end = DateTime.Now.AddDays(+7);
-			DateTimeRange range = new DateTimeRange(start, end);
+            DateTime start = DateTime.Now.AddDays(-7);
+            DateTime end = DateTime.Now.AddDays(+7);
+            DateTimeRange range = new DateTimeRange(start, end);
 
-			EventFeed feed = gw.QueryGCal( 
+            EventFeed feed = gw.QueryGCal( 
                 gcalUserEmail, GCalVisibility.Private, GCalProjection.FreeBusy, DateTime.MinValue, range );
-			return feed;
+            return feed;
         }
     }
 }

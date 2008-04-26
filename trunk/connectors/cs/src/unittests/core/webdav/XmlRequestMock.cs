@@ -28,50 +28,50 @@ namespace Google.GCalExchangeSync.Library.WebDav
 {
     public class XmlRequestMock : IXmlRequest
     {
-		private Exception _exceptionToThrow = null;
-		private string _response;
-		private string _validUrl;
-		private Method _method;
+        private Exception _exceptionToThrow = null;
+        private string _response;
+        private string _validUrl;
+        private Method _method;
 
-		public Exception ExceptionToThrow
-		{
-			get { return _exceptionToThrow; }
-			set { _exceptionToThrow = value; }
-		}
+        public Exception ExceptionToThrow
+        {
+            get { return _exceptionToThrow; }
+            set { _exceptionToThrow = value; }
+        }
 
-		public string ResponseBody
-		{
-			get { return _response; }
-			set { _response = value; }
-		}
-		
-		public string ValidUrl 
-		{
-			get { return _validUrl; }
-			set { _validUrl = value; }
-		}
+        public string ResponseBody
+        {
+            get { return _response; }
+            set { _response = value; }
+        }
+        
+        public string ValidUrl 
+        {
+            get { return _validUrl; }
+            set { _validUrl = value; }
+        }
 
-		public Method ValidMethod 
-		{
-			get { return _method; }
-			set { _method = value; }
-		}
+        public Method ValidMethod 
+        {
+            get { return _method; }
+            set { _method = value; }
+        }
 
         public string IssueRequest( string url, Method method, string body )
         {
             if ( _exceptionToThrow != null )
                 throw _exceptionToThrow;
 
-			if (!string.IsNullOrEmpty(_validUrl) && !_validUrl.Equals(url))
-				throw new Exception("Invalid URL used");
+            if (!string.IsNullOrEmpty(_validUrl) && !_validUrl.Equals(url))
+                throw new Exception("Invalid URL used");
 
-			if (_method != method)
-			{
-				string msg = string.Format("Invalid Method: {0}", method.Name);
-				throw new Exception(msg);
-			}
+            if (_method != method)
+            {
+                string msg = string.Format("Invalid Method: {0}", method.Name);
+                throw new Exception(msg);
+            }
 
-			return _response;
+            return _response;
         }
     }
 }

@@ -19,13 +19,13 @@ using System.Xml;
 
 namespace Google.GCalExchangeSync.Library.Util
 {
-	/// <summary>
-	/// Provides a convenience method for retrieving an Xml resource embedded in the currently executing
-	/// assembly.
-	/// </summary>
-	public class EmbeddedResourceUtility
-	{
-		private EmbeddedResourceUtility()
+    /// <summary>
+    /// Provides a convenience method for retrieving an Xml resource embedded in the currently executing
+    /// assembly.
+    /// </summary>
+    public class EmbeddedResourceUtility
+    {
+        private EmbeddedResourceUtility()
         {
         }
 
@@ -34,35 +34,35 @@ namespace Google.GCalExchangeSync.Library.Util
         /// </summary>
         /// <param name="resourceName">The XML Document resource name</param>
         /// <returns>The XML document corresponding to the resource</returns>
-		public static XmlDocument GetXmlDocument( string resourceName )
-		{
-			XmlDocument doc = new XmlDocument();
-			Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName );
+        public static XmlDocument GetXmlDocument( string resourceName )
+        {
+            XmlDocument doc = new XmlDocument();
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName );
 
-			using ( StreamReader reader = new StreamReader( stream ) )
-			{
-				doc.Load( reader );
-			}
+            using ( StreamReader reader = new StreamReader( stream ) )
+            {
+                doc.Load( reader );
+            }
 
-			return doc;
-		}
+            return doc;
+        }
 
         /// <summary>
         /// Get the resource associated with the resource name
         /// </summary>
         /// <param name="resourceName">The resource name to return the contents for</param>
         /// <returns>The resource contents</returns>
-		public static string GetTextDocument( string resourceName )
-		{
+        public static string GetTextDocument( string resourceName )
+        {
             string result = string.Empty;
-			Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName );
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName );
 
-			using ( StreamReader reader = new StreamReader( stream ) )
-			{
+            using ( StreamReader reader = new StreamReader( stream ) )
+            {
                 result = reader.ReadToEnd();
-			}
+            }
 
-			return result;
-		}
-	}
+            return result;
+        }
+    }
 }

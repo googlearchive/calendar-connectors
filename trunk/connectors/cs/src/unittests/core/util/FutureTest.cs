@@ -27,39 +27,39 @@ using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library.Util
 {
-	[TestFixture]
-	public class FutureTest : Future
-	{
-		private bool state = false;
-		private string taskName = string.Empty;
+    [TestFixture]
+    public class FutureTest : Future
+    {
+        private bool state = false;
+        private string taskName = string.Empty;
 
-		protected override void doTask()
-		{
-			while (!state)
-			{
-				System.Threading.Thread.Sleep(100);
-			}
+        protected override void doTask()
+        {
+            while (!state)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
 
-			taskName = System.Threading.Thread.CurrentThread.Name;
-		}
+            taskName = System.Threading.Thread.CurrentThread.Name;
+        }
 
-		protected override string TaskName
-		{
-			get { return "FutureTest"; }
-		}
+        protected override string TaskName
+        {
+            get { return "FutureTest"; }
+        }
 
-		[SetUp]
-		public void Init()
-		{
-		}
+        [SetUp]
+        public void Init()
+        {
+        }
 
-		[Test]
-		public void TestFuture()
-		{
-			start();
-			state = true;
-			waitForCompletion();
-			Assert.AreEqual(TaskName, taskName);
-		}
-	}
+        [Test]
+        public void TestFuture()
+        {
+            start();
+            state = true;
+            waitForCompletion();
+            Assert.AreEqual(TaskName, taskName);
+        }
+    }
 }

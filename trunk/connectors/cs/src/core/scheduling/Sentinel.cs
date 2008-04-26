@@ -22,15 +22,15 @@ using log4net;
 
 namespace Google.GCalExchangeSync.Library.Scheduling
 {
-   	/// <summary>
-	/// The Sentinel will watch over a given target, with a given frequency.  On finding a target, it will
-	/// instantiate a worker process.
-	/// </summary>
-	public class Sentinel
-	{
+    /// <summary>
+    /// The Sentinel will watch over a given target, with a given frequency.  On finding a target, it will
+    /// instantiate a worker process.
+    /// </summary>
+    public class Sentinel
+    {
         #region members
         private static readonly ILog _log = LogManager.GetLogger( typeof(Sentinel) );
-   
+
         private System.Timers.Timer _timer;
 
         /// <summary>
