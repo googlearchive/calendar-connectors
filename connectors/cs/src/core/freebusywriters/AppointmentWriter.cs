@@ -260,10 +260,36 @@ namespace Google.GCalExchangeSync.Library
                 appt.MeetingStatus = MeetingStatus.Confirmed;
             }
 
-            appt.Created = DateUtil.NowUtc;
-            appt.InstanceType = InstanceType.Single;
+            // Default is busy
             appt.BusyStatus = BusyStatus.Busy;
 
+            WhoCollection participants = googleAppsEvent.Participants;
+            foreach (Who participant in participants)
+            {
+                if (participant.Email.Equals(user.Email))
+                {
+                    string status = participant.Attendee_Status.Value;
+                    if (status == Who.AttendeeStatus.EVENT_ACCEPTED)
+                    {
+                        appt.BusyStatus = BusyStatus.Busy;
+                    }
+                    else if (status == Who.AttendeeStatus.EVENT_DECLINED)
+                    {
+                        appt.BusyStatus = BusyStatus.Free;
+                    }
+                    else if (status == Who.AttendeeStatus.EVENT_INVITED)
+                    {
+                        appt.BusyStatus = BusyStatus.Free;
+                    }
+                    else if (status == Who.AttendeeStatus.EVENT_TENTATIVE)
+                    {
+                        appt.BusyStatus = BusyStatus.Tentative;
+                    }
+                }
+            }
+
+            appt.Created = DateUtil.NowUtc;
+            appt.InstanceType = InstanceType.Single;
             AssignOwnership( appt );
             result.Insert(appt.Range, appt);
         }
