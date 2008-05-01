@@ -11,7 +11,7 @@ v1.1 [??-???-2008]
 * Removed some obsolete/unnecessary settings from the config files
 * Added code comments and checked in API documentation
 * Added Diagnostics UI for encrypting web.config settings
-* BUG FIX: Fixed how timezones are used
+* BUG FIX: Fixed how timezones are used throughout
 
 v1.00 Build 36 [18-Apr-2008]
 ------------------

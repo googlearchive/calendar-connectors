@@ -115,19 +115,22 @@ namespace Google.GCalExchangeSync.Library
                                     sb.Append(",");
                                 }
 
+                                DateTime startLocal = OlsonUtil.ConvertFromUTC(appt.StartDate, Request.TimeZone);
+                                DateTime endLocal = OlsonUtil.ConvertFromUTC(appt.EndDate, Request.TimeZone);
+
                                 if (!appt.IsPrivate)
                                 {
                                     sb.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Subject ),
-                                        DateUtil.FormatDateTimeForGoogle(appt.StartDate),
-                                        DateUtil.FormatDateTimeForGoogle(appt.EndDate),
+                                        DateUtil.FormatDateTimeForGoogle(startLocal),
+                                        DateUtil.FormatDateTimeForGoogle(endLocal),
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Location ),
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Organizer ),
                                         ConversionsUtil.ConvertExchangeResponseToGoogleResponse( appt.ResponseStatus ) );
                                 }
                                 else
                                 {
-                                    AppendPrivateFreeBusyEntry(appt.StartDate, appt.EndDate, user, sb);
+                                    AppendPrivateFreeBusyEntry(startLocal, endLocal, user, sb);
                                 }
 
                                 firstAppointment = false;
