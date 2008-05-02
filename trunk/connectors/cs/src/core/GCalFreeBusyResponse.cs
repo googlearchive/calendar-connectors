@@ -117,10 +117,11 @@ namespace Google.GCalExchangeSync.Library
 
                                 DateTime startLocal = OlsonUtil.ConvertFromUTC(appt.StartDate, Request.TimeZone);
                                 DateTime endLocal = OlsonUtil.ConvertFromUTC(appt.EndDate, Request.TimeZone);
-
                                 if (!appt.IsPrivate)
                                 {
-                                    sb.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
+                                    //log.DebugFormat("Public Appointment Block: {0} {1}", startLocal, endLocal);
+
+                                    sb.AppendFormat("['{0}','{1}','{2}','{3}','{4}','{5}']",
                                         ConversionsUtil.EscapeNonAlphaNumeric( appt.Subject ),
                                         DateUtil.FormatDateTimeForGoogle(startLocal),
                                         DateUtil.FormatDateTimeForGoogle(endLocal),
@@ -130,6 +131,8 @@ namespace Google.GCalExchangeSync.Library
                                 }
                                 else
                                 {
+                                    //log.DebugFormat("Private Appointment Block: {0} {1}", startLocal, endLocal);
+
                                     AppendPrivateFreeBusyEntry(startLocal, endLocal, user, sb);
                                 }
 
@@ -143,7 +146,12 @@ namespace Google.GCalExchangeSync.Library
                                 sb.Append(",");
                             }
 
-                            AppendPrivateFreeBusyEntry(timeBlock.StartDate,timeBlock.EndDate, user, sb);
+                            DateTime startLocal = OlsonUtil.ConvertFromUTC(timeBlock.StartDate, Request.TimeZone);
+                            DateTime endLocal = OlsonUtil.ConvertFromUTC(timeBlock.EndDate, Request.TimeZone);
+
+                            //log.DebugFormat("FB Block: {0} {1}", startLocal, endLocal);
+
+                            AppendPrivateFreeBusyEntry(startLocal, endLocal, user, sb);
 
                             firstAppointment = false;
                         }
