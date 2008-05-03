@@ -1,0 +1,25 @@
+#labels Featured
+Summary The current release notes
+
+= Introduction =
+
+The release notes show bugfixes and feature additions over the course of the project. 
+The wiki page shows the release notes for the current binary download, the subversion project contains a text version with the most recent changes.
+
+= Details =
+
+== 1.1.0 ==
+- Initial Release
+
+
+
+
+
+
+
+
+
+
+
+
+
