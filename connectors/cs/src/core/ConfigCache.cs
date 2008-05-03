@@ -166,6 +166,12 @@ namespace Google.GCalExchangeSync.Library
             GetBooleanSetting("GoogleApps.GCal.EnableHttpCompression", "false");
 
         /// <summary>
+        /// Default SSL setting for Google Calendar
+        /// </summary>
+        public static readonly bool DefaultGCalSSL =
+            GetBooleanSetting("WebService.DefaultGoogleCalendarSSL", "false");
+
+        /// <summary>
         /// Directory to write Google Calendar tracing to
         /// </summary>
         public static readonly string GCalLogDirectory = GetGCalLogDirectory();

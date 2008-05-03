@@ -34,7 +34,7 @@ namespace GCalExchangeLookup
           log4net.LogManager.GetLogger(typeof(ExchangeQuerier));
 
         private string _responseString = string.Empty;
-        private bool _useSSL = false;
+        private bool _useSSL = ConfigCache.DefaultGCalSSL;
 
         protected string ResponseString
         {
