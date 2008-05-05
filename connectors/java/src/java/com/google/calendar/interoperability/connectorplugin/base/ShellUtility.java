@@ -71,6 +71,9 @@ public class ShellUtility extends Configurable implements Runnable {
    * from the configuration and interpreting them.
    */
   public void run() {
+    LOGGER.log(Level.INFO, "Initializing shell utility for " + base);
+    LOGGER.log(Level.INFO, "Command to be executed: " + getString(COMMAND));
+    
     while (!Thread.interrupted() && getString(COMMAND) != null) {
       
       // Execute the command
@@ -89,7 +92,10 @@ public class ShellUtility extends Configurable implements Runnable {
         LOGGER.log(Level.WARNING,
             "Command could not be executed successfully", e);
       }
-      
+      catch (Throwable t) {
+        LOGGER.log(Level.WARNING,
+            "Command crashed with an unexpected error", t);        
+      }
       // Log the output
       if (out.length() > 0) {
         LOGGER.log(Level.INFO, String.format(

@@ -400,16 +400,19 @@ public class PasswordLoader {
   /**
    * Loads a properties from a file. Checks if one or more unencrypted
    * passwords are given. If that is the case, encrypt the passwords and
-   * overwrite the file. Afterwards, take each of the passwords, decrypt
-   * them and add them to the properties
+   * (optionally) overwrite the file. Afterwards, take each of the passwords, 
+   * decrypt them and add them to the properties
    * @param file the name of the file to load the properties from
+   * @param saveChanges set to true if passwords that had to be encrypted
+   *   should be written to the file (overwrites the original file)
    * @param passwordKeys a list of property-name tuples. The first entry
    *   is always the name of the unencrypted password, the second of the
    *   encrypted.
    * @return the loaded Properties object
    * @throws IOException if the properties cannot be read or written
    */
-  public Properties loadAndEncrypt(File file, Tuple<String>... passwordKeys) 
+  public Properties loadWithEncryption(
+      File file, boolean saveChanges, Tuple<String>... passwordKeys) 
       throws IOException {
     
     // First, load the properties file
@@ -432,7 +435,7 @@ public class PasswordLoader {
     }
     
     // Overwrite the file, if necessary
-    if (changed) {
+    if (changed && saveChanges) {
       FileOutputStream out = new FileOutputStream(file);
       props.store(out,"");
       stream.close();  
