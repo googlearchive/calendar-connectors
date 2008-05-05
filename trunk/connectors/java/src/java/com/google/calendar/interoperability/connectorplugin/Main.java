@@ -211,12 +211,9 @@ public class Main extends Configurable implements Runnable {
     Preconditions.checkNotNull(fileName);
     PasswordLoader loader = 
       new PasswordLoader(EncryptionStrategy.FAILOVER);
-    if (encode) {
-      Configurable.setGlobalConfig(loader.loadAndEncrypt(new File(fileName), 
-          of("ldap.password","_LDP_"), of("gdata.password","_GDP_")));
-    } else {
-      Configurable.setGlobalConfig(loader.loadAndEncrypt(new File(fileName)));
-    }
+    Configurable.setGlobalConfig(loader.loadWithEncryption(
+        new File(fileName), encode, 
+        of("ldap.password","_LDP_"), of("gdata.password","_GDP_")));
   }
   
   /**

@@ -40,7 +40,6 @@
     <delete dir="${tmp}"/>
     <delete dir="${build}"/>
     <delete dir="${dist}"/>
-    <delete dir="${docs}/api"/>
   </target>
 
   <!-- Initialization (make sure directories exist) -->
