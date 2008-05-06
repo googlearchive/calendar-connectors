@@ -22,6 +22,8 @@ import com.google.calendar.interoperability.connectorplugin.base.messages.GwResp
 import com.google.calendar.interoperability.connectorplugin.base.messages.VoidResponse;
 import com.google.calendar.interoperability.connectorplugin.base.messages.util.DsUser;
 import com.google.common.base.Function;
+import com.google.common.base.Nullable;
+import com.google.common.base.Preconditions;
 import com.google.gdata.data.appsforyourdomain.provisioning.UserEntry;
 import com.google.gdata.data.appsforyourdomain.provisioning.UserFeed;
 
@@ -39,11 +41,17 @@ class AdminHandler implements Function<AdminCommand, GwResponse> {
     Logger.getLogger(AdminHandler.class.getName());
   
   private GDataAccessObject dao;
-  private LdapUserFilter filter = new LdapUserFilter();
+  private LdapUserFilter filter;
   
-  public AdminHandler(GDataAccessObject dataAccess) {
+  public AdminHandler(
+      GDataAccessObject dataAccess, @Nullable LdapUserFilter filter) {
+    Preconditions.checkNotNull(dataAccess);
     this.dao = dataAccess;
-    this.filter = new LdapUserFilter();
+    if (filter == null) {
+      this.filter = new LdapUserFilter();
+    } else {
+      this.filter = filter;
+    }
   }
 
   public GwResponse apply(AdminCommand from) {
@@ -73,7 +81,7 @@ class AdminHandler implements Function<AdminCommand, GwResponse> {
     if (!filter.doFilter(users.keySet().iterator())) {
       LOGGER.log
         (Level.WARNING, "Could not perform filter operation, aborting sync");
-      return new VoidResponse(from, "LDAP filtering failed", "ERROR");
+      throw new RuntimeException("Ldap filtering failed");
     }
     
     // Return the result

@@ -49,6 +49,11 @@ gdata.domain=mycompany.com
 # ldap.authMethod is the protocol to be used for communication (default
 #     is "DIGEST-MD5", "simple" is unencrypted, others can be used if supported
 #     by the ldap server
+#     IMPORTANT: To use DIGEST-MD5, the configured windows user account in
+#     Active Directory must have enabled "Store password using reversible 
+#     encryption" set via Active Directory Users and Computers. 
+#     Once this value in enabled the password must be changed in order to store 
+#     the password stored in the reversible encryption format.
 # ldap.base is the base for the ldap queries
 # ldap.whitelist: if this filter is set, only users who match this filter are
 #     synced
@@ -58,9 +63,10 @@ gdata.domain=mycompany.com
 #    regardless of whether it can be found in the keystore or not (for LDAPS
 #    URLs)
 # ldap.domainMap: if set to a non-empty string, this parameter should parse 
-#    to a set of rules (expressed as csv-list exchangeDomain:googleDomain) for 
-#    domains that should be translated. For example, with a list
-#      foo.exchange.com:foo.com, bar.exchange.com:bar.com
+#    to a set of rules (expressed as semicolon-separated-list of pairs 
+#    googleDomain,exchangeDomain) for domains that should be translated. 
+#    For example, with a list
+#      foo.com,foo.exchange.com; bar.com,bar.exchange.com
 #    a user's exchange email joe@foo.exchange.com would be transformed to
 #    joe@foo.com. 
 ldap.url=LDAPS://myldapserver.mycompany.com

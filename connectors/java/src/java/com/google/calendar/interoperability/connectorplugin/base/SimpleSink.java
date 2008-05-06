@@ -28,6 +28,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class SimpleSink<S> implements Sink<S> {
   
+  private int penaltyInMilliseconds = 5000;
   private BlockingQueue<S> queue = new LinkedBlockingQueue<S>();
 
   public void accept(S t) {
@@ -48,10 +49,24 @@ public class SimpleSink<S> implements Sink<S> {
   }
 
   /** 
-   * Re-enqueues the failed object to try it again later
+   * Re-enqueues the failed object to try it again later. Before re-enqueuing
+   * the obejct, it will wait a short time (defined in the hidden field
+   * "penaltyInMilliseconds", default is 5 seconds) to give the component
+   * that caused the problem some time to recover.
    */
-  public void reportFailure(S processedObject, @Nullable Throwable t) {
-    accept(processedObject);
+  public void reportFailure(final S processedObject, @Nullable Throwable t) {
+    new Thread() {
+      @Override
+      public void run() {
+        try {
+          Thread.sleep(penaltyInMilliseconds);
+        } catch (InterruptedException e) {
+          
+          // No special handling required if we get interrupted
+        }
+        accept(processedObject);
+      }
+    }.start();    
   }
 
   /**
@@ -60,6 +75,15 @@ public class SimpleSink<S> implements Sink<S> {
    */
   public void reportSuccess(S processedObject) {
     // Do nothing
+  }
+
+  /**
+   * Sets the "penalty" (time in milliseconds) that this sink should wait
+   * before putting a failed command back into the queue. 
+   * Default is five seconds.
+   */
+  public void setPenaltyInMilliseconds(int penaltyInMilliseconds) {
+    this.penaltyInMilliseconds = penaltyInMilliseconds;
   }
 
 }

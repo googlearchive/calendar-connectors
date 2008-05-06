@@ -267,14 +267,14 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
     Map<String, String> domainMap = null; 
     if (getString(DOMAIN_MAP).trim().length() > 0) {
       domainMap = new HashMap<String, String>();
-      for(String mapping : getString(DOMAIN_MAP).split(",")) {
-        String[] keyval = mapping.split(":");
+      for(String mapping : getString(DOMAIN_MAP).split(";")) {
+        String[] keyval = mapping.split(",");
         if (keyval.length != 2) {
           LOGGER.log(Level.SEVERE, "Domain mapping misconfigured");
           return false;
         }
         domainMap.put(
-            keyval[0].toUpperCase().trim(), keyval[1].toUpperCase().trim());
+            keyval[1].toUpperCase().trim(), keyval[0].toUpperCase().trim());
       }
     }
     
