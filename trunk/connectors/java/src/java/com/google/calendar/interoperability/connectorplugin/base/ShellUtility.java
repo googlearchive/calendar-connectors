@@ -163,11 +163,13 @@ public class ShellUtility extends Configurable implements Runnable {
         }
         
         // Transfer as much data from the streams as possible
-        while (out != null && systemOut.available() > 0) {
+        while (
+            out != null && systemOut.available() > 0 && out.length() < 10000) {
           out.append((char) systemOut.read());
         }
-        while (err != null && systemErr.available() > 0) {
-          out.append((char) systemOut.read());
+        while (
+            err != null && systemErr.available() > 0 && err.length() < 10000) {
+          err.append((char) systemErr.read());
         }
       }
       if (exitValue == null) {

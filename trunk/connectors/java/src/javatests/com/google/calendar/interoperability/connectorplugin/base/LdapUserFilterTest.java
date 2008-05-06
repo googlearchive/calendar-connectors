@@ -155,5 +155,21 @@ public class LdapUserFilterTest extends TestCase {
     assertTrue("\"A\" expected in content of " + set.toString(), 
         set.contains("A"));
   }
+  
+  public void testTransform() {
+    Set<String> set = new HashSet<String>();
+    assertTrue(filter.transform(Collections.singleton("joe@foobar.com"), set));
+    assertEquals(set.iterator().next(), "JOE@FOOBAR.COM");
+    config.setProperty("ldap.domainMap", 
+        "foo.bar.com:foo.com, bar.foo.com : bar.com");
+    assertTrue(filter.transform(Collections.singleton("joe@foo.bar.com"), set));
+    assertEquals(set.iterator().next(), "JOE@FOO.COM");
+    assertTrue(filter.transform(Collections.singleton("joe@bar.foo.com"), set));
+    assertEquals(set.iterator().next(), "JOE@BAR.COM");
+    assertTrue(filter.transform(Collections.singleton("joe@foobar.com"), set));
+    assertEquals(set.iterator().next(), "JOE@FOOBAR.COM");
+    config.setProperty("ldap.domainMap", "thisWontWork");
+    assertFalse(filter.transform(Collections.singleton("joe@foobar.com"), set));
+  }
 }
  

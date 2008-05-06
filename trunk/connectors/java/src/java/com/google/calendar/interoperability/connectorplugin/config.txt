@@ -57,6 +57,12 @@ gdata.domain=mycompany.com
 # ldap.blindFaith tells the LDAP connection to accept any https certificate,
 #    regardless of whether it can be found in the keystore or not (for LDAPS
 #    URLs)
+# ldap.domainMap: if set to a non-empty string, this parameter should parse 
+#    to a set of rules (expressed as csv-list exchangeDomain:googleDomain) for 
+#    domains that should be translated. For example, with a list
+#      foo.exchange.com:foo.com, bar.exchange.com:bar.com
+#    a user's exchange email joe@foo.exchange.com would be transformed to
+#    joe@foo.com. 
 ldap.url=LDAPS://myldapserver.mycompany.com
 ldap.user=administrator@mycompany.com
 ldap.password=mypassword02
@@ -65,6 +71,8 @@ ldap.base=dc=corp,dc=goo,dc=lab
 #ldap.blacklist=(&(objectClass=user)(mail=black*))
 #ldap.whitelist=(&(objectClass=user)(mail=white*))
 ldap.blindFaith=true
+#ldap.domainMap=
+
 
 # After new users have been imported by the tool, certain adjustments to their
 # representation in Exchange need to be made to enable free/busy lookup 
