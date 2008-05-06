@@ -161,7 +161,7 @@ public class LdapUserFilterTest extends TestCase {
     assertTrue(filter.transform(Collections.singleton("joe@foobar.com"), set));
     assertEquals(set.iterator().next(), "JOE@FOOBAR.COM");
     config.setProperty("ldap.domainMap", 
-        "foo.bar.com:foo.com, bar.foo.com : bar.com");
+        "foo.com,foo.bar.com; bar.com , bar.foo.com");
     assertTrue(filter.transform(Collections.singleton("joe@foo.bar.com"), set));
     assertEquals(set.iterator().next(), "JOE@FOO.COM");
     assertTrue(filter.transform(Collections.singleton("joe@bar.foo.com"), set));

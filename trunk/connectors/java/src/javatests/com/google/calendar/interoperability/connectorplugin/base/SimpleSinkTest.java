@@ -26,6 +26,11 @@ public class SimpleSinkTest extends TestCase {
   
   public void testClass() {
     SimpleSink<String> sink = new SimpleSink<String>();
+
+    // There is no race condition here -- thanks to the BlockingQueue, the
+    // penalty can be as high as we like. However, setting it to a single
+    // millisecond makes this test run much faster :-)
+    sink.setPenaltyInMilliseconds(1);   
     sink.accept("Hello");
     sink.accept("World");
     assertEquals("Hello", sink.checkOut());

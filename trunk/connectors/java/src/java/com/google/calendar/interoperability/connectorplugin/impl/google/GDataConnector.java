@@ -30,7 +30,7 @@ public class GDataConnector implements SelfTestable {
   
   public GDataConnector(CommandHandler handler) {
     dao = new GDataAccessObject();
-    handler.registerSubhandler(AdminCommand.class, new AdminHandler(dao));
+    handler.registerSubhandler(AdminCommand.class, new AdminHandler(dao, null));
     handler.registerSubhandler(
         SearchCommand.class, new SearchHandler(dao));
   }
