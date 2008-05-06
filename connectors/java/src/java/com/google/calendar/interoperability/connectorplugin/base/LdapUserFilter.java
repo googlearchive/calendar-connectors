@@ -21,9 +21,11 @@ import static com.google.calendar.interoperability.connectorplugin.base.Configur
 import com.google.common.base.Nullable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
@@ -92,6 +94,16 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
    *   in https connections to accept incoming certificates for LDAP.
    */  
   public static final String LDAP_TRUST_ALL = "ldap.blindFaith";
+  
+  /**
+   * If set to a non-empty string, this parameter should parse to a set
+   * of rules (expressed as csv-list exchangeDomain:googleDomain) for domains
+   * that should be translated. For example, with a list
+   * foo.exchange.com:foo.com, bar.exchange.com:bar.com
+   * a user's exchange email joe@foo.exchange.com would be transformed to
+   * joe@foo.com.
+   */
+  public static final String DOMAIN_MAP = "ldap.domainMap";
   
   /**
    * An empty string, used as default for some of the parameters.
@@ -232,6 +244,7 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
     this.registerParameter(LDAP_BLACKLIST, string, NONE);
     this.registerParameter(LDAP_WHITELIST, string, NONE);
     this.registerParameter(LDAP_TRUST_ALL, bool, "false");
+    this.registerParameter(DOMAIN_MAP, string, "");
   }
   
   /**
@@ -242,6 +255,42 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
     if (this.connector == null) {
       this.connector = new StandardConnector();
     }
+  }
+  
+  /**
+   * Transforms a list of emails into a set. Visible for testing.
+   * 
+   * @return true if a domain map was not given or it was configured correctly
+   */
+  boolean transform(Iterable<String> emails, Set<String> result) {
+    // Is there a domain mapping to consider?
+    Map<String, String> domainMap = null; 
+    if (getString(DOMAIN_MAP).trim().length() > 0) {
+      domainMap = new HashMap<String, String>();
+      for(String mapping : getString(DOMAIN_MAP).split(",")) {
+        String[] keyval = mapping.split(":");
+        if (keyval.length != 2) {
+          LOGGER.log(Level.SEVERE, "Domain mapping misconfigured");
+          return false;
+        }
+        domainMap.put(
+            keyval[0].toUpperCase().trim(), keyval[1].toUpperCase().trim());
+      }
+    }
+    
+    // Refill the set
+    result.clear();
+    for (String email : emails) {
+      email = email.toUpperCase();
+      if (domainMap != null) {
+        final String[] split = email.split("@");
+        if (domainMap.containsKey(split[1])) {
+          email = split[0] + "@" + domainMap.get(split[1]);
+        }
+      }
+      result.add(email);
+    }
+    return true;
   }
   
   /** 
@@ -261,11 +310,8 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
       return false;
     }
     
-    // Refill the set
-    result.clear();
-    for (String email : response) {
-      result.add(email.toUpperCase());
-    }
+    // Perform the transformation and exit
+    transform(response, result);
     return true;
   }
 
@@ -377,6 +423,9 @@ public class LdapUserFilter extends Configurable implements SelfTestable {
     Set<String> dummy = new HashSet<String>(Arrays.asList("A","B"));
     if (!doFilter(dummy.iterator())) {
       throw new RuntimeException("LDAP filter possibly misconfigured");
+    }
+    if (!transform(new HashSet<String>(), new HashSet<String>())) {
+      throw new RuntimeException("LDAP domainmap possibly misconfigured");
     }
   }
 }
