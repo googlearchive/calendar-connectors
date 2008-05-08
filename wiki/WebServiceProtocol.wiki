@@ -1,4 +1,3 @@
-#labels
 Google Calendar Web Service Protocol
 
 = Introduction =
@@ -19,7 +18,7 @@ text=[<version>,<messageId>,[<emails>],<start>/<end>,<since>,<tz>]
 }}}
 
 where:
-  * *<version>*: currently 1
+  * *<version>*: Version # - currently 1
   * *<messageId>*: ID for the request
   * *<emails>*: comma separated list of emails to get free/busy info for
   * *<start>*: Start of range to get free/busy info for (as YYYYMMDD)
@@ -52,7 +51,7 @@ where:
   * *<submitUrl>*: URL for a Google Apps domain specific mailslot URL
   * *<freeBusyResponse>*: A free/busy response JSON expression.
   
-== Free/Busy JSON Expression
+== Free/Busy JSON Expression ==
 
 {{{
   [<version>,<messageId>,
@@ -68,7 +67,7 @@ where:
 }}}
 
 where:
-  * *<version>*: currently 1
+  * *<version>*: Version # - currently 1
   * *<messageId>*: ID from the request
   * *<start>*: Start of range for free/busy request (as YYYYMMDD)
   * *<end>*: End of range for free/busy request (as YYYMMDD)
@@ -84,8 +83,6 @@ where:
   * *<status>*: Free/Busy status
 
 _Note:_ All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
-
-
 
 
 
