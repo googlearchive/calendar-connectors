@@ -1,0 +1,10 @@
+#labels
+How To Build Google Calendar Connectors
+
+= Building Google Calendar Connectors =
+
+The Google Web Service and Sync Service are built as part of the GoogleCalendarConnectors.sln Microsoft Visual Studio solution file. The GoogleCalendarConnectorSyncService.installer and GoogleCalendarConnectorWebService.installer projects.
+
+= Submitting changes back to the project =
+
+If you've made improvements or fixed bugs in the connectors we'd appreciate your submission - just send a patch with the changes to one of the project owners. If you have large improvements to make, it may be a good idea to announce it in the Discussion Group before you spend a lot of time on it to make sure it fits in with the overall project goals.

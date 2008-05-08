@@ -1,0 +1,94 @@
+#labels
+Google Calendar Web Service Protocol
+
+= Introduction =
+
+The Google Calendar Connector Web Service relies on a feature in Google Calendar to allow external Free Busy information to be included in the meeting scheduler dialog. This requires a Google Apps domain to have this feature enabled and for the endpoint of the Google Calendar Connector Web Service to be configured. This document describes the protocol used when a request is issued by Google Calendar.
+
+= Details =
+
+When the Google Calendar client needs free/busy information for a user whose calendar does not reside in Google Calendar, a POST request will be made to the URL configured for the domain. 
+
+== Request ==
+{{{
+POST /free-busy-endpoint HTTP/1.1
+Host: example.org
+Content-type: application/x-www-form-urlencoded
+...
+text=[<version>,<messageId>,[<emails>],<start>/<end>,<since>,<tz>]
+}}}
+
+where:
+  * *<version>*: currently 1
+  * *<messageId>*: ID for the request
+  * *<emails>*: comma separated list of emails to get free/busy info for
+  * *<start>*: Start of range to get free/busy info for (as YYYYMMDD)
+  * *<end>*: End of range to get free/busy info for (as YYYMMDD)
+  * *<since>*: Return free/busy info modified since this time (as YYMMDDTHHMMSS)
+  * *<tz>*: Timezone for the request as an [http://www.twinsun.com/tz/tz-link.htm Olson Time zone]
+
+== Response ==
+{{{
+HTTP/1.1 200 OK
+Content-type: text/html
+...
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+<body>
+  <form id="Form1" method="POST" action="<submitUrl>">
+    <input name="text" value="<freeBusyResponse>" />
+  </form>
+  <script type="text/javascript">
+    document.getElementById('Form1').submit();
+  </script>
+</body>
+</html>
+}}}
+
+where:
+  * *<submitUrl>*: URL for a Google Apps domain specific mailslot URL
+  * *<freeBusyResponse>*: A free/busy response JSON expression.
+  
+== Free/Busy JSON Expression
+
+{{{
+  [<version>,<messageId>,
+    ['_ME_AddData', '<start>/<end>','<since>',
+      [
+        <userName>,<email>,<accessLevel>, // for each user
+          [
+            [<subject>,<start>,<end>,<location>,<organizer>,<status>] // for each appointment
+          ]
+      ]
+    ]
+  ]
+}}}
+
+where:
+  * *<version>*: currently 1
+  * *<messageId>*: ID from the request
+  * *<start>*: Start of range for free/busy request (as YYYYMMDD)
+  * *<end>*: End of range for free/busy request (as YYYMMDD)
+  * *<since>*: Since time from the request (as YYMMDDTHHMMSS)
+  * *<userName>*: Display name of the user the Free/Busy results are for
+  * *<email>*: Email address of the user the Free/Busy results are for
+  * *<accessLevel>*: Access level the user has (not currently used)
+  * *<subject>*: Subject of the event (if available)
+  * *<start>*: Start date time for the free busy block (as YYMMDDTHHMMSS) 
+  * *<end>*: End date time for the free busy block (as YYMMDDTHHMMSS) 
+  * *<location>*: Location of the event (if available)
+  * *<organizer>*: Organizer of the event
+  * *<status>*: Free/Busy status
+
+_Note:_ All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
+
+
+
+
+
+
+
+
