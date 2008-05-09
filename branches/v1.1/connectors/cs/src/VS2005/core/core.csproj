@@ -1,0 +1,236 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{50ADBE30-B2B5-407A-B6C0-4460822132F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Google.GCalExchangeSync.Library</RootNamespace>
+    <AssemblyName>Google.GCalExchangeSync.Library</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Google.GCalExchangeSync.Library.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Google.GCalExchangeSync.Library.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.GData.AccessControl, Version=1.0.9.8, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Google.GData.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Calendar, Version=1.0.9.8, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Google.GData.Calendar.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client, Version=1.0.9.8, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Extensions, Version=1.0.9.8, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Google.GData.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.0.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TZ4Net, Version=3.0.2.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\TZ4Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\core\ActiveDirectoryService.cs">
+      <Link>ActiveDirectoryService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\AppointmentLookupFuture.cs">
+      <Link>util\AppointmentLookupFuture.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\AppointmentService.cs">
+      <Link>AppointmentService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\ConfigCache.cs">
+      <Link>ConfigCache.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\Enumerations.cs">
+      <Link>Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\ExchangeService.cs">
+      <Link>ExchangeService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\ExchangeUser.cs">
+      <Link>ExchangeUser.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\ExchangeUserDict.cs">
+      <Link>ExchangeUserDict.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\FreeBusyCollection.cs">
+      <Link>FreeBusyCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\FreeBusyConverter.cs">
+      <Link>FreeBusyConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\FreeBusyService.cs">
+      <Link>FreeBusyService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\FreeBusyTimeBlock.cs">
+      <Link>FreeBusyTimeBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\freebusywriters\AppointmentWriter.cs">
+      <Link>freebusywriters\AppointmentWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\freebusywriters\FreeBusyWriterFactory.cs">
+      <Link>freebusywriters\FreeBusyWriterFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\freebusywriters\IFreeBusyWriter.cs">
+      <Link>freebusywriters\IFreeBusyWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\freebusywriters\SchedulePlusFreeBusyWriter.cs">
+      <Link>freebusywriters\SchedulePlusFreeBusyWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalErrorResponse.cs">
+      <Link>GCalErrorResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalExchangeException.cs">
+      <Link>GCalExchangeException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalFreeBusyRequest.cs">
+      <Link>GCalFreeBusyRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalFreeBusyResponse.cs">
+      <Link>GCalFreeBusyResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalGateway.cs">
+      <Link>GCalGateway.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\GCalSyncProcess.cs">
+      <Link>GCalSyncProcess.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\scheduling\BaseWorker.cs">
+      <Link>scheduling\BaseWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\scheduling\Sentinel.cs">
+      <Link>scheduling\Sentinel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\scheduling\SentinelFactory.cs">
+      <Link>scheduling\SentinelFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\BlockTimer.cs">
+      <Link>util\BlockTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\ConversionsUtil.cs">
+      <Link>util\ConversionsUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\DateTimeRange.cs">
+      <Link>util\DateTimeRange.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\DateUtil.cs">
+      <Link>util\DateUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\EmbeddedResourceUtil.cs">
+      <Link>util\EmbeddedResourceUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\ExchangeUtil.cs">
+      <Link>util\ExchangeUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\FreeBusyUrl.cs">
+      <Link>util\FreeBusyUrl.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\Future.cs">
+      <Link>util\Future.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\IntervalTree.cs">
+      <Link>util\IntervalTree.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\ModifiedDateUtil.cs">
+      <Link>util\ModifiedDateUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\util\OlsonUtil.cs">
+      <Link>util\OlsonUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\Appointment.cs">
+      <Link>webdav\Appointment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\Enumerations.cs">
+      <Link>webdav\Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\FreeBusy.cs">
+      <Link>webdav\FreeBusy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\FreeBusyProperty.cs">
+      <Link>webdav\FreeBusyProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\IXmlRequest.cs">
+      <Link>webdav\IXmlRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\MessageProperty.cs">
+      <Link>webdav\MessageProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\Method.cs">
+      <Link>webdav\Method.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\Property.cs">
+      <Link>webdav\Property.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\WebDavQuery.cs">
+      <Link>webdav\WebDavQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\WebDavXmlResources.cs">
+      <Link>webdav\WebDavXmlResources.cs</Link>
+    </Compile>
+    <Compile Include="..\..\core\webdav\XmlRequestImpl.cs">
+      <Link>webdav\XmlRequestImpl.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\core\webdav\CreateAppointment.xml">
+      <Link>webdav\xml\CreateAppointment.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\core\webdav\FindItemUrls.xml">
+      <Link>webdav\xml\FindItemUrls.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\core\webdav\LoadFreeBusy.xml">
+      <Link>webdav\xml\LoadFreeBusy.xml</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\core\webdav\FindAppointments.xml">
+      <Link>webdav\xml\FindAppointments.xml</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,6 @@
+LIBRARIES USED BY UNIT TESTS
+============================
+Download the following libraries and add their jar files here:
+
+- JUnit test framework (from junit.org)
+- JMock test framework (from jmock.org)

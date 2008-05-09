@@ -1,0 +1,52 @@
+﻿<project schemaVersion="1.6.0.2">
+    <assemblies>
+        <assembly assemblyPath=".\core\bin\Debug\Google.GCalExchangeSync.Library.dll" xmlCommentsPath=".\core\bin\Debug\Google.GCalExchangeSync.Library.XML" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="Google.GCalExchangeSync.Library" isDocumented="True">Core funtionality for Google Calendar Connectors</namespaceSummaryItem>
+        <namespaceSummaryItem name="Google.GCalExchangeSync.Library.Scheduling" isDocumented="True">Scheduling utilities for the Google Calendar Connector sync service</namespaceSummaryItem>
+        <namespaceSummaryItem name="Google.GCalExchangeSync.Library.Util" isDocumented="True">General utilities used by the Calendar Connectors</namespaceSummaryItem>
+        <namespaceSummaryItem name="Google.GCalExchangeSync.Library.WebDav" isDocumented="True">WebDAV communication utilities for talking to Exchange</namespaceSummaryItem>
+    </namespaceSummaries>
+    <dependencies>
+        <dependencyItem depPath=".\core\bin\Debug\*.*" />
+    </dependencies>
+    <ProjectSummary />
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace</MissingTags>
+    <VisibleItems>ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>..\..\docs\</OutputPath>
+    <SandcastlePath path="C:\program files\sandcastle\" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <HelpFileFormat>Website</HelpFileFormat>
+    <PurgeDuplicateTopics>True</PurgeDuplicateTopics>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>Google Calendar Connectors</HelpTitle>
+    <HtmlHelpName>Documentation</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref />
+    <CopyrightText />
+    <FeedbackEMailAddress />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <PresentationStyle>Prototype</PresentationStyle>
+    <NamingMethod>MemberName</NamingMethod>
+    <SyntaxFilters>CSharp, VisualBasic</SyntaxFilters>
+    <ShowFeedbackControl>False</ShowFeedbackControl>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <ContentSiteMap path="" />
+    <TopicFileTransform path="" />
+</project>

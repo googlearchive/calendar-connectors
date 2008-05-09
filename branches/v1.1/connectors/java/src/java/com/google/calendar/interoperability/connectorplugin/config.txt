@@ -1,0 +1,98 @@
+# Copyright (c) 2007 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# 
+
+# ========
+# WARNING:
+# ========
+# Be sure to make a backup copy of this file. The programs reading this file
+# might decide to encrypt and/or obfuscate some of the content (like passwords).
+# Do not expect this file to remain as easily readable as it is now...
+
+# The base directory where the Exchange connector expects the API_IN and API_OUR subfolders
+general.baseDirectory=C:\\Program Files\\Google\\Google Calendar Connector Plug-In
+
+# General logging setup: where to find the file, whether to log verbose (for debugging)
+general.logFile=c:\\Google\\logs\\Plugin.log
+general.verboseLogging=false
+general.logMessages=true
+
+# Proxy settings for http and https. Should be in the format host:port
+# commenting line out will instruct the program not to use a proxy
+# general.httpProxy=ourhttp-proxy.mycompany.com:8080
+# general.httpsProxy=ourhttps-proxy.mycompany.com:8181
+
+# GData login information
+# User must admin access to the Gapps domain and the provisioning API must be enable.
+gdata.username=admin@mycompany.com
+gdata.password=adminpassword01
+gdata.domain=mycompany.com
+
+# an LDAP connection can be used to connect to an LDAP server to blacklist or
+# whitelist a set of users according to a submitted query. If not blacklist
+# or whitelist is specified, all these settings are ignored. This feature is
+# useful if there are some users in active directory that also exist as
+# users in Google Apps but are supposed to be excluded from the connector
+# service
+# ldap.url,user and password are the general login information
+# ldap.authMethod is the protocol to be used for communication (default
+#     is "DIGEST-MD5", "simple" is unencrypted, others can be used if supported
+#     by the ldap server
+#     IMPORTANT: To use DIGEST-MD5, the configured windows user account in
+#     Active Directory must have enabled "Store password using reversible 
+#     encryption" set via Active Directory Users and Computers. 
+#     Once this value in enabled the password must be changed in order to store 
+#     the password stored in the reversible encryption format.
+# ldap.base is the base for the ldap queries
+# ldap.whitelist: if this filter is set, only users who match this filter are
+#     synced
+# ldap.blacklist: if this filter is set, only users who do NOT match this filter
+#     are synced
+# ldap.blindFaith tells the LDAP connection to accept any https certificate,
+#    regardless of whether it can be found in the keystore or not (for LDAPS
+#    URLs)
+# ldap.domainMap: if set to a non-empty string, this parameter should parse 
+#    to a set of rules (expressed as semicolon-separated-list of pairs 
+#    googleDomain,exchangeDomain) for domains that should be translated. 
+#    For example, with a list
+#      foo.com,foo.exchange.com; bar.com,bar.exchange.com
+#    a user's exchange email joe@foo.exchange.com would be transformed to
+#    joe@foo.com. 
+ldap.url=LDAPS://myldapserver.mycompany.com
+ldap.user=administrator@mycompany.com
+ldap.password=mypassword02
+ldap.authMethod=simple
+ldap.base=dc=corp,dc=goo,dc=lab
+#ldap.blacklist=(&(objectClass=user)(mail=black*))
+#ldap.whitelist=(&(objectClass=user)(mail=white*))
+ldap.blindFaith=true
+#ldap.domainMap=
+
+
+# After new users have been imported by the tool, certain adjustments to their
+# representation in Exchange need to be made to enable free/busy lookup 
+# through the connector. Until this has happened, email can be sent to those
+# users, but free/busy lookup will fail. The tool is called on a regular
+# basis by this service. These parameters should not need to be changed by
+# the system administrator. The values for "timeout" and "frequency" are
+# both in seconds. Timeout is the time in seconds that the program will wait
+# before killing the external process (in case it hangs). Frequency is the
+# time the program will wait after execution to call the tool again.  
+fbfix.command=freebusybuilder.exe
+fbfix.timeout=60
+fbfix.frequency=1080
+
+# If encryption is used to make passwords non-readable, this property can
+# be used to determine what certificate name to use
+#win.certname=insertCertnameHere
