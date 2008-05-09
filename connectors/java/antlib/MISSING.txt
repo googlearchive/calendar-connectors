@@ -2,7 +2,7 @@ Libaries supporting ANT tasks
 =============================
 Download the latest version of jsmooth from http://jsmooth.sourceforge.net and place the following items in this folder:
 
-- jsmoothgen-ant.jar (a custom and task to create windows executables)
+- jsmoothgen-ant.jar (a custom ant task to create windows executables)
 - skeletons (a folder from the same jsmooth archive)
 
 Both the jar file and the skeletons-folder are part of one single download from the web page.
