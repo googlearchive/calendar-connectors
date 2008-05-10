@@ -52,7 +52,9 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             DateTimeRange r = obj as DateTimeRange;
 
-            return start.CompareTo(r.Start) & end.CompareTo(r.End);
+            // TODO(bjames): Fix this - the FreeBusyWriter
+            // relies on this sorting on start time.
+            return start.CompareTo(r.Start);
         }
 
         /// <summary>
