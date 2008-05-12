@@ -10,7 +10,10 @@ How To Build Google Calendar Connectors
   * Install Microsoft .NET Runtime 2.x
   
 === Build Steps ===
-The Google Web Service and Sync Service are built using the _GoogleCalendarConnectors.sln Microsoft Visual Studio solution file. The _GoogleCalendarConnectorSyncService.installer_ and _GoogleCalendarConnectorWebService.installer_ projects will build the installers for the connectors. To run the unit tests, build the _unittests_ project and load the _/connectors/cs/src/VS2005/UnitTests/unittest.nunit_ config file into the NUnit GUI.
+The Google Web Service and Sync Service are built using the _!GoogleCalendarConnectors.sln_ Microsoft Visual Studio solution file. The important projects in the solution are:
+  * *!GoogleCalendarConnectorSyncService.installer* - Builds the Sync Service Installer
+  * *!GoogleCalendarConnectorWebService.installer* - Builds the Web Service Installer
+  * *unittests* - Builds the unit tests for all of the connectors. To run the unit tests, load the _/connectors/cs/src/VS2005/!UnitTests/unittest.nunit_ config file into the NUnit GUI.
 
 == Building Google Calendar Connector Plugin==
 
