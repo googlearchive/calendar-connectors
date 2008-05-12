@@ -80,7 +80,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 *I am getting 403 errors when running the Google Calendar Sync service?*
 
   * If you are getting 403 errors when trying to sync free/busy from Google Calendar. Enable DEBUG logging on the sync service. You might need to configure SMTP domain mapping if your internal primary SMTP address on your Exchange user does not match the e-mail address in Google Apps.
-  * The user account in Google Apps is configured not to share free busy data.
+  * The user account in Google Apps is configured not to share free busy data. To verify sharing is enabled in Google Calendar goto Settings | Calendars | Shared: Edit Settings. Make sure "Share this calendar with others should be enabled". To share appointment details "Share this calendar with everyone in this domain" should enabled and set to "See all event details".
+
 
   
 *I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
@@ -155,7 +156,6 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 
 *I get a security warning every time I try to look up free/busy data in Google Calendar?*
-
 
   * This is caused due to a mismatch between http vs https connections between Google Calendar and the web service. For example you have loaded Google Calendar via HTTP but you have SSL enabled on the web service so the request being sent to the web service is HTTPS. Or vice verse you have load Google Calendar as HTTPS but your web service is configured for HTTP.
 
