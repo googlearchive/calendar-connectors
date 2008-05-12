@@ -53,8 +53,9 @@ Add your content here.  Format your content with:
 
 *Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
 
-  * No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
-  * If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
+  No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
+
+  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
 
 *Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
 
