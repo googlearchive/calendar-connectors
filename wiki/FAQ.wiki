@@ -8,17 +8,17 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
-  * There is a setting SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
+  * There is a setting \SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
   * The connector reads the Primary SMTP address of the Exchange user account or contact   object. We use this e-mail address as the key between Exchange and Google Apps and vice verse.
 
 
 *My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
 
  _Google Calendar Connector Web Service:_
-  * Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+  * Use the \GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
  _Google Calendar Connector Sync Service:_
-  * Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+  * Use the \GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
 
  _Google Calendar Connector Pug-in:_
