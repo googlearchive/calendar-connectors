@@ -2,15 +2,9 @@
 
 = Introduction =
 
-Add your content here.
+This FAQ contains common questions and answers about the Google Calendar Connectors.
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
 
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
