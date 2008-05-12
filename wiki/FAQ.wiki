@@ -1,0 +1,186 @@
+#Frequently Asked Questions
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
+*How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
+
+# There is a setting SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
+# The connector reads the Primary SMTP address of the Exchange user account or contact object. We use this e-mail address as the key between Exchange and Google Apps and vice verse.
+
+
+*My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
+
+Google Calendar Connector Web Service:
+
+   1. Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+
+
+Google Calendar Connector Sync Service:
+
+   1. Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+
+
+Google Calendar Connector Pug-in:
+
+   1. Use the ldap.domainMap setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name. Using this setting in conjunction with ldap.whitelist and ldap.blacklist lets you control what users are in scope of the Google Calendar Connector Plug-in. 
+
+
+*What servers does the Google Calendar Connector need to connect to within my company?*
+
+Web Service:
+
+    * If enabled to return appointment detail every server that hosts a mailbox. Make sure if you have IP whitelisting configured that the sever running the Google Calendar connectors is also include in that whitelist.
+    * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
+    * If not returning appointment detail the Web service only needs to talk to the Exchange servers configured in the web.config file.
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+
+Sync Service:
+
+    * If you are running the sync service in "Appointment" mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
+    * If you are running the sync service in "SchedulePlus" mode,  the Sync service only needs to talk to the Exchange servers configured in the GoogleGCalExhangeSync.Service.exe.config file.
+    * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+
+Plug-In:
+
+    * The Plug-in runs on the Exchange server which has the Novell GroupWise connector for Microsoft Exchange installed. 
+    * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+
+
+*Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
+
+   1. No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
+   2. If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
+
+
+*Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
+
+No, the Google Calendar Sync service only is designed to synchronize Google Calendar free/busy data into your Exchange environment. It does not sync appointment details or other meeting data, just free/busy status for the meeting time.
+
+There is functionally with the Google Calender Connector Web service to retrieve in real time Exchange free/busy data within Google Calendar.
+
+A separate Google product: Google Calendar Sync is a client desktop application that syncs Outlook Calendar with a Google Calendar. This tool runs on an end user client desktop. For more information go here: http://www.google.com/support/calendar/bin/answer.py?answer=89955.
+
+*I am getting 403 errors when running the Google Calendar Sync service?*
+
+   1. If you are getting 403 errors when trying to sync free/busy from Google Calendar. Enable DEBUG logging on the sync service. You might need to configure SMTP domain mapping if your internal primary SMTP address on your Exchange user does not match the e-mail address in Google Apps.
+   2. The user account in Google Apps is configured not to share free busy data.
+
+  
+*I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
+
+   1. Have you provided Google Enterprise support with the your URL of the server hosting the Web Service? You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your account settings on the Google Calendar server.
+   2. Check the webservice.log to determine if the web service is receiving the request?
+   3. Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
+
+
+*The Google Calendar Connector Sync service is trying to sync every user in my Active Directory.*
+
+   1. Configure the SyncService.LDAPUserFilter in the config file. This filter allows you to filter the users in scope of the sync service. 
+
+
+*I am getting 401 access denied error messages when trying to read or write free/busy or appointment data?*
+
+   1. Verify that you have configured the Windows service accounts with the proper permissions within Exchange to read and write free/busy or appointment data.
+   2. If using IP white-lists on your Exchange servers running IIS, verify the server you are communicating with includes the IP of the server that is running the web/sync service in its white-list.
+
+
+*I get the error: "Error writing appointment ---> System.Net.WebException: The remote server returned an error: (409) Conflict"?*
+
+   1. Verify the user has a properly configured legacyExchangeDN
+   2. Verify that you have configured the Windows service accounts with the proper permissions within Exchange to read and write free/busy or appointment data. 
+
+
+*The Google Calendar Sync service crashes or stops after starting?*
+
+   1. Review the config file to make sure all the xml syntax is correct. Improper syntax will cause the service to crash on start.  
+
+
+*The web service is not creating any log files?*
+
+   1. Make sure NETWORK SERVICE has "MODIFY" privileges to the file system paths where the log files are configured to be written. 
+
+
+*The Sync service is not creating any log files?*
+
+   1. Make sure SYSTEM has "MODIFY" privileges to the file system paths where the log files are configured to be written. 
+
+
+*The web or sync service is not encrypting the config file?*
+
+Sync:
+
+   1. Make sure you have enabled Configuration.EncryptOnNextRun to "True"
+   2. For the sync service, make sure SYSTEM has "MODIFY" privileges to the file system path where the config file is stored. 
+
+
+Web:
+
+   1. For the web service, make sure NETWORK SERVICE has "MODIFY" privileges to the file system path where the config file is stored. 
+
+
+Plug-In
+
+
+   1. Make sure the Plug-In is running as a Domain User account that has a "User" certificate installed in the User's Personal Certifate store.
+   2. Make sure the config.txt is configured for the value win.certname.
+
+
+*I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
+
+If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration setting in Google Apps. If the domain name does not match,  the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration. For example the default value might look like  "acme.com" to allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service.
+
+*I have a user that always shows empty free/busy when viewing it from Google Calendar, but there is free/busy data in Exchange?*
+
+   1. Most likely you have a Google Apps account setup for this user and it currently enabled and sharing free/busy data. The calendar free/busy look up tool is getting the data from Google Calendar and not from Exchange. You can disable the account so that it does not share free/busy data. This will force the Calendar free/busy look up function to take the data returned from the Web service.
+
+
+
+*I get the error Calendar does not exist when I try to look up an Exchange user in Google Calendar?*
+
+   1. This could be due to the fact the web service was unable to locate an Exchange user or contact based on the addressed you entered. Please enable DEBUG on the web service log. This will help you determine why the user look up is failing.
+   2. The web browser is not able to communicate to the Google Calendar web service
+
+
+
+*I get a security warning every time I try to look up free/busy data in Google Calendar?*
+
+
+   1. This is caused due to a mismatch between http vs https connections between Google Calendar and the web service. For example you have loaded Google Calendar via HTTP but you have SSL enabled on the web service so the request being sent to the web service is HTTPS. Or vice verse you have load Google Calendar as HTTPS but your web service is configured for HTTP.
+
+      NOTE: If you have configured the web service for SSL but are loading Google Calendar as HTTP please work with you Enterprise Support Organization to configure Google Apps to always us SSL for Calendar. 
+
+
+*I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
+
+   1. The sync service does not support running in both a SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
+
+
+*I am getting the error: "ERROR Google.GCalExchangeSync
+.Library.Util.ModifiedDateUtil - System.Xml.XmlException: 'None' is an invalid XmlNodeType." How do I fix this?*
+
+   1. You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the UserModifiedTimes.xml from C:\google\data. This file will be rebuilt on the next sync service execution.
+
+
+*I have users configured in both Google Calendar and Exchange. What free/busy data will be displayed?*
+
+   1. The first service to respond to the free/busy request is displayed. If the user is a Google Apps user then Google apps data will be displayed. If there is a no Google Apps user or the account is disabled, Exchange data will be displayed. If the user is both a Google Apps user and Exchange user, only Google Apps free/busy data will be displayed. 
+
+
+*How do I force a complete re-sync of the Google Calendar Sync Service?*
+
+   1. Delete the file UserModifiedTimes.xml from C:\google\data and restart the Google Calendar Sync Service. This will force a full re-sync for each user. 
