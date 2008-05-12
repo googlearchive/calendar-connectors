@@ -8,17 +8,17 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
-  * There is a setting \SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
+  * There is a setting 'SyncService.LDAPUserFilter' that controls what Active Directory users/contacts are in scope of the sync service.
   * The connector reads the Primary SMTP address of the Exchange user account or contact   object. We use this e-mail address as the key between Exchange and Google Apps and vice verse.
 
 
 *My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
 
  _Google Calendar Connector Web Service:_
-  * Use the \GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+  * Use the 'GoogleApps.GCal.DomainMapping' setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
  _Google Calendar Connector Sync Service:_
-  * Use the \GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+  * Use the 'GoogleApps.GCal.DomainMapping' setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
 
  _Google Calendar Connector Pug-in:_
@@ -36,12 +36,12 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
  _Sync Service:_
     * If you are running the sync service in "Appointment" mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
-    * If you are running the sync service in "SchedulePlus" mode,  the Sync service only needs to talk to the Exchange servers configured in the GoogleGCalExhangeSync.Service.exe.config file.
+    * If you are running the sync service in 'SchedulePlus' mode,  the Sync service only needs to talk to the Exchange servers configured in the 'GoogleGCalExhangeSync.Service.exe.config' file.
     * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
  _Plug-In:_
-    * The Plug-in runs on the Exchange server which has the Novell GroupWise connector for Microsoft Exchange installed. 
+    * The Plug-in runs on the Exchange server which has the 'Novell GroupWise connector for Microsoft Exchange' installed. 
     * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
@@ -49,7 +49,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
 
-  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
+  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the 'GCALExchangeLookup' directory and ensure directory browsing is not enabled within IIS.
 
 *Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
 
