@@ -1,14 +1,14 @@
-Google Calendar Web Service Protocol
+= Google Calendar Web Service Protocol =
 
-= Introduction =
+== Introduction ==
 
 The Google Calendar Connector Web Service relies on a feature in Google Calendar to allow external Free Busy information to be included in the meeting scheduler dialog. This requires a Google Apps domain to have this feature enabled and for the endpoint of the Google Calendar Connector Web Service to be configured. This document describes the protocol used when a request is issued by Google Calendar.
 
-= Details =
+== Details ==
 
 When the Google Calendar client needs free/busy information for a user whose calendar does not reside in Google Calendar, a POST request will be made to the URL configured for the domain. 
 
-== Request ==
+=== Request ===
 {{{
 POST /free-busy-endpoint HTTP/1.1
 Host: example.org
@@ -26,7 +26,7 @@ where:
   * *<since>*: Return free/busy info modified since this time (as YYMMDDTHHMMSS)
   * *<tz>*: Timezone for the request as an [http://www.twinsun.com/tz/tz-link.htm Olson Time zone]
 
-== Response ==
+=== Response ===
 {{{
 HTTP/1.1 200 OK
 Content-type: text/html
@@ -51,7 +51,7 @@ where:
   * *<submitUrl>*: URL for a Google Apps domain specific mailslot URL
   * *<freeBusyResponse>*: A free/busy response JSON expression.
   
-== Free/Busy JSON Expression ==
+=== Free/Busy JSON Expression ===
 
 {{{
   [<version>,<messageId>,
