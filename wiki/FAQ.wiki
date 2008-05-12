@@ -20,45 +20,36 @@ Add your content here.  Format your content with:
 
 *My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
 
-Google Calendar Connector Web Service:
-
+ _Google Calendar Connector Web Service:_
   * Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
-Google Calendar Connector Sync Service:
-
+ _Google Calendar Connector Sync Service:_
   * Use the GoogleApps.GCal.DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
 
 
-Google Calendar Connector Pug-in:
-
+ _Google Calendar Connector Pug-in:_
   * Use the ldap.domainMap setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name. Using this setting in conjunction with ldap.whitelist and ldap.blacklist lets you control what users are in scope of the Google Calendar Connector Plug-in. 
 
 
 *What servers does the Google Calendar Connector need to connect to within my company?*
 
-Web Service:
-
+ _Web Service:_
     * If enabled to return appointment detail every server that hosts a mailbox. Make sure if you have IP whitelisting configured that the sever running the Google Calendar connectors is also include in that whitelist.
     * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
     * If not returning appointment detail the Web service only needs to talk to the Exchange servers configured in the web.config file.
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
 
-Sync Service:
-
+ _Sync Service:_
     * If you are running the sync service in "Appointment" mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
     * If you are running the sync service in "SchedulePlus" mode,  the Sync service only needs to talk to the Exchange servers configured in the GoogleGCalExhangeSync.Service.exe.config file.
     * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
-
-Plug-In:
-
+ _Plug-In:_
     * The Plug-in runs on the Exchange server which has the Novell GroupWise connector for Microsoft Exchange installed. 
     * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
-
-
 
 *Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
 
@@ -135,7 +126,7 @@ Plug-In:
 
 *I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
 
-If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration setting in Google Apps. If the domain name does not match,  the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration. For example the default value might look like  "acme.com" to allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service.
+  If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration setting in Google Apps. If the domain name does not match,  the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration. For example the default value might look like  "acme.com" to allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service.
 
 *I have a user that always shows empty free/busy when viewing it from Google Calendar, but there is free/busy data in Exchange?*
 
