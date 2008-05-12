@@ -32,5 +32,9 @@ License: http://logging.apache.org/log4net/license.html
 Project: http://www.babiej.demon.nl/Tz4Net/main.htm
 License: http://www.gnu.org/copyleft/lgpl.html
 
+Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei
+A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig
+
+
 
 
