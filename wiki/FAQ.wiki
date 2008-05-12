@@ -12,12 +12,11 @@ This FAQ contains common questions and answers about the Google Calendar Connect
     * .NET 2.0 runtime on the servers running the Web and Sync Services.
 
 * Are the Google Calendar Connectors secure?*
-
  * Role Accounts allow customers to define permission levels
- * Authenticated GData feeds to talk to Google Apps
+ * Authenticated HTTPS GData feeds to talk to Google Apps
  * HTTPS support when interacting with HTTPS Google Calendar
- * TLS is supported when talking to LDAP
-
+ * TLS support for talking to LDAP
+ * Configuration files support encryption
 
   The Google Calendar Connectors use role accounts to interact with your customer's Microsoft Exchange environment.  This allows the customer to decide what minimum level of privileges to grant the services in their environment.
 
