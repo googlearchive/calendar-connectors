@@ -4,7 +4,25 @@
 
 This FAQ contains common questions and answers about the Google Calendar Connectors.
 
+*What are the technical requirements for running the Google Calendar Connectors in my environment?*
 
+  * Windows Server 2003
+  * Exchange 2003 SP2 or Exchange 2003/2007 Mixed Mode environment with a public free/busy store.
+    * A single Active Directory Forest.
+    * .NET 2.0 runtime on the servers running the Web and Sync Services.
+
+* Are the Google Calendar Connectors secure?*
+
+  * Role Accounts allow customers to define permission levels
+  * Authenticated GData feeds to talk to Google Apps
+  * HTTPS support when interacting with HTTPS Google Calendar
+  * TLS is supported when talking to LDAP
+
+  The Google Calendar Connectors use role accounts to interact with your customer's Microsoft Exchange environment.  This allows the customer to decide what minimum level of privileges to grant the services in their environment.
+
+  The Google Calendar Connectors also uses the authenticated GData feeds to retrieve free/busy information from Google Calendar.
+
+  Google Calendar Connector Web Service uses HTTPS to communicate with Google Calendar when it detects Google Calendar is using HTTPS.  This means the Google Calendar Connector Web Service can operate in HTTP or HTTPS mode, depending on whether Google Calendar is in HTTP or HTTPS.  In general, Google recommends running Google Calendar and the Google Calendar Connectors in a mutual level of security; either both in HTTPS or both in HTTP.  
 
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
