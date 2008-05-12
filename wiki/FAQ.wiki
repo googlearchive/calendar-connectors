@@ -1,4 +1,4 @@
-<img src="http://www.google.com/a/help/intl/en/images/google_sm.gif">
+http://www.google.com/a/help/intl/en/images/google_sm.gif
 
 #Frequently Asked Questions
 
