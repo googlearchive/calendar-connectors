@@ -146,13 +146,13 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
 
-  * The sync service does not support running in both a SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
+  * The sync service does not support running in both a `SchedulePlus` and `Appointment` mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
 
 
-*I am getting the error: "ERROR Google.GCalExchangeSync
-.Library.Util.ModifiedDateUtil - System.Xml.XmlException: 'None' is an invalid XmlNodeType." How do I fix this?*
+*I am getting the error: `"ERROR Google.GCalExchangeSync
+.Library.Util.ModifiedDateUtil - System.Xml.XmlException: 'None' is an invalid XmlNodeType."` How do I fix this?*
 
-  * You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the UserModifiedTimes.xml from C:\google\data. This file will be rebuilt on the next sync service execution.
+  * You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the `UserModifiedTimes.xml` from C:\google\data. This file will be rebuilt on the next sync service execution.
 
 
 *I have users configured in both Google Calendar and Exchange. What free/busy data will be displayed?*
@@ -162,4 +162,4 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *How do I force a complete re-sync of the Google Calendar Sync Service?*
 
-  * Delete the file UserModifiedTimes.xml from C:\google\data and restart the Google Calendar Sync Service. This will force a full re-sync for each user. 
+  * Delete the file `UserModifiedTimes.xml` from C:\google\data and restart the Google Calendar Sync Service. This will force a full re-sync for each user. 
