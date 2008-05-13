@@ -130,7 +130,7 @@ This section contains important security considerations to review when deploying
 
   * *Google Calendar Connector Web Service:* The Web Service supports passing free/busy information using HTTP or HTTPS. To enable HTTPS mode, perform the following steps:
     # Use Google Calendar in HTTPS mode or force HTTPS mode for your entire Google Apps domain.
-    # Provide an *https://* Web Service URL to Google support.
+    # Provide an * https:// * Web Service URL to Google support.
 
   If Google Calendar is configured with an https url that fails, it will not fallback to http. Free/busy information is not publicly shared, and when Google Calendar and the Web Service are using HTTPS, POST's are encrypted with SSL in transit.
 
@@ -138,51 +138,54 @@ This section contains important security considerations to review when deploying
 
   * *Google Calendar Connector Plug-In:* Free/busy information is downloaded from Google Calendar using a Google Apps administrator account and an authenticated GData feed over HTTPS.
 
-==Account Privileges==
+=Account Privileges=
 
 The Google Calendar Connectors generally require a Google Apps account to access Google Calendar information, a Windows system account to access the file system, and an Active Directory account to interact with Active Directory via LDAP and Microsoft Exchange free/busy and mailboxes.
 
 ==Google Calendar Connector Web Service:==
 
-Google Apps user account.
+  #Google Apps user account.
   # Active Directory user with standard DOMAIN USER privileges.
   # Active Directory user with Read-Access to the free/busy store (retrieving free/busy).
   # Active Directory user with Exchange extended "Receive As" privileges to read user's appointment details.
   # The Windows System account NETWORK SERVICE is used by ASP.NET and needs MODIFY privileges to:
     * C:\Inetpub\wwwroot\{Virtual Web Application Directory}
     * C:\Inetpub\wwwroot\{Virtual Web Application Directory}\Web.config
-GoogleApps.GCal.LogDirectory
-    * Google Calendar Connector Sync Service:
+    * GoogleApps.GCal.LogDirectory
 
-Google Apps user account.
-Active Directory user with standard DOMAIN USER privileges.
-Active Directory user with Exchange extended "Receive As" privileges for writing free/busy or appointment details.
-The Windows System account SYSTEM requires:
-MODIFY privileges for SyncServiceXmlStorageDirectory
-MODIFY privileges for the install directory
-Google Calendar Connector Plug-In:
+==Google Calendar Connector Sync Service:==
 
-Google Apps Administrator account.
-Local server user account with READ/WRITE privileges to the Novell GroupWise API gateway path.
-Active Directory DOMAIN USER credentials for querying via LDAP and writing free/busy store MAPI attriubtes.
+  # Google Apps user account.
+  # Active Directory user with standard DOMAIN USER privileges.
+  # Active Directory user with Exchange extended "Receive As" privileges for writing free/busy or appointment details.
+  # The Windows System account SYSTEM requires:
+    * MODIFY privileges for SyncServiceXmlStorageDirectory
+    * MODIFY privileges for the install directory
 
-Free/busy and appointment privacy
+==Google Calendar Connector Plug-In:==
+
+  # Google Apps Administrator account.
+  # Local server user account with READ/WRITE privileges to the Novell GroupWise API gateway path.
+  # Active Directory DOMAIN USER credentials for querying via LDAP and writing free/busy store MAPI attriubtes.
+
+==Free/busy and appointment privacy==
 
 Free/busy information is generally available to all users of the domain, without restriction. An exception is appointment detail information, which is only shared if it is not private. Explicit sharing of appointment detail information is not required.
 
-Google Calendar Connector Web Service:
-Free/busy information is accessible by any domain user, for any domain user who has free/busy information in the Exchange free/busy public store. Appointment details are available for any domain user, if the appointment detail look up is enabled and if the appointment is not marked as private. Private event details are not returned to Google Calendar.
+  * Google Calendar Connector Web Service:
+  Free/busy information is accessible by any domain user, for any domain user who has free/busy information in the Exchange free/busy public store. Appointment details are available for any domain user, if the appointment detail look up is enabled and if the appointment is not marked as private. Private event details are not returned to Google Calendar.
 
-Google Calendar Connector Sync Service:
-Free/busy information is accessible by any Google Apps domain user, for all domain users on Google Apps. Appointment details for Google Apps users are not available to Microsoft Exchange users becuase the free/busy store only allows storage of free/busy data.
+  * Google Calendar Connector Sync Service:
+  Free/busy information is accessible by any Google Apps domain user, for all domain users on Google Apps. Appointment details for Google Apps users are not available to Microsoft Exchange users becuase the free/busy store only allows storage of free/busy data.
 
-Google Calendar Connector Plug-In:
-Free/busy information is accessible by any Google Apps domain user, for any other domain user on Google Apps. Appointment details are not supported with the Novell GroupWise Connector for Exchange.
+  * Google Calendar Connector Plug-In:
+  Free/busy information is accessible by any Google Apps domain user, for any other domain user on Google Apps. Appointment details are not supported with the Novell GroupWise Connector for Exchange.
 
-Google Calendar's access to your corporate data
+=Google Calendar's access to your corporate data=
 
 The Google Calendar Connectors will only return free/busy information and non-private appointment details from Microsoft Exchange. Only free/busy information is shared from Google Apps. No Microsoft Exchange free/busy information or appointment details are explicitly stored on Google's servers.
-Google Calendar Connector Web Service:
+
+==Google Calendar Connector Web Service:==
 
 The Google Calendar Scheduler is returned the free/busy and appointment information from your Exchange environment, but this information is not stored on Google's servers, and it only transits Google's servers to be parsed and rendered via javascript within the user's browser. Concurrent, malicious javascript execution in the browser could expose your free/busy and appointment information to an outside party. Should we include this. We don't talk about this anywhere else and it seems a bit of a conjecture -Darrellkuhn 5/9/08 4:19 PM 
 Google Calendar Connector Sync Service:
