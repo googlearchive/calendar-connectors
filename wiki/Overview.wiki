@@ -54,14 +54,14 @@ The following is a step-by-step process overview of the Web Service:
   # Google Calendar's Scheduler receives the results and displays the data appropriately in Scheduler view.
 
 Notes about data security and access permissions:
-  # Any Google Apps user in your domain.
-  # The Google Apps domain administrator or Google defines the URL of the Google Calendar Connector Web Service.
-  # The Google Calendar Connector Web Service is exposed to Google.
-  # The LDAP query is executed with standard LDAP logon credentials.
-  # The WebDAV request is issued with Exchange user permissions sufficient for read-only access to the free/busy store.
-  # The WebDAV request is issued with Exchange user permissions sufficient to read event details from another user's mailbox.
-  # If the event has been marked as "private", the event details will not be returned.
-  # The merged free/busy and appointment data is not permanently stored on Google servers, but due to javascript limitations, it is routed through a Google server on its return to the user's browser.
+  * 1. Any Google Apps user in your domain.
+  * 2. The Google Apps domain administrator or Google defines the URL of the Google Calendar Connector Web Service.
+  * 3. The Google Calendar Connector Web Service is exposed to Google.
+  * 4. The LDAP query is executed with standard LDAP logon credentials.
+  * 6. The WebDAV request is issued with Exchange user permissions sufficient for read-only access to the free/busy store.
+  * 8. The WebDAV request is issued with Exchange user permissions sufficient to read event details from another user's mailbox.
+  * 9. If the event has been marked as "private", the event details will not be returned.
+  * 11.  The merged free/busy and appointment data is not permanently stored on Google servers, but due to javascript limitations, it is routed through a Google server on its return to the user's browser.
 
 =Google Calendar Connector Sync Service=
 
