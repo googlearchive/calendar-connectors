@@ -216,8 +216,8 @@ The following licenses and libraries are used in the Google Calendar Connector W
 
 The following licenses and libraries are used in the Google Calendar Connector Sync Service:
   * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
-  * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [ http://logging.apache.org/log4net/license.html license])
-  *tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [ http://www.gnu.org/copyleft/lgpl.html license])
+  * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
+  *tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Plug-In:
 
@@ -230,8 +230,8 @@ The following licenses and libraries are used to build the Google Calendar Conne
 
 The following licenses and libraries are used for testing the Google Calendar Connector Plug-In:
 
-JUnit and its dependencies ([http://www.junit.org/ project])
-JMock and its dependencies ([http://jmock.codehaus.org/ project], [http://jmock.codehaus.org/license.html license])
+  * JUnit and its dependencies ([http://www.junit.org/ project])
+  * JMock and its dependencies ([http://jmock.codehaus.org/ project], [http://jmock.codehaus.org/license.html license])
 
 The Google Calendar Connector Plug-In optionally supports, but does not require, building Windows executables using JSmooth.  JSmooth is not distributed with the Google Calendar Connector Plug-In open source release and its use represents an optional step in the build process.  JSmooth may be obtained and used in accordance with its license, both of which are provided below (for the sake of convenience):
 
