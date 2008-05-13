@@ -82,10 +82,10 @@ Typical use case:
   # Because the Google Calendar Connector Sync Service has populated the Exchange free/busy store with free/busy messages for the Google Apps users, relevant free/busy data is returned to Microsoft Outlook.
 
 Notes about data security and access permissions:
-  # The Google Calendar Connector Sync Service needs access to an LDAP logon and password with standard "Domain User" privileges.
-  # The Google Calendar Connector Sync Service authenticates using a Google Apps Administrator account to retrieve the GData free/busy feeds.
-  # The Google Calendar Connector Sync Service writes free/busy messages to the free/busy store using an Active Directory account with write permission to the free/busy store for other users. This requires an Exchange account with Admin privileges.
-  # If the appointment writer is used instead of the SchedulePlus writer, the Google Calendar Connector Sync Service must use an Active Directory account with write permission to the Exchange users' calendar.
+  * 1.  The Google Calendar Connector Sync Service needs access to an LDAP logon and password with standard "Domain User" privileges.
+  * 3.  The Google Calendar Connector Sync Service authenticates using a Google Apps Administrator account to retrieve the GData free/busy feeds.
+  * 4.  The Google Calendar Connector Sync Service writes free/busy messages to the free/busy store using an Active Directory account with write permission to the free/busy store for other users. This requires an Exchange account with Admin privileges.
+  * 5. If the appointment writer is used instead of the SchedulePlus writer, the Google Calendar Connector Sync Service must use an Active Directory account with write permission to the Exchange users' calendar.
 
 =Google Calendar Connector Plug-In=
 
@@ -117,39 +117,42 @@ Google Calendar Plug-in Directory/User Synchronization:
   # The FreeBusyBuilder application verifies or creates the proper MAPI attributes in the Exchange free/busy store. These MAPI attributes configure Exchange to use the Novell GroupWise Gateway for the imported GroupWise (i.e Google Apps) contacts for free/busy requests.
 
 Notes about data security and access permissions:
-1. The GroupWise API Gateway requires a local administrator account on the server it is running.
-3. The Google Apps domain must have the Provisioning API enabled for account enumeration. GData API authentication and data is tranferred securley via HTTPS.
-9. The user account the Google Calendar Connector Plug-in service logs on as must have access to query Active Directory as a "Domain User" as this account is used to execute the FreeBusyBuilder.exe help application.
-10. The user account the Google Calendar Connector Plug-in service logs on as must have read and write access to the Exchange free/busy store as this account is used to execute the FreeBusyBuilder.exe help application.
+  * 1. The GroupWise API Gateway requires a local administrator account on the server it is running.
+  * 3. The Google Apps domain must have the Provisioning API enabled for account enumeration. GData API authentication and data is tranferred securley via HTTPS.
+  * 9. The user account the Google Calendar Connector Plug-in service logs on as must have access to query Active Directory as a "Domain User" as this account is used to execute the FreeBusyBuilder.exe help application.
+  *10. The user account the Google Calendar Connector Plug-in service logs on as must have read and write access to the Exchange free/busy store as this account is used to execute the FreeBusyBuilder.exe help application.
 
 =Security considerations=
 
 This section contains important security considerations to review when deploying the Google Calendar Connector Kit.
-Transport security
 
-Google Calendar Connector Web Service: The Web Service supports passing free/busy information using HTTP or HTTPS. To enable HTTPS mode, perform the following steps:
-Use Google Calendar in HTTPS mode or force HTTPS mode for your entire Google Apps domain.
-Provide an https:// Web Service URL to Google support.
+==Transport security==
 
-If Google Calendar is configured with an https url that fails, it will not fallback to http. Free/busy information is not publicly shared, and when Google Calendar and the Web Service are using HTTPS, POST's are encrypted with SSL in transit.
+  * *Google Calendar Connector Web Service:* The Web Service supports passing free/busy information using HTTP or HTTPS. To enable HTTPS mode, perform the following steps:
+    # Use Google Calendar in HTTPS mode or force HTTPS mode for your entire Google Apps domain.
+    # Provide an *https://* Web Service URL to Google support.
 
-Google Calendar Connector Sync Service: Free/busy information is downloaded from Google Calendar using a Google Apps administrator account and an authenticated GData feed over HTTPS.
+  If Google Calendar is configured with an https url that fails, it will not fallback to http. Free/busy information is not publicly shared, and when Google Calendar and the Web Service are using HTTPS, POST's are encrypted with SSL in transit.
 
-Google Calendar Connector Plug-In: Free/busy information is downloaded from Google Calendar using a Google Apps administrator account and an authenticated GData feed over HTTPS.
-Account Privileges
+  * *Google Calendar Connector Sync Service:* Free/busy information is downloaded from Google Calendar using a Google Apps administrator account and an authenticated GData feed over HTTPS.
+
+  * *Google Calendar Connector Plug-In:* Free/busy information is downloaded from Google Calendar using a Google Apps administrator account and an authenticated GData feed over HTTPS.
+
+==Account Privileges==
 
 The Google Calendar Connectors generally require a Google Apps account to access Google Calendar information, a Windows system account to access the file system, and an Active Directory account to interact with Active Directory via LDAP and Microsoft Exchange free/busy and mailboxes.
-Google Calendar Connector Web Service:
+
+==Google Calendar Connector Web Service:==
 
 Google Apps user account.
-Active Directory user with standard DOMAIN USER privileges.
-Active Directory user with Read-Access to the free/busy store (retrieving free/busy).
-Active Directory user with Exchange extended "Receive As" privileges to read user's appointment details.
-The Windows System account NETWORK SERVICE is used by ASP.NET and needs MODIFY privileges to:
-C:\Inetpub\wwwroot\{Virtual Web Application Directory}
-C:\Inetpub\wwwroot\{Virtual Web Application Directory}\Web.config
+  # Active Directory user with standard DOMAIN USER privileges.
+  # Active Directory user with Read-Access to the free/busy store (retrieving free/busy).
+  # Active Directory user with Exchange extended "Receive As" privileges to read user's appointment details.
+  # The Windows System account NETWORK SERVICE is used by ASP.NET and needs MODIFY privileges to:
+    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}
+    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}\Web.config
 GoogleApps.GCal.LogDirectory
-Google Calendar Connector Sync Service:
+    * Google Calendar Connector Sync Service:
 
 Google Apps user account.
 Active Directory user with standard DOMAIN USER privileges.
