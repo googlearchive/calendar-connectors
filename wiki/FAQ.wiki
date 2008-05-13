@@ -134,7 +134,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 
  _Plug-In:_
-  * Make sure the Plug-In is running as a Domain User account that has a "User" certificate installed in the User's Personal Certifate store.
+  * Make sure the plug-In is running as a Domain User account that has a "User" certificate installed in the User's Personal Certifate store.
   * Make sure the config.txt is configured for the value win.certname.
 
 
