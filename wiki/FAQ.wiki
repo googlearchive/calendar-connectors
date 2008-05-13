@@ -1,7 +1,5 @@
 =Frequently Asked Questions=
 
-==Introduction==
-
 This FAQ contains common questions and answers about the Google Calendar Connectors.
 
 ----
