@@ -59,7 +59,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
  _Plug-In:_
-    * The Plug-in runs on the Exchange server which has the Novell !GroupWise connector for Microsoft Exchange installed. 
+    * The plug-in runs on the Exchange server which has the Novell !GroupWise connector for Microsoft Exchange installed. 
     * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
