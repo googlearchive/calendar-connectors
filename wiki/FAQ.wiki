@@ -1,10 +1,10 @@
-http://www.google.com/a/help/intl/en/images/google_sm.gif
+=Frequently Asked Questions=
 
-#Frequently Asked Questions
-
-= Introduction =
+==Introduction==
 
 This FAQ contains common questions and answers about the Google Calendar Connectors.
+
+----
 
 *What are the technical requirements for running the Google Calendar Connectors in my environment?*
 
