@@ -39,36 +39,64 @@ gdata.username=admin@mycompany.com
 gdata.password=adminpassword01
 gdata.domain=mycompany.com
 
-# an LDAP connection can be used to connect to an LDAP server to blacklist or
-# whitelist a set of users according to a submitted query. If not blacklist
-# or whitelist is specified, all these settings are ignored. This feature is
-# useful if there are some users in active directory that also exist as
-# users in Google Apps but are supposed to be excluded from the connector
-# service
-# ldap.url,user and password are the general login information
-# ldap.authMethod is the protocol to be used for communication (default
-#     is "DIGEST-MD5", "simple" is unencrypted, others can be used if supported
-#     by the ldap server
-#     IMPORTANT: To use DIGEST-MD5, the configured windows user account in
-#     Active Directory must have enabled "Store password using reversible 
-#     encryption" set via Active Directory Users and Computers. 
-#     Once this value in enabled the password must be changed in order to store 
-#     the password stored in the reversible encryption format.
-# ldap.base is the base for the ldap queries
-# ldap.whitelist: if this filter is set, only users who match this filter are
-#     synced
-# ldap.blacklist: if this filter is set, only users who do NOT match this filter
-#     are synced
-# ldap.blindFaith tells the LDAP connection to accept any https certificate,
-#    regardless of whether it can be found in the keystore or not (for LDAPS
-#    URLs)
-# ldap.domainMap: if set to a non-empty string, this parameter should parse 
-#    to a set of rules (expressed as semicolon-separated-list of pairs 
-#    googleDomain,exchangeDomain) for domains that should be translated. 
-#    For example, with a list
-#      foo.com,foo.exchange.com; bar.com,bar.exchange.com
-#    a user's exchange email joe@foo.exchange.com would be transformed to
-#    joe@foo.com. 
+# An optional step in setting up the Google Calendar Connector Plug-In is specifying 
+# a whitelist or blacklist LDAP query in config.txt. This is useful if your organization
+# has users who exist in both Active Directory and Google Apps. This feature allows you 
+# to control what accounts are imported into Exchange to support Exchange lookup of a 
+# Google Apps user's free/busy data. If no blacklist
+# or whitelist is specified, all these settings are ignored.
+# 
+# ldap.url: This setting specifies the Active Directory LDAP server to connect to. 
+# For example: ldap.url=LDAPS://ldap1.acme.com
+#
+# ldap.user: The userPrincipalName for the user account used by the plugin to perform 
+# Active Directory queries for ldap.whitelist and ldap.blacklist values.
+#
+#ldap.password: The password for the ldap.user account
+#
+# ldap.authMethod: This setting defines the authentication method used to access 
+# LDAP; supported modes are "simple"and "DIGEST-MD5". Default method is "DIGEST-MD5"
+# if none is specified.
+#
+# NOTE: To use DIGEST-MD5, the configured windows user account in Active Directory 
+# must have enabled "Store password using reversible encryption" set via Active 
+# Directory Users and Computers. Once this value is enabled the password must be 
+# changed in order to store the password in the reversible encryption format.
+#
+# ldap.base is the search base DN for the ldap.blacklist and ldap.whitelist queries. 
+#
+# ldap.whitelist: This setting defines an LDAP filter of users to include in the 
+# Google Apps directory sync import.
+#
+# ldap.whitelist=(mail=*@exchange.acme)(objectcategory=person)
+# This filter returns a list of all user and contact objects that have an internal 
+# mail address of @exchange.acme.com. This includes mailbox enabled users, mail 
+# enabled users  and contacts.
+#
+# ldap.blacklist: This setting defines an LDAP filter of users to exclude from the 
+# Google Apps directory sync import.
+#
+# ldap.blacklist=(&(objectClass=user)(msExchHomeServerName=*))
+#
+# This filter returns a list of all user objects that have an Exchange mailbox. 
+#
+# ldap.blindFaith enables the Google Calendar Connector Plug-In to accept any TLS 
+# certificate when connecting to a secure LDAP server regardless of whether the certificate
+# is trusted by a Certificate Authority listed in the machine's Trust Root Certificates
+# certificate store.
+#
+# ldap.domainMap: This setting allows the definition of SMTP domain name mappings. 
+# This value is used in conjunction with ldap.blacklist and/or ldap.whitelist. The 
+# mapping is applied to the LDAP black/white list response and is used to match 
+# against the Google Apps user SMTP address returned from the GData API.
+# This setting maps an internal SMTP address from Exchange to the Google Apps SMTP 
+# address. For example: ldap.domainMap=exchange.acme.com,acme.com
+# An Exchange user has the primary SMTP address of user@exchange.acme.com would 
+# match with the Google Apps user which has the SMTP address user@acme.com.
+# To configure multiple domain mappings use ";" as the delimiter between the domain 
+# mapping values. For Example: 
+# ldap.domainMap=acme.com,exchange.acme.com;company.com,exchange.company.com
+
 ldap.url=LDAPS://myldapserver.mycompany.com
 ldap.user=administrator@mycompany.com
 ldap.password=mypassword02
