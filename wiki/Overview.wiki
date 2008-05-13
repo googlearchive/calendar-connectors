@@ -210,12 +210,12 @@ Google Calendar Connector Technical FAQ Guide
 Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [http://code.google.com/p/google-gdata/ here].
 
 The following licenses and libraries are used in the Google Calendar Connector Web Service:
-  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0*. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
   * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
   * tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Sync Service:
-  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0*. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
   * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
   *tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
