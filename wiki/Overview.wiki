@@ -190,17 +190,16 @@ The Google Calendar Connectors will only return free/busy information and non-pr
 The Google Calendar Scheduler is returned the free/busy and appointment information from your Exchange environment, but this information is not stored on Google's servers, and it only transits Google's servers to be parsed and rendered via javascript within the user's browser.
 
 No additional corporate data is exposed to Google Calendar when operating the Sync Service. The Sync Service only reads free/busy information from an authenticated Google Calendar GData feed.
-Google Calendar Connector Plug-In:
+==Google Calendar Connector Plug-In:==
 
 No additional corporate data is exposed to Google Calendar when operating the Sync Service.  The Plug-In only reads free/busy information from an authenticated Google Calendar GData feed.
-Configuration file protection and encryption
+
+=Configuration file protection and encryption=
 
 The Google Calendar Connectors use configuration files that are installed with the connector software. To protect the sensitive account information in the files, Google recommends you restrict access to these files. The configuration files are stored in plain text which means they can be viewed with a standard text editor. The Google Calendar Connector Web Service and the Google Calendar Connector Sync Service can optionally have their appSettings node encrypted, rendering their sensitive information permanently unreadable. The Google Calendar Connector Plug-in supports password obfuscation or encryption. 
 
-Additional Resources
+=Additional Resources=
 
-
-links to other guides -Mkulick 4/29/08 1:49 PM 
 Google Calendar Connector Web Service Install and Configure Guide
 Google Calendar Connector Sync Service Install and Configure Guide
 Google Calendar Connector Plug-In Install and Configure Guide
@@ -211,28 +210,28 @@ Google Calendar Connector Technical FAQ Guide
 Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [http://code.google.com/p/google-gdata/ here].
 
 The following licenses and libraries are used in the Google Calendar Connector Web Service:
-  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. (project, license)
-  * Apache log4net licensed under the *Apache License, Version 2.0*. (project, license)
-  * tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. (project, license)
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
+  * tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Sync Service:
-  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. (project, license)
-  * Apache log4net licensed under the *Apache License, Version 2.0*. (project, license)
-  *tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. (project, license)
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the Apache License, Version 2.0. ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [ http://logging.apache.org/log4net/license.html license])
+  *tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [ http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Plug-In:
 
-  *Google Data (GData) Java Client Library and its dependencies licensed under the *Apache License, Version 2.0*. (project , license)
-  * Google Collections Library and its dependencies licensed under the *Apache License, Version 2.0* (project, license )
+  *Google Data (GData) Java Client Library and its dependencies licensed under the *Apache License, Version 2.0*. ([http://code.google.com/p/gdata-java-client/ project] , [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Google Collections Library and its dependencies licensed under the *Apache License, Version 2.0* ([http://code.google.com/p/google-collections/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
 
 The following licenses and libraries are used to build the Google Calendar Connector Plug-In:
 
-  * Apache Ant Project and its dependencies licensed under the *Apache License, Version 2.0*. (project, license)
+  * Apache Ant Project and its dependencies licensed under the *Apache License, Version 2.0*. ([http://ant.apache.org/ project], [http://ant.apache.org/license.html license])
 
 The following licenses and libraries are used for testing the Google Calendar Connector Plug-In:
 
-JUnit and its dependencies (project)
-JMock and its dependencies (project, license)
+JUnit and its dependencies ([http://www.junit.org/ project])
+JMock and its dependencies ([http://jmock.codehaus.org/ project], [http://jmock.codehaus.org/license.html license])
 
 The Google Calendar Connector Plug-In optionally supports, but does not require, building Windows executables using JSmooth.  JSmooth is not distributed with the Google Calendar Connector Plug-In open source release and its use represents an optional step in the build process.  JSmooth may be obtained and used in accordance with its license, both of which are provided below (for the sake of convenience):
 
