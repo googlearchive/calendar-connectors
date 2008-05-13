@@ -91,16 +91,16 @@ Notes about data security and access permissions:
 
 =Google Calendar Connector Plug-In=
 
-The Google Calendar Connector Plug-In allows Microsoft Exchange users to request in real-time free/busy information for Google Apps users.  The product is a Java Windows service (with a supplemental .NET executable) that handles free/busy requests from the Novell GroupWise Calendar Connector for Microsoft Exchange.  When a Microsoft Exchange user looks up free/busy information for a Google Apps user, Exchange issues a free/busy request that is serviced by the Google Calendar Connector Plug-In.  The Google Calendar Connector plug-in translates the request and queries Google Apps using the Google Calendar GData API.  The free/busy data is then returned to Microsoft Exchange for it to present to the requesting user.  The Google Calendar Connector Plug-In should be installed on the same server as the Novell GroupWise Gateway.
+The Google Calendar Connector Plug-In allows Microsoft Exchange users to request in real-time free/busy information for Google Apps users.  The product is a Java Windows service (with a supplemental .NET executable) that handles free/busy requests from the Novell GroupWise Calendar Connector for Microsoft Exchange.  When a Microsoft Exchange user looks up free/busy information for a Google Apps user, Exchange issues a free/busy request that is serviced by the Google Calendar Connector Plug-In.  The Google Calendar Connector plug-in translates the request and queries Google Apps using the Google Calendar GData API.  The free/busy data is then returned to Microsoft Exchange for it to present to the requesting user.  The Google Calendar Connector Plug-In should be installed on the same server as the Novell !GroupWise Gateway.
  
 {Insert Image Here: Plugin Free/Busy Request}
-{Insert Image Here: Plugin DirSync}
+{Insert Image Here: Plugin !DirSync}
 
 The following is a process overview of the Google Calendar Connector Plug-In:
 
 Google Calendar Plug-in free/busy request:
   # A Microsoft Exchange user in Microsoft Outlook attempts to look up free/busy information for a Google Apps user.
-  # Microsoft Outlook forwards the free/busy request to the Novell GroupWise gateway using a file-based API request.
+  # Microsoft Outlook forwards the free/busy request to the Novell !GroupWise gateway using a file-based API request.
   # The Google Calendar Connector Plug-In parses the free/busy request from Microsoft Outlook.
   # The Google Calendar Connector Plug-In queries Google Apps for the free/busy data via the Google Calendar GData API. 
   # The Google Calendar Connector Plug-In writes the returned result back to the Novell GroupWise gateway using the file-based API response.
