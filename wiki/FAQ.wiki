@@ -53,8 +53,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 
  _Sync Service:_
-    * If you are running the sync service in !Appointment mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
-    * If you are running the sync service in !SchedulePlus mode,  the Sync service only needs to talk to the Exchange servers configured in the !GoogleGCalExhangeSync.Service.exe.config file.
+    * If you are running the sync service in Appointment mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
+    * If you are running the sync service in !SchedulePlus mode,  the Sync service only needs to talk to the Exchange servers configured in the GoogleGCalExhangeSync.Service.exe.config file.
     * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
@@ -103,7 +103,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *I get the error: !"Error writing appointment ---> System.Net.!WebException: The remote server returned an error: (409) Conflict"?*
 
-  * Verify the user has a properly configured !legacyExchangeDN
+  * Verify the user has a properly configured legacyExchangeDN
   * Verify that you have configured the Windows service accounts with the proper permissions within Exchange to read and write free/busy or appointment data. 
 
 
@@ -164,7 +164,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
 
-  * The sync service does not support running in both a !SchedulePlus and !Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
+  * The sync service does not support running in both a !SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
 
 
 *I am getting the error: "ERROR Google.!GCalExchangeSync.Library.Util.!ModifiedDateUtil - System.Xml.!XmlException: 'None' is an invalid !XmlNodeType." How do I fix this?*
