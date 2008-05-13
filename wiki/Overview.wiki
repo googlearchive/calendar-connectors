@@ -340,6 +340,4 @@ JSmooth project: http://jsmooth.sourceforge.net
 JSmooth license: http://jsmooth.sourceforge.net/license.php
 ----
 Google, Google Calendar, Google Calendar Connector, Google Calendar Connector Web Service, Google Calendar Connector Sync Service, Google Calendar Connector Kit are trademarks of Google, Inc.
-Microsoft Outlook, Active Directory and Windows are trademarks of Microsoft Corporation.
-Java and JavaScript are trademarks of Sun Microsystems, Inc.
-Novell and !GroupWise are trademarks of Novell, Inc.
+All other company and product names may be trademarks of the respective companies with which they are associated.
