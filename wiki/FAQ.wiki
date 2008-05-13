@@ -67,7 +67,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
 
-  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the !GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
+  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server. You should also remove the diagnostics.apsx file from the GCALExchangeLookup directory and ensure directory browsing is not enabled within IIS.
 
 *Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
 
@@ -167,7 +167,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   * The sync service does not support running in both a !SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
 
 
-*I am getting the error: "ERROR Google.!GCalExchangeSync.Library.Util.!ModifiedDateUtil - System.Xml.!XmlException: 'None' is an invalid !XmlNodeType." How do I fix this?*
+*I am getting the error: "ERROR Google.GCalExchangeSync.Library.Util.!ModifiedDateUtil - System.Xml.!XmlException: 'None' is an invalid !XmlNodeType." How do I fix this?*
 
   * You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the !UserModifiedTimes.xml from C:\google\data. This file will be rebuilt on the next sync service execution.
 
