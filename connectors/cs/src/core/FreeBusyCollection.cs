@@ -54,7 +54,7 @@ namespace Google.GCalExchangeSync.Library
         /// <returns>The set of appointments with matching range</returns>
         public List<Appointment> Get(DateTimeRange r)
         {
-            return this.ContainsKey(r) ? 
+            return this.ContainsKey(r) ?
                 this[r] : new List<Appointment>();
         }
     }

@@ -78,14 +78,14 @@ namespace Google.GCalExchangeSync.Library
             string tz = "America/Los_Angeles";
 
             string query = string.Format("[ 1, {0}, [{1}], {2}/{3}, {4}, {5}]",
-                id, 
-                createEmailList(emails), 
-                createDate(start), 
-                createDate(end), 
-                createDateTime(since), 
+                id,
+                createEmailList(emails),
+                createDate(start),
+                createDate(end),
+                createDateTime(since),
                 tz);
 
-            GCalFreeBusyRequest request = 
+            GCalFreeBusyRequest request =
                 new GCalFreeBusyRequest(query);
 
             Assert.AreEqual(start, request.StartDate);

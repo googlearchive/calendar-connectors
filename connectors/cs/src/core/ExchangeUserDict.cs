@@ -36,9 +36,9 @@ namespace Google.GCalExchangeSync.Library
         {
             this.Add(email.ToLower(), user);
         }
-        
+
         /// <summary>
-        /// Determine if an exchange user is available for the email address 
+        /// Determine if an exchange user is available for the email address
         /// </summary>
         /// <param name="email">The email address to find</param>
         /// <returns>True if there is an Exchange user for the email address</returns>
@@ -46,7 +46,7 @@ namespace Google.GCalExchangeSync.Library
         {
             return this.ContainsKey(email.ToLower());
         }
-        
+
         /// <summary>
         /// Find an exchange user by email address
         /// </summary>

@@ -51,7 +51,7 @@ namespace Google.GCalExchangeSync.Library.Util
 
                 default:
                     {
-                        string errorMessage = string.Format( 
+                        string errorMessage = string.Format(
                             "Source time out of range.  [date={0}, tz={1}]", srcTime, srcZone.Name );
 
                         throw new GCalExchangeException(
@@ -116,7 +116,7 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             OlsonTimeZone dstZone = GetTimeZone(dstName);
 
-            return ConvertFromUTC(srcTime, dstZone);    
+            return ConvertFromUTC(srcTime, dstZone);
         }
 
         /// <summary>

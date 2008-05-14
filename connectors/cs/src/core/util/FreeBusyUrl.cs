@@ -50,10 +50,10 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>The URL for the users appointments</returns>
         public static string GenerateUrlFromDN( string exchangeServerUrl, string legacyExchangeDN )
         {
-            string adminGroup = 
+            string adminGroup =
                 legacyExchangeDN.Substring( 0, legacyExchangeDN.IndexOf( "/cn" ) );
-            
-            string userAlias = 
+
+            string userAlias =
                 legacyExchangeDN.Substring( legacyExchangeDN.IndexOf( "/cn" ) );
 
             return string.Format(
@@ -85,7 +85,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>The URL to use to get the appointments for an admin group</returns>
         public static string GenerateAdminGroupUrlFromDN(string exchangeServerUrl, string legacyExchangeDN)
         {
-            string adminGroup = 
+            string adminGroup =
                 legacyExchangeDN.Substring( 0, legacyExchangeDN.IndexOf( "/cn" ) );
 
             return GenerateAdminGroupUrl( exchangeServerUrl, adminGroup );
@@ -101,9 +101,9 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <param name="interval">The time interval to use</param>
         /// <returns>The URL to obtain FB info for the set of users</returns>
         public static string GenerateFreeBusyLookupUrl(
-            string exchangeServer, 
-            ExchangeUserDict users, 
-            DateTimeRange range, 
+            string exchangeServer,
+            ExchangeUserDict users,
+            DateTimeRange range,
             int interval)
         {
             string userParams = string.Empty;

@@ -32,7 +32,7 @@ namespace Google.GCalExchangeSync.Library.Util
     {
         private DateTime baseDate;
         private IntervalTree<DateTimeRange> tree;
- 
+
         private void AddToTree(IntervalTree<DateTimeRange> tree, List<DateTimeRange> list)
         {
             foreach (DateTimeRange s in list)
@@ -218,51 +218,51 @@ namespace Google.GCalExchangeSync.Library.Util
             List<DateTimeRange> source = new List<DateTimeRange>();
             source.Add(MakeRange(
                 "2008-04-21T08:00:00.000Z",
-                "2008-04-21T08:15:00.000Z", 
+                "2008-04-21T08:15:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T09:15:00.000Z",
-                "2008-04-21T09:30:00.000Z", 
+                "2008-04-21T09:30:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T10:30:00.000Z",
-                "2008-04-21T10:45:00.000Z", 
+                "2008-04-21T10:45:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T11:45:00.000Z",
-                "2008-04-21T12:00:00.000Z", 
+                "2008-04-21T12:00:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T13:00:00.000Z",
-                "2008-04-21T18:00:00.000Z", 
+                "2008-04-21T18:00:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T14:00:00.000Z",
-                "2008-04-21T15:00:00.000Z", 
+                "2008-04-21T15:00:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T14:00:00.000Z",
-                "2008-04-21T14:30:00.000Z", 
+                "2008-04-21T14:30:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T14:30:00.000Z",
-                "2008-04-21T15:00:00.000Z", 
+                "2008-04-21T15:00:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T15:00:00.000Z",
-                "2008-04-21T17:15:00.000Z", 
+                "2008-04-21T17:15:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T15:00:00.000Z",
-                "2008-04-21T16:00:00.000Z", 
+                "2008-04-21T16:00:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
                 "2008-04-21T15:30:00.000Z",
-                "2008-04-21T17:45:00.000Z", 
+                "2008-04-21T17:45:00.000Z",
                 DateTimeKind.Local));
             source.Add(MakeRange(
-                "2008-04-21T16:00:00.000Z", 
-                "2008-04-2T17:45:00.000Z", 
+                "2008-04-21T16:00:00.000Z",
+                "2008-04-2T17:45:00.000Z",
                 DateTimeKind.Local));
             source.Reverse();
 
@@ -321,7 +321,7 @@ namespace Google.GCalExchangeSync.Library.Util
 
             foreach (DateTimeRange r in keys)
             {
-                List<DateTimeRange> result = 
+                List<DateTimeRange> result =
                     tree.FindAll(r, IntervalTreeMatch.Exact);
                 Assert.AreEqual(1, result.Count);
                 Assert.AreEqual(r, result[0]);

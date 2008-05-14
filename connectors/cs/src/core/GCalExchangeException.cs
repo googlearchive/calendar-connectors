@@ -66,7 +66,7 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="errorCode">Error code for the exception</param>
         /// <param name="message">Error message</param>
-        public GCalExchangeException(GCalExchangeErrorCode errorCode, string message) 
+        public GCalExchangeException(GCalExchangeErrorCode errorCode, string message)
             : base(message)
         {
             this.errorCode = errorCode;
@@ -81,7 +81,7 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// General
         /// </summary>
-        GenericError         = 0, 
+        GenericError         = 0,
 
         /// <summary>
         /// Could not connect to exchange server

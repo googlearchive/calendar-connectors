@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace GCalExchangeLookup {
-    
-    
+
+
     /// <summary>
     /// ExchangeQuerier class.
     /// </summary>

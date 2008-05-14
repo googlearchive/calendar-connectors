@@ -143,7 +143,7 @@ namespace Google.GCalExchangeSync.Library
                 throw new GCalExchangeException(
                     GCalExchangeErrorCode.ExchangeUnreachable, "Error updating appointment", ex);
             }
-            
+
         }
 
         /// <summary>

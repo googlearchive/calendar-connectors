@@ -60,12 +60,16 @@ namespace Google.GCalExchangeSync.Library
         public string GenerateResponse()
         {
             /* Create a string builder to hold the text for the response */
-            StringBuilder sb = new StringBuilder();
+            StringBuilder result = new StringBuilder(4096);
+            StringBuilder escapedSubject = new StringBuilder(256);
+            StringBuilder escapedLocation = new StringBuilder(1024);
+            StringBuilder escapedOrganizer = new StringBuilder(256);
+            StringBuilder escapedCommonName = new StringBuilder(256);
 
             /* Create an exchange provider */
             ExchangeService gateway = new ExchangeService(
-                ConfigCache.ExchangeServerUrl, 
-                ConfigCache.ExchangeUserLogin, 
+                ConfigCache.ExchangeServerUrl,
+                ConfigCache.ExchangeUserLogin,
                 ConfigCache.ExchangeUserPassword);
 
             /* Return the exchangers from the GCal Request that was passed in */
@@ -73,17 +77,17 @@ namespace Google.GCalExchangeSync.Library
             ExchangeUserDict exchangeUsers = gateway.SearchByEmail(range, request.ExchangeUsers);
 
             /* Create the header of the request */
-            sb.AppendFormat("['{0}','{1}',", request.VersionNumber, request.MessageId);
+            result.AppendFormat("['{0}','{1}',", request.VersionNumber, request.MessageId);
 
-            sb.AppendFormat("['_ME_AddData','{0}/{1}','{2}'",
+            result.AppendFormat("['_ME_AddData','{0}/{1}','{2}'",
                 DateUtil.FormatDateForGoogle(request.StartDate),
                 DateUtil.FormatDateForGoogle(request.EndDate),
                 DateUtil.FormatDateTimeForGoogle(request.Since));
 
-            /* Flag for inserting commas */            
+            /* Flag for inserting commas */
             bool firstUser = true;
 
-            sb.Append(",[");
+            result.Append(",[");
 
             foreach (ExchangeUser user in exchangeUsers.Values)
             {
@@ -93,12 +97,12 @@ namespace Google.GCalExchangeSync.Library
                 /* Don't add a comma if this is the first user */
                 if (!firstUser)
                 {
-                    sb.Append(",");
+                    result.Append(",");
                 }
 
                 /* Add the user's credentials */
                 string email = ConfigCache.MapToExternalDomain(user.Email);
-                sb.AppendFormat("'{0}','{1}','{2}',[", user.DisplayName, email, (int)user.AccessLevel);
+                result.AppendFormat("'{0}','{1}','{2}',[", user.DisplayName, email, (int)user.AccessLevel);
 
                 /* If a user has time blocks associate with him / her */
                 if (user.BusyTimes != null && user.BusyTimes.Count > 0)
@@ -112,7 +116,7 @@ namespace Google.GCalExchangeSync.Library
                             {
                                 if (!firstAppointment)
                                 {
-                                    sb.Append(",");
+                                    result.Append(",");
                                 }
 
                                 DateTime startLocal = OlsonUtil.ConvertFromUTC(appt.StartDate, Request.TimeZone);
@@ -120,20 +124,26 @@ namespace Google.GCalExchangeSync.Library
                                 if (!appt.IsPrivate)
                                 {
                                     //log.DebugFormat("Public Appointment Block: {0} {1}", startLocal, endLocal);
-
-                                    sb.AppendFormat("['{0}','{1}','{2}','{3}','{4}','{5}']",
-                                        ConversionsUtil.EscapeNonAlphaNumeric( appt.Subject ),
+                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Subject,
+                                                                          escapedSubject);
+                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Location,
+                                                                          escapedLocation);
+                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Organizer,
+                                                                          escapedOrganizer);
+                                    result.AppendFormat("['{0}','{1}','{2}','{3}','{4}','{5}']",
+                                        escapedSubject,
                                         DateUtil.FormatDateTimeForGoogle(startLocal),
                                         DateUtil.FormatDateTimeForGoogle(endLocal),
-                                        ConversionsUtil.EscapeNonAlphaNumeric( appt.Location ),
-                                        ConversionsUtil.EscapeNonAlphaNumeric( appt.Organizer ),
+                                        escapedLocation,
+                                        escapedOrganizer,
                                         ConversionsUtil.ConvertExchangeResponseToGoogleResponse( appt.ResponseStatus ) );
                                 }
                                 else
                                 {
                                     //log.DebugFormat("Private Appointment Block: {0} {1}", startLocal, endLocal);
 
-                                    AppendPrivateFreeBusyEntry(startLocal, endLocal, user, sb);
+                                    ConversionsUtil.EscapeNonAlphaNumeric(user.CommonName, escapedCommonName);
+                                    AppendPrivateFreeBusyEntry(startLocal, endLocal, escapedCommonName, result);
                                 }
 
                                 firstAppointment = false;
@@ -143,7 +153,7 @@ namespace Google.GCalExchangeSync.Library
                         {
                             if (!firstAppointment)
                             {
-                                sb.Append(",");
+                                result.Append(",");
                             }
 
                             DateTime startLocal = OlsonUtil.ConvertFromUTC(timeBlock.StartDate, Request.TimeZone);
@@ -151,34 +161,39 @@ namespace Google.GCalExchangeSync.Library
 
                             //log.DebugFormat("FB Block: {0} {1}", startLocal, endLocal);
 
-                            AppendPrivateFreeBusyEntry(startLocal, endLocal, user, sb);
+                            ConversionsUtil.EscapeNonAlphaNumeric(user.CommonName, escapedCommonName);
+                            AppendPrivateFreeBusyEntry(startLocal, endLocal, escapedCommonName, result);
 
                             firstAppointment = false;
                         }
                     }
                 }
 
-                sb.Append("]");
+                result.Append("]");
                 firstUser = false;
             }
-            sb.Append("]");
-            sb.Append("]");
-            sb.Append("]");
+            result.Append("]");
+            result.Append("]");
+            result.Append("]");
 
             log.Info( "GCal Free/Busy response successfully generated." );
 
-            return sb.ToString();
+            return result.ToString();
         }
 
-        private void AppendPrivateFreeBusyEntry( DateTime startDate, DateTime endDate, ExchangeUser user, StringBuilder sb )
+        private void AppendPrivateFreeBusyEntry(
+            DateTime startDate,
+            DateTime endDate,
+            StringBuilder escapedCommonName,
+            StringBuilder result)
         {
-            sb.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
+            result.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
                "",
                DateUtil.FormatDateTimeForGoogle(startDate),
                DateUtil.FormatDateTimeForGoogle(endDate),
                "",
-               ConversionsUtil.EscapeNonAlphaNumeric( user.CommonName ),
-               "1" );
+               escapedCommonName,
+               "1");
         }
     }
 
@@ -210,7 +225,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// Generate an error response ased on the exception
+        /// Generate an error response based on the exception
         /// </summary>
         /// <param name="exception"></param>
         public GCalErrorResponse(Exception exception)
@@ -224,8 +239,9 @@ namespace Google.GCalExchangeSync.Library
         /// <returns>The response</returns>
         public string GenerateResponse()
         {
-            string errorString = 
-                ConversionsUtil.EscapeNonAlphaNumeric( errorMessage );
+            StringBuilder escapedError = new StringBuilder(errorMessage.Length);
+
+            ConversionsUtil.EscapeNonAlphaNumeric(errorMessage, escapedError);
 
             // GCal expects errors in the following format:
             // [VERSION NUMBER, MESSAGE ID, ERROR ID, ERROR STRING]
@@ -234,7 +250,7 @@ namespace Google.GCalExchangeSync.Library
                 versionId,
                 messageId,
                 errorId,
-                errorString );
+                escapedError);
         }
     }
 }

@@ -51,7 +51,6 @@ namespace GCalExchangeLookup
 
             LabelExchAdminUser.Text = ConfigCache.ExchangeAdminLogin;
 
-            LabelTemplateUser.Text = ConfigCache.TemplateUserName;
             LabelAdminGroup.Text = ConfigCache.AdminServerGroup;
 
             Server.ScriptTimeout = 600; // 10 mins
@@ -146,7 +145,7 @@ namespace GCalExchangeLookup
         {
             try
             {
-                ExchangeUserDict users = 
+                ExchangeUserDict users =
                     ExchangeTester.QueryFreeBusy(TextBoxQueryExchEmail.Text);
 
                 if (users.Count > 0)
@@ -176,7 +175,7 @@ namespace GCalExchangeLookup
                 }
                 else
                 {
-                    LabelExchFBSummary.Text = 
+                    LabelExchFBSummary.Text =
                         string.Format("User not found - {0}", TextBoxQueryExchEmail.Text);
                     LabelExchFBDetail.Text = "";
                     WebServiceFreeBusy.CssClass = "failed";

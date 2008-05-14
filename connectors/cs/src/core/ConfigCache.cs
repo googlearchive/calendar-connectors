@@ -45,25 +45,25 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// Encrypt the config file when it is read with the current user credential
         /// </summary>
-        public static readonly bool EncryptOnNextRun = 
+        public static readonly bool EncryptOnNextRun =
             GetBooleanSetting("Configuration.EncryptOnNextRun", "false");
 
         /// <summary>
         /// Active Directory Domain Controller
         /// </summary>
-        public static readonly string DomainController = 
+        public static readonly string DomainController =
             (ConfigurationManager.AppSettings["ActiveDirectory.DomainController"] ?? "None").ToUpper();
 
         /// <summary>
         /// Active Directory Domain Username
         /// </summary>
-        public static readonly string DomainUserLogin = 
+        public static readonly string DomainUserLogin =
             ConfigurationManager.AppSettings["ActiveDirectory.DomainUser.Login"];
 
         /// <summary>
         /// Active Directory Domain User password
         /// </summary>
-        public static readonly string DomainUserPassword = 
+        public static readonly string DomainUserPassword =
             ConfigurationManager.AppSettings["ActiveDirectory.DomainUser.Password"];
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Google.GCalExchangeSync.Library
         public static readonly string ExchangeServerUrl = GetExchangeServerUrl();
 
         /// <summary>
-        /// Exchange server to use for free busy public folders if not the same as 
+        /// Exchange server to use for free busy public folders if not the same as
         /// ExchangeServerUrl
         /// </summary>
         public static readonly string ExchangeFreeBusyServerUrl = GetExchangeFreeBusyServerUrl();
@@ -80,25 +80,25 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// Username to use to login to Exchange
         /// </summary>
-        public static readonly string ExchangeUserLogin = 
+        public static readonly string ExchangeUserLogin =
             ConfigurationManager.AppSettings["Exchange.GCalQueryUser.Login"];
-        
+
         /// <summary>
         /// Password to use for login to Exchange
         /// </summary>
-        public static readonly string ExchangeUserPassword = 
+        public static readonly string ExchangeUserPassword =
             ConfigurationManager.AppSettings["Exchange.GCalQueryUser.Password"];
-        
+
         /// <summary>
         /// Admin username to use for login to Exchange
         /// </summary>
-        public static readonly string ExchangeAdminLogin = 
+        public static readonly string ExchangeAdminLogin =
             ConfigurationManager.AppSettings["Exchange.GCalQueryAdmin.Login"];
-        
+
         /// <summary>
         /// Admin password to use for login to Exchange
         /// </summary>
-        public static readonly string ExchangeAdminPassword = 
+        public static readonly string ExchangeAdminPassword =
             ConfigurationManager.AppSettings["Exchange.GCalQueryAdmin.Password"];
 
         /// <summary>
@@ -134,13 +134,13 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// Admin Login to Google Apps domain
         /// </summary>
-        public static readonly string GoogleAppsLogin = 
+        public static readonly string GoogleAppsLogin =
             ConfigurationManager.AppSettings["GoogleApps.AdminUser.Login"];
-        
+
         /// <summary>
         /// Admin password to Google Apps Domain
         /// </summary>
-        public static readonly string GoogleAppsPassword = 
+        public static readonly string GoogleAppsPassword =
             ConfigurationManager.AppSettings["GoogleApps.AdminUser.Password"];
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// Number of times to retry syncing an individual users feed
         /// </summary>
-        public static readonly int ServiceErrorCountThreshold = 
+        public static readonly int ServiceErrorCountThreshold =
             GetIntegerSetting("SyncService.ErrorCountThreshold", "15");
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// File name to use for the User last modified times
         /// </summary>
-        public static readonly string ServiceModifiedXmlFileName = 
+        public static readonly string ServiceModifiedXmlFileName =
             GetServiceModifedXmlFileName();
 
         /// <summary>
@@ -225,13 +225,6 @@ namespace Google.GCalExchangeSync.Library
             ConfigurationManager.AppSettings["SyncService.PlaceHolderMessage"] ?? "GCal Free/Busy Placeholder";
 
         /// <summary>
-        /// Name of a pre-existing Exchange user to "clone" a free busy event from
-        /// Only necessary with SchedulePlus FreeBusyWriter
-        /// </summary>
-        public static readonly string TemplateUserName =
-            ConfigurationManager.AppSettings["SyncService.FreeBusy.TemplateUserName"] ?? "GCalExchangeTemplate";
-
-        /// <summary>
         /// Group to use for Exchange public folder subject
         /// Only necessary with SchedulePlus FreeBusyWriter
         /// </summary>
@@ -249,14 +242,14 @@ namespace Google.GCalExchangeSync.Library
 
         private static bool GetBooleanSetting(string setting, string defaultValue)
         {
-            return (ConfigurationManager.AppSettings[setting] ?? defaultValue) == "true";            
+            return (ConfigurationManager.AppSettings[setting] ?? defaultValue) == "true";
         }
-        
+
         private static int GetIntegerSetting(string setting, string defaultValue)
         {
             return Convert.ToInt32(ConfigurationManager.AppSettings[setting] ?? defaultValue);
         }
-        
+
         private static string GetServiceModifedXmlFileName()
         {
             string file = "UserModifiedTimes.xml";
@@ -275,7 +268,7 @@ namespace Google.GCalExchangeSync.Library
 
         private static string GetGCalLogDirectory()
         {
-            string dir = 
+            string dir =
                 ConfigurationManager.AppSettings["GoogleApps.GCal.LogDirectory"];
 
             if (!string.IsNullOrEmpty(dir) && !dir.EndsWith(@"\"))
@@ -290,7 +283,7 @@ namespace Google.GCalExchangeSync.Library
         {
             string server = ConfigurationManager.AppSettings[setting];
             if(!string.IsNullOrEmpty(server) &&
-                !server.StartsWith("http://") && 
+                !server.StartsWith("http://") &&
                 !server.StartsWith("https://"))
             {
                 server = string.Format("http://{0}", server);
@@ -315,18 +308,18 @@ namespace Google.GCalExchangeSync.Library
 
         private static string GetCalendarPostUrl()
         {
-            string setting = 
+            string setting =
                     ConfigurationManager.AppSettings["GoogleApps.GCal.PostUrl"];
-            return string.IsNullOrEmpty(setting) ? 
+            return string.IsNullOrEmpty(setting) ?
                 string.Format(DEFAULT_CALENDAR_POST_URL, GetCalendarDomain()) :
                 setting;
         }
 
         private static string GetCalendarServiceUrl()
         {
-            string setting = 
+            string setting =
                     ConfigurationManager.AppSettings["GoogleApps.GCal.ServiceUrl"];
-            return string.IsNullOrEmpty(setting) ? 
+            return string.IsNullOrEmpty(setting) ?
                 DEFAULT_CALENDAR_SERVICE_URL :
                 setting;
         }
@@ -351,10 +344,10 @@ namespace Google.GCalExchangeSync.Library
 
             foreach (string key in settings.Keys)
             {
-                string value = 
+                string value =
                     key.EndsWith("Password") ? "<hidden>" : settings[ key ];
 
-                log.InfoFormat( 
+                log.InfoFormat(
                     "Loaded config setting: {0} = {1}", key, value );
             }
         }

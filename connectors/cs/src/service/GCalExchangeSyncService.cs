@@ -33,7 +33,7 @@ namespace Google.GCalExchangeSync.Service
 
             //create a sentinel with a 10 second watch frequency
             sf = new SentinelFactory(refreshTime, typeof(GCalSyncProcessHost));
-           
+
             //Do not use Multithreaded implementation
             Sentinel.MultiThreaded = false;
 

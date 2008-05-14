@@ -69,7 +69,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// The WebDAVQuery service 
+        /// The WebDAVQuery service
         /// </summary>
         public WebDavQuery WebDavQuery
         {
@@ -92,11 +92,11 @@ namespace Google.GCalExchangeSync.Library
             ICredentials credentials = new NetworkCredential(networkLogin, networkPassword);
             webDavQuery = new WebDavQuery(credentials, "Exchange");
             appointments = new AppointmentService(exchangeServerUrl, webDavQuery);
-            freebusy = new FreeBusyService(exchangeServerUrl, webDavQuery);
+            freebusy = new FreeBusyService(exchangeServerUrl, webDavQuery, null);
         }
 
         /// <summary>
-        /// Returns a list of Exchange users matching an email address, provides 
+        /// Returns a list of Exchange users matching an email address, provides
         /// free busy times and appointments if available within the date range.
         /// </summary>
         /// <param name="utcRange">DateRange for search</param>
@@ -109,7 +109,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// Returns a list of Exchange users, provides free busy times and 
+        /// Returns a list of Exchange users, provides free busy times and
         /// appointments if available within the date range.
         /// </summary>
         /// <param name="ldapAttribute">Parameter to search upon</param>
@@ -145,7 +145,7 @@ namespace Google.GCalExchangeSync.Library
             return QueryActiveDirectoryByAttribute( "mail" );
         }
 
-        private ExchangeUserDict QueryActiveDirectoryByAttribute( 
+        private ExchangeUserDict QueryActiveDirectoryByAttribute(
             string ldapAttribute, params string[] searchTerms )
         {
             SearchResultCollection searchResults = null;
@@ -213,14 +213,14 @@ namespace Google.GCalExchangeSync.Library
             using (ActiveDirectoryService ad = new ActiveDirectoryService())
             {
                 searchResults = ad.SearchDirectory( ldapFilter );
-            }            
+            }
 
             ExchangeUserDict exchangeUsers = CreateExchangeUserCollection( searchResults );
 
             return exchangeUsers;
         }
 
-        private void LogQueryResults( 
+        private void LogQueryResults(
             ExchangeUserDict userCollection, string[] searchTerms, string ldapAttribute )
         {
             if ( userCollection.Count != searchTerms.Length )
@@ -308,7 +308,7 @@ namespace Google.GCalExchangeSync.Library
 
         /// <summary>
         /// Combines the free busy and appointment blocks supplied to the exchange user object
-        /// If no appointments are supplied the user will still have free busy time blocks assigned 
+        /// If no appointments are supplied the user will still have free busy time blocks assigned
         /// to them, with a null appointment assigned to the free busy time.
         /// </summary>
         /// <param name="exchangeUser">Exchange users to apply freeBusy and appointments</param>
@@ -317,15 +317,15 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="startDate">Start of the date window to merge for</param>
         /// <param name="endDate">End of the date window to merge for</param>
         protected void MergeFreeBusyWithAppointments(
-            ExchangeUser exchangeUser, 
-            FreeBusy freeBusy, 
-            List<Appointment> appointments, 
-            DateTime startDate, 
+            ExchangeUser exchangeUser,
+            FreeBusy freeBusy,
+            List<Appointment> appointments,
+            DateTime startDate,
             DateTime endDate)
         {
             using (BlockTimer bt = new BlockTimer("MergeFreeBusyWithAppointments"))
             {
-                IntervalTree<FreeBusyTimeBlock> freeBusyIntervals = 
+                IntervalTree<FreeBusyTimeBlock> freeBusyIntervals =
                     new IntervalTree<FreeBusyTimeBlock>();
                 FreeBusyCollection busyTimes = new FreeBusyCollection();
 

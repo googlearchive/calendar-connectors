@@ -34,22 +34,22 @@ namespace Google.GCalExchangeSync.Service
         {
             this.si = new System.ServiceProcess.ServiceInstaller();
             this.spi = new System.ServiceProcess.ServiceProcessInstaller();
-            // 
+            //
             // si
-            // 
+            //
             this.si.DisplayName = "Google Calendar Sync Service";
             this.si.ServiceName = "GcalSyncSvc";
             this.si.Description = "Synchronizes Google Calendar Free/Busy information with Exchange Server.";
             this.si.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
-            // 
+            //
             // spi
-            // 
+            //
             this.spi.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.spi.Password = null;
             this.spi.Username = null;
-            // 
+            //
             // GCalExchangeSyncInstaller
-            // 
+            //
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.si,
             this.spi});
@@ -68,7 +68,7 @@ namespace Google.GCalExchangeSync.Service
 
           string absoluteDirectory = Path.GetFullPath(directory);
           string rootPath = Path.GetPathRoot(absoluteDirectory);
-          
+
           // Make sure the Log Directory exists
           string logDirectory = Path.Combine(rootPath, "\\Google\\logs");
           logDirectory = Path.GetFullPath(logDirectory);

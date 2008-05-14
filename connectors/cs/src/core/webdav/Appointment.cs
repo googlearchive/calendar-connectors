@@ -29,7 +29,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// Creation time of the appointment
         /// </summary>
         public DateTime Created;
-        
+
         /// <summary>
         /// Start time of the appointment
         /// </summary>
@@ -38,7 +38,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             get { return range.Start; }
             set { range.Start = value; }
         }
-        
+
         /// <summary>
         /// End time of the appointment
         /// </summary>
@@ -47,7 +47,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             get { return range.End; }
             set { range.End = value; }
         }
-        
+
         /// <summary>
         /// DateTimeRange for the event
         /// </summary>
@@ -117,7 +117,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         public string HRef;
 
         private DateTimeRange range;
-        
+
         /// <summary>
         /// Create a new appointment
         /// </summary>

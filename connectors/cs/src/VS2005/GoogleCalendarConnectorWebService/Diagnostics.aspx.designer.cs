@@ -9,8 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace GCalExchangeLookup {
-    
-    
+
+
     /// <summary>
     /// Diagnostics class.
     /// </summary>
@@ -18,7 +18,7 @@ namespace GCalExchangeLookup {
     /// Auto-generated class.
     /// </remarks>
     public partial class Diagnostics {
-        
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -27,7 +27,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -36,7 +36,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// LabelDomainController control.
         /// </summary>
@@ -45,7 +45,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelDomainController;
-        
+
         /// <summary>
         /// LabelDomainLogin control.
         /// </summary>
@@ -54,7 +54,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelDomainLogin;
-        
+
         /// <summary>
         /// LabelExchServer control.
         /// </summary>
@@ -63,7 +63,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchServer;
-        
+
         /// <summary>
         /// LabelExchFBServer control.
         /// </summary>
@@ -72,7 +72,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchFBServer;
-        
+
         /// <summary>
         /// LabelExchQueryUser control.
         /// </summary>
@@ -81,7 +81,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchQueryUser;
-        
+
         /// <summary>
         /// LabelExchAdminUser control.
         /// </summary>
@@ -90,7 +90,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchAdminUser;
-        
+
         /// <summary>
         /// LabelAppsDomainName control.
         /// </summary>
@@ -99,7 +99,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAppsDomainName;
-        
+
         /// <summary>
         /// LabelAppsUser control.
         /// </summary>
@@ -108,7 +108,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAppsUser;
-        
+
         /// <summary>
         /// LabelAdminGroup control.
         /// </summary>
@@ -117,16 +117,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAdminGroup;
-        
-        /// <summary>
-        /// LabelTemplateUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTemplateUser;
-        
+
         /// <summary>
         /// LabelMappings control.
         /// </summary>
@@ -135,7 +126,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMappings;
-        
+
         /// <summary>
         /// Encrypt control.
         /// </summary>
@@ -144,7 +135,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Encrypt;
-        
+
         /// <summary>
         /// WebServiceDiagnostics control.
         /// </summary>
@@ -153,7 +144,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table WebServiceDiagnostics;
-        
+
         /// <summary>
         /// WebServiceLdap control.
         /// </summary>
@@ -162,7 +153,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableRow WebServiceLdap;
-        
+
         /// <summary>
         /// TextBoxLdapQuery control.
         /// </summary>
@@ -171,7 +162,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxLdapQuery;
-        
+
         /// <summary>
         /// ButtonLdapQuery control.
         /// </summary>
@@ -180,7 +171,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonLdapQuery;
-        
+
         /// <summary>
         /// LabelLdapSummary control.
         /// </summary>
@@ -189,7 +180,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelLdapSummary;
-        
+
         /// <summary>
         /// LabelLdapDetail control.
         /// </summary>
@@ -198,7 +189,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelLdapDetail;
-        
+
         /// <summary>
         /// WebServiceFreeBusy control.
         /// </summary>
@@ -207,7 +198,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableRow WebServiceFreeBusy;
-        
+
         /// <summary>
         /// TextBoxQueryExchEmail control.
         /// </summary>
@@ -216,7 +207,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxQueryExchEmail;
-        
+
         /// <summary>
         /// ButtonQueryExchFB control.
         /// </summary>
@@ -225,7 +216,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonQueryExchFB;
-        
+
         /// <summary>
         /// LabelExchFBSummary control.
         /// </summary>
@@ -234,7 +225,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchFBSummary;
-        
+
         /// <summary>
         /// LabelExchFBDetail control.
         /// </summary>
@@ -243,7 +234,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelExchFBDetail;
-        
+
         /// <summary>
         /// SyncServiceDiagnostics control.
         /// </summary>
@@ -252,7 +243,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table SyncServiceDiagnostics;
-        
+
         /// <summary>
         /// SyncServiceFreeBusy control.
         /// </summary>
@@ -261,7 +252,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableRow SyncServiceFreeBusy;
-        
+
         /// <summary>
         /// TextBoxQueryGCalEmail control.
         /// </summary>
@@ -270,7 +261,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxQueryGCalEmail;
-        
+
         /// <summary>
         /// ButtonQueryGCalFB control.
         /// </summary>
@@ -279,7 +270,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonQueryGCalFB;
-        
+
         /// <summary>
         /// LabelGCalFBSummary control.
         /// </summary>
@@ -288,7 +279,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelGCalFBSummary;
-        
+
         /// <summary>
         /// LabelGCalFBDetail control.
         /// </summary>
@@ -297,7 +288,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelGCalFBDetail;
-        
+
         /// <summary>
         /// SyncServiceWriteAppointment control.
         /// </summary>
@@ -306,7 +297,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableRow SyncServiceWriteAppointment;
-        
+
         /// <summary>
         /// TextBoxExchWriterEmail control.
         /// </summary>
@@ -315,7 +306,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxExchWriterEmail;
-        
+
         /// <summary>
         /// ButtonWriteExchAppt control.
         /// </summary>
@@ -324,7 +315,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonWriteExchAppt;
-        
+
         /// <summary>
         /// LabelWriteAppointmentSummary control.
         /// </summary>
@@ -333,7 +324,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelWriteAppointmentSummary;
-        
+
         /// <summary>
         /// LabelWriteAppointmentDetail control.
         /// </summary>
@@ -342,7 +333,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelWriteAppointmentDetail;
-        
+
         /// <summary>
         /// SyncServiceWriteFreeBusy control.
         /// </summary>
@@ -351,7 +342,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableRow SyncServiceWriteFreeBusy;
-        
+
         /// <summary>
         /// TextBoxFreeBusyName control.
         /// </summary>
@@ -360,7 +351,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxFreeBusyName;
-        
+
         /// <summary>
         /// ButtonWriteFreeBusy control.
         /// </summary>
@@ -369,7 +360,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonWriteFreeBusy;
-        
+
         /// <summary>
         /// LabelWriteFreeBusySummary control.
         /// </summary>
@@ -378,7 +369,7 @@ namespace GCalExchangeLookup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelWriteFreeBusySummary;
-        
+
         /// <summary>
         /// LabelWriteFreeBusyDetail control.
         /// </summary>

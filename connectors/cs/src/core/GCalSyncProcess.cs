@@ -130,7 +130,6 @@ namespace Google.GCalExchangeSync.Library
                 exchangeUsers = new List<ExchangeUser>();
 
                 freeBusyWriter = FreeBusyWriterFactory.GetWriter( exchangeUsers );
-                freeBusyWriter.Initialize( exchangeGateway );
 
                 foreach ( ExchangeUser user in users.Values )
                 {
@@ -202,7 +201,7 @@ namespace Google.GCalExchangeSync.Library
             ExchangeUser user;
             int userCount = 0;
             string login = string.Empty;
-            
+
             errorThreshold = ConfigCache.ServiceErrorCountThreshold;
             errorCount = 0;
 
@@ -233,7 +232,7 @@ namespace Google.GCalExchangeSync.Library
                     // Pick a window to synchronize for:
                     //
                     // [-N, +N] days where N is settable in the config file
-                    // 
+                    //
                     // Scanning back in time is necessary so that we pickup changes to meetings and events that were
                     // made invisible.
                     //

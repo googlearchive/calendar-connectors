@@ -44,20 +44,20 @@ namespace Google.GCalExchangeSync.Library.WebDav
             get { return _response; }
             set { _response = value; }
         }
-        
-        public string ValidUrl 
+
+        public string ValidUrl
         {
             get { return _validUrl; }
             set { _validUrl = value; }
         }
 
-        public Method ValidMethod 
+        public Method ValidMethod
         {
             get { return _method; }
             set { _method = value; }
         }
 
-        public string IssueRequest( string url, Method method, string body )
+        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
         {
             if ( _exceptionToThrow != null )
                 throw _exceptionToThrow;

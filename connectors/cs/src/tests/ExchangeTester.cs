@@ -29,17 +29,17 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
         public static ExchangeUserDict QueryActiveDirectory(string ldapFilter)
         {
             ExchangeService gw = new ExchangeService(
-                ConfigCache.ExchangeServerUrl, 
-                ConfigCache.ExchangeUserLogin, 
+                ConfigCache.ExchangeServerUrl,
+                ConfigCache.ExchangeUserLogin,
                 ConfigCache.ExchangeUserPassword );
             return gw.QueryActiveDirectory( ldapFilter );
         }
 
         public static ExchangeUserDict QueryFreeBusy(string email)
         {
-            ExchangeService gw = new ExchangeService( 
-                ConfigCache.ExchangeServerUrl, 
-                ConfigCache.ExchangeUserLogin, 
+            ExchangeService gw = new ExchangeService(
+                ConfigCache.ExchangeServerUrl,
+                ConfigCache.ExchangeUserLogin,
                 ConfigCache.ExchangeUserPassword );
 
             DateTimeRange range = new DateTimeRange(
@@ -49,17 +49,17 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             return gw.SearchByEmail( range, email );
         }
 
-        public static void WriteAppointment( 
+        public static void WriteAppointment(
             string email, DateTime appointmentStart )
         {
             DateTime appointmentEnd = appointmentStart.AddHours( 1 );
 
-            ExchangeService gw = new ExchangeService( 
-                ConfigCache.ExchangeServerUrl, 
-                ConfigCache.ExchangeAdminLogin, 
+            ExchangeService gw = new ExchangeService(
+                ConfigCache.ExchangeServerUrl,
+                ConfigCache.ExchangeAdminLogin,
                 ConfigCache.ExchangeAdminPassword );
 
-            ExchangeUserDict users = 
+            ExchangeUserDict users =
                 gw.QueryActiveDirectory( string.Format("mail={0}", email ));
 
             if (users.Count != 0)
@@ -92,30 +92,28 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
         public static void WriteFreeBusyMessage( string commonName )
         {
             ExchangeService gw = new ExchangeService(
-                ConfigCache.ExchangeFreeBusyServerUrl, 
-                ConfigCache.ExchangeUserLogin, 
+                ConfigCache.ExchangeFreeBusyServerUrl,
+                ConfigCache.ExchangeUserLogin,
                 ConfigCache.ExchangeUserPassword );
 
-            SchedulePlusFreeBusyWriter writer = 
+            SchedulePlusFreeBusyWriter writer =
                 new SchedulePlusFreeBusyWriter();
-
-            writer.Initialize( gw );
 
             string userFreeBusyUrl = FreeBusyUrl.GenerateUrl(
                 ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, commonName);
 
-            string templateUrl = FreeBusyUrl.GenerateUrl(
-                ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, ConfigCache.TemplateUserName);
+            List<string> emtpyList = new List<string>();
+            string nowMinus30Days =
+                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(-30)).ToString();
+            string nowPlus60Days =
+                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(60)).ToString();
 
-            gw.FreeBusy.CopyFreeBusyMessage( 
-                templateUrl, userFreeBusyUrl, commonName );
-
-            gw.FreeBusy.SetFreeBusyProperties(
-                userFreeBusyUrl,
-                new List<string>(), 
-                new List<string>(),
-                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(-30)).ToString(),
-                FreeBusyConverter.ConvertToSysTime(DateUtil.NowUtc.AddDays(60)).ToString());
+            gw.FreeBusy.CreateFreeBusyMessage(userFreeBusyUrl,
+                                              commonName,
+                                              emtpyList,
+                                              emtpyList,
+                                              nowMinus30Days,
+                                              nowPlus60Days);
         }
     }
 }

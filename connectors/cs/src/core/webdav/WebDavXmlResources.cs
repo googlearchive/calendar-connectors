@@ -22,14 +22,14 @@ using Google.GCalExchangeSync.Library.Util;
 namespace Google.GCalExchangeSync.Library.WebDav
 {
     /// <summary>
-    /// A set of resources for WebDAV XML request bodies. 
+    /// A set of resources for WebDAV XML request bodies.
     /// </summary>
     public class WebDavXmlResources
     {
         /// <summary>
         /// Request template for creating an appointment
         /// </summary>
-        public const string CreateAppointment = 
+        public const string CreateAppointment =
             "Google.GCalExchangeSync.Library.webdav.xml.CreateAppointment.xml";
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             "Google.GCalExchangeSync.Library.webdav.xml.LoadFreeBusy.xml";
 
         /// <summary>
-        /// Request template for finding a set of appointments 
+        /// Request template for finding a set of appointments
         /// </summary>
         public const string FindAppointments =
            "Google.GCalExchangeSync.Library.webdav.xml.FindAppointments.xml";
@@ -59,9 +59,9 @@ namespace Google.GCalExchangeSync.Library.WebDav
         public static string GetText(string resourceAddress, params object[] formatArgs)
         {
             string text;
-                        
+
             text = EmbeddedResourceUtility.GetTextDocument( resourceAddress );
-            
+
             // TODO: BUG: each formatArg value needs to be xml-encoded
             if ( formatArgs.Length > 0 )
                 text = string.Format( text, formatArgs );

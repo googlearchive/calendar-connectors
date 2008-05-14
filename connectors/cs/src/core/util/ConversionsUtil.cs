@@ -34,10 +34,12 @@ namespace Google.GCalExchangeSync.Library.Util
         protected static readonly log4net.ILog _log =
             log4net.LogManager.GetLogger(typeof(ConversionsUtil));
 
-        private static readonly int base10 = 10;
-        private static readonly char[] cHexa = new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
-        private static readonly int[] iHexaNumeric = new int[] { 10, 11, 12, 13, 14, 15 };
-        private static readonly int[] iHexaIndices = new int[] { 0, 1, 2, 3, 4, 5 };
+        private static readonly int kMaxBits = 32;
+        private static readonly char[] kDigitToHexChar = new char[] {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        private static readonly int[] kLog2Table = new int[17] {
+         // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f, 10
+            0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4 };
 
         /// <summary>
         /// Convert an Exchange Event Response to a Google Calendar response
@@ -89,63 +91,104 @@ namespace Google.GCalExchangeSync.Library.Util
         /// Perform escaping on the string for use in Exchange WebDAV messages
         /// </summary>
         /// <param name="input">The string to escape</param>
-        /// <returns>The escaped string</returns>
-        public static string EscapeNonAlphaNumeric(string input)
+        /// <param name="result">Receives the escaped string</param>
+        public static void EscapeNonAlphaNumeric(string input, StringBuilder result)
         {
+            result.Length = 0;
+
+            if (input == null)
+            {
+                return;
+            }
+
             input = HttpUtility.HtmlDecode(input);
 
-            StringBuilder sb = new StringBuilder();
-
-            if (input != null)
+            if (input == null)
             {
-                /* For each character, check to see if its a letter number or space
-                 * If not, replace with a backslash followed by the numeric equivalent for the character */
-
-                foreach (Char c in input)
-                {
-                    if (char.IsLetter(c) || char.IsNumber(c) || c == ' ')
-                    {
-                        sb.Append(c);
-                    }
-                    else
-                    {
-                        string oct = DecimalToBase((int)c, 8);
-
-                        sb.AppendFormat(@"\{0}", oct.PadLeft(3, '0'));
-                    }
-                }
+                return;
             }
 
-            return sb.ToString();
-        }
+            result.EnsureCapacity(input.Length);
 
-        private static string DecimalToBase(int iDec, int numbase)
-        {
-            string strBin = "";
-            int[] result = new int[32];
-            int MaxBit = 32;
+            StringBuilder oct = new StringBuilder(kMaxBits);
 
-            for (; iDec > 0; iDec /= numbase)
+            /* For each character, check to see if its a letter number or space
+             * If not, replace with a backslash followed by the numeric equivalent for the character */
+            foreach (Char c in input)
             {
-                int rem = iDec % numbase;
-                result[--MaxBit] = rem;
-            }
-
-            for (int i = 0; i < result.Length; i++)
-            {
-                if ((int)result.GetValue(i) >= base10)
+                if (char.IsLetter(c) || char.IsNumber(c) || c == ' ')
                 {
-                    strBin += cHexa[(int)result.GetValue(i) % base10];
+                    result.Append(c);
                 }
                 else
                 {
-                    strBin += result.GetValue(i);
+                    DecimalToBase((int)c, 8, 3, '0', oct);
+
+                    result.Append(@"\");
+                    result.Append(oct);
+                }
+            }
+        }
+
+        private static void DecimalToBase(
+            int dec,
+            int numBase,
+            int totalWidth,
+            char leftPadding,
+            StringBuilder result)
+        {
+            if (result != null)
+            {
+                result.Length = 0;
+            }
+            else
+            {
+                throw new ArgumentException("Null result passed");
+            }
+
+            if ((dec < 0) || (numBase < 2) || (numBase > 16) || (totalWidth <0))
+            {
+                throw new ArgumentException("Cannot convert due to invalid arguments");
+            }
+
+            if (dec == 0)
+            {
+                result.Append('0');
+            }
+
+            if ((numBase & (numBase - 1)) != 0)
+            {
+                for (; dec != 0; dec /= numBase)
+                {
+                    int rem = dec % numBase;
+                    result.Append(kDigitToHexChar[rem]);
+                }
+            }
+            else
+            {
+                int log2Numbase = kLog2Table[numBase];
+                int reminderMask = numBase - 1;
+
+                for (; dec != 0; dec >>= log2Numbase)
+                {
+                    int rem = dec & reminderMask;
+
+                    result.Append(kDigitToHexChar[rem]);
                 }
             }
 
-            strBin = strBin.TrimStart(new char[] { '0' });
+            for (int i = result.Length; i < totalWidth; i++)
+            {
+                result.Append(leftPadding);
+            }
 
-            return strBin;
+            int resultLength = result.Length;
+            for (int i = 0; i < resultLength / 2; i++)
+            {
+                char temp = result[i];
+                result[i] = result[resultLength - 1 - i];
+                result[resultLength - 1 - i] = temp;
+            }
         }
 
         /// <summary>
@@ -210,27 +253,27 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <summary>
         /// Event needs an action to be taken
         /// </summary>
-        NeedsAction = 0, 
+        NeedsAction = 0,
 
         /// <summary>
         /// Event has been accepted
         /// </summary>
-        Accepted = 1, 
+        Accepted = 1,
 
         /// <summary>
         /// Event has been declined
         /// </summary>
-        Declined = 2, 
+        Declined = 2,
 
         /// <summary>
         /// Event has been accepted tenatively
         /// </summary>
-        Tentative = 3, 
+        Tentative = 3,
 
         /// <summary>
         /// User has been univited fri the event
         /// </summary>
-        Uninvited = 4, 
+        Uninvited = 4,
 
         /// <summary>
         /// User is the organizer of the event

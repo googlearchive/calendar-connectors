@@ -484,7 +484,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         private FreeBusyCollection createFreeBusyFromEvents(
-            List<DateTimeRange> syncEvents, 
+            List<DateTimeRange> syncEvents,
             List<DateTimeRange> exchEvents)
         {
             FreeBusyCollection result = new FreeBusyCollection();

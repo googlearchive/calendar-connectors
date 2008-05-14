@@ -32,18 +32,26 @@ namespace Google.GCalExchangeSync.Library
         private static readonly log4net.ILog log =
            log4net.LogManager.GetLogger(typeof(FreeBusyService));
 
+        private static HttpHeader[] kBriefHeader = { new HttpHeader("Brief", "t") };
+
         private string exchangeServerUrl;
         private WebDavQuery webDavQuery;
+        private WebDavQueryBuilder webDavQueryBuilder;
 
         /// <summary>
         /// Constructor for an Exchange Gateway
         /// </summary>
         /// <param name="exchangeServer">Exchange server address for exchange searches</param>
         /// <param name="webdav">WebDAV query service</param>
-        public FreeBusyService(string exchangeServer, WebDavQuery webdav)
+        /// <param name="queryBuilder">Optional WebDAV query builder service</param>
+        public FreeBusyService(
+            string exchangeServer,
+            WebDavQuery webdav,
+            WebDavQueryBuilder queryBuilder)
         {
             exchangeServerUrl = exchangeServer;
             webDavQuery = webdav;
+            webDavQueryBuilder = queryBuilder ?? new WebDavQueryBuilder();
         }
 
         /// <summary>
@@ -53,7 +61,7 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="window">The time period to look up FB info for</param>
         /// <returns></returns>
         public Dictionary<ExchangeUser, FreeBusy> LookupFreeBusyTimes(
-            ExchangeUserDict users, 
+            ExchangeUserDict users,
             DateTimeRange window )
         {
             /* Create an array of mailboxes to retrieve from exchange */
@@ -77,7 +85,7 @@ namespace Google.GCalExchangeSync.Library
 
             return result;
         }
-        
+
         /// <summary>
         /// Returns the free busy times for the specified exchange users
         /// </summary>
@@ -94,96 +102,133 @@ namespace Google.GCalExchangeSync.Library
             return result[user];
         }
 
-        /// <summary>
-        /// Copy a Public Folder FreeBusy message on the server from one URL to the next
-        /// </summary>
-        /// <param name="sourceUrl">Source URL to copy from</param>
-        /// <param name="targetUrl">Destination URL to copy to</param>
-        /// <param name="targetUsername">The new user to copy the FB template as</param>
-        public void CopyFreeBusyMessage(string sourceUrl, string targetUrl, string targetUsername)
+        private void BuildSpecializeFreeBusyMessageQuery(string targetUsername)
         {
-            log.DebugFormat("Copy Template free/busy from: {0} to {1}", sourceUrl, targetUrl);
+            // TODO: BUG: fix "conversation" message attribute
+            webDavQueryBuilder.AddUpdateProperty(MessageProperty.Subject, targetUsername);
+            webDavQueryBuilder.AddUpdateProperty(MessageProperty.NormalizedSubject, targetUsername);
+            webDavQueryBuilder.AddUpdateProperty(MessageProperty.ConversationTopic, targetUsername);
+            webDavQueryBuilder.AddUpdateProperty(MessageProperty.SubjectPrefix, string.Empty);
+        }
 
-            webDavQuery.Copy(sourceUrl, targetUrl);
-            webDavQuery.UpdateProperty(targetUrl, MessageProperty.Subject, targetUsername);
+        private void BuildSetFreeBusyQuery(
+            List<string> months,
+            List<string> dailyData,
+            string startDate,
+            string endDate,
+            bool cleanOOFAndTentative)
+        {
+            if (months.Count != dailyData.Count)
+            {
+                log.WarnFormat("Mismatch between the number of months and daily data: {0} {1}",
+                               months.Count,
+                               dailyData.Count);
+            }
 
-            // TODO: BUG: fix "conversation" message attribute (the line below doesn't seem to be working)
-            webDavQuery.UpdateProperty(targetUrl, MessageProperty.ThreadTopic, targetUsername);
+            if (months.Count == 0)
+            {
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.BusyMonths);
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.MergedMonths);
+            }
+            else
+            {
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyMonths, months);
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedMonths, months);
+            }
+
+            if (dailyData.Count == 0)
+            {
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.BusyEvents);
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.MergedEvents);
+            }
+            else
+            {
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyEvents, dailyData);
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedEvents, dailyData);
+            }
+
+            if (cleanOOFAndTentative)
+            {
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.OutOfOfficeEvents);
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.OutOfOfficeMonths);
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeEvents);
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeMonths);
+            }
+
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.StartOfPublishedRange,
+                                                 startDate);
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.EndOfPublishedRange,
+                                                 endDate);
+        }
+
+        private void BuildSpecialFreeBusyPropertiesQuery()
+        {
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.ScheduleInfoResourceType,
+                                                 "0");
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.DisableFullFidelity,
+                                                 "1");
+            // Technically those two (LocaleId and MessageLocaleId) should not be neeed,
+            // but if not explicitly set they are 0, which potentially could cause problems
+            // for readers.
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MessageLocaleId,
+                                                 "1033");
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.LocaleId,
+                                                 "1033");
+            webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.FreeBusyRangeTimestamp,
+                                                 DateUtil.FormatDateForExchange(DateUtil.NowUtc));
         }
 
         /// <summary>
-        /// Set a property on an existing free busy message
+        /// Create a FreeBusy message on the server for the given URL filling the given data
         /// </summary>
-        /// <param name="messageUrl">The URL of the free busy message to modify</param>
+        /// <param name="targetUrl">Destination message URL to create</param>
+        /// <param name="targetUsername">The user to create the FB for</param>
         /// <param name="months"></param>
         /// <param name="dailyData"></param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
-        public void SetFreeBusyProperties(
-            string messageUrl, 
-            List<string> months, 
-            List<string> dailyData, 
-            string startDate, 
-            string endDate )
+        public void CreateFreeBusyMessage(
+            string targetUrl,
+            string targetUsername,
+            List<string> months,
+            List<string> dailyData,
+            string startDate,
+            string endDate)
+
         {
-            // TODO: OPTIMIZATION: all these requests should be combined into a single WebDAV request
-            if ( months.Count == 0 )
+            if (log.IsDebugEnabled)
             {
-                webDavQuery.RemoveProperty(
-                    messageUrl, 
-                    FreeBusyProperty.BusyMonths.Name, 
-                    FreeBusyProperty.BusyMonths.NameSpace );
-            }
-            else
-            {
-                webDavQuery.UpdateFreeBusyProperty(
-                    messageUrl, 
-                    FreeBusyProperty.BusyMonths, 
-                    months );
+                log.DebugFormat("Creating free/busy message for: {0}", targetUrl);
             }
 
-            if ( dailyData.Count == 0 )
+            try
             {
-                webDavQuery.RemoveProperty(
-                    messageUrl, 
-                    FreeBusyProperty.BusyEvents.Name, 
-                    FreeBusyProperty.BusyEvents.NameSpace );
+                string response = null;
+
+                webDavQueryBuilder.Reset();
+
+                BuildSpecialFreeBusyPropertiesQuery();
+                BuildSpecializeFreeBusyMessageQuery(targetUsername);
+                BuildSetFreeBusyQuery(months, dailyData, startDate, endDate, true);
+
+                response = webDavQuery.IssueRequest(targetUrl,
+                                                    Method.PROPPATCH,
+                                                    webDavQueryBuilder.BuildQueryBody(),
+                                                    kBriefHeader);
+                if (log.IsDebugEnabled)
+                {
+                    log.DebugFormat("Creating free/busy message for: {0} succeeded with {1}",
+                                    targetUrl,
+                                    response ?? string.Empty);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                webDavQuery.UpdateFreeBusyProperty(
-                    messageUrl, FreeBusyProperty.BusyEvents, dailyData );
-            }
+                log.Error(string.Format("Creating free/busy message for: {0} failed",
+                                        targetUrl),
+                          ex);
 
-            webDavQuery.UpdateFreeBusyProperty( 
-                messageUrl, FreeBusyProperty.StartOfPublishedRange, startDate );
-
-            webDavQuery.UpdateFreeBusyProperty( 
-                messageUrl, FreeBusyProperty.EndOfPublishedRange, endDate );
-
-            // TODO: should we should touch the message created date/time here?
-        }
-
-        /// <summary>
-        /// Remove the properties set on a free busy message
-        /// </summary>
-        /// <param name="messageUrl"></param>
-        public void CleanFreeBusyProperties( string messageUrl )
-        {
-            FreeBusyProperty[] props = new FreeBusyProperty[]
-            {
-                FreeBusyProperty.BusyEvents,
-                FreeBusyProperty.BusyMonths,
-                FreeBusyProperty.OutOfOfficeEvents,
-                FreeBusyProperty.OutOfOfficeMonths,
-                FreeBusyProperty.TentativeEvents,
-                FreeBusyProperty.TentativeMonths
-            };
-
-            foreach ( FreeBusyProperty prop in props )
-            {
-                webDavQuery.RemoveProperty( 
-                    messageUrl, prop.Name, prop.NameSpace );
+                throw;
             }
         }
     }

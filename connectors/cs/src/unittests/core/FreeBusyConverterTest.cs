@@ -61,7 +61,7 @@ namespace Google.GCalExchangeSync.Library
             s = new DateTime(2007, 08, 15, 13, 45, 00, DateTimeKind.Unspecified);
             e = new DateTime(2007, 10, 11, 02, 45, 00, DateTimeKind.Unspecified);
             src.Add(new DateTimeRange(s, e));
-            dst.Add(new DateTimeRange(s, 
+            dst.Add(new DateTimeRange(s,
                 new DateTime(2007, 08, 31, 23, 59, 00, DateTimeKind.Unspecified)));
             dst.Add(new DateTimeRange(
                 new DateTime(2007, 09, 01, 00, 00, 00, DateTimeKind.Unspecified),
