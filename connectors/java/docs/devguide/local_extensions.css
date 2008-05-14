@@ -1,0 +1,79 @@
+/* page ID tags from the last version. Are these even used? */
+
+/* ---- PAGE ID TAGS ---- */
+ 
+#intro_page #intro_link,
+#elements_page #elements_link,
+#reference_page #reference_link,
+#faq_page #faq_link,
+#document_page #document_link, 
+#includes_page #includes_link
+
+/* ---- END PAGE ID TAGS --- */
+
+/* Extensions from enterprise-specific style conventions */
+#breadcrumbs {
+  margin-top: 3px;
+  padding-left: 173px;
+}
+
+/* Extensions I want to add to dev_docs.css */
+.graphic {
+        font-weight: bold;
+        font-size: 0.9em;
+        text-align:left;
+       /* max-width:550px; */
+	border: 1px solid;
+        padding: 10px;
+	border-color: gray}
+.caption{
+        font-weight: bold;
+        font-size: 0.9em;
+        text-align:left;
+        } 
+
+#pagecontent img{
+	border:1px solid;
+	margin: 1em 0 1em 25px;
+	padding:0;
+	}
+
+/* Extensions from smain's copy on the template how-to */
+/* ---- COLOR DEFINITION ---- */
+#doc_title, h1, h2, hr, .sidebox h2, .linkbox a, 
+
+table, td, th, .alert{
+	background-color: #e5ecf9;
+	border-color: #224499;
+	}	
+
+/* ----  do not change  ---- */
+table, td, h2 {
+	background-color: #fff;
+
+
+	}
+/* ------------------------- */
+
+/*  ---- COLORS ----
+
+--RED--
+	background-color: #efefef;
+	border-color: #aa0033;
+
+--YELLOW--
+	background-color: #fff4c2; 
+	border-color: #ffcc33;  
+
+--GREEN--
+	background-color: #ddf8cc;
+	border-color: #008000;
+
+--BLUE--
+	background-color: #e5ecf9;
+	border-color: #224499;
+	
+	
+ ---- END COLORS ---- */
+
+
