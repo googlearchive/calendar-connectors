@@ -196,7 +196,7 @@ div.google_header, div.google_footer {
 
 <body
     
-    revision="chp25x7_13434n2mp7ds:557">
+    revision="chp25x7_13434n2mp7ds:657">
 
     
     
@@ -260,8 +260,19 @@ div.google_header, div.google_footer {
   </p>
   <p id=iqt418>
     The Google Calendar Connector Kit is a set of server-installed tools that
-    require knowledgeable&nbsp; installation and configuration to the
-    particulars of a customer's environment.
+    require knowledgeable&nbsp; installation and configuration, tailored to the
+    particulars of a customer's environment.&nbsp; These tools are only the
+    <b id=vfky0>technological</b> <b id=iwv.0>part</b> of a seamless integration
+    experience.
+  </p>
+  <p id=iqt418>
+    <br id=k0wt0>
+  </p>
+  <p id=iqt418>
+    Before proceeding to install the Google Calendar Connector Kit, please read
+    and understand the important
+    <a href=#security id=d82n title="Security Considerations">Security
+    Considerations</a> outlined below.<br id=qgq00>
   </p>
 </div>
 <div id=d_connectors>
@@ -269,9 +280,9 @@ div.google_header, div.google_footer {
     <a id=overview name=overview>Overview</a>
   </h1>
   <p id=iqt420>
-    The Google Calendar Connector Kit contains three separate Google services,
-    but only two need to be installed to provide two-way free/busy
-    scheduling.&nbsp; The services are:
+    The Google Calendar Connector Kit contains three separate services, but only
+    two need to be installed and configured in order to provide two-way
+    free/busy scheduling.&nbsp; The three services are:
   </p>
   <p id=iqt420>
     <br id=r:5b0>
@@ -291,11 +302,11 @@ div.google_header, div.google_footer {
     <br id=arsp2>
   </p>
   <p id=iqt420>
-    The Web Service provides free/busy scheduling for Google Apps users and
-    either the Sync Service and Plug-In, but not both, provide free/busy
+    The Web Service provides free/busy scheduling for Google Apps users, while
+    either the Sync Service or Plug-In, but not both, provides free/busy
     scheduling for Microsoft Exchange users.&nbsp; Customers will commonly run
-    either the Web Service and Sync Service, or the Web Service and
-    Plug-In.&nbsp;<br id=tesj0>
+    either the Google Calendar Connector Web Service and Sync Service, or the
+    Google Calendar Connector Web Service and Plug-In.&nbsp;<br id=tesj0>
   </p>
   <br id=j:q70>
   <b id=j:q71>Why are there two different services for Microsoft Exchange
@@ -304,16 +315,16 @@ div.google_header, div.google_footer {
   better user experience.&nbsp; The Google Calendar Connector Sync Service and
   the Google Calendar Connector Plug-In both provide free/busy scheduling for
   Microsoft Exchange users. The Sync Service may make more sense for an
-  environment where writing free/busy information into Exchange is efficient for
-  the large majority of users.&nbsp; The Plug-In may make more sense in an
-  environment with a larger population of Google Apps users.&nbsp; In addition,
-  the integration method for each is different.<br id=tesj1>
+  environment where synchronizing free/busy information into Exchange is
+  efficient for the large majority of users.&nbsp; The Plug-In may make more
+  sense in other cases.&nbsp; The Google Calendar Connector Sync Service and
+  Plug-In also represent different installation methods.<br id=tesj1>
   <p id=iqt420>
     <br id=tesj2>
   </p>
   <p id=iqt420>
     The diagrams below illustrates the &nbsp;similarities and differences
-    between the services of the Google Calendar Connector Kit:
+    between the components of the Google Calendar Connector Kit:
   </p>
   <p id=iqt420>
   </p>
@@ -344,7 +355,7 @@ div.google_header, div.google_footer {
       <td bgcolor=#bde84d id=tgh05 width=25%>
         <div id=afv511 style=TEXT-ALIGN:center>
           <span class=Apple-style-span id=fa2l0><span class=Apple-style-span id=zsl40 style=COLOR:#ffffff><br id=fa2l1>
-          </span> </span>
+          </span></span>
         </div>
         <div id=afv511 style=TEXT-ALIGN:center>
           <span class=Apple-style-span id=bwtg4><b id=dq113>Google Calendar
@@ -392,8 +403,7 @@ div.google_header, div.google_footer {
         <br id=m..t1>
       </td>
       <td id=tgh021 style=TEXT-ALIGN:center width=25%>
-        <span class=Apple-style-span id=m..t2 style="COLOR:#b7df53; FONT-SIZE:18px"><span class=Apple-style-span id=mg.g0 style=COLOR:#38761d>◉</span>
-        </span>
+        <span class=Apple-style-span id=m..t2 style="COLOR:#b7df53; FONT-SIZE:18px"><span class=Apple-style-span id=mg.g0 style=COLOR:#38761d>◉</span></span>
       </td>
     </tr>
     <tr id=tgh027>
@@ -443,9 +453,9 @@ div.google_header, div.google_footer {
         Google Apps user can have an Exchange Mailbox
       </td>
       <td bgcolor=#cccccc id=tgh039 style=TEXT-ALIGN:center width=25%>
-        <span class=Apple-style-span id=frzc0 style="COLOR:#0000ff; FONT-SIZE:18px"><span class=Apple-style-span id=frzc1 style="COLOR:#000000; FONT-SIZE:13px">N/A
-        <span class=Apple-style-span id=hroi0><span class=Apple-style-span id=hroi1><i id=dq117>
-        Uses Google Apps free/busy </i></span></span></span></span>
+        <span class=Apple-style-span id=frzc0 style="COLOR:#0000ff; FONT-SIZE:18px"><span class=Apple-style-span id=frzc1 style="COLOR:#000000; FONT-SIZE:13px">N/A<br id=kd5_0>
+        <span class=Apple-style-span id=hroi0><span class=Apple-style-span id=hroi1><i id=dq117>Uses
+        Google Apps free/busy </i></span></span></span></span>
       </td>
       <td id=tgh040 style=TEXT-ALIGN:center width=25%>
         <span class=Apple-style-span id=e11g1 style="COLOR:#38761d; FONT-SIZE:18px">◉</span>
@@ -491,11 +501,11 @@ div.google_header, div.google_footer {
   </h1>
   <p id=iqt444>
     The Google Calendar Connector Web Service allows Google Apps users to
-    retrieve free/busy information for Microsoft Exchange users. This product is
-    an ASP.NET web application that queries the Microsoft Exchange free/busy
-    store in real-time, on behalf of a Google Apps user. The ASP.NET web
-    application should be installed on a system that has access to your Exchange
-    server and Active Directory.
+    retrieve free/busy information for Microsoft Exchange users. This tool is an
+    ASP.NET web application that queries the Microsoft Exchange free/busy store
+    in real-time, on behalf of Google Calendar. The ASP.NET web application
+    should be installed on a system that has access to your Exchange server and
+    Active Directory.
   </p>
   <br id=wu9r0>
   <p id=iqt444>
@@ -597,7 +607,8 @@ div.google_header, div.google_footer {
       Google Calendar Connector Web Service.
     </li>
     <li id=iqt476>
-      3. The Google Calendar Connector Web Service is exposed to Google.
+      3. The Google Calendar Connector Web Service must
+      be&nbsp;accessible&nbsp;by the user's browser.
     </li>
     <li id=iqt477>
       4. The LDAP query is executed with standard LDAP logon credentials.
@@ -685,9 +696,9 @@ div.google_header, div.google_footer {
     <li id=iqt498>
       The Google Calendar Connector Sync Service generates an XML file that
       contains the last time each user was synchronized. On the next scheduled
-      synchronized a check is performed to determine if the user's calendar data
-      has changed or not. If no changes are detected no data is downloaded for
-      that user.<br id=h5pr0>
+      synchronization a check is performed to determine if the user's calendar
+      data has changed or not. If no changes are detected no data is downloaded
+      for that user.<br id=h5pr0>
     </li>
   </ol>
   <p id=iqt499>
@@ -721,7 +732,7 @@ div.google_header, div.google_footer {
   <ul id=iqt4107>
     <li id=iqt4108>
       1. The Google Calendar Connector Sync Service needs access to an LDAP
-      logon and password with standard "Domain User" privileges.
+      login and password with standard "Domain User" privileges.
     </li>
     <li id=iqt4109>
       3. The Google Calendar Connector Sync Service authenticates using a Google
@@ -734,7 +745,7 @@ div.google_header, div.google_footer {
       requires an Exchange account with Admin privileges.
     </li>
     <li id=iqt4111>
-      5. If the appointment writer is used instead of the SchedulePlus writer,
+      5. If the Appointment writer is used instead of the SchedulePlus writer,
       the Google Calendar Connector Sync Service must use an Active Directory
       account with write permission to the Exchange users' calendar.
     </li>
@@ -745,17 +756,17 @@ div.google_header, div.google_footer {
     <a id=abz61 name=gcc_plugin>Google Calendar Connector Plug-In</a>
   </h1>
   The Google Calendar Connector Plug-In allows Microsoft Exchange users to
-  request in real-time free/busy information for Google Apps users.&nbsp; The
-  product is a Java Windows service (with a supplemental .NET executable) that
+  request, in real-time, free/busy information for Google Apps users.&nbsp; The
+  Plug-In is a Java Windows service (with a supplemental .NET executable) that
   handles free/busy requests from the Novell GroupWise Calendar Connector for
   Microsoft Exchange.&nbsp; When a Microsoft Exchange user looks up free/busy
   information for a Google Apps user, Exchange issues a free/busy request that
   is serviced by the Google Calendar Connector Plug-In.&nbsp; The Google
-  Calendar Connector plug-in translates the request and queries Google Apps
+  Calendar Connector Plug-in translates the request and queries Google Apps
   using the Google Calendar GData API.&nbsp; The free/busy data is then returned
   to Microsoft Exchange for it to present to the requesting user.&nbsp; The
   Google Calendar Connector Plug-In should be installed on the same server as
-  the Novell GroupWise Gateway.<br id=y:je0>
+  the&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector for Microsoft Exchange<br id=y:je0>
   <br id=hw5c0>
   <div id=oehy style="PADDING:1em 0pt; TEXT-ALIGN:left">
     <img height=493 id=tiwa0 src=images/free_busy_request.png width=674>&nbsp;
@@ -773,15 +784,16 @@ div.google_header, div.google_footer {
   </div>
   The following is a process overview of the Google Calendar Connector Plug-In:<br id=rv1m0>
   <br id=rv1m1>
-  Google Calendar Plug-in free/busy request:<br id=y:je2>
+  Google Calendar Connector Plug-in free/busy request:<br id=y:je2>
   <ol id=nppn1>
     <li id=nppn2>
       A Microsoft Exchange user in Microsoft Outlook attempts to look up
       free/busy information for a Google Apps user.
     </li>
     <li id=nppn2>
-      Microsoft Outlook forwards the free/busy request to the Novell GroupWise
-      gateway using a file-based API request.
+      Microsoft Outlook forwards the free/busy request to
+      the&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;using a
+      file-based API request.
     </li>
     <li id=nppn2>
       The Google Calendar Connector Plug-In parses the free/busy request from
@@ -795,7 +807,8 @@ div.google_header, div.google_footer {
     </li>
     <li id=nppn2>
       The Google Calendar Connector Plug-In writes the returned result back to
-      the Novell GroupWise gateway using the file-based API response.
+      the&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;using the
+      file-based API response.
     </li>
     <li id=nppn2>
       Microsoft Outlook is returned the free/busy data and displays the
@@ -818,7 +831,8 @@ div.google_header, div.google_footer {
   Google Calendar Plug-in Directory/User Synchronization:<br id=mide22>
   <ol id=a07n0>
     <li id=a07n1>
-      The GroupWise API Gateway requests via the file-based API a directory
+      The&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;requests via
+      the file-based API a directory
       synchronization.&nbsp;(<a href=#security_notes_plugin_dirsync id=iqt497 title="Security Note">Security
       Note</a>)
     </li>
@@ -839,7 +853,7 @@ div.google_header, div.google_footer {
     <li id=a07n1>
       The Google Calendar Connector Plug-in will include or filter out users
       from the user list returned from Google Apps based on the whitelist and
-      black list data returned from Active Directory.
+      blacklist data returned from Active Directory.
     </li>
     <li id=a07n1>
       The Google Calendar Connector Plug-in will write a file-based API response
@@ -847,10 +861,10 @@ div.google_header, div.google_footer {
       applied.
     </li>
     <li id=a07n1>
-      The Novell GroupWise Gateway will process the file-based API response file
-      and create or delete GroupWise addressed contact objects based on the list
-      of users returned in the file-based API response from the Google Calendar
-      Connector Plug-in
+      The NNovell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;will process the
+      file-based API response file and create or delete GroupWise addressed
+      contact objects based on the list of users returned in the file-based API
+      response from the Google Calendar Connector Plug-in
     </li>
     <li id=a07n1>
       The Google Calendar Connector Plug-in will execute the FreeBusyBuilder
@@ -864,8 +878,9 @@ div.google_header, div.google_footer {
     <li id=a07n1>
       The FreeBusyBuilder application verifies or creates the proper MAPI
       attributes in the Exchange free/busy store. These MAPI attributes
-      configure Exchange to use the Novell GroupWise Gateway for the imported
-      GroupWise (i.e Google Apps) contacts for free/busy
+      configure Exchange to use the&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar
+      Connector&nbsp;for the imported GroupWise (i.e Google Apps) contacts for
+      free/busy
       requests.&nbsp;(<a href=#security_notes_plugin_dirsync id=iqt497 title="Security Note">Security
       Note</a>)
     </li>
@@ -877,13 +892,13 @@ div.google_header, div.google_footer {
   </p>
   <ul id=iqt4107>
     <li id=iqt4108>
-      1. The GroupWise API Gateway requires a local administrator account on the
-      server it is running.
+      1. The&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;requires a
+      local administrator account on the server it is running.
     </li>
     <li id=iqt4108>
       3. The Google Apps domain must have the Provisioning API enabled for
-      account enumeration. GData API authentication and data is tranferred
-      securley via HTTPS.
+      account enumeration. GData API authentication and data is transferred
+      securely via HTTPS.
     </li>
     <li id=iqt4108>
       9. The user account the Google Calendar Connector Plug-in service logs on
@@ -901,9 +916,32 @@ div.google_header, div.google_footer {
     <a id=oauw1 name=security>Security considerations</a>
   </h1>
   <p id=iqt4113>
-    This section contains important security considerations to review when
-    deploying the Google Calendar Connector Kit.
+    The following are important security considerations to review when deploying
+    the Google Calendar Connector Kit.<br id=fi8m0>
   </p>
+  <p id=iqt4113>
+    <br id=fi8m1>
+  </p>
+  <h2 id=iqt4114>
+    Limiting access to the Web Service
+  </h2>
+  The Google Calendar Connector Web Service does NOT provide an authentication
+  layer for choosing which requests for free/busy information and appointment
+  details to allow or dis-allow.&nbsp; Anyone who knows the URL address of your
+  Web Service and has network access to its URL would theoretically be able to
+  perform Microsoft Exchange free/busy look ups and, if enabled, retrieve
+  appointment details to the same degree as any user of your Google Apps domain.<br id=gvgg0>
+  <b id=ogaz0><br id=gvgg1>
+  Therefore, to restrict access to the Web Service to members of your Google
+  Apps domain, we recommend:</b><br id=rn:i0>
+  <br id=gvgg2>
+  <ul id=gvgg3>
+    <li id=gvgg4>
+      Using a private Web Service URL in your company's internal network that is
+      not accessible outside of your company's VPN / Firewall.
+    </li>
+  </ul>
+  <br id=fi8m3>
   <h2 id=iqt4114>
     Transport security
   </h2>
@@ -918,15 +956,15 @@ div.google_header, div.google_footer {
           Google Apps domain.
         </li>
         <li id=iqt4121>
-          Provide an <b id=iqt4122>https://</b> Web Service URL to Google
-          support.
+          Provide an <b id=iqt4122>https://</b> Web Service URL to your Google
+          support representative.
         </li>
       </ol>
       <br id=iqt4123>
-      If Google Calendar is configured with an https url that fails, it will not
-      fallback to http. Free/busy information is not publicly shared, and when
-      Google Calendar and the Web Service are using HTTPS, POST's are encrypted
-      with SSL in transit.
+      If Google Calendar is configured with an HTTPS url that fails, it will not
+      fallback to HTTP. Free/busy information is not publicly broadcast, and
+      when Google Calendar and the Web Service are using HTTPS, POST
+      communications use SSL encryption in transit.
     </li>
     <br id=iqt4124>
     <li id=iqt4125>
@@ -951,8 +989,10 @@ div.google_header, div.google_footer {
   <p id=iqt4128>
     The Google Calendar Connectors generally require a Google Apps account to
     access Google Calendar information, a Windows system account to access the
-    file system, and an Active Directory account to interact with Active
-    Directory via LDAP and Microsoft Exchange free/busy and mailboxes.<br id=iqt4129>
+    local file system, and an Active Directory account to interact with Active
+    Directory and Microsoft Exchange.&nbsp; The following is a summary of the
+    various accounts you will configure during the setup of the various Google
+    Calendar Connectors.<br id=iqt4129>
   </p>
   <h3 id=iqt4130>
     Google Calendar Connector Web Service:
@@ -1022,8 +1062,8 @@ div.google_header, div.google_footer {
       Google Apps Administrator account.
     </li>
     <li id=seg21>
-      Local server user account with READ/WRITE privileges to the Novell
-      GroupWise API gateway path.
+      Local server user account with READ/WRITE privileges to
+      the&nbsp;Novell&nbsp;GroupWise&nbsp;Calendar Connector&nbsp;API path.
     </li>
     <li id=seg21>
       Active Directory DOMAIN USER credentials for querying via LDAP and writing
@@ -1032,7 +1072,7 @@ div.google_header, div.google_footer {
   </ol>
   <br id=m-zy0>
   <h2 id=iqt4153>
-    Free/busy and appointment privacy
+    Free/busy and appointment details privacy
   </h2>
   <p id=iqt4154>
     Free/busy information is generally available to all users of the domain,
@@ -1050,7 +1090,9 @@ div.google_header, div.google_footer {
       user who has free/busy information in the Exchange free/busy public store.
       Appointment details are available for any domain user, if the appointment
       detail look up is enabled and if the appointment is not marked as private.
-      Private event details are not returned to Google Calendar.
+      Private event details are not returned to Google Calendar.&nbsp; See the
+      Security Consideration entitled "Limiting access to the Web Service" for
+      more information.<br id=y4xb0>
     </li>
   </ul>
   <br id=zrkd0>
@@ -1092,10 +1134,32 @@ div.google_header, div.google_footer {
     The Google Calendar Scheduler is returned the free/busy and appointment
     information from your Exchange environment, but this information is not
     stored on Google's servers, and it only transits Google's servers to be
-    parsed and rendered via javascript within the user's browser.
+    parsed and rendered via javascript within t<font color=#000000 id=kgd40>he
+    user's browser.<span class=Apple-style-span id=m1.00 style=COLOR:#ff0000><br id=xdws0>
+    </span></font>
   </p>
+  <p id=iqt4167>
+    <font color=#000000 id=kgd41><br id=xdws1>
+    </font>
+  </p>
+  <p id=iqt4167>
+    <font color=#000000 id=kgd42><span class=Apple-style-span id=m1.00 style=COLOR:#ff0000>The
+    Web Service responds to any valid requests it receives, and so access to the
+    Web Service URL should be limited appropriately.&nbsp; See the Security
+    Consideration "Limiting Access to the Web Service" for more
+    details.</span></font>
+  </p>
+  <p id=iqt4167>
+    <font color=#000000 id=qnz-0><br id=q5yh0>
+    </font>
+  </p>
+  <font color=#000000 id=qnz-1><span class=Apple-style-span id=m1.00 style=COLOR:#ff0000>Concurrent,
+  malicious javascript execution in the browser could expose your free/busy and
+  appointment information to an outside party.&nbsp; This is mentioned only as a
+  precaution.&nbsp;</span></font>
   <h3 id=iqt4168>
-    Google Calendar Connector Sync Service:
+    <font color=#000000 id=kgd43> Google Calendar Connector Sync Service:
+    </font>
   </h3>
   <p id=iqt4169>
     No additional corporate data is exposed to Google Calendar when operating
@@ -1256,17 +1320,23 @@ div.google_header, div.google_footer {
   JSmooth project:
   <a href=http://jsmooth.sourceforge.net/ id=ck_2 title=http://jsmooth.sourceforge.net>http://jsmooth.sourceforge.net</a><br id=j88:0>
   JSmooth license:
-  <a href=http://jsmooth.sourceforge.net/license.php id=r7av title=http://jsmooth.sourceforge.net/license.php>http://jsmooth.sourceforge.net/license.php</a><br id=nm0-1>
+  <a href=http://jsmooth.sourceforge.net/license.php id=r7av title=http://jsmooth.sourceforge.net/license.php>http://jsmooth.sourceforge.net/license.php</a><br id=skpv0>
+  <br id=skpv1>
+  Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei<br id=vr_y0>
+  A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig<br id=vr_y1>
+  <br id=nm0-1>
   <hr id=iqt4190>
   <p id=iqt4191>
     <i id=iqt4192>Google, Google Calendar, Google Calendar Connector, Google
     Calendar Connector Web Service, Google Calendar Connector Sync Service,
-    Google Calendar Connector Kit are trademarks of Google,
-    Inc.</i><span class=Apple-style-span id=gr_d0><span class=Apple-style-span id=gr_d1 style=border-collapse:collapse><i id=no501>All<br id=on.q0>
-    </i></span></span>
+    Google Calendar Connector Kit are trademarks of Google, Inc.</i>
   </p>
   <p id=iqt4191>
-    <span class=Apple-style-span id=gr_d0><span class=Apple-style-span id=gr_d1 style=border-collapse:collapse><i id=no501>other
+    <span class=Apple-style-span id=ifb50 style=border-collapse:collapse><br id=ifb51>
+    </span>
+  </p>
+  <p id=iqt4191>
+    <span class=Apple-style-span id=gr_d0><span class=Apple-style-span id=gr_d1 style=border-collapse:collapse><i id=no501>All&nbsp;other
     company and product names may be trademarks of the respective companies with
     which they are associated.</i></span></span>
   </p>
