@@ -23,7 +23,7 @@ namespace Google.GCalExchangeSync.Library.Util
     /// <summary>
     /// Print the time in milliseconds that the block took to execute.
     /// Should be used in a using block: e.g
-    /// 
+    ///
     /// using(BlockTimer bt = new BlockTimes("label")
     /// {
     ///   // Events to time
@@ -58,9 +58,9 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             long totalTime = DateTime.Now.Ticks - start;
             TimeSpan ts = new TimeSpan( totalTime );
-            
+
             int timeSpanMillseconds = Convert.ToInt32( ts.TotalMilliseconds );
-            
+
             string info = string.Format(
                 "[Timer] - {0} - Total Execution Time: {1} ms.",
                 name,

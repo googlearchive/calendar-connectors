@@ -43,7 +43,7 @@ namespace GCalExchangeLookup
 
         protected string GCalPostUrl
         {
-            get 
+            get
             {
                 // Try to make the scheme for  the Post URL
                 // match the scheme the page was requested with
@@ -104,7 +104,7 @@ namespace GCalExchangeLookup
             }
             catch (GCalExchangeException ex)
             {
-                GCalErrorResponse gcalResponse = 
+                GCalErrorResponse gcalResponse =
                     new GCalErrorResponse(gcalRequest, ex);
 
                 _responseString = gcalResponse.GenerateResponse();

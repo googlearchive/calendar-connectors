@@ -63,7 +63,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// Formate a datetme as an exchange style date string
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
-        /// <returns>An exchane style date string</returns>
+        /// <returns>An Exchange style date string</returns>
         public static string FormatDateForExchange(DateTime dt)
         {
             Debug.Assert(dt.Kind == DateTimeKind.Unspecified);
@@ -93,7 +93,7 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         /// <summary>
-        /// Formats a DateTime into "yyyyMMddTHHmmss" format, where 
+        /// Formats a DateTime into "yyyyMMddTHHmmss" format, where
         /// "T" is the separator between date values and time values
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
@@ -105,7 +105,7 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         /// <summary>
-        /// Parses date supplied from GCal requests. Parses dates in form "yyyyMMddTHHmmss" 
+        /// Parses date supplied from GCal requests. Parses dates in form "yyyyMMddTHHmmss"
         /// where T is the delimiter between date and time information
         /// </summary>
         /// <param name="dateString">GCal date to parse</param>
@@ -117,9 +117,9 @@ namespace Google.GCalExchangeSync.Library.Util
             try
             {
                 dt = DateTime.ParseExact(
-                    dateString, 
-                    new string[] { "yyyyMMdd'T'HHmmss", "yyyyMMdd" }, 
-                    DateTimeFormatInfo.InvariantInfo, 
+                    dateString,
+                    new string[] { "yyyyMMdd'T'HHmmss", "yyyyMMdd" },
+                    DateTimeFormatInfo.InvariantInfo,
                     DateTimeStyles.None );
             }
             catch ( Exception ex )

@@ -35,7 +35,7 @@ namespace Google.GCalExchangeSync.Library
         {
             get { return appointments; }
         }
-        
+
         /// <summary>
         /// Start datetime for the time block
         /// </summary>

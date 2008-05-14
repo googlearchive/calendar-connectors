@@ -28,6 +28,9 @@ namespace Google.GCalExchangeSync.Library
     /// </summary>
     public class FreeBusyConverter
     {
+        static private readonly DateTime utc1601_1_1 =
+            new DateTime(1601, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         /// <summary>
         /// Get the free busy format value for the month
         /// </summary>
@@ -96,8 +99,8 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="monthData">Output month data</param>
         /// <param name="base64FreeBusyData">Output datetime data</param>
         public static void ConvertDateTimeBlocksToBase64String(
-            List<DateTimeRange> freeBusyRanges, 
-            List<string> monthData, 
+            List<DateTimeRange> freeBusyRanges,
+            List<string> monthData,
             List<string> base64FreeBusyData)
         {
             Dictionary<int, List<Byte>> result = new Dictionary<int, List<byte>>();
@@ -138,12 +141,10 @@ namespace Google.GCalExchangeSync.Library
             monthData.Clear();
             base64FreeBusyData.Clear();
 
-            foreach (int month in result.Keys)
+            foreach (KeyValuePair<int, List<Byte>> pair in result)
             {
-                monthData.Add(month.ToString());
-                List<Byte> data = result[month];
-
-                base64FreeBusyData.Add(Convert.ToBase64String( data.ToArray() ) );
+                monthData.Add(pair.Key.ToString());
+                base64FreeBusyData.Add(Convert.ToBase64String(pair.Value.ToArray()));
             }
         }
 
@@ -183,9 +184,9 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="dt">DateTime to convert</param>
         /// <returns>System time corresponding to the value</returns>
-        public static double ConvertToSysTime( DateTime dt )
+        public static double ConvertToSysTime(DateTime dt)
         {
-            TimeSpan ts = dt.Subtract(new DateTime( 1601, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+            TimeSpan ts = dt.Subtract(utc1601_1_1);
             return ts.TotalMinutes;
         }
     }

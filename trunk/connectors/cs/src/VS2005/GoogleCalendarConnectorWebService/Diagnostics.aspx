@@ -33,7 +33,7 @@
   <h1>Google Calendar Connector Diagnostics</h1>
   <form id="form1" runat="server">
     <div>
-    
+
   <fieldset>
     <legend>Settings from Configuration File:</legend>
     <ul>
@@ -46,7 +46,6 @@
       <li>GoogleApps.DomainName: <asp:Label ID="LabelAppsDomainName" Runat="server"/></li>
       <li>GoogleApps.AdminUser.Login: <asp:Label ID="LabelAppsUser" Runat="server"/></li>
       <li>SyncService.FreeBusy.AdminGroup: <asp:Label ID="LabelAdminGroup" Runat="server"/></li>
-      <li>SyncService.FreeBusy.TemplateUserName: <asp:Label ID="LabelTemplateUser" Runat="server"/></li>
       <li id="DomainMappingInfo">DomainMapping: <asp:Label ID="LabelMappings" Runat="server"/></li>
     </ul>
       <asp:Button ID="Encrypt" Text="Encrypt Config Settings" runat="server" OnClick="EncryptSettings_Click" CssClass="button" /><br />

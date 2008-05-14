@@ -106,7 +106,7 @@ namespace Google.GCalExchangeSync.Library.Util
         private IntervalNode<T> root = null;
         private int numNodes = 0;
         private int maxDepth = 0;
-        
+
         /// <summary>
         /// Number of nodes in the tree
         /// </summary>
@@ -168,7 +168,7 @@ namespace Google.GCalExchangeSync.Library.Util
                 }
 
             }
-            else 
+            else
             {
                 if (parent.Right == null)
                 {
@@ -191,7 +191,7 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             return FindAll(range, IntervalTreeMatch.ContainedBy);
         }
-        
+
         /// <summary>
         /// Find all events for the range based on the match criteria
         /// - Exact: Return only elements with the same start / end time
@@ -238,7 +238,7 @@ namespace Google.GCalExchangeSync.Library.Util
             {
                 FindAll(node.Left, range, match, result);
             }
-            
+
             if(node.Right != null && range.End >= node.Interval.Start && range.Start <= node.Right.Max)
             {
                 FindAll(node.Right, range, match, result);

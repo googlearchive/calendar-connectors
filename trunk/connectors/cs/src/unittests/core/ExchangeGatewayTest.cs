@@ -224,10 +224,11 @@ namespace Google.GCalExchangeSync.Library
         {
             Console.WriteLine("Begin FreeBusyCollection");
 
-            foreach (DateTime dt in fbc.Keys)
+            foreach (KeyValuePair<DateTime, FreeBusyTimeBlock> pair in fbc)
             {
-                FreeBusyTimeBlock b = fbc[dt];
-                Console.WriteLine("{0}: {1} -> {2} [{3}]", 
+                DateTime dt = pair.Key;
+                FreeBusyTimeBlock b = pair.Value;
+                Console.WriteLine("{0}: {1} -> {2} [{3}]",
                     dt, b.StartDate, b.EndDate, b.Appointments.Count );
             }
             Console.WriteLine("End FreeBusyCollection");

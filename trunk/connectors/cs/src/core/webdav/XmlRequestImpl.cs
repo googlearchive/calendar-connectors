@@ -60,15 +60,16 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="url">The URL to make a request to</param>
         /// <param name="method">The HTTP verb to use</param>
         /// <param name="body">The request body to use</param>
+        /// <param name="headers">Optional headers to add to the request</param>
         /// <returns>The response body</returns>
-        public string IssueRequest( string url, Method method, string body )
+        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
         {
             int remainingAttempts = maxRedirects;
 
             while (remainingAttempts > 0)
             {
                 log.DebugFormat(
-                    "Issuing WebDAV Request: {0} to {1} - Group {2}", 
+                    "Issuing WebDAV Request: {0} to {1} - Group {2}",
                     method.Name, url, connectionGroup);
 
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
@@ -89,12 +90,19 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
                 // BUG: Exchange sometimes serves different content based on the user agent so
                 // we have to fake being IE?!?!?!
-                request.UserAgent = 
+                request.UserAgent =
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 2.0.50727)";
 
                 request.Credentials = credentials;
                 request.Method = method.Name;
                 request.Accept = "*/*";
+                if (headers != null)
+                {
+                    foreach (HttpHeader httpHeader in headers)
+                    {
+                        request.Headers.Add(httpHeader.Name, httpHeader.Value);
+                    }
+                }
 
                 // Set request body if t here is one
                 if (!string.IsNullOrEmpty(body))
@@ -135,7 +143,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                             }
 
                             log.DebugFormat(
-                                "Redirect: {0} to {1} status {2}", 
+                                "Redirect: {0} to {1} status {2}",
                                 method, url, response.StatusCode);
 
                             // Preserve the credentials and verb though all types

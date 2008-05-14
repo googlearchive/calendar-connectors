@@ -27,6 +27,363 @@ using log4net;
 
 namespace Google.GCalExchangeSync.Library.WebDav
 {
+    /// <summary>
+    /// Handle building WebDAV queries to Exchangeaffecting multile properties.
+    /// </summary>
+    public class WebDavQueryBuilder
+    {
+        /// <summary>
+        /// Logger for WebDavQuery
+        /// </summary>
+        protected static readonly log4net.ILog log =
+           log4net.LogManager.GetLogger(typeof(WebDavQueryBuilder));
+
+        private Dictionary<string, char> namespacesMap;
+        private char davPrefix;
+        private char dtPrefix;
+        private char xmlPrefix;
+        private char nextNamespacePrefix;
+        private StringBuilder updateXml;
+        private StringBuilder removeXml;
+        private StringBuilder queryBody;
+
+        /// <summary>
+        /// Create a WebDAV query builder
+        /// </summary>
+        public WebDavQueryBuilder()
+        {
+            updateXml = new StringBuilder(1024);
+            removeXml = new StringBuilder(1024);
+            queryBody = new StringBuilder(1024);
+
+            nextNamespacePrefix = 'a';
+            davPrefix = ' ';
+            dtPrefix = ' ';
+            xmlPrefix = ' ';
+            namespacesMap = new Dictionary<string, char>();
+
+            Reset();
+        }
+
+        /// <summary>
+        /// Reset the query builder to initial state, so it can be used to build a new query.
+        /// </summary>
+        public void Reset()
+        {
+            updateXml.Length = 0;
+            removeXml.Length = 0;
+            queryBody.Length = 0;
+
+            nextNamespacePrefix = 'a';
+            namespacesMap.Clear();
+
+            davPrefix = FindOrAddNamespace("DAV:");
+            Debug.Assert(davPrefix == 'a');
+
+            dtPrefix = FindOrAddNamespace("urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/");
+            Debug.Assert(dtPrefix == 'b');
+
+            xmlPrefix = FindOrAddNamespace("xml:");
+            Debug.Assert(xmlPrefix == 'c');
+        }
+
+        /// <summary>
+        /// Add a property to the query to be updated to the given value.
+        /// </summary>
+        /// <param name="property">Property to add</param>
+        /// <param name="propertyValue">The value for the property</param>
+        public void AddUpdateProperty(
+            Property property,
+            string propertyValue)
+        {
+            AddUpdateProperty(property.Name,
+                              property.NameSpace,
+                              propertyValue);
+        }
+
+        /// <summary>
+        /// Add a property to the query to be updated to the given value.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to add</param>
+        /// <param name="propertyNamespace">The Xml namespace of the property</param>
+        /// <param name="propertyValue">The value for the property</param>
+        public void AddUpdateProperty(
+            string propertyName,
+            string propertyNamespace,
+            string propertyValue)
+        {
+            char namespacePrefix = ' ';
+
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("Adding {0}:{1} = \"{2}\"",
+                                propertyNamespace,
+                                propertyName,
+                                propertyValue);
+            }
+
+            namespacePrefix = FindOrAddNamespace(propertyNamespace);
+
+            //  <property's namespace prefix : property's name>
+            //      property's value
+            //  </property's namespace prefix : property's name>
+            updateXml.AppendFormat(
+                "<{0}:{1}>{2}</{0}:{1}>",
+                namespacePrefix,
+                propertyName,
+                propertyValue);
+        }
+
+        /// <summary>
+        /// Add a property to the query to be deleted.
+        /// </summary>
+        /// <param name="property">The property to delete</param>
+        public void AddRemoveProperty(
+            Property property)
+        {
+            AddRemoveProperty(property.Name,
+                              property.NameSpace);
+        }
+
+        /// <summary>
+        /// Add a property to the query to be deleted.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to delete</param>
+        /// <param name="propertyNamespace">The Xml namespace of the property</param>
+        public void AddRemoveProperty(
+            string propertyName,
+            string propertyNamespace)
+        {
+            char namespacePrefix = ' ';
+
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("Adding {0}:{1} to be deleted",
+                                propertyNamespace,
+                                propertyName);
+            }
+
+            namespacePrefix = FindOrAddNamespace(propertyNamespace);
+
+            //  <property's namespace prefix : property's name/>
+            removeXml.AppendFormat(
+                "<{0}:{1}/>",
+                namespacePrefix,
+                propertyName);
+        }
+
+        /// <summary>
+        /// Add a free busy property to the query to be updated to the given value.
+        /// </summary>
+        /// <param name="property">Property to add</param>
+        /// <param name="propertyValue">The value for the property</param>
+        public void AddUpdateProperty(
+            FreeBusyProperty property,
+            string propertyValue)
+        {
+            AddUpdateProperty(property.Name,
+                              property.NameSpace,
+                              property.Type,
+                              propertyValue);
+        }
+
+        /// <summary>
+        /// Add a free busy property to the query to be updated to the given value.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to add</param>
+        /// <param name="propertyNamespace">The Xml namespace of the property</param>
+        /// <param name="propertyType">The data type of the property</param>
+        /// <param name="propertyValue">The value for the property</param>
+        public void AddUpdateProperty(
+            string propertyName,
+            string propertyNamespace,
+            string propertyType,
+            string propertyValue)
+        {
+            char namespacePrefix = ' ';
+
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("Adding {0}:{1} = ({2})\"{3}\"",
+                                propertyNamespace,
+                                propertyName,
+                                propertyType,
+                                propertyValue);
+            }
+
+            namespacePrefix = FindOrAddNamespace(propertyNamespace);
+
+            //  <property's namespace prefix : property's name "dt"'s prefix : dt = property's type>
+            //      property's value
+            //  </property's namespace prefix : property's name>
+            updateXml.AppendFormat(
+                "<{0}:{2} {1}:dt=\"{3}\">{4}</{0}:{2}>",
+                namespacePrefix,
+                dtPrefix,
+                propertyName,
+                propertyType,
+                propertyValue);
+        }
+
+        /// <summary>
+        /// Add a multivalued free busy property to the query to be updated to the given values.
+        /// </summary>
+        /// <param name="property">Property to add</param>
+        /// <param name="propertyValues">The list of value for the property</param>
+        public void AddUpdateProperty(
+            FreeBusyProperty property,
+            List<string> propertyValues)
+        {
+            AddUpdateProperty(property.Name,
+                              property.NameSpace,
+                              property.Type,
+                              propertyValues);
+        }
+
+        /// <summary>
+        /// Add a multivalued free busy property to the query to be updated to the given values.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to add</param>
+        /// <param name="propertyNamespace">The Xml namespace of the property</param>
+        /// <param name="propertyType">The data type of the property</param>
+        /// <param name="propertyValues">The list of value for the property</param>
+        public void AddUpdateProperty(
+            string propertyName,
+            string propertyNamespace,
+            string propertyType,
+            List<string> propertyValues)
+        {
+            char namespacePrefix = ' ';
+
+            if (log.IsDebugEnabled)
+            {
+                // TODO: that Join+ToArray is really bad. We need after way.
+                log.DebugFormat("Adding {0}:{1} = (multi {2})\"{3}\"",
+                                propertyNamespace,
+                                propertyName,
+                                propertyType,
+                                string.Join(",", propertyValues.ToArray()));
+            }
+
+            if (propertyValues.Count == 0)
+            {
+                throw new ArgumentException("Multi valued properties must have at least one value");
+            }
+
+            namespacePrefix = FindOrAddNamespace(propertyNamespace);
+
+            //  <property's namespace prefix : property's name "dt"'s prefix : dt = mv.property's type>
+            //      <"xml:"'s prefix : v>
+            //          property's value1
+            //      </"xml:"'s prefix : v>
+            //      ...
+            //      <"xml:"'s prefix : v>
+            //          property's valueN
+            //      </"xml:"'s prefix : v>
+            //  </property's namespace prefix : property's name>
+            updateXml.AppendFormat(
+                "<{0}:{2} {1}:dt=\"mv.{3}\">",
+                namespacePrefix,
+                dtPrefix,
+                propertyName,
+                propertyType);
+
+            foreach (string propertyValue in propertyValues)
+            {
+                updateXml.AppendFormat(
+                    "<{0}:v>{1}</{0}:v>",
+                    xmlPrefix,
+                    propertyValue);
+            }
+
+            updateXml.AppendFormat(
+                "</{0}:{1}>",
+                namespacePrefix,
+                propertyName);
+        }
+
+        /// <summary>
+        /// Builds the query body to update/delete the set properties.
+        /// </summary>
+        public string BuildQueryBody()
+        {
+            string result = null;
+
+            if (updateXml.Length == 0 && removeXml.Length == 0)
+            {
+                throw new Exception("At least one of remove or update should be set");
+            }
+
+            queryBody.Length = 0;
+            queryBody.EnsureCapacity(updateXml.Length + removeXml.Length + 256);
+
+            queryBody.AppendFormat(
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?><{0}:propertyupdate ",
+                davPrefix);
+
+            foreach (KeyValuePair<string, char> pair in namespacesMap)
+            {
+                queryBody.AppendFormat("xmlns:{0}=\"{1}\" ", pair.Value, pair.Key);
+            }
+
+            queryBody.Append(">");
+
+            // The order of the update vs remove elements in the body of the query
+            // might be significant if the same property is both updated and delete.
+            // Since this is an indication that something wrong is going on in the caller,
+            // we are not going to provide any checks or guarantees.
+
+            if (updateXml.Length != 0)
+            {
+                queryBody.AppendFormat(
+                    "<{0}:set><{0}:prop>{1}</{0}:prop></{0}:set>",
+                    davPrefix,
+                    updateXml);
+            }
+
+            if (removeXml.Length != 0)
+            {
+                queryBody.AppendFormat(
+                    "<{0}:remove><{0}:prop>{1}</{0}:prop></{0}:remove>",
+                    davPrefix,
+                    removeXml);
+            }
+
+            queryBody.AppendFormat("</{0}:propertyupdate>", davPrefix);
+
+            result = queryBody.ToString();
+
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("The query built is {0}", result);
+            }
+
+            return result;
+        }
+
+        private char FindOrAddNamespace(
+            string namespaceName)
+        {
+            char namespacePrefix = ' ';
+
+            if (namespacesMap.TryGetValue(namespaceName, out namespacePrefix))
+            {
+                return namespacePrefix;
+            }
+
+            if (nextNamespacePrefix > 'z')
+            {
+                throw new ArgumentException("Ran out of namespace prefixes");
+            }
+
+            namespacePrefix = nextNamespacePrefix;
+            namespacesMap.Add(namespaceName, namespacePrefix);
+            nextNamespacePrefix++;
+
+            return namespacePrefix;
+        }
+    }
+
     #region WebDAV Queries
 
     /// <summary>
@@ -35,7 +392,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
     public class WebDavQuery
     {
         private enum FreeBusyState { Free, Busy, Tentative, OOO, Unavailable };
-        
+
         /// <summary>
         /// Logger for WebDavQuery
         /// </summary>
@@ -99,7 +456,20 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <returns>The response body</returns>
         public string IssueRequest(string url, Method method, string body)
         {
-            return _requestor.IssueRequest(url, method, body);
+            return _requestor.IssueRequest(url, method, body, null);
+        }
+
+        /// <summary>
+        /// Issue a requet to the networking implementation
+        /// </summary>
+        /// <param name="url">The URL to request</param>
+        /// <param name="method">The HTTP method to use</param>
+        /// <param name="body">The request body to send</param>
+        /// <param name="headers">Optional headers to add to the request</param>
+        /// <returns>The response body</returns>
+        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
+        {
+            return _requestor.IssueRequest(url, method, body, headers);
         }
 
         /// <summary>
@@ -179,8 +549,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="propertyValue">The new Property value</param>
         /// <returns>The response body</returns>
         public string UpdateFreeBusyProperty(
-            string destination, 
-            FreeBusyProperty property, 
+            string destination,
+            FreeBusyProperty property,
             string propertyValue)
         {
             string body = BuildFreeBusyPropertyQuery( property.Name, property.NameSpace, property.Type, propertyValue );
@@ -196,8 +566,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="propertyValues">The new Property values</param>
         /// <returns>The response body</returns>
         public string UpdateFreeBusyProperty(
-            string destination, 
-            FreeBusyProperty property, 
+            string destination,
+            FreeBusyProperty property,
             List<string> propertyValues )
         {
             string body = BuildFreeBusyMultiValuedPropertyQuery( property.Name, property.NameSpace, property.Type, propertyValues );
@@ -224,7 +594,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             return body;
         }
 
-        private string BuildFreeBusyPropertyQuery( string propertyName, string propertyNamespace, string propertyType, string propertyValue )
+        private string BuildFreeBusyPropertyQuery(string propertyName, string propertyNamespace, string propertyType, string propertyValue)
         {
             string body = string.Format(
                   "<?xml version=\"1.0\"?>"
@@ -286,7 +656,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <returns>The URL of the created appointment</returns>
         public string CreateAppointment( string mailboxUrl, Appointment appointment )
         {
-            string body = WebDavXmlResources.GetText( 
+            string body = WebDavXmlResources.GetText(
                 WebDavXmlResources.CreateAppointment,
                 appointment.Subject,
                 appointment.Body,
@@ -305,12 +675,12 @@ namespace Google.GCalExchangeSync.Library.WebDav
             if ( !mailboxUrl.EndsWith( "/" ) )
                 mailboxUrl += "/";
 
-            string appointmentUrl = string.Format( 
+            string appointmentUrl = string.Format(
                 "{0}{{{1}}}.eml",
                 mailboxUrl,
                 Guid.NewGuid().ToString() );
 
-            string multiStatusResponse = 
+            string multiStatusResponse =
                 IssueRequest( appointmentUrl, Method.PROPPATCH, body );
 
             appointment.HRef = appointmentUrl;
@@ -446,7 +816,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
             return result;
         }
-        
+
         private string GetPropertyAsString(XmlNode props, string id, XmlNamespaceManager ns)
         {
             return GetPropertyAsString(props, id, string.Empty, ns);
@@ -534,12 +904,12 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <returns>FreeBusy information for the user</returns>
         protected FreeBusy LoadFreeBusy(string exchangeServerUrl, ExchangeUser user, DateTimeRange window)
         {
-            string folderUrl = FreeBusyUrl.GenerateAdminGroupUrlFromDN( 
+            string folderUrl = FreeBusyUrl.GenerateAdminGroupUrlFromDN(
                 exchangeServerUrl, user.LegacyExchangeDN );
             string folderPath = FreeBusyUrl.GenerateAdminGroupUrlFromDN(
                 "", user.LegacyExchangeDN);
 
-            string request = WebDavXmlResources.GetText( 
+            string request = WebDavXmlResources.GetText(
                 WebDavXmlResources.LoadFreeBusy,
                 folderPath,
                 user.FreeBusyCommonName);
@@ -575,8 +945,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         }
 
         private Dictionary<ExchangeUser, FreeBusy> FastLoadFreeBusy(
-            string baseUrl, 
-            ExchangeUserDict users, 
+            string baseUrl,
+            ExchangeUserDict users,
             DateTimeRange window)
         {
             Dictionary<ExchangeUser, FreeBusy> result = new Dictionary<ExchangeUser, FreeBusy>();
@@ -586,8 +956,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
             // Convert interval in mins to Ticks
             // Ticks is in 100 Nanosecond = 1 E -7 s
             long interval = (long)freeBusyInterval * 60 * 10000000;
-            DateTime baseTime = 
-                new DateTime(window.Start.Ticks + (interval - (window.Start.Ticks % interval)), 
+            DateTime baseTime =
+                new DateTime(window.Start.Ticks + (interval - (window.Start.Ticks % interval)),
                 DateTimeKind.Unspecified);
 
             XmlDocument doc = new XmlDocument();
@@ -615,7 +985,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
                         // From: http://support.microsoft.com/kb/813268
                         //
-                        // The data is encoded as a raster(!) string with a 
+                        // The data is encoded as a raster(!) string with a
                         // digit for each 15 min block
                         //
                         // 0 - Free
@@ -704,9 +1074,9 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="users">The set of users to get free busy info for</param>
         /// <param name="window">The DateTime range to get free busy info for</param>
         /// <returns>A set of FreeBusy information for each user</returns>
-        public Dictionary<ExchangeUser,FreeBusy> LoadFreeBusy( 
-            string exchangeServerUrl, 
-            ExchangeUserDict users, 
+        public Dictionary<ExchangeUser,FreeBusy> LoadFreeBusy(
+            string exchangeServerUrl,
+            ExchangeUserDict users,
             DateTimeRange window )
         {
             if (_fastFreeBusyLookup)

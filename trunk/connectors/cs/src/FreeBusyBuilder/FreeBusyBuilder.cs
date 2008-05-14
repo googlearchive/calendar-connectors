@@ -143,7 +143,7 @@ namespace Google.CalendarConnector.Plugin
         /// Right now only these two are necessary, but others can be added.
         /// Still one has to be cautious so we don't ask for too much data.
         /// </summary>
-        private static readonly string[] PROPERTIES_TO_LOAD = 
+        private static readonly string[] PROPERTIES_TO_LOAD =
             { LEGACY_EXCHANGE_DN, PROXY_ADDRESSES };
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Google.CalendarConnector.Plugin
         /// in the non-ipm. Normally this is above the ipm, but in DAV
         /// the way to address them makes it look like a peer to the
         /// other public folders. The rest of the path, organization and
-        /// organizational unit (something like 
+        /// organizational unit (something like
         /// o=GooLab/ou=First Administrative Group) is extracted from the
         /// data we get from AD for the contacts.
         /// </summary>
@@ -177,7 +177,7 @@ namespace Google.CalendarConnector.Plugin
         /// (objectClass=contact)(objectCategory=person) same as the Exchange
         /// recepient policy builder does, then those that are imported by any
         /// connector, then those that have their legacyExchangeDN set
-        /// (I have seem ocasions there was delay), then have their 
+        /// (I have seem ocasions there was delay), then have their
         /// targetAddress as SMTP so we don't get Notes connector contacts,
         /// and at the end those that have secondary (hence lower case) gwise
         /// address with their UID.
@@ -325,7 +325,7 @@ namespace Google.CalendarConnector.Plugin
         /// the function will return null.
         /// The string will be returned in upper case.
         /// The UID is assumed to be the last CN component.
-        /// For example for 
+        /// For example for
         /// /o=G..b/ou=F..p/cn=Recipients/cn=d0692608-dea9c581-466bd07a-f0d12967
         /// it will return D0692608-DEA9C581-466BD07A-F0D12967.
         /// </summary>
@@ -359,7 +359,7 @@ namespace Google.CalendarConnector.Plugin
         /// the function will return null.
         /// The string will be returned in upper case.
         /// The group is assumed to be prelast CN component.
-        /// For example for 
+        /// For example for
         /// /o=G..b/ou=F..p/cn=Recipients/cn=d0692608-dea9c581-466bd07a-f0d12967
         /// it will return RECIPIENTS.
         /// </summary>
@@ -404,7 +404,7 @@ namespace Google.CalendarConnector.Plugin
         /// If the property is different (not legacyExchangeDN) or mallformed
         /// the function will return null.
         /// The group is assumed to be all components prior to the common group.
-        /// For example for 
+        /// For example for
         /// /o=GooLab/ou=First Administrative Group/cn=Recipients/cn=d...7
         /// it will return
         /// http://localhost/public/NON_IPM_SUBTREE/SCHEDULE%2B%20FREE%20BUSY/
@@ -445,11 +445,11 @@ namespace Google.CalendarConnector.Plugin
 
         /// <summary>
         /// Parses the GroupWise email address from proxy address.
-        /// If the property is different (not legacyExchangeDN) or 
+        /// If the property is different (not legacyExchangeDN) or
         /// the proxy address is in other formar, or mallformed
         /// the function will return null.
         /// The address return will have the GWISE: prefix.
-        /// For example for 
+        /// For example for
         /// GWISE:user1.postoffice1.domain1
         /// it will return GWISE:user1.postoffice1.domain1.
         /// </summary>
@@ -552,9 +552,9 @@ namespace Google.CalendarConnector.Plugin
         }
 
         /// <summary>
-        /// Queries AD for all Groupwise connector contacts and returns 
+        /// Queries AD for all Groupwise connector contacts and returns
         /// a dictionary of GWiseContacts. The key is the UID of the contact.
-        /// If no contacts are found an empty dictionary will be returned, 
+        /// If no contacts are found an empty dictionary will be returned,
         /// no null.
         /// The root path, user name and password are optional.
         /// If they are given they will be used, otherwise RootDSE
@@ -606,7 +606,7 @@ namespace Google.CalendarConnector.Plugin
         }
 
         /// <summary>
-        /// A small help function to build credentials object from 
+        /// A small help function to build credentials object from
         /// given user name and password, if they are given,
         /// or return null if either of them is null.
         /// Note if the password is empty it should be empty string, not null.
@@ -641,7 +641,7 @@ namespace Google.CalendarConnector.Plugin
         /// <param name="password">Password for the user</param>
         /// <param name="freeBusyUrl">The Url of the free busy folder,
         /// where the free busy email should be created</param>
-        /// <param name="gwiseContact">The contact for 
+        /// <param name="gwiseContact">The contact for
         /// which to create the free busy email</param>
         private static void CreateGWiseFreeBusyEmail(
             ICredentials credentials,
@@ -672,7 +672,7 @@ namespace Google.CalendarConnector.Plugin
             request.Method = PROPPATCH;
             // This is necesssary to make Windows Auth use keep alive.
             // Due to the large number of connections we may make to Exchange,
-            // if we don't do this, the process may exhaust the supply of 
+            // if we don't do this, the process may exhaust the supply of
             // available ports.
             // To keep this "safe", requests are isolated by connection pool.
             // See UnsafeAuthenticatedConnectionSharing on MSDN.
@@ -707,7 +707,7 @@ namespace Google.CalendarConnector.Plugin
         /// <summary>
         /// The function creates a free busy email for the GWise
         /// contacts that are not marked as having working one.
-        /// The emails are created under the public folder 
+        /// The emails are created under the public folder
         /// specified in free_busy_url.
         /// The credentials are optional.
         /// If they are given they will be used, otherwise
@@ -817,7 +817,7 @@ namespace Google.CalendarConnector.Plugin
         /// The UID is supposed to be in upper case and the function will
         /// return it as is.
         /// The UID is assumed to be the last CN component in the subject.
-        /// For example for 
+        /// For example for
         /// USER-/CN=RECIPIENTS/CN=D3143CCF-E9938337-91AD646-AB45321E
         /// it will return D3143CCF-E9938337-91AD646-AB45321E.
         /// </summary>
@@ -850,7 +850,7 @@ namespace Google.CalendarConnector.Plugin
         /// for free busy emails. It parses the contacts UIDs from the XML
         /// response and marks the contacts, which have free buys emails.
         /// If the subject is mallformed the function will return null.
-        /// I am not perfectly happy about mixing the response and 
+        /// I am not perfectly happy about mixing the response and
         /// the dictionary in a single function. It will be cleaner to parse
         /// the response and have this function work on a list.
         /// the problem with that is the number of additional allocations that

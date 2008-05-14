@@ -56,16 +56,16 @@ namespace Google.GCalExchangeSync.Library.Scheduling
         /// Add the thread as an active thread
         /// </summary>
         /// <param name="threadIdentifier">thread to add</param>
-        public static void AddActiveThread( string threadIdentifier ) 
+        public static void AddActiveThread( string threadIdentifier )
         {
-            lock ( Sentinel.ActiveThreads ) 
+            lock ( Sentinel.ActiveThreads )
             {
-                ActiveThreads.Add( threadIdentifier );  
-                if(_log.IsDebugEnabled) 
-                { 
+                ActiveThreads.Add( threadIdentifier );
+                if(_log.IsDebugEnabled)
+                {
                     _log.Debug( String.Format(
-                        "Start Thread {0} on Line {1}", 
-                        threadIdentifier, ActiveThreads.Count)); 
+                        "Start Thread {0} on Line {1}",
+                        threadIdentifier, ActiveThreads.Count));
                 }
             }
         }
@@ -76,14 +76,14 @@ namespace Google.GCalExchangeSync.Library.Scheduling
         /// <param name="threadIdentifier">Thread to remove</param>
         public static void RemoveActiveThread( string threadIdentifier )
         {
-            lock ( Sentinel.ActiveThreads ) 
+            lock ( Sentinel.ActiveThreads )
             {
-                ActiveThreads.Remove( threadIdentifier );     
+                ActiveThreads.Remove( threadIdentifier );
                 _log.Debug( String.Format(
-                    "Finish Thread {0} on Line {1}", 
+                    "Finish Thread {0} on Line {1}",
                     threadIdentifier, ActiveThreads.Count));
             }
-        } 
+        }
         #endregion
 
         #region constructors
@@ -105,7 +105,7 @@ namespace Google.GCalExchangeSync.Library.Scheduling
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             //check if the sentinel is still enabled
-            if ( Sentinel.Enabled ) 
+            if ( Sentinel.Enabled )
             {
                 if (_log.IsDebugEnabled)
                     _log.Debug("Sentinel is Enabled");
@@ -136,7 +136,7 @@ namespace Google.GCalExchangeSync.Library.Scheduling
         public delegate void ThreadPoolSpawnWorkerHandler( object sender );
         #endregion
 
-        private void SpawnWorker() 
+        private void SpawnWorker()
         {
             try
             {

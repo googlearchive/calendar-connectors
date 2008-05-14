@@ -33,15 +33,9 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="exchangeGateway">An Exchange Gateway to make changes</param>
         /// <param name="window">DateTime window to synchronize events for</param>
         void SyncUser(
-            ExchangeUser user, 
-            EventFeed googleAppsFeed, 
-            ExchangeService exchangeGateway, 
+            ExchangeUser user,
+            EventFeed googleAppsFeed,
+            ExchangeService exchangeGateway,
             DateTimeRange window);
-
-        /// <summary>
-        /// Initialize the free busy gateway
-        /// </summary>
-        /// <param name="exchangeGateway">The free busy gateway to use</param>
-        void Initialize(ExchangeService exchangeGateway);
     }
 }

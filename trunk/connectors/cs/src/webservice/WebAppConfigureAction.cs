@@ -52,9 +52,9 @@ namespace Google.GCalExchangeSync.Web
       doc.Save(dstPath);
     }
 
-    protected void setAppSetting(XmlDocument doc, string key, string value) 
+    protected void setAppSetting(XmlDocument doc, string key, string value)
     {
-      string path = 
+      string path =
           string.Format("//configuration/appSettings/add[@key='{0}']", key);
       XmlNode node = doc.SelectSingleNode(path);
       if (node != null)

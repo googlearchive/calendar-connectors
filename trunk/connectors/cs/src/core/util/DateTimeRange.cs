@@ -52,9 +52,29 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             DateTimeRange r = obj as DateTimeRange;
 
-            // TODO(bjames): Fix this - the FreeBusyWriter
-            // relies on this sorting on start time.
-            return start.CompareTo(r.Start);
+            if (this == null && r == null)
+            {
+                return 0;
+            }
+
+            if (this == null)
+            {
+                return -1;
+            }
+
+            if (r == null)
+            {
+                return 1;
+            }
+
+            int compare = start.CompareTo(r.Start);
+
+            if (compare != 0)
+            {
+                return compare;
+            }
+
+            return end.CompareTo(r.End);
         }
 
         /// <summary>
@@ -90,7 +110,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>A unique hashcode for the date time range</returns>
         public override int GetHashCode()
         {
-            return Start.GetHashCode() | End.GetHashCode();
+            return Start.GetHashCode() ^ End.GetHashCode();
         }
 
         /// <summary>

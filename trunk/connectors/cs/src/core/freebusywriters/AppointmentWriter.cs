@@ -59,7 +59,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// Tags an appointment with a ownership flag so that the appointment can be validated 
+        /// Tags an appointment with a ownership flag so that the appointment can be validated
         /// against
         /// </summary>
         /// <param name="appt">The appointment to set ownership for</param>
@@ -69,17 +69,17 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// Merges a users appointment schedule from with appointments generated from a 
+        /// Merges a users appointment schedule from with appointments generated from a
         /// GoogleApps feed
         /// </summary>
         /// <param name="user">User to update with Google Apps information</param>
         /// <param name="googleAppsFeed">Source feed to generate appointment information</param>
         /// <param name="exchangeGateway">Gateway to sync Appointments with</param>
         /// <param name="window">DateRange to sync for</param>
-        public void SyncUser( 
-            ExchangeUser user, 
-            EventFeed googleAppsFeed, 
-            ExchangeService exchangeGateway, 
+        public void SyncUser(
+            ExchangeUser user,
+            EventFeed googleAppsFeed,
+            ExchangeService exchangeGateway,
             DateTimeRange window)
         {
             exchangeGateway.GetCalendarInfoForUser(user, window);
@@ -95,7 +95,7 @@ namespace Google.GCalExchangeSync.Library
             List<Appointment> toCreate = new List<Appointment>();
 
             OlsonTimeZone feedTimeZone = OlsonUtil.GetTimeZone(googleAppsFeed.TimeZone.Value);
-            IntervalTree<Appointment> gcalApptTree = 
+            IntervalTree<Appointment> gcalApptTree =
                 CreateAppointments(user, feedTimeZone, googleAppsFeed);
 
             /* Iterate through each Free/Busy time block for the user */
@@ -110,7 +110,7 @@ namespace Google.GCalExchangeSync.Library
                     /* Validate that this is a GCalender appoint */
                     if ( ValidateOwnership( appt ) )
                     {
-                        /* If the GCalender appointments do not contain an 
+                        /* If the GCalender appointments do not contain an
                          * appointment for this period, add it for deletion */
                         if (gcalApptTree.FindExact(appt.Range) == null)
                         {
@@ -123,7 +123,7 @@ namespace Google.GCalExchangeSync.Library
             /* Iterate through each Google Apps appointment */
             AppointmentCollection appointments = user.BusyTimes.Appointments;
             List<Appointment> gcalApptList = gcalApptTree.GetNodeList();
-            
+
             foreach (Appointment newAppt in gcalApptList)
             {
                 // If the meeting was cancelled
@@ -150,7 +150,7 @@ namespace Google.GCalExchangeSync.Library
                 List<Appointment> apptList = appointments.Get(newAppt.Range);
                 log.DebugFormat("Looking up preexisting event: {0} {1}", newAppt.Range, newAppt.Range.Start.Kind);
                 log.DebugFormat("Found {0} matching items", apptList.Count);
-                    
+
                 // Check that there is a free busy block that correlates with this appointment
                 foreach ( Appointment existingAppt in apptList )
                 {
@@ -172,7 +172,7 @@ namespace Google.GCalExchangeSync.Library
 
             if (log.IsInfoEnabled)
             {
-                log.InfoFormat( 
+                log.InfoFormat(
                     "AppointmentWriter for '{0}'.  [{1} deleted, {2} updated, {3} new]",
                     user.Email,
                     toDelete.Count,
@@ -194,8 +194,8 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="googleAppsFeed">Source feed to create array from</param>
         /// <returns></returns>
         private IntervalTree<Appointment> CreateAppointments(
-            ExchangeUser user, 
-            OlsonTimeZone srcTimeZone, 
+            ExchangeUser user,
+            OlsonTimeZone srcTimeZone,
             EventFeed googleAppsFeed)
         {
             IntervalTree<Appointment> result = new IntervalTree<Appointment>();
@@ -221,10 +221,10 @@ namespace Google.GCalExchangeSync.Library
             return result;
         }
 
-        private void CreateAppointment( 
+        private void CreateAppointment(
             IntervalTree<Appointment> result,
-            ExchangeUser user, 
-            OlsonTimeZone srcTimeZone, 
+            ExchangeUser user,
+            OlsonTimeZone srcTimeZone,
             EventEntry googleAppsEvent)
         {
             Appointment appt = new Appointment();
@@ -252,7 +252,7 @@ namespace Google.GCalExchangeSync.Library
 
             if ( googleAppsEvent.Status != null )
             {
-                appt.MeetingStatus = 
+                appt.MeetingStatus =
                     ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
             }
             else
@@ -314,14 +314,6 @@ namespace Google.GCalExchangeSync.Library
             existingAppt.BusyStatus = newAppt.BusyStatus;
 
             return existingAppt;
-        }
-
-        /// <summary>
-        /// Initialize the free busy writer
-        /// </summary>
-        /// <param name="exchangeGateway">The exchange server to use</param>
-        public void Initialize(ExchangeService exchangeGateway)
-        {
         }
     }
 }

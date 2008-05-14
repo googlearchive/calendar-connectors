@@ -40,7 +40,7 @@ namespace Google.GCalExchangeSync.Service
             {
                 _isConfigLoaded = true;
 
-                Configuration config = 
+                Configuration config =
                     ConfigurationManager.OpenExeConfiguration( ConfigurationUserLevel.None );
 
                 ConfigCache.LoadConfiguration( config );

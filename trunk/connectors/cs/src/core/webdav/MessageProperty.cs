@@ -24,11 +24,20 @@ namespace Google.GCalExchangeSync.Library.WebDav
     public class MessageProperty
     {
         /// <summary>Exchange WebDAV Subject property</summary>
-        public static readonly Property Subject = 
-            new Property( "subject", "http://schemas.microsoft.com/mapi/" );
+        public static readonly Property Subject =
+            new Property("subject", "http://schemas.microsoft.com/mapi/");
 
-        /// <summary>Exchange WebDAV ThreadTopic property</summary>
-        public static readonly Property ThreadTopic = 
-            new Property( "thread-topic", "http://schemas.microsoft.com/mapi/" );
+        /// <summary>Exchange WebDAV subject prefix (RE:/FW:) property</summary>
+        public static readonly Property SubjectPrefix =
+            new Property("x003D001F", "http://schemas.microsoft.com/mapi/proptag/");
+
+        /// <summary>Exchange WebDAV Conversation Topic</summary>
+        public static readonly Property ConversationTopic =
+            new Property("x0070001F", "http://schemas.microsoft.com/mapi/proptag/");
+
+        /// <summary>Exchange WebDAV Normalized Subject property (the subject w/o any prefix)</summary>
+        public static readonly Property NormalizedSubject =
+            new Property("x0E1D001F", "http://schemas.microsoft.com/mapi/proptag/");
+
     }
 }

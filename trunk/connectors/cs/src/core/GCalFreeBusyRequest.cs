@@ -125,7 +125,7 @@ namespace Google.GCalExchangeSync.Library
         public DateTime Since
         {
             get { return since; }
-        } 
+        }
 
         #endregion
 
@@ -139,8 +139,8 @@ namespace Google.GCalExchangeSync.Library
 
             this.Parse(rawInput);
             this.ValidateRequest();
-        } 
-        
+        }
+
         /// <summary>
         /// Parses the incoming Exchange request from GCal. The requests are of the form:
         /// [ version #, ID, [list of emails], startdate/enddate, sincedata, timezone]
@@ -232,15 +232,19 @@ namespace Google.GCalExchangeSync.Library
             startDate = DateUtil.ParseGoogleDate(dateArray[0].Trim());
             endDate = DateUtil.ParseGoogleDate(dateArray[1].Trim());
 
+            string requestItemSince = requestItems[4].Trim();
             /* Get the since field from the request */
             try
             {
-                since = DateUtil.ParseGoogleDate(requestItems[4].Trim());
+                since = DateUtil.ParseGoogleDate(requestItemSince);
             }
-            catch (GCalExchangeException)
+            catch (GCalExchangeException ex)
             {
                 // We don't really use this param anyway and in some cases
                 // we've seen an invalid date
+                log.Warn(String.Format("Ignoring incorrect since request parameter {0}",
+                                        requestItemSince),
+                          ex);
                 since = new DateTime();
             }
 

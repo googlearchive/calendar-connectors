@@ -85,7 +85,7 @@ namespace Google.GCalExchangeSync.Library
             }
 
             StringBuilder sb = new StringBuilder("(");
-            
+
             // Build the LDAP query
             if (terms.Length > 0)
             {
@@ -108,7 +108,7 @@ namespace Google.GCalExchangeSync.Library
             }
 
             sb.Append(")");
-            
+
             try
             {
                 return SearchDirectory(sb.ToString());
@@ -144,16 +144,16 @@ namespace Google.GCalExchangeSync.Library
             }
 
             string fullQuery = String.Format(
-                "(&{0}(|(objectcategory=user)(objectcategory=contact)))", 
+                "(&{0}(|(objectcategory=user)(objectcategory=contact)))",
                 sb.ToString());
 
             if (log.IsInfoEnabled)
             {
                 log.InfoFormat("Issuing LDAP query '{0}'", fullQuery);
             }
-            
+
             // Create the directory searcher and set the scope
-            DirectorySearcher searcher = new DirectorySearcher( fullQuery ); 
+            DirectorySearcher searcher = new DirectorySearcher( fullQuery );
             searcher.SearchRoot = activeDirectory;
             searcher.SearchScope = SearchScope.Subtree;
             searcher.PageSize = LDAP_PAGE_SIZE;
@@ -165,7 +165,7 @@ namespace Google.GCalExchangeSync.Library
                 log.InfoFormat(
                     "Found {0} users in Active Directory.", matches.Count);
             }
-            
+
             return matches;
         }
 
@@ -176,7 +176,7 @@ namespace Google.GCalExchangeSync.Library
         /// <returns>True if the user exists, false otherwise</returns>
         public bool UserExists(string email)
         {
-            SearchResultCollection results = 
+            SearchResultCollection results =
                 SearchDirectoryByAttribute(email, "mail");
             return (results != null && results.Count != 0);
         }
@@ -189,7 +189,7 @@ namespace Google.GCalExchangeSync.Library
         /// <returns>DirectoryEntry for the user</returns>
         public DirectoryEntry GetUser(string userName)
         {
-            SearchResultCollection results = 
+            SearchResultCollection results =
                 SearchDirectoryByAttribute(userName, "mail");
 
             if (results == null || results.Count != 1)
@@ -197,9 +197,9 @@ namespace Google.GCalExchangeSync.Library
                 string errorMessage = string.Format(
                     "Unable to find user '{0}' in Active Directory.",
                     userName );
-                
-                throw new GCalExchangeException( 
-                    GCalExchangeErrorCode.ActiveDirectoryError, 
+
+                throw new GCalExchangeException(
+                    GCalExchangeErrorCode.ActiveDirectoryError,
                     errorMessage );
             }
             else

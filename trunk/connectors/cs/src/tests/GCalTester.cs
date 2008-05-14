@@ -28,7 +28,7 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
     {
         public static EventFeed QueryGCalFreeBusy( string gcalUserEmail )
         {
-            GCalGateway gw = 
+            GCalGateway gw =
                 new GCalGateway(
                     ConfigCache.GoogleAppsLogin,
                     ConfigCache.GoogleAppsPassword,
@@ -38,7 +38,7 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             DateTime end = DateTime.Now.AddDays(+7);
             DateTimeRange range = new DateTimeRange(start, end);
 
-            EventFeed feed = gw.QueryGCal( 
+            EventFeed feed = gw.QueryGCal(
                 gcalUserEmail, GCalVisibility.Private, GCalProjection.FreeBusy, DateTime.MinValue, range );
             return feed;
         }

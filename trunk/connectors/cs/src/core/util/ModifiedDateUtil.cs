@@ -142,9 +142,11 @@ namespace Google.GCalExchangeSync.Library.Util
                     {
                         writer.WriteStartElement("lastModified");
 
-                        foreach ( string login in userModifiedTimes.Keys )
+                        foreach(KeyValuePair<string, DateTime> pair in userModifiedTimes)
                         {
-                            DateTime value = userModifiedTimes[login];
+                            string login = pair.Key;
+                            DateTime value = pair.Value;
+
                             writer.WriteStartElement("entry");
                             writer.WriteElementString("user", login);
                             writer.WriteElementString("modTime", value.ToString());
@@ -157,7 +159,7 @@ namespace Google.GCalExchangeSync.Library.Util
                 catch ( Exception ex )
                 {
                     throw new GCalExchangeException(
-                        GCalExchangeErrorCode.GenericError, 
+                        GCalExchangeErrorCode.GenericError,
                         "Error persisting modified times", ex );
                 }
             }

@@ -72,7 +72,7 @@ namespace Google.GCalExchangeSync.Library
             service.setUserCredentials(String.Format("{0}@{1}", googleAppsLogin, googleAppsDomain), googleAppsPassword);
 
             // Forcekeep alive connections on
-            ((GDataRequestFactory)service.RequestFactory).KeepAlive = ConfigCache.EnableKeepAlive; 
+            ((GDataRequestFactory)service.RequestFactory).KeepAlive = ConfigCache.EnableKeepAlive;
         }
 
         /// <summary>
@@ -85,10 +85,10 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="window">DateTime range to query between</param>
         /// <returns>An event feed for the user</returns>
         public EventFeed QueryGCal(
-            string email, 
-            GCalVisibility visibility, 
-            GCalProjection projection, 
-            DateTime modifiedSince, 
+            string email,
+            GCalVisibility visibility,
+            GCalProjection projection,
+            DateTime modifiedSince,
             DateTimeRange window)
         {
             // Perform mapping on the username if necessary
@@ -96,11 +96,11 @@ namespace Google.GCalExchangeSync.Library
 
             if (log.IsDebugEnabled)
             {
-                log.InfoFormat( 
-                    "FeedQuery with parameters: {0}, {1}, {2}, {3} [{4}]", 
-                    user, 
-                    visibility, 
-                    projection, 
+                log.InfoFormat(
+                    "FeedQuery with parameters: {0}, {1}, {2}, {3} [{4}]",
+                    user,
+                    visibility,
+                    projection,
                     modifiedSince,
                     window);
             }
@@ -182,7 +182,7 @@ namespace Google.GCalExchangeSync.Library
                     throw e;
                 }
             }
-    
+
         }
 
         private EventFeed QueryGCal(FeedQuery query, string userName, DateTime modifiedSince)

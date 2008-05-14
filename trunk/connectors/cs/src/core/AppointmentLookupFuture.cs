@@ -41,15 +41,15 @@ namespace Google.GCalExchangeSync.Library
            LogManager.GetLogger(typeof(AppointmentLookupFuture));
 
         public AppointmentLookupFuture(
-            ExchangeService exchange, 
-            ExchangeUserDict users, 
+            ExchangeService exchange,
+            ExchangeUserDict users,
             DateTimeRange window)
         {
             this.exchange = exchange;
             this.users = users;
             this.syncWindow = window;
 
-            // Only do this if appointment 
+            // Only do this if appointment
             // lookup is enabled
             if (ConfigCache.EnableAppointmentLookup)
             {
@@ -60,11 +60,11 @@ namespace Google.GCalExchangeSync.Library
         protected override void doTask()
         {
             // This method runs from the task thread
-            // We don't currently have a way to get 
+            // We don't currently have a way to get
             // appointment data for multiple users
             foreach (ExchangeUser user in users.Values)
             {
-                result[user] = 
+                result[user] =
                     exchange.Appointments.Lookup(user, syncWindow);
             }
         }
