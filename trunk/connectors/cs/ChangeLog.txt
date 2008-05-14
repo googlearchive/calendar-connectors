@@ -2,7 +2,7 @@
 Google Calendar Connectors Changelog
 ====================================
 
-v1.1 [??-???-2008]
+v1.1 [14-May-2008]
 ------------------
 * BUG FIX: Fixed various problems with syncing Appointments with Exchange
 * BUG FIX: Fixed appointment sync creation of duplicates if fetch failed
