@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 using Google.GData.Calendar;
@@ -58,23 +59,26 @@ namespace Google.GCalExchangeSync.Library
             ExchangeUser user,
             EventFeed googleAppsFeed,
             ExchangeService exchangeGateway,
-            DateTimeRange window )
+            DateTimeRange window)
         {
             if (_log.IsInfoEnabled)
             {
                 _log.InfoFormat("Creating F/B message.  [User={0}]", user.Email);
             }
 
-            string userFreeBusyUrl = FreeBusyUrl.GenerateUrlFromDN(
-                _exchangeServerUrl, user.LegacyExchangeDN );
+            string userFreeBusyUrl = FreeBusyUrl.GenerateUrlFromDN(_exchangeServerUrl,
+                                                                   user.LegacyExchangeDN);
 
             // Get F/B properties
 
-            OlsonTimeZone feedTimeZone = OlsonUtil.GetTimeZone( googleAppsFeed.TimeZone.Value );
+            OlsonTimeZone feedTimeZone = OlsonUtil.GetTimeZone(googleAppsFeed.TimeZone.Value);
 
-            DateTime minStartDate = DateTime.MinValue, maxEndDate = DateTime.MinValue;
-            DateTime startDate = DateTime.MinValue, endDate = DateTime.MinValue;
-            DateTime utcStartDate = DateTime.MinValue, utcEndDate = DateTime.MinValue;
+            DateTime minStartDate = DateTime.MinValue;
+            DateTime maxEndDate = DateTime.MinValue;
+            DateTime startDate = DateTime.MinValue;
+            DateTime endDate = DateTime.MinValue;
+            DateTime utcStartDate = DateTime.MinValue;
+            DateTime utcEndDate = DateTime.MinValue;
 
             List<DateTimeRange> freeBusyTimes = new List<DateTimeRange>();
 
@@ -82,20 +86,24 @@ namespace Google.GCalExchangeSync.Library
              * -  Convert everything to UTC
              * -  Clean up any problem dates
              * -  Get the min start date and the max end date */
-            foreach ( EventEntry googleAppsEvent in googleAppsFeed.Entries )
+            foreach (EventEntry googleAppsEvent in googleAppsFeed.Entries)
             {
                 startDate = googleAppsEvent.Times[0].StartTime;
                 utcStartDate = DateTime.SpecifyKind(startDate.ToUniversalTime(),
-                    DateTimeKind.Unspecified);
+                                                    DateTimeKind.Unspecified);
                 endDate = googleAppsEvent.Times[0].EndTime;
                 utcEndDate = DateTime.SpecifyKind(endDate.ToUniversalTime(),
-                    DateTimeKind.Unspecified);
+                                                  DateTimeKind.Unspecified);
 
-                if ( minStartDate == DateTime.MinValue || utcStartDate < minStartDate )
+                if (minStartDate == DateTime.MinValue || utcStartDate < minStartDate)
+                {
                     minStartDate = utcStartDate;
+                }
 
-                if ( maxEndDate == DateTime.MinValue || utcEndDate > maxEndDate )
+                if (maxEndDate == DateTime.MinValue || utcEndDate > maxEndDate)
+                {
                     maxEndDate = utcEndDate;
+                }
 
                 if (_log.IsDebugEnabled)
                 {
@@ -104,41 +112,17 @@ namespace Google.GCalExchangeSync.Library
                     _log.DebugFormat("Write FB event {0} - {1} in UTC", utcStartDate, utcEndDate);
                 }
 
-                // If the start UTC start date and UTC end date of the block are on different months,
-                // the block needs to be split up so that there is a free busy block in both the
-                // start and end month
-                if ( utcStartDate.Month == utcEndDate.Month )
-                {
-                    freeBusyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
-                }
-                else
-                {
-                    // Create an artificial end date for the portion of the block in the first
-                    // day by creating it with the year, month and day from the startDate, and
-                    //ending that day at 11:59:59 PM
-                    freeBusyTimes.Add(new DateTimeRange(
-                        utcStartDate,
-                        new DateTime(utcStartDate.Year,
-                                     utcStartDate.Month,
-                                     utcStartDate.Day,
-                                     23, 59, 59))) ;
-
-                    // Create an artificial start date for the portion of the block in the second
-                    // day by creating it with the year, month and day from the endDate, and
-                    // starting that day at 12:00:00 AM
-                    freeBusyTimes.Add( new DateTimeRange(
-                        new DateTime( utcEndDate.Year, utcEndDate.Month, utcEndDate.Day, 0, 0, 0 ),
-                        utcEndDate ) );
-                }
+                freeBusyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
             }
 
-            freeBusyTimes = CondenseFreeBusyTimes( freeBusyTimes );
+            CondenseFreeBusyTimes(freeBusyTimes);
 
             List<string> monthValues = new List<string>();
             List<string> base64FreeBusyData = new List<string>();
 
-            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(
-                freeBusyTimes, monthValues, base64FreeBusyData);
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(freeBusyTimes,
+                                                                  monthValues,
+                                                                  base64FreeBusyData);
 
             string stringStartDate = FreeBusyConverter.ConvertToSysTime(minStartDate).ToString();
             string stringEndDate = FreeBusyConverter.ConvertToSysTime(maxEndDate).ToString();
@@ -156,51 +140,109 @@ namespace Google.GCalExchangeSync.Library
             }
         }
 
-
-        private List<DateTimeRange> CondenseFreeBusyTimes(List<DateTimeRange> freeBusyTimes)
+        private static int CompareRangesByStartThenEnd(
+            DateTimeRange x, 
+            DateTimeRange y)
         {
-            List<DateTimeRange> condensedFreeBusyTimes = new List<DateTimeRange>();
-
-            freeBusyTimes.Sort();
-
-            foreach (DateTimeRange existingTime in freeBusyTimes)
+            if ((x == null) && (y == null))
             {
-                AddFreeBusyTime(condensedFreeBusyTimes, existingTime);
+                // If x is null and y is null, they are equal. 
+                return 0;
             }
 
-            return condensedFreeBusyTimes;
+            if (x == null)
+            {
+                // If x is null and y is not null, y is greater. 
+                return -1;
+            }
+
+            if (y == null)
+            {
+                // If x is not null and y is null, x is greater.
+                return 1;
+            }
+
+            int result = x.Start.CompareTo(y.Start);
+
+            if (result == 0)
+            {
+                result = x.End.CompareTo(y.End);
+            }
+
+            #if DEBUG
+                Debug.Assert((result == 0) == (x.CompareTo(y) == 0) && (result > 0) == (x.CompareTo(y) > 0));
+            #endif
+
+            return result;
         }
 
-        private void AddFreeBusyTime(List<DateTimeRange> freeBusyTimes, DateTimeRange newEntry)
+        private static bool IsMarkedToBeDeleted(
+            DateTimeRange range)
         {
-            int i = 0;
-            DateTime minStartDate, maxEndDate;
+            return (range.Start == DateTime.MinValue) && (range.End == DateTime.MinValue);
+        }
 
-            bool updatedExistingRange = false;
+        private static void CondenseFreeBusyTimes(
+            List<DateTimeRange> freeBusyTimes)
+        {
+            freeBusyTimes.Sort(CompareRangesByStartThenEnd);
 
-            foreach ( DateTimeRange existingTime in freeBusyTimes )
+            IEnumerable<DateTimeRange> enumerable = freeBusyTimes as IEnumerable<DateTimeRange>;
+            IEnumerator<DateTimeRange> enumerator = enumerable.GetEnumerator();
+            DateTimeRange previous = null;
+            DateTimeRange current = null;
+            int markedToBeDeleted = 0;
+            int deleted = 0;
+
+            if (!enumerator.MoveNext())
             {
-                if ( DateUtil.IsWithinRange( newEntry.Start, existingTime.Start, existingTime.End ) ||
-                      DateUtil.IsWithinRange( newEntry.End, existingTime.Start, existingTime.End ) )
+                // The list is empty
+                return;
+            }
+
+            previous = enumerator.Current;
+
+            while (enumerator.MoveNext())
+            {
+                current = enumerator.Current;
+
+                #if DEBUG
+                    Debug.Assert(previous.Start <= previous.End);
+                    Debug.Assert(current.Start <= current.End);
+                    Debug.Assert(previous.Start <= current.End);
+                #endif
+
+                // If the events touch or overlap
+                if (previous.End >= current.Start)
                 {
-                    minStartDate = ( newEntry.Start < existingTime.Start ) ?
-                        newEntry.Start : existingTime.Start;
-                    maxEndDate = ( newEntry.End > existingTime.End ) ?
-                        newEntry.End : existingTime.End;
+                    // Make the current the union of both
+                    #if DEBUG
+                        Debug.Assert(previous.Start <= current.Start);
+                    #endif
+                    current.Start = previous.Start;
 
-                    existingTime.Start = minStartDate;
-                    existingTime.End = maxEndDate;
+                    if (current.End < previous.End)
+                    {
+                        current.End = previous.End;
+                    }
+                    #if DEBUG
+                        Debug.Assert(current.End >= previous.End);
+                    #endif
 
-                    updatedExistingRange = true;
 
-                    i++;
+                    // Mark the previous to be deleted
+                    previous.Start = DateTime.MinValue;
+                    previous.End = DateTime.MinValue;
+                    markedToBeDeleted++;
                 }
+
+                previous = current;
             }
 
-            if ( !updatedExistingRange )
-            {
-                freeBusyTimes.Add( newEntry );
-            }
+            deleted = freeBusyTimes.RemoveAll(IsMarkedToBeDeleted);
+            #if DEBUG
+                Debug.Assert(markedToBeDeleted == deleted);
+            #endif
         }
     }
 }
