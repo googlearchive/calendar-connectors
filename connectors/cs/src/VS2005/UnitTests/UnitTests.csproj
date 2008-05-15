@@ -71,6 +71,9 @@
     <Compile Include="..\..\unittests\core\freebusywriters\AppointmentWriterTest.cs">
       <Link>core\freebusywriters\AppointmentWriterTest.cs</Link>
     </Compile>
+    <Compile Include="..\..\unittests\core\freebusywriters\SchedulePlusFreeBusyWriterTest.cs">
+      <Link>core\freebusywriters\SchedulePlusFreeBusyWriterTest.cs</Link>
+    </Compile>
     <Compile Include="..\..\unittests\core\GCalRequestTest.cs">
       <Link>core\GCalRequestTest.cs</Link>
     </Compile>

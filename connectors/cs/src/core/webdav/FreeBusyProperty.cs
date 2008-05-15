@@ -63,49 +63,49 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// FreeBusy merged (busy + OOF) months
         /// </summary>
         public static readonly FreeBusyProperty MergedMonths =
-            new FreeBusyProperty("x684f1003", "http://schemas.microsoft.com/mapi/proptag/", "int");
+            new FreeBusyProperty("x684f1003", "http://schemas.microsoft.com/mapi/proptag/", "mv.int");
 
         /// <summary>
         /// FreeBusy merged (busy + OOF) events
         /// </summary>
         public static readonly FreeBusyProperty MergedEvents =
-            new FreeBusyProperty("x68501102", "http://schemas.microsoft.com/mapi/proptag/", "bin.base64");
+            new FreeBusyProperty("x68501102", "http://schemas.microsoft.com/mapi/proptag/", "mv.bin.base64");
 
         /// <summary>
         /// FreeBusy tentative months
         /// </summary>
         public static readonly FreeBusyProperty TentativeMonths =
-            new FreeBusyProperty("x68511003", "http://schemas.microsoft.com/mapi/proptag/", "int");
+            new FreeBusyProperty("x68511003", "http://schemas.microsoft.com/mapi/proptag/", "mv.int");
 
         /// <summary>
         /// FreeBusy tentative events
         /// </summary>
         public static readonly FreeBusyProperty TentativeEvents =
-            new FreeBusyProperty("x68521102", "http://schemas.microsoft.com/mapi/proptag/", "bin.base64");
+            new FreeBusyProperty("x68521102", "http://schemas.microsoft.com/mapi/proptag/", "mv.bin.base64");
 
         /// <summary>
         /// FreeBusy busy months
         /// </summary>
         public static readonly FreeBusyProperty BusyMonths =
-            new FreeBusyProperty( "x68531003", "http://schemas.microsoft.com/mapi/proptag/", "int" );
+            new FreeBusyProperty("x68531003", "http://schemas.microsoft.com/mapi/proptag/", "mv.int");
 
         /// <summary>
         /// FreeBusy busy events
         /// </summary>
         public static readonly FreeBusyProperty BusyEvents =
-            new FreeBusyProperty( "x68541102", "http://schemas.microsoft.com/mapi/proptag/", "bin.base64" );
+            new FreeBusyProperty("x68541102", "http://schemas.microsoft.com/mapi/proptag/", "mv.bin.base64");
 
         /// <summary>
         /// FreeBusy OOF months
         /// </summary>
         public static readonly FreeBusyProperty OutOfOfficeMonths =
-            new FreeBusyProperty("x68551003", "http://schemas.microsoft.com/mapi/proptag/", "int" );
+            new FreeBusyProperty("x68551003", "http://schemas.microsoft.com/mapi/proptag/", "mv.int");
 
         /// <summary>
         /// FreeBusy OOF events
         /// </summary>
         public static readonly FreeBusyProperty OutOfOfficeEvents =
-            new FreeBusyProperty("x68561102", "http://schemas.microsoft.com/mapi/proptag/", "bin.base64" );
+            new FreeBusyProperty("x68561102", "http://schemas.microsoft.com/mapi/proptag/", "mv.bin.base64");
 
         /// <summary>
         /// The time when the free busy information was set, in UTC.

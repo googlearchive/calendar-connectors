@@ -46,8 +46,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
             WebDavQueryBuilder queryBuilder = new WebDavQueryBuilder();
             Property up2 = new Property("up2", "NS1");
             FreeBusyProperty up3 = new FreeBusyProperty("up3", "FB", "type1");
-            FreeBusyProperty up4 = new FreeBusyProperty("up4", "MV", "type2");
-            FreeBusyProperty up5 = new FreeBusyProperty("up5", "MV", "type5");
+            FreeBusyProperty up4 = new FreeBusyProperty("up4", "MV", "mv.type2");
+            FreeBusyProperty up5 = new FreeBusyProperty("up5", "MV", "mv.type5");
             List<string> emptyList = new List<string>();
             List<string> up4Values = new List<string>();
             List<string> up5Values = new List<string>();
