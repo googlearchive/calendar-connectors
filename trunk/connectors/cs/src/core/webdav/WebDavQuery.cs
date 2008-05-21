@@ -255,10 +255,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
         {
             char namespacePrefix = ' ';
 
-            #if DEBUG
-                Debug.Assert(CheckMultiValueProperty(propertyName, propertyNamespace, propertyType));
-            #endif
-
             if (log.IsDebugEnabled)
             {
                 // TODO: that Join+ToArray is really bad. We need after way.
@@ -304,40 +300,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
                 "</{0}:{1}>",
                 namespacePrefix,
                 propertyName);
-        }
-
-        private static bool CheckMultiValueProperty(
-            string propertyName,
-            string propertyNamespace,
-            string propertyType)
-        {
-            if (propertyType.Substring(0, 3) != "mv.")
-            {
-                return false;
-            }
-
-            if (propertyNamespace != "http://schemas.microsoft.com/mapi/proptag/")
-            {
-                return true;
-            }
-
-            int propTag = 0;
-
-            try
-            {
-                propTag = int.Parse("0" + propertyName);
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-            catch (OverflowException)
-            {
-                return false;
-            }
-
-            return (propTag & 0x1000) != 0;
-
         }
 
         /// <summary>
