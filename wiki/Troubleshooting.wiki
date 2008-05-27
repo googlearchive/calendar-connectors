@@ -1,13 +1,62 @@
-#summary One-sentence summary of this page.
+= Troubleshooting =
 
-= Introduction =
+*I am getting 403 errors when running the Google Calendar Sync service?*
 
-Add your content here.
+  * If you are getting 403 errors when trying to sync free/busy from Google Calendar. Enable DEBUG logging on the sync service. You might need to configure SMTP domain mapping if your internal primary SMTP address on your Exchange user does not match the e-mail address in Google Apps.
+  * The user account in Google Apps is configured not to share free busy data. To verify sharing is enabled in Google Calendar goto Settings | Calendars | Shared: Edit Settings. Make sure "Share this calendar with others should be enabled". To share appointment details "Share this calendar with everyone in this domain" should enabled and set to "See all event details".
 
 
-= Details =
+  
+*I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Have you provided Google Enterprise support with the your URL of the server hosting the Web Service? You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your account settings on the Google Calendar server.
+  * Check the webservice.log to determine if the web service is receiving the request?
+  * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
+
+*The Google Calendar Connector Sync service is trying to sync every user in my Active Directory.*
+
+  * Configure the !SyncService.LDAPUserFilter in the config file. This filter allows you to filter the users in scope of the sync service. 
+
+
+*I am getting 401 access denied error messages when trying to read or write free/busy or appointment data?*
+
+  * Verify that you have configured the Windows service accounts with the proper permissions within Exchange to read and write free/busy or appointment data.
+  * If using IP white-lists on your Exchange servers running IIS, verify the server you are communicating with includes the IP of the server that is running the web/sync service in its white-list.
+
+
+*I get the error: !"Error writing appointment ---> System.Net.!WebException: The remote server returned an error: (409) Conflict"?*
+
+  * Verify the user has a properly configured legacyExchangeDN
+  * Verify that you have configured the Windows service accounts with the proper permissions within Exchange to read and write free/busy or appointment data. 
+
+
+*The Google Calendar Sync service crashes or stops after starting?*
+
+  * Review the config file to make sure all the xml syntax is correct. Improper syntax will cause the service to crash on start.  
+
+
+*The web service is not creating any log files?*
+
+  * Make sure NETWORK SERVICE has "MODIFY" privileges to the file system paths where the log files are configured to be written. 
+
+
+*The Sync service is not creating any log files?*
+
+  * Make sure SYSTEM has "MODIFY" privileges to the file system paths where the log files are configured to be written. 
+
+
+*The web or sync service is not encrypting the config file?*
+
+ _Sync:_
+  * Make sure you have enabled Configuration.!EncryptOnNextRun to "True"
+  * For the sync service, make sure SYSTEM has "MODIFY" privileges to the file system path where the config file is stored. 
+
+
+ _Web:_
+  * For the web service, make sure NETWORK SERVICE has "MODIFY" privileges to the file system path where the config file is stored. 
+
+
+ _Plug-In:_
+  * Make sure the plug-In is running as a Domain User account that has a "User" certificate installed in the User's Personal Certifate store.
+  * Make sure the config.txt is configured for the value win.certname.
+
