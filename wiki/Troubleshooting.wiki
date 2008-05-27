@@ -6,7 +6,7 @@
   * Check the webservice.log to determine if the web service is receiving the request?
   * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
 
-* Lookups from Google Calendar times out after 30 seconds *
+* Lookups from Google Calendar to Exchange time out after 30 seconds *
   * Make sure the URL address registered with Google Apps for your domain is correct
   * The Google Calendar connector uses a 30 second timeout - make sure the Web Service is not taking a long time to respond.
   If Web Service lookups are taking too long:
@@ -108,8 +108,8 @@
 
   * This could be due to the fact the web service was unable to locate an Exchange user or contact based on the addressed you entered. Please enable DEBUG on the web service log. This will help you determine why the user look up is failing.
   * The web browser is not able to communicate to the Google Calendar web service
-
-
+  * Make sure the URL address registered with Google Apps for your domain is correct
+  * Make sure you are not entering the internal Exchange e-mail address and are using an e-mail address based on the Google Apps domain.  
 
 *I get a security warning every time I try to look up free/busy data in Google Calendar?*
 
