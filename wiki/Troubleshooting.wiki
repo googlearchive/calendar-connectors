@@ -60,3 +60,27 @@
   * Make sure the plug-In is running as a Domain User account that has a "User" certificate installed in the User's Personal Certifate store.
   * Make sure the config.txt is configured for the value win.certname.
 
+
+*I have a user that always shows empty free/busy when viewing it from Google Calendar, but there is free/busy data in Exchange?*
+
+  * Most likely you have a Google Apps account setup for this user and it currently enabled and sharing free/busy data. The calendar free/busy look up tool is getting the data from Google Calendar and not from Exchange. You can disable the account so that it does not share free/busy data. This will force the Calendar free/busy look up function to take the data returned from the Web service.
+
+
+
+*I get the error Calendar does not exist when I try to look up an Exchange user in Google Calendar?*
+
+  * This could be due to the fact the web service was unable to locate an Exchange user or contact based on the addressed you entered. Please enable DEBUG on the web service log. This will help you determine why the user look up is failing.
+  * The web browser is not able to communicate to the Google Calendar web service
+
+
+
+*I get a security warning every time I try to look up free/busy data in Google Calendar?*
+
+  * This is caused due to a mismatch between http vs https connections between Google Calendar and the web service. For example you have loaded Google Calendar via HTTP but you have SSL enabled on the web service so the request being sent to the web service is HTTPS. Or vice verse you have load Google Calendar as HTTPS but your web service is configured for HTTP.
+
+  NOTE: If you have configured the web service for SSL but are loading Google Calendar as HTTP please work with you Enterprise Support Organization to configure Google Apps to always us SSL for Calendar. 
+
+
+*I am getting the error: "ERROR Google.GCalExchangeSync.Library.Util.!ModifiedDateUtil - System.Xml.!XmlException: 'None' is an invalid !XmlNodeType." How do I fix this?*
+
+  * You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the !UserModifiedTimes.xml from C:\google\data. This file will be rebuilt on the next sync service execution.
