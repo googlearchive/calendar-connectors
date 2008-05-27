@@ -13,17 +13,31 @@
   * Make sure the Exchange users do not exist in Google Apps or if they do the user is disabled
   * If the user needs to be enabled for other reason, configure the user's calendar to not be shared.
 
-* Log files show that the Google Calendar feed for a user cannot be fetched (error 404)
+* Log files show that the Google Calendar feed for a user cannot be fetched (error 404) *
   * Make sure the user exists in Google Apps
   * Make sure the url request for the user is using the proper Google Apps e-mail address and not the internal Exchange e-mail address.
   * Make sure the user has agreed to the Google Apps terms of service
-
 
 * Log files show Network connections are timing out *
   * Run netstat from the shell and make sure that connections are not being leaked. This may indicate that HTTP keep alive connections cannot be created between the Web / Sync service and Exchange.
 
 * Internal exchange email addresses differ from external Google Apps email addresses *
   * Add a domain mapping with the !GoogleApps.GCal.!DomainMapping setting
+
+* Log files show error 503 when reading / writing Schedule+ Free/Busy information
+  * Make sure the exchange server has a replica of the Free/Busy Public Folder - the Exchange.!FreeBusyServerName option can be used to set a different Exchange Server for the Free/Busy replica
+
+* Log files show error 401 when accessing a users mailbox
+  * Make sure the permissions for the on the mailbox are set correctly
+  * Check the proper permissions for the service account Exchange.!GCalQueryUser and Exchange.!GCalQueryAdmin are set
+
+* Cannot connect to Exchange Server / Google Calendar *
+  * If you require the use of a proxy server for accesing the network, you may need to configure the proxy settings in the .config file
+  * Authenticating proxy support will be added in the near future
+
+* Need more options for controlling the logs*
+  * The logging uses the log4net library - the settings can be modified in the .config file. See http://logging.apache.org/log4net/release/config-examples.html
+
 
 *I am getting 403 errors when running the Google Calendar Sync service?*
 
