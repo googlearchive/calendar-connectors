@@ -25,6 +25,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   Google Calendar Connector Web Service uses HTTPS to communicate with Google Calendar when it detects Google Calendar is using HTTPS.  This means the Google Calendar Connector Web Service can operate in HTTP or HTTPS mode, depending on whether Google Calendar is in HTTP or HTTPS.  In general, Google recommends running Google Calendar and the Google Calendar Connectors in a mutual level of security; either both in HTTPS or both in HTTP.  
 
+  The Google Calendar Connector Web Service does *NOT* provide an authentication layer for choosing which requests for free/busy information and appointment details to allow or dis-allow.  Anyone who knows the URL address of your Web Service and has network access to its URL would theoretically be able to perform Microsoft Exchange free/busy look ups and, if enabled, retrieve appointment details to the same degree as any user of your Google Apps domain.
+
 * What is the Google Calendar Connector Web Service URL? *
   * This is the url that Google Calendar posts the free/busy lookup requests to get Exchange user free/busy data. (i.e. https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx). This URL must be defined in your Google Apps domain before Google Calendar can retrieve Exchange free/busy data. 
 
