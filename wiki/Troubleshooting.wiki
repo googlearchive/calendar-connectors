@@ -1,10 +1,25 @@
 = Troubleshooting =
 
+* Lookups from Google Calendar times out after 30 seconds *
+  * Make sure the URL address registered with Google Apps for your domain is correct
+  * The Google Calendar connector uses a 30 second timeout - make sure the Web Service is not taking a long time to respond.
+  If Web Service lookups are taking too long:
+   * Disable Appointment Lookup if it is not needed (set the Exchange.!EnableAppointmentLookup option to false)
+   * Enable the Optimized Free Busy lookup option (set the Exchange.!EnableOptimizedFreeBusy option to true)
+   * Ensure that the Web / Sync service have fast connections to the Exchange Server
+   * Make sure that HTTP keep-alive connections are possible between the Web / Sync service and the Exchange Server
+
+
+* Log files show Network connections are timing out *
+  * Run netstat from the shell and make sure that connections are not being leaked. This may indicate that HTTP keep alive connections cannot be created between the Web / Sync service and Exchange.
+
+* Internal exchange email addresses differ from external Google Apps email addresses *
+  * Add a domain mapping with the !GoogleApps.GCal.!DomainMapping setting
+
 *I am getting 403 errors when running the Google Calendar Sync service?*
 
   * If you are getting 403 errors when trying to sync free/busy from Google Calendar. Enable DEBUG logging on the sync service. You might need to configure SMTP domain mapping if your internal primary SMTP address on your Exchange user does not match the e-mail address in Google Apps.
   * The user account in Google Apps is configured not to share free busy data. To verify sharing is enabled in Google Calendar goto Settings | Calendars | Shared: Edit Settings. Make sure "Share this calendar with others should be enabled". To share appointment details "Share this calendar with everyone in this domain" should enabled and set to "See all event details".
-
 
   
 *I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
