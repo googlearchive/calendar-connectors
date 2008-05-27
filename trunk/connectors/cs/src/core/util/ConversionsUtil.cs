@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Web;
 
+using Google.GData.Client;
 using Google.GData.Calendar;
 using Google.GData.Extensions;
 
@@ -192,29 +194,174 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         /// <summary>
+        /// Get the content of possibly null AtomContent
+        /// </summary>
+        /// <param name="content">The Google AtomContent</param>
+        /// <returns>The content or empty string if the content was null</returns>
+        public static string SafeGetContent(AtomContent content)
+        {
+            if (content == null)
+            {
+                return string.Empty;
+            }
+
+            return content.Content;
+        }
+
+        /// <summary>
+        /// Get the Value of possibly null EnumConstruct
+        /// </summary>
+        /// <param name="enumConstruct">The Google EnumConstruct</param>
+        /// <returns>The value or empty string if the enumConstruct was null</returns>
+        public static string SafeGetValue(EnumConstruct enumConstruct)
+        {
+            if (enumConstruct == null)
+            {
+                return string.Empty;
+            }
+
+            return enumConstruct.Value;
+        }
+
+        /// <summary>
         /// Convert a Google Calender Event status to an Exchange meeting status
         /// </summary>
         /// <param name="status">The Google Calendar event status</param>
         /// <returns>The Exchange meeting status</returns>
         public static MeetingStatus ConvertGoogleEventStatus(EventEntry.EventStatus status)
         {
-            MeetingStatus exchangeStatus = MeetingStatus.Tentative;
+            MeetingStatus exchangeStatus = MeetingStatus.Confirmed;
+            // Default is busy, because in order to make free-buys projections work correctly,
+            // since in that case the status is not set at all.
 
-            switch (status.Value)
+            switch (SafeGetValue(status))
             {
                 case EventEntry.EventStatus.CONFIRMED_VALUE:
                     exchangeStatus = MeetingStatus.Confirmed;
                     break;
+
                 case EventEntry.EventStatus.CANCELED_VALUE:
                     exchangeStatus = MeetingStatus.Cancelled;
                     break;
+
                 case EventEntry.EventStatus.TENTATIVE_VALUE:
-                default:
                     exchangeStatus = MeetingStatus.Tentative;
                     break;
             }
 
             return exchangeStatus;
+        }
+
+        /// <summary>
+        /// Convert a Google Calender attendee status to an Exchange status
+        /// </summary>
+        /// <param name="googleAppsEvent">The Google Calendar event</param>
+        /// <param name="user">The user to get the status for</param>
+        /// <returns>The Exchange status for the given user</returns>
+        public static BusyStatus ConvertParticipantStatus(
+            ExchangeUser user,
+            EventEntry googleAppsEvent)
+        {
+            BusyStatus result = BusyStatus.Busy;
+            // Default is busy, because in order to make free-buys projections work correctly,
+            // since in that case the participants are not set at all.
+
+            string externalEmail = ConfigCache.MapToExternalDomain(user.Email);
+
+            foreach (Who participant in googleAppsEvent.Participants)
+            {
+                if (participant.Email.Equals(user.Email) || 
+                    participant.Email.Equals(externalEmail))
+                {
+                    switch (SafeGetValue(participant.Attendee_Status))
+                    {
+                        case Who.AttendeeStatus.EVENT_ACCEPTED:
+                            result = BusyStatus.Busy;
+                            break;
+
+                        case Who.AttendeeStatus.EVENT_DECLINED:
+                            result = BusyStatus.Free;
+                            break;
+
+                        case Who.AttendeeStatus.EVENT_INVITED:
+                            result = BusyStatus.Free;
+                            break;
+
+                        case Who.AttendeeStatus.EVENT_TENTATIVE:
+                            result = BusyStatus.Tentative;
+                            break;
+                    }
+
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Return the user status, with support for tentative, if the event has the needed details.
+        /// </summary>
+        /// <param name="googleAppsEvent">The Google Calendar event</param>
+        /// <param name="user">The user to get the status for</param>
+        /// <returns>The Exchange status for the given user</returns>
+        public static BusyStatus GetUserStatusForEvent(
+            ExchangeUser user,
+            EventEntry googleAppsEvent)
+        {
+            MeetingStatus meetingStatus = MeetingStatus.Confirmed;
+            BusyStatus userStatus = BusyStatus.Free;
+
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("Looking the status of {0} in {1}",
+                                 user.Email,
+                                 googleAppsEvent.Title.Text);
+            }
+
+            // Treat events w/o proper times as free. There isn't much we can do.
+            if (googleAppsEvent.Times == null || googleAppsEvent.Times.Count == 0)
+            {
+                return BusyStatus.Free;
+            }
+
+            meetingStatus = ConvertGoogleEventStatus(googleAppsEvent.Status);
+
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("The event status is {0}", meetingStatus.ToString());
+            }
+
+            // If the meeting is cancelled, treat it as free time.
+            if (meetingStatus == MeetingStatus.Cancelled)
+            {
+                return BusyStatus.Free;
+            }
+
+
+            userStatus = ConvertParticipantStatus(user, googleAppsEvent);
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("The user status is {0}", userStatus.ToString());
+            }
+
+            if (userStatus == BusyStatus.Free)
+            {
+                return BusyStatus.Free;
+            }
+
+            // There is no mapping from GCal to OOF right now. If/when it is added, it should
+            // be handled in a manner similar to busy and tentative.
+            Debug.Assert(userStatus != BusyStatus.OutOfOffice);
+
+            // If the meeting is set to show as tentative, set the time as tentative, not busy
+            // if the user accepted the meeting.
+            if (meetingStatus == MeetingStatus.Tentative && userStatus == BusyStatus.Busy)
+            {
+                userStatus = BusyStatus.Tentative;
+            }
+
+            return userStatus;
         }
 
         /// <summary>

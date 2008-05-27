@@ -112,47 +112,82 @@ namespace Google.GCalExchangeSync.Library
         }
 
         private void BuildSetFreeBusyQuery(
-            List<string> months,
-            List<string> dailyData,
+            List<string> busyMonths,
+            List<string> busyDailyData,
+            List<string> tentativeMonths,
+            List<string> tentativeDailyData,
             string startDate,
             string endDate,
-            bool cleanOOFAndTentative)
+            bool clearOOF)
         {
-            if (months.Count != dailyData.Count)
+            if (busyMonths.Count != busyDailyData.Count)
             {
-                log.WarnFormat("Mismatch between the number of months and daily data: {0} {1}",
-                               months.Count,
-                               dailyData.Count);
+                log.WarnFormat("Mismatch between the busy months and daily data: {0} {1}",
+                               busyMonths.Count,
+                               busyDailyData.Count);
             }
 
-            if (months.Count == 0)
+            if (tentativeMonths.Count != tentativeDailyData.Count)
+            {
+                log.WarnFormat("Mismatch between the tentative months and daily data: {0} {1}",
+                               tentativeMonths.Count,
+                               tentativeDailyData.Count);
+            }
+
+            if (busyMonths.Count == 0)
             {
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.BusyMonths);
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.MergedMonths);
             }
             else
             {
-                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyMonths, months);
-                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedMonths, months);
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyMonths,
+                                                     busyMonths);
+                // Merged should be the union of busy and OOF, but since we don't have OOF,
+                // it is exact copy of busy
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedMonths,
+                                                     busyMonths);
             }
 
-            if (dailyData.Count == 0)
+            if (busyDailyData.Count == 0)
             {
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.BusyEvents);
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.MergedEvents);
             }
             else
             {
-                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyEvents, dailyData);
-                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedEvents, dailyData);
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.BusyEvents,
+                                                     busyDailyData);
+                // Merged should be the union of busy and OOF, but since we don't have OOF,
+                // it is exact copy of busy
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.MergedEvents,
+                                                     busyDailyData);
             }
 
-            if (cleanOOFAndTentative)
+            if (tentativeMonths.Count == 0)
+            {
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeMonths);
+            }
+            else
+            {
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.TentativeMonths,
+                                                     tentativeMonths);
+            }
+
+            if (tentativeDailyData.Count == 0)
+            {
+                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeEvents);
+            }
+            else
+            {
+                webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.TentativeEvents,
+                                                     tentativeDailyData);
+            }
+
+            if (clearOOF)
             {
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.OutOfOfficeEvents);
                 webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.OutOfOfficeMonths);
-                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeEvents);
-                webDavQueryBuilder.AddRemoveProperty(FreeBusyProperty.TentativeMonths);
             }
 
             webDavQueryBuilder.AddUpdateProperty(FreeBusyProperty.StartOfPublishedRange,
@@ -183,15 +218,19 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="targetUrl">Destination message URL to create</param>
         /// <param name="targetUsername">The user to create the FB for</param>
-        /// <param name="months"></param>
-        /// <param name="dailyData"></param>
+        /// <param name="busyMonths">The busy months in Exchange format</param>
+        /// <param name="busyDailyData">The busy times in Exchange format</param>
+        /// <param name="tentativeMonths">The tentative months in Exchange format</param>
+        /// <param name="tentativeDailyData">The tentative times in Exchange format</param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         public void CreateFreeBusyMessage(
             string targetUrl,
             string targetUsername,
-            List<string> months,
-            List<string> dailyData,
+            List<string> busyMonths,
+            List<string> busyDailyData,
+            List<string> tentativeMonths,
+            List<string> tentativeDailyData,
             string startDate,
             string endDate)
 
@@ -209,7 +248,13 @@ namespace Google.GCalExchangeSync.Library
 
                 BuildSpecialFreeBusyPropertiesQuery();
                 BuildSpecializeFreeBusyMessageQuery(targetUsername);
-                BuildSetFreeBusyQuery(months, dailyData, startDate, endDate, true);
+                BuildSetFreeBusyQuery(busyMonths,
+                                      busyDailyData,
+                                      tentativeMonths,
+                                      tentativeDailyData,
+                                      startDate,
+                                      endDate,
+                                      true);
 
                 response = webDavQuery.IssueRequest(targetUrl,
                                                     Method.PROPPATCH,

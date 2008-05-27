@@ -112,6 +112,8 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
                                               commonName,
                                               emtpyList,
                                               emtpyList,
+                                              emtpyList,
+                                              emtpyList,
                                               nowMinus30Days,
                                               nowPlus60Days);
         }

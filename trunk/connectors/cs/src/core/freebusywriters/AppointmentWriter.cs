@@ -250,43 +250,9 @@ namespace Google.GCalExchangeSync.Library
 
             appt.Subject = ConfigCache.PlaceHolderMessage;
 
-            if ( googleAppsEvent.Status != null )
-            {
-                appt.MeetingStatus =
-                    ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
-            }
-            else
-            {
-                appt.MeetingStatus = MeetingStatus.Confirmed;
-            }
+            appt.MeetingStatus = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
 
-            // Default is busy
-            appt.BusyStatus = BusyStatus.Busy;
-
-            WhoCollection participants = googleAppsEvent.Participants;
-            foreach (Who participant in participants)
-            {
-                if (participant.Email.Equals(user.Email))
-                {
-                    string status = participant.Attendee_Status.Value;
-                    if (status == Who.AttendeeStatus.EVENT_ACCEPTED)
-                    {
-                        appt.BusyStatus = BusyStatus.Busy;
-                    }
-                    else if (status == Who.AttendeeStatus.EVENT_DECLINED)
-                    {
-                        appt.BusyStatus = BusyStatus.Free;
-                    }
-                    else if (status == Who.AttendeeStatus.EVENT_INVITED)
-                    {
-                        appt.BusyStatus = BusyStatus.Free;
-                    }
-                    else if (status == Who.AttendeeStatus.EVENT_TENTATIVE)
-                    {
-                        appt.BusyStatus = BusyStatus.Tentative;
-                    }
-                }
-            }
+            appt.BusyStatus = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
 
             appt.Created = DateUtil.NowUtc;
             appt.InstanceType = InstanceType.Single;

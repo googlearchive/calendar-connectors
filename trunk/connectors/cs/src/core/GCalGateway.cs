@@ -148,12 +148,18 @@ namespace Google.GCalExchangeSync.Library
             }
 
             EventQuery query = new EventQuery(sb.ToString());
+            if (projection != GCalProjection.FreeBusy)
+            {
+                query.SingleEvents = true;
+            }
 
             GDataRequestFactory f = (GDataRequestFactory)service.RequestFactory;
             f.UseGZip = ConfigCache.EnableHttpCompression;
 
-            if(window.Start != DateTime.MinValue)
+            if (window.Start != DateTime.MinValue)
+            {
                 query.StartTime = window.Start;
+            }
 
             if(window.End != DateTime.MaxValue)
                 query.EndTime = window.End;

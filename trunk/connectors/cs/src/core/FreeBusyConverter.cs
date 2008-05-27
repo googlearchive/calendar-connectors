@@ -74,19 +74,33 @@ namespace Google.GCalExchangeSync.Library
             hexValues.Add(b2);
         }
 
+        private static void EnsureMonthIsPresent(Dictionary<int, List<Byte>> result, int month)
+        {
+            List<Byte> data = null;
+
+            if (!result.TryGetValue(month, out data))
+            {
+                data = new List<byte>();
+                result[month] = data;
+            }
+        }
+
         private static void AddDateRange(Dictionary<int, List<Byte>> result, DateTimeRange r)
         {
-            if (r.Start.Month != r.End.Month)
+            if (r.Start.Month != r.End.Month || r.Start.Year != r.End.Year)
+            {
                 throw new Exception("Free Busy Range Months must match");
+            }
 
             int start = GetFreeBusyMonthValue(r.Start);
 
-            if (!result.ContainsKey(start))
-            {
-                result[start] = new List<byte>();
-            }
+            List<Byte> data = null;
 
-            List<Byte> data = result[start];
+            if (!result.TryGetValue(start, out data))
+            {
+                data = new List<byte>();
+                result[start] = data;
+            }
 
             AddFreeBusyHexTimeValue(data, r.Start);
             AddFreeBusyHexTimeValue(data, r.End);
@@ -95,15 +109,30 @@ namespace Google.GCalExchangeSync.Library
         /// <summary>
         /// Convery DateTime ranges to the Exchange free busy format
         /// </summary>
+        /// <param name="startDate">The start date of the free busy period</param>
+        /// <param name="endDate">The end date of the free busy period</param>
         /// <param name="freeBusyRanges">List of datetime ranges to convert</param>
         /// <param name="monthData">Output month data</param>
         /// <param name="base64FreeBusyData">Output datetime data</param>
         public static void ConvertDateTimeBlocksToBase64String(
+            DateTime startDate,
+            DateTime endDate,
             List<DateTimeRange> freeBusyRanges,
             List<string> monthData,
             List<string> base64FreeBusyData)
         {
             Dictionary<int, List<Byte>> result = new Dictionary<int, List<byte>>();
+            int startMonth = GetFreeBusyMonthValue(startDate);
+            int endMonth = GetFreeBusyMonthValue(endDate);
+
+            for (int month = startMonth; month <= endMonth; month++)
+            {
+                int extractedMonth = month & 15;
+                if (extractedMonth >= 1 && extractedMonth <= 12)
+                {
+                    EnsureMonthIsPresent(result, month);
+                }
+            }
 
             foreach (DateTimeRange r in freeBusyRanges)
             {
@@ -124,7 +153,7 @@ namespace Google.GCalExchangeSync.Library
                     AddDateRange(result, s);
 
                     int current = GetFreeBusyMonthValue(monthEnd);
-                    while (current != end)
+                    while (current < end)
                     {
                         DateTime monthStart = monthEnd;
                         monthEnd = DateUtil.StartOfNextMonth(monthEnd);
