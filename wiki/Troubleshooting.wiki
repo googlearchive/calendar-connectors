@@ -1,5 +1,11 @@
 = Troubleshooting =
 
+* I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
+
+  * Have you provided Google Enterprise support with the your URL of the server hosting the Web Service? You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your account settings on the Google Calendar server. (Example URL value: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx)
+  * Check the webservice.log to determine if the web service is receiving the request?
+  * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
+
 * Lookups from Google Calendar times out after 30 seconds *
   * Make sure the URL address registered with Google Apps for your domain is correct
   * The Google Calendar connector uses a 30 second timeout - make sure the Web Service is not taking a long time to respond.
@@ -43,12 +49,6 @@
 * I need more options for controlling the logs*
   * The logging uses the log4net library - the settings can be modified in the .config file. See http://logging.apache.org/log4net/release/config-examples.html
 
-  
-*I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
-
-  * Have you provided Google Enterprise support with the your URL of the server hosting the Web Service? You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your account settings on the Google Calendar server. (Example URL value: http://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx)
-  * Check the webservice.log to determine if the web service is receiving the request?
-  * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
 
 *The Google Calendar Connector Sync service is trying to sync every user in my Active Directory.*
 
