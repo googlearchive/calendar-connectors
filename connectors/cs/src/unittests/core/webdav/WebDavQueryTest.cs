@@ -40,6 +40,27 @@ namespace Google.GCalExchangeSync.Library.WebDav
         }
 
         [Test]
+        public void TestPropertiesDefinition()
+        {
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.DisableFullFidelity));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.MessageLocaleId));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.LocaleId));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.ScheduleInfoResourceType));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.StartOfPublishedRange));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.EndOfPublishedRange));
+            Assert.IsTrue(CheckSingleValueProperty(FreeBusyProperty.FreeBusyRangeTimestamp));
+
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.MergedMonths));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.MergedEvents));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.TentativeMonths));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.TentativeEvents));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.BusyMonths));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.BusyEvents));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.OutOfOfficeMonths));
+            Assert.IsTrue(CheckMultiValueProperty(FreeBusyProperty.OutOfOfficeEvents));
+        }
+
+        [Test]
         public void TestUpdate()
         {
             string body = null;
@@ -533,6 +554,125 @@ namespace Google.GCalExchangeSync.Library.WebDav
 
             return reader1.Read() == reader2.Read();
         }
+
+        private static bool CheckMultiValueProperty(
+            FreeBusyProperty property)
+        {
+            string propertyName = property.Name;
+            string propertyNamespace = property.NameSpace;
+            string propertyType = property.Type;
+
+            if (propertyType.Substring(0, 3) != "mv.")
+            {
+                // The property is supposed to be multi-valued, thus the type must start with "mv."
+                return false;
+            }
+
+            if (propertyNamespace != "http://schemas.microsoft.com/mapi/proptag/")
+            {
+                return true;
+            }
+
+            if (propertyName[0] != 'x' && propertyName[0] != 'X')
+            {
+                return true;
+            }
+
+            int propTag = 0;
+
+            try
+            {
+                propTag = Convert.ToInt32("0" + propertyName, 16);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
+
+            if ((propTag & 0x1000) == 0)
+            {
+                return false;
+            }
+
+            switch (propTag & 0xfff)
+            {
+                case 3:
+                    return propertyType == "mv.int";
+
+                case 0x102:
+                    return propertyType == "mv.bin.base64";
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool CheckSingleValueProperty(
+            FreeBusyProperty property)
+        {
+            string propertyName = property.Name;
+            string propertyNamespace = property.NameSpace;
+            string propertyType = property.Type;
+
+            if (propertyType.Substring(0, 3) == "mv.")
+            {
+                // The property is supposed to be sinlge-valued, thus the type must not start with "mv."
+                return false;
+            }
+
+            if (propertyNamespace != "http://schemas.microsoft.com/mapi/proptag/")
+            {
+                return true;
+            }
+
+            if (propertyName[0] != 'x' && propertyName[0] != 'X')
+            {
+                return true;
+            }
+
+            int propTag = 0;
+
+            try
+            {
+                propTag = Convert.ToInt32("0" + propertyName, 16);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
+
+            if ((propTag & 0x1000) != 0)
+            {
+                return false;
+            }
+
+            switch (propTag & 0xfff)
+            {
+                case 3:
+                    return propertyType == "int";
+
+                case 0xb:
+                    return propertyType == "boolean";
+
+                case 0x40:
+                    return propertyType == "dateTime.tz";
+
+                case 0x102:
+                    return propertyType == "bin.base64";
+
+                default:
+                    return false;
+            }
+        }
+
     }
 
     [TestFixture]

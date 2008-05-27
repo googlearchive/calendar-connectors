@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 using Google.GData.Calendar;
+using Google.GData.Extensions;
 using Google.GCalExchangeSync.Library.Util;
 using Google.GCalExchangeSync.Library.WebDav;
 using TZ4Net;
@@ -80,7 +81,8 @@ namespace Google.GCalExchangeSync.Library
             DateTime utcStartDate = DateTime.MinValue;
             DateTime utcEndDate = DateTime.MinValue;
 
-            List<DateTimeRange> freeBusyTimes = new List<DateTimeRange>();
+            List<DateTimeRange> busyTimes = new List<DateTimeRange>();
+            List<DateTimeRange> tentativeTimes = new List<DateTimeRange>();
 
             /*    Iterate through the start and end dates
              * -  Convert everything to UTC
@@ -88,6 +90,9 @@ namespace Google.GCalExchangeSync.Library
              * -  Get the min start date and the max end date */
             foreach (EventEntry googleAppsEvent in googleAppsFeed.Entries)
             {
+                BusyStatus userStatus = BusyStatus.Free;
+                userStatus = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+
                 startDate = googleAppsEvent.Times[0].StartTime;
                 utcStartDate = DateTime.SpecifyKind(startDate.ToUniversalTime(),
                                                     DateTimeKind.Unspecified);
@@ -108,29 +113,60 @@ namespace Google.GCalExchangeSync.Library
                 if (_log.IsDebugEnabled)
                 {
                     _log.DebugFormat("Read GData FB event {0} - {1} in {2}",
-                        startDate, endDate, googleAppsFeed.TimeZone.Value);
+                                     startDate,
+                                     endDate,
+                                     googleAppsFeed.TimeZone.Value);
                     _log.DebugFormat("Write FB event {0} - {1} in UTC", utcStartDate, utcEndDate);
+                    _log.DebugFormat("The FB status is {0}", userStatus.ToString());
                 }
 
-                freeBusyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
+                // If the user is free, do not put this meeting in the free busy
+                if (userStatus == BusyStatus.Free)
+                {
+                    continue;
+                }
+
+                if (userStatus == BusyStatus.Tentative)
+                {
+                    tentativeTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
+                }
+                else
+                {
+                    Debug.Assert(userStatus == BusyStatus.Busy);
+                    busyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
+                }
             }
 
-            CondenseFreeBusyTimes(freeBusyTimes);
+            CondenseFreeBusyTimes(busyTimes);
+            CondenseFreeBusyTimes(tentativeTimes);
 
-            List<string> monthValues = new List<string>();
-            List<string> base64FreeBusyData = new List<string>();
+            List<string> busyMonthValues = new List<string>();
+            List<string> busyBase64Data = new List<string>();
+            List<string> tentativeMonthValues = new List<string>();
+            List<string> tentativeBase64Data = new List<string>();
 
-            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(freeBusyTimes,
-                                                                  monthValues,
-                                                                  base64FreeBusyData);
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(minStartDate,
+                                                                  maxEndDate,
+                                                                  busyTimes,
+                                                                  busyMonthValues,
+                                                                  busyBase64Data);
+
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(minStartDate,
+                                                                  maxEndDate,
+                                                                  tentativeTimes,
+                                                                  tentativeMonthValues,
+                                                                  tentativeBase64Data);
 
             string stringStartDate = FreeBusyConverter.ConvertToSysTime(minStartDate).ToString();
             string stringEndDate = FreeBusyConverter.ConvertToSysTime(maxEndDate).ToString();
 
+
             exchangeGateway.FreeBusy.CreateFreeBusyMessage(userFreeBusyUrl,
                                                            user.FreeBusyCommonName,
-                                                           monthValues,
-                                                           base64FreeBusyData,
+                                                           busyMonthValues,
+                                                           busyBase64Data,
+                                                           tentativeMonthValues,
+                                                           tentativeBase64Data,
                                                            stringStartDate,
                                                            stringEndDate);
 
@@ -141,18 +177,18 @@ namespace Google.GCalExchangeSync.Library
         }
 
         private static int CompareRangesByStartThenEnd(
-            DateTimeRange x, 
+            DateTimeRange x,
             DateTimeRange y)
         {
             if ((x == null) && (y == null))
             {
-                // If x is null and y is null, they are equal. 
+                // If x is null and y is null, they are equal.
                 return 0;
             }
 
             if (x == null)
             {
-                // If x is null and y is not null, y is greater. 
+                // If x is null and y is not null, y is greater.
                 return -1;
             }
 
@@ -170,7 +206,8 @@ namespace Google.GCalExchangeSync.Library
             }
 
             #if DEBUG
-                Debug.Assert((result == 0) == (x.CompareTo(y) == 0) && (result > 0) == (x.CompareTo(y) > 0));
+                Debug.Assert((result == 0) == (x.CompareTo(y) == 0) &&
+                             (result > 0) == (x.CompareTo(y) > 0));
             #endif
 
             return result;

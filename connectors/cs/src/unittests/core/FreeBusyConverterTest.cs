@@ -49,7 +49,11 @@ namespace Google.GCalExchangeSync.Library
             List<DateTimeRange> src = new List<DateTimeRange>();
             List<DateTimeRange> dst = new List<DateTimeRange>();
 
-            DateTime s, e;
+            DateTime s = DateTime.MinValue;
+            DateTime e = DateTime.MinValue;
+            DateTime startDate = new DateTime(2007, 07, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime endDate = new DateTime(2008, 05, 31, 0, 0, 0, DateTimeKind.Utc);
+
             s = new DateTime(2007, 07, 23, 13, 45, 00, DateTimeKind.Unspecified);
             src.Add(new DateTimeRange(s, s.AddHours(3)));
             dst.Add(new DateTimeRange(s, s.AddHours(3)));
@@ -95,7 +99,11 @@ namespace Google.GCalExchangeSync.Library
             List<string> monthData = new List<string>();
             List<string> base64Data = new List<string>();
 
-            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(src, monthData, base64Data);
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(startDate,
+                                                                  endDate,
+                                                                  src,
+                                                                  monthData,
+                                                                  base64Data);
 
             List<DateTimeRange> result = new List<DateTimeRange>();
 
@@ -106,6 +114,7 @@ namespace Google.GCalExchangeSync.Library
 
                 List<DateTimeRange> r =
                     FreeBusyConverter.ConvertBase64StringsToDateTimeBlocks(month, data);
+
                 result.AddRange(r);
             }
 
