@@ -24,10 +24,10 @@
 * Internal exchange email addresses differ from external Google Apps email addresses *
   * Add a domain mapping with the !GoogleApps.GCal.!DomainMapping setting
 
-* Log files show error 503 when reading / writing Schedule+ Free/Busy information
+* Log files show error 503 when reading / writing Schedule+ Free/Busy information *
   * Make sure the exchange server has a replica of the Free/Busy Public Folder - the Exchange.!FreeBusyServerName option can be used to set a different Exchange Server for the Free/Busy replica
 
-* Log files show error 401 when accessing a users mailbox
+* Log files show error 401 when accessing a users mailbox *
   * Make sure the permissions for the on the mailbox are set correctly
   * Check the proper permissions for the service account Exchange.!GCalQueryUser and Exchange.!GCalQueryAdmin are set
 
