@@ -11,7 +11,13 @@
 
 * Free / Busy information for Exchange users are not available in Google Calendar *
   * Make sure the Exchange users do not exist in Google Apps or if they do the user is disabled
-  * If the user need to be enabled for other reason, configure the user's calendar to not be shared.
+  * If the user needs to be enabled for other reason, configure the user's calendar to not be shared.
+
+* Log files show that the Google Calendar feed for a user cannot be fetched (error 404)
+  * Make sure the user exists in Google Apps
+  * Make sure the url request for the user is using the proper Google Apps e-mail address and not the internal Exchange e-mail address.
+  * Make sure the user has agreed to the Google Apps terms of service
+
 
 * Log files show Network connections are timing out *
   * Run netstat from the shell and make sure that connections are not being leaked. This may indicate that HTTP keep alive connections cannot be created between the Web / Sync service and Exchange.
