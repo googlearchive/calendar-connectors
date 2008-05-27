@@ -7,7 +7,7 @@
   * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
 
 * Lookups from Google Calendar to Exchange time out after 30 seconds *
-  * Make sure the URL address registered with Google Apps for your domain is correct
+  * Make sure the URL address registered with Google Apps for your domain is correct. Did you include "Exchangequerier.aspx" as part of the url?
   * The Google Calendar connector uses a 30 second timeout - make sure the Web Service is not taking a long time to respond.
   If Web Service lookups are taking too long:
    * Disable Appointment Lookup if it is not needed (set the Exchange.!EnableAppointmentLookup option to false)
