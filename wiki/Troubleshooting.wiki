@@ -35,14 +35,13 @@
   * If you require the use of a proxy server for accesing the network, you may need to configure the proxy settings in the .config file
   * Authenticating proxy support will be added in the near future
 
-* Need more options for controlling the logs*
-  * The logging uses the log4net library - the settings can be modified in the .config file. See http://logging.apache.org/log4net/release/config-examples.html
-
-
 *I am getting 403 errors when running the Google Calendar Sync service?*
 
   * If you are getting 403 errors when trying to sync free/busy from Google Calendar. Enable DEBUG logging on the sync service. You might need to configure SMTP domain mapping if your internal primary SMTP address on your Exchange user does not match the e-mail address in Google Apps.
   * The user account in Google Apps is configured not to share free busy data. To verify sharing is enabled in Google Calendar goto Settings | Calendars | Shared: Edit Settings. Make sure "Share this calendar with others should be enabled". To share appointment details "Share this calendar with everyone in this domain" should enabled and set to "See all event details".
+
+* I need more options for controlling the logs*
+  * The logging uses the log4net library - the settings can be modified in the .config file. See http://logging.apache.org/log4net/release/config-examples.html
 
   
 *I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
