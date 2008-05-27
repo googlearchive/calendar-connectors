@@ -16,6 +16,14 @@
    * Ensure that the Web / Sync service have fast connections to the Exchange Server
    * Make sure that HTTP keep-alive connections are possible between the Web / Sync service and the Exchange Server
 
+*I get the error Calendar does not exist when I try to look up an Exchange user in Google Calendar?*
+
+  * This could be due to the fact the web service was unable to locate an Exchange user or contact based on the addressed you entered. Please enable DEBUG on the web service log. This will help you determine why the user look up is failing.
+  * The web browser is not able to communicate to the Google Calendar web service
+  * Make sure the URL address registered with Google Apps for your domain is correct
+  * Make sure you are not entering the internal Exchange e-mail address and are using an e-mail address based on the Google Apps domain.  
+  * You might need to configure !GoogleApps.GCal.!DomainMapping if you have a different internal e-mail address domain from your Google Apps domain name.
+
 * Free / Busy information for Exchange users are not available in Google Calendar *
   * Make sure the Exchange users do not exist in Google Apps or if they do the user is disabled
   * If the user needs to be enabled for other reason, configure the user's calendar to not be shared.
@@ -103,14 +111,6 @@
 
   * Most likely you have a Google Apps account setup for this user and it currently enabled and sharing free/busy data. The calendar free/busy look up tool is getting the data from Google Calendar and not from Exchange. You can disable the account so that it does not share free/busy data. This will force the Calendar free/busy look up function to take the data returned from the Web service.
 
-
-
-*I get the error Calendar does not exist when I try to look up an Exchange user in Google Calendar?*
-
-  * This could be due to the fact the web service was unable to locate an Exchange user or contact based on the addressed you entered. Please enable DEBUG on the web service log. This will help you determine why the user look up is failing.
-  * The web browser is not able to communicate to the Google Calendar web service
-  * Make sure the URL address registered with Google Apps for your domain is correct
-  * Make sure you are not entering the internal Exchange e-mail address and are using an e-mail address based on the Google Apps domain.  
 
 *I get a security warning every time I try to look up free/busy data in Google Calendar?*
 
