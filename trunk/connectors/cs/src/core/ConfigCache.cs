@@ -219,7 +219,18 @@ namespace Google.GCalExchangeSync.Library
             ConfigurationManager.AppSettings["SyncService.FreeBusy.Writer"];
 
         /// <summary>
-        /// Allow enable / disable of Exchnage appointment lookup
+        /// Detail Level for Free / Busy information (Full or Basic)
+        /// </summary>
+        public static readonly GCalProjection FreeBusyDetailLevel =
+            string.Compare(
+                ConfigurationManager.AppSettings["SyncService.FreeBusy.DetailLevel"] ?? "Full",
+                "Basic",
+                true) == 0 ?
+            GCalProjection.FreeBusy :
+            GCalProjection.Full;
+
+        /// <summary>
+        /// Allow enable / disable of Exchange appointment lookup
         /// </summary>
         public static readonly string PlaceHolderMessage =
             ConfigurationManager.AppSettings["SyncService.PlaceHolderMessage"] ?? "GCal Free/Busy Placeholder";

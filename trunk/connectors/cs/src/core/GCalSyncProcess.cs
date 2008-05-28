@@ -248,7 +248,7 @@ namespace Google.GCalExchangeSync.Library
                     EventFeed feed = gcalGateway.QueryGCal(
                         user.Email,
                         GCalVisibility.Private,
-                        GCalProjection.Full,
+                        ConfigCache.FreeBusyDetailLevel,
                         modifiedDate,
                         syncWindow);
 
