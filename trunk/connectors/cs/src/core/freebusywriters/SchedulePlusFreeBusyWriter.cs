@@ -16,6 +16,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
+using Google.GData.Client;
 using Google.GData.Calendar;
 using Google.GData.Extensions;
 using Google.GCalExchangeSync.Library.Util;
@@ -65,101 +66,30 @@ namespace Google.GCalExchangeSync.Library
             if (_log.IsInfoEnabled)
             {
                 _log.InfoFormat("Creating F/B message.  [User={0}]", user.Email);
+                _log.DebugFormat("The feed time zone is {0}", googleAppsFeed.TimeZone.Value);
             }
 
             string userFreeBusyUrl = FreeBusyUrl.GenerateUrlFromDN(_exchangeServerUrl,
                                                                    user.LegacyExchangeDN);
 
-            // Get F/B properties
-
-            OlsonTimeZone feedTimeZone = OlsonUtil.GetTimeZone(googleAppsFeed.TimeZone.Value);
-
-            DateTime minStartDate = DateTime.MinValue;
-            DateTime maxEndDate = DateTime.MinValue;
-            DateTime startDate = DateTime.MinValue;
-            DateTime endDate = DateTime.MinValue;
-            DateTime utcStartDate = DateTime.MinValue;
-            DateTime utcEndDate = DateTime.MinValue;
-
-            List<DateTimeRange> busyTimes = new List<DateTimeRange>();
-            List<DateTimeRange> tentativeTimes = new List<DateTimeRange>();
-
-            /*    Iterate through the start and end dates
-             * -  Convert everything to UTC
-             * -  Clean up any problem dates
-             * -  Get the min start date and the max end date */
-            foreach (EventEntry googleAppsEvent in googleAppsFeed.Entries)
-            {
-                BusyStatus userStatus = BusyStatus.Free;
-                userStatus = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
-
-                startDate = googleAppsEvent.Times[0].StartTime;
-                utcStartDate = DateTime.SpecifyKind(startDate.ToUniversalTime(),
-                                                    DateTimeKind.Unspecified);
-                endDate = googleAppsEvent.Times[0].EndTime;
-                utcEndDate = DateTime.SpecifyKind(endDate.ToUniversalTime(),
-                                                  DateTimeKind.Unspecified);
-
-                if (minStartDate == DateTime.MinValue || utcStartDate < minStartDate)
-                {
-                    minStartDate = utcStartDate;
-                }
-
-                if (maxEndDate == DateTime.MinValue || utcEndDate > maxEndDate)
-                {
-                    maxEndDate = utcEndDate;
-                }
-
-                if (_log.IsDebugEnabled)
-                {
-                    _log.DebugFormat("Read GData FB event {0} - {1} in {2}",
-                                     startDate,
-                                     endDate,
-                                     googleAppsFeed.TimeZone.Value);
-                    _log.DebugFormat("Write FB event {0} - {1} in UTC", utcStartDate, utcEndDate);
-                    _log.DebugFormat("The FB status is {0}", userStatus.ToString());
-                }
-
-                // If the user is free, do not put this meeting in the free busy
-                if (userStatus == BusyStatus.Free)
-                {
-                    continue;
-                }
-
-                if (userStatus == BusyStatus.Tentative)
-                {
-                    tentativeTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
-                }
-                else
-                {
-                    Debug.Assert(userStatus == BusyStatus.Busy);
-                    busyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
-                }
-            }
-
-            CondenseFreeBusyTimes(busyTimes);
-            CondenseFreeBusyTimes(tentativeTimes);
-
+            DateTimeRange coveredRange = new DateTimeRange(window.Start, window.End);
             List<string> busyMonthValues = new List<string>();
             List<string> busyBase64Data = new List<string>();
             List<string> tentativeMonthValues = new List<string>();
             List<string> tentativeBase64Data = new List<string>();
 
-            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(minStartDate,
-                                                                  maxEndDate,
-                                                                  busyTimes,
-                                                                  busyMonthValues,
-                                                                  busyBase64Data);
+            ConvertEventsToFreeBusy(user,
+                                    googleAppsFeed.Entries,
+                                    coveredRange,
+                                    busyMonthValues,
+                                    busyBase64Data,
+                                    tentativeMonthValues,
+                                    tentativeBase64Data);
 
-            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(minStartDate,
-                                                                  maxEndDate,
-                                                                  tentativeTimes,
-                                                                  tentativeMonthValues,
-                                                                  tentativeBase64Data);
 
-            string stringStartDate = FreeBusyConverter.ConvertToSysTime(minStartDate).ToString();
-            string stringEndDate = FreeBusyConverter.ConvertToSysTime(maxEndDate).ToString();
 
+            string startDate = FreeBusyConverter.ConvertToSysTime(coveredRange.Start).ToString();
+            string endDate = FreeBusyConverter.ConvertToSysTime(coveredRange.End).ToString();
 
             exchangeGateway.FreeBusy.CreateFreeBusyMessage(userFreeBusyUrl,
                                                            user.FreeBusyCommonName,
@@ -167,12 +97,101 @@ namespace Google.GCalExchangeSync.Library
                                                            busyBase64Data,
                                                            tentativeMonthValues,
                                                            tentativeBase64Data,
-                                                           stringStartDate,
-                                                           stringEndDate);
+                                                           startDate,
+                                                           endDate);
 
             if ( _log.IsInfoEnabled )
             {
                 _log.Info( "Free/Busy message with the right properties created successfully." );
+            }
+        }
+
+        private static void ConvertEventsToFreeBusy(
+            ExchangeUser user,
+            AtomEntryCollection entries,
+            DateTimeRange coveredRange,
+            List<string> busyMonthValues,
+            List<string> busyBase64Data,
+            List<string> tentativeMonthValues,
+            List<string> tentativeBase64Data)
+        {
+            List<DateTimeRange> busyTimes = new List<DateTimeRange>();
+            List<DateTimeRange> tentativeTimes = new List<DateTimeRange>();
+
+            foreach (EventEntry googleAppsEvent in entries)
+            {
+                ConvertEventToFreeBusy(user, googleAppsEvent, coveredRange, busyTimes, tentativeTimes);
+            }
+
+            CondenseFreeBusyTimes(busyTimes);
+            CondenseFreeBusyTimes(tentativeTimes);
+
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(coveredRange.Start,
+                                                                  coveredRange.End,
+                                                                  busyTimes,
+                                                                  busyMonthValues,
+                                                                  busyBase64Data);
+
+            FreeBusyConverter.ConvertDateTimeBlocksToBase64String(coveredRange.Start,
+                                                                  coveredRange.End,
+                                                                  tentativeTimes,
+                                                                  tentativeMonthValues,
+                                                                  tentativeBase64Data);
+        }
+
+        private static void ConvertEventToFreeBusy(
+            ExchangeUser user,
+            EventEntry googleAppsEvent,
+            DateTimeRange coveredRange,
+            List<DateTimeRange> busyTimes,
+            List<DateTimeRange> tentativeTimes)
+        {
+            DateTime startDate = DateTime.MinValue;
+            DateTime endDate = DateTime.MinValue;
+            DateTime utcStartDate = DateTime.MinValue;
+            DateTime utcEndDate = DateTime.MinValue;
+            BusyStatus userStatus = BusyStatus.Free;
+
+            userStatus = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+
+            // If the user is free, do not put this meeting in the free busy
+            if (userStatus == BusyStatus.Free)
+            {
+                return;
+            }
+
+            startDate = googleAppsEvent.Times[0].StartTime;
+            utcStartDate = DateTime.SpecifyKind(startDate.ToUniversalTime(),
+                                                DateTimeKind.Unspecified);
+            endDate = googleAppsEvent.Times[0].EndTime;
+            utcEndDate = DateTime.SpecifyKind(endDate.ToUniversalTime(),
+                                              DateTimeKind.Unspecified);
+
+            if (utcStartDate < coveredRange.Start)
+            {
+                coveredRange.Start = utcStartDate;
+            }
+
+            if (utcEndDate > coveredRange.End)
+            {
+                coveredRange.End = utcEndDate;
+            }
+
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("Read GData FB event {0} - {1}", startDate, endDate);
+                _log.DebugFormat("Write FB event {0} - {1} in UTC", utcStartDate, utcEndDate);
+                _log.DebugFormat("The FB status is {0}", userStatus.ToString());
+            }
+
+            if (userStatus == BusyStatus.Tentative)
+            {
+                tentativeTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
+            }
+            else
+            {
+                Debug.Assert(userStatus == BusyStatus.Busy);
+                busyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
             }
         }
 

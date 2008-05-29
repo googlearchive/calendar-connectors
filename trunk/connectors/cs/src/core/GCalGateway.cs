@@ -107,40 +107,46 @@ namespace Google.GCalExchangeSync.Library
 
             StringBuilder sb = new StringBuilder(ConfigCache.GCalAddress);
             if (!ConfigCache.GCalAddress.EndsWith("/"))
+            {
                 sb.Append("/");
+            }
 
             sb.AppendFormat("feeds/{0}/", user);
 
             switch (visibility)
             {
                 case GCalVisibility.Public:
-                    sb.Append("public");
+                    sb.Append("public/");
                     break;
+
                 case GCalVisibility.Private:
                 default:
-                    sb.Append("private");
+                    sb.Append("private/");
                     break;
             }
-
-            sb.Append("/");
 
             switch (projection)
             {
                 case GCalProjection.Full:
                     sb.Append("full");
                     break;
+
                 case GCalProjection.FullNoAttendees:
                     sb.Append("full-noattendees");
                     break;
+
                 case GCalProjection.Composite:
                     sb.Append("composite");
                     break;
+
                 case GCalProjection.AttendeesOnly:
                     sb.Append("attendees-only");
                     break;
+
                 case GCalProjection.FreeBusy:
                     sb.Append("free-busy");
                     break;
+
                 case GCalProjection.Basic:
                 default:
                     sb.Append("basic");
@@ -161,8 +167,10 @@ namespace Google.GCalExchangeSync.Library
                 query.StartTime = window.Start;
             }
 
-            if(window.End != DateTime.MaxValue)
+            if (window.End != DateTime.MaxValue)
+            {
                 query.EndTime = window.End;
+            }
 
             query.NumberToRetrieve = int.MaxValue; // Make sure we get everything
 
