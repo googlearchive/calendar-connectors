@@ -450,7 +450,7 @@ div.google_header, div.google_footer {
     </tr>
     <tr id=tgh037>
       <td bgcolor=#ffffff id=tgh038 style=TEXT-ALIGN:center width=25%>
-        Google Apps user can have an Exchange Mailbox
+        Google Apps user can have an Exchange Mailbox<bold style="font-weight: bold;">*</bold>
       </td>
       <td bgcolor=#cccccc id=tgh039 style=TEXT-ALIGN:center width=25%>
         <span class=Apple-style-span id=frzc0 style="COLOR:#0000ff; FONT-SIZE:18px"><span class=Apple-style-span id=frzc1 style="COLOR:#000000; FONT-SIZE:13px">N/A<br id=kd5_0>
@@ -494,6 +494,10 @@ div.google_header, div.google_footer {
     </tr>
     </tbody>
   </table>
+<br> * The option of writing Google Calendar free/busy data into an Exchange
+mailbox is possible, but is not the recommended configuration. The
+appointment writer has very limited functionality and is considered an
+experimental feature.<br>
 </div>
 <div id=d_ggc_ws>
   <h1 id=iqt419>
@@ -636,24 +640,27 @@ div.google_header, div.google_footer {
   <h1 id=iqt482>
     <a id=abz60 name=gcc_syncservice>Google Calendar Connector Sync Service</a>
   </h1>
-  <p id=iqt483>
-    The Google Calendar Connector Sync Service allows Microsoft Exchange users
-    to see free/busy information for Google Apps users. The Sync Service is a
-    Windows service written in C# that periodically queries Google Apps for
-    updated free/busy information and writes the changes directly into
-    Exchange.&nbsp; The changes are either written directly into the Exchange
-    free/busy store or written into a user's calendar as a placeholder
-    appointment (an empty appointment that represents the free/busy information
-    from Google Calendar).&nbsp; Writing placeholder appointments onto a user's
-    calendar is possible if the user has an Exchange mailbox.&nbsp; When a
-    Microsoft Exchange user looks up free/busy information for a Google Apps
-    user, the Exchange server accesses the local free/busy information written
-    by the Sync Service. The Google Calendar Connector Sync Service should be
-    installed on a server that has network access to your Active Directory
-    server and your Microsoft Exchange server.
-  </p>
-  <p id=iqt483>
-  </p>
+<p>The Google Calendar Connector Sync Service
+allows Microsoft Exchange users to see free/busy information for Google
+Apps users. The sync service is a Windows service written in C# that
+periodically queries Google Apps for updated free/busy information and
+writes the changes directly into Exchange. The changes are
+written directly into the Exchange free/busy store. <span
+ style="font-style: italic; color: rgb(255, 0, 0);">NOTE: For
+users that have both a Google Apps and Exchange mailbox free/busy
+data from Google Calendar can be written into a user's calendar as a
+placeholder appointment (an empty appointment that represents the
+free/busy information from Google Calendar). The Appointment writer
+option is an experimental option as it supports a very
+limited set of functionality and is NOT an appointment/data
+synchronization utility.</span><br>
+<br>
+When a Microsoft Exchange user looks up free/busy information for a
+Google Apps user, the Exchange server accesses the local free/busy
+information written by the sync service. The Google Calendar Connector
+Sync Service should be installed on a server that has network access to
+your Active Directory server and your Microsoft Exchange server. </p>
+
   <div id=xxjn style="PADDING:1em 0pt; TEXT-ALIGN:left">
     <img height=572 id=qk_:0 src=images/sync_service.png width=640><br id=rc.20>
     Google Calendar Connector Sync Service process overview:<br id=iqt487>
