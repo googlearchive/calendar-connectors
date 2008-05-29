@@ -1205,7 +1205,14 @@ CN=Users,DC=corp,DC=acme,DC=com)"</code><code id=lwjp324>/&gt;<br id=y2om0>
             <td id=lwjp314>
               This setting determines the write mode for how free/busy
               information is populated in Exchange. Valid values are <code id=lwjp315>SchedulePlus</code> or
-              <code id=lwjp316>Appointment</code>. For Example:<br id=lc8y0>
+              <code id=lwjp316>Appointment</code>. <span
+			 style="font-style: italic; color: rgb(255, 0, 0);">The
+			Appointment option is experimental as it supports a
+			very limited set of functionality. The Appointment writer is a one-way
+			sync of free/busy data into Exchange mailboxes that creates empty
+			meeting placeholders based on free/busy data from Google Calendar. It
+			is NOT designed to perform full
+			appointment/data synchronization.</span> For Example:<br id=lc8y0>
               <br id=m0v_0>
               <code id=iw9i2>&lt;add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/&gt;</code><br id=m0v_1>
               <br id=lc8y1>
