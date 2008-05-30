@@ -37,5 +37,11 @@ namespace Google.GCalExchangeSync.Library
             EventFeed googleAppsFeed,
             ExchangeService exchangeGateway,
             DateTimeRange window);
+
+        /// <summary>
+        /// Returns whether the writer needs the feed to expand the recurring events (true)
+        /// or it can deal with by itself (false).
+        /// </summary>
+        bool RequiresEventExpansion();
     }
 }

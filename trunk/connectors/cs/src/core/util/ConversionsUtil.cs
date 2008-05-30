@@ -285,7 +285,7 @@ namespace Google.GCalExchangeSync.Library.Util
                             break;
 
                         case Who.AttendeeStatus.EVENT_INVITED:
-                            result = BusyStatus.Free;
+                            result = BusyStatus.Tentative;
                             break;
 
                         case Who.AttendeeStatus.EVENT_TENTATIVE:
@@ -338,7 +338,6 @@ namespace Google.GCalExchangeSync.Library.Util
             {
                 return BusyStatus.Free;
             }
-
 
             userStatus = ConvertParticipantStatus(user, googleAppsEvent);
             if (_log.IsDebugEnabled)

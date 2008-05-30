@@ -25,10 +25,265 @@ using System.Reflection;
 using System.Globalization;
 using System.Web;
 
+using Google.GData.Client;
+using Google.GData.Calendar;
+using Google.GData.Extensions;
+
+using Google.GCalExchangeSync.Library.WebDav;
+
 using NUnit.Framework;
 
 namespace Google.GCalExchangeSync.Library.Util
 {
+    [TestFixture]
+    public class StatusConversionTest
+    {
+        [SetUp]
+        public void Init()
+        {
+        }
+
+        [Test]
+        public void TestConvertGoogleEventStatus()
+        {
+            EventEntry googleAppsEvent = new EventEntry("title", "description", "location");
+            MeetingStatus status = MeetingStatus.Confirmed;
+
+            // Event w/o explicit status should be treated as busy, since this is how the data
+            // comes from the free busy projection
+            status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
+            Assert.AreEqual(status, MeetingStatus.Confirmed);
+            
+            // Confirmed event should be converted to confirmed.
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
+            Assert.AreEqual(status, MeetingStatus.Confirmed);
+
+            // Cancelled event should be converted to cancelled.
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
+            Assert.AreEqual(status, MeetingStatus.Cancelled);
+
+            // Tentative event should be converted to tentative.
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
+            Assert.AreEqual(status, MeetingStatus.Tentative);
+
+            // Bogus event should be converted to confirmed.
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
+            Assert.AreEqual(status, MeetingStatus.Confirmed);
+        }
+
+        [Test]
+        public void TestConvertParticipantStatus()
+        {
+            EventEntry googleAppsEvent = new EventEntry("title", "description", "location");
+            BusyStatus status = BusyStatus.Busy;
+            ExchangeUser user = new ExchangeUser();
+
+            user.Email = "john@doe.com";
+
+            // The user status with no participants should be busy, since this is how the data
+            // comes from the free busy projection
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            Who john = new Who();
+            googleAppsEvent.Participants.Add(john);
+            john.Email = user.Email;
+
+            // Attendee with no status should be converted to busy.
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            john.Attendee_Status = new Who.AttendeeStatus();
+
+            // Accepted attendee should be converted to busy.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_ACCEPTED;
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            // Declined attendee should be converted to free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_DECLINED;
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // Tentative attendee should be converted to tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // Attendee who hasn't responded yet should be converted to free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_INVITED;
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // Attendee with bogus status should be converted to buys.
+            john.Attendee_Status.Value = "Abrakadabra";
+            status = ConversionsUtil.ConvertParticipantStatus(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+        }
+
+        [Test]
+        public void TestGetUserStatusForEvent()
+        {
+            EventEntry googleAppsEvent = new EventEntry("title", "description", "location");
+            BusyStatus status = BusyStatus.Busy;
+            ExchangeUser user = new ExchangeUser();
+            DateTime startDate = new DateTime(2007, 07, 1, 10, 0, 0, DateTimeKind.Utc);
+            DateTime endDate = new DateTime(2007, 07, 1, 11, 0, 0, DateTimeKind.Utc);
+            When when = new When(startDate, endDate);
+
+            user.Email = "john@doe.com";
+
+            // The user status with no event times should be free
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            googleAppsEvent.Times.Add(when);
+
+            // The user status with no event status should be busy, since this is how the data
+            // comes from the free busy projection
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            // The user status for confirmed meeting with no participants should be busy
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            // The user status for cancelled meeting (with no participants) should be free
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // The user status for tentative meeting with no participants should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for bogus meeting with no participants should be busy
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            Who john = new Who();
+            googleAppsEvent.Participants.Add(john);
+            john.Email = user.Email;
+
+            // The user status for confirmed meeting with no participant status should be busy
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            // The user status for cancelled meeting (no participant status) should be free
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // The user status for tentative meeting with no participant status should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for bogus meeting with no participant status should be busy
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            john.Attendee_Status = new Who.AttendeeStatus();
+
+            // The user status for any meeting if he declined should be free
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_DECLINED;
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_ACCEPTED;
+
+            // The user status for confirmed meeting if he accepted should be busy
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            // The user status for cancelled meeting if he accepted should be free
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // The user status for tentative meeting if he accepted should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for bogus meeting if he accepted should be busy
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Busy);
+
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
+
+            // The user status for confirmed meeting if he is tentative should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for cancelled meeting if he is tentative should be free
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // The user status for tentative meeting if he is tentative should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for bogus meeting if he is tentative should be tentative
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_INVITED;
+
+            // The user status for confirmed meeting if he did not respond should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for cancelled meeting if he he did not respond should be free
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Free);
+
+            // The user status for tentative meeting if he did not respond should be tentative
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+
+            // The user status for bogus meeting if he he did not respond should be tentative
+            googleAppsEvent.Status = new EventEntry.EventStatus();
+            googleAppsEvent.Status.Value = "Abrakadabra";
+            status = ConversionsUtil.GetUserStatusForEvent(user, googleAppsEvent);
+            Assert.AreEqual(status, BusyStatus.Tentative);
+        }
+    }
+
     [TestFixture]
     public class EscapeNonAlphaNumericTest
     {
