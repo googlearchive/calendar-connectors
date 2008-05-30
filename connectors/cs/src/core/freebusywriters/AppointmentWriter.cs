@@ -69,6 +69,14 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
+        /// The appointment writer can handle recurring events by itself, so return false.
+        /// </summary>
+        public bool RequiresEventExpansion()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Merges a users appointment schedule from with appointments generated from a
         /// GoogleApps feed
         /// </summary>

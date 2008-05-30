@@ -50,6 +50,14 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
+        /// The schedule plus writer needs the feed to expand the recurring events, so return true.
+        /// </summary>
+        public bool RequiresEventExpansion()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Sync a users free busy information between Google Calendar and the
         /// SchedulePlus Public Folder store
         /// </summary>

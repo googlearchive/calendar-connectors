@@ -249,6 +249,7 @@ namespace Google.GCalExchangeSync.Library
                         user.Email,
                         GCalVisibility.Private,
                         ConfigCache.FreeBusyDetailLevel,
+                        freeBusyWriter.RequiresEventExpansion(),
                         modifiedDate,
                         syncWindow);
 

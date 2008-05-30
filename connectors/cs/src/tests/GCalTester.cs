@@ -38,8 +38,12 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             DateTime end = DateTime.Now.AddDays(+7);
             DateTimeRange range = new DateTimeRange(start, end);
 
-            EventFeed feed = gw.QueryGCal(
-                gcalUserEmail, GCalVisibility.Private, GCalProjection.FreeBusy, DateTime.MinValue, range );
+            EventFeed feed = gw.QueryGCal(gcalUserEmail,
+                                          GCalVisibility.Private,
+                                          GCalProjection.FreeBusy,
+                                          false,
+                                          DateTime.MinValue,
+                                          range);
             return feed;
         }
     }

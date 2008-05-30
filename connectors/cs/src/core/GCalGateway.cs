@@ -81,6 +81,7 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="email">Email address of the user to query</param>
         /// <param name="visibility">Feed Visibility (Public/Private) to query for</param>
         /// <param name="projection">Feed projection - type of feed to get</param>
+        /// <param name="expandRecurringEvents">Whether to expand the recurring events</param>
         /// <param name="modifiedSince">Last modified time from last check</param>
         /// <param name="window">DateTime range to query between</param>
         /// <returns>An event feed for the user</returns>
@@ -88,6 +89,7 @@ namespace Google.GCalExchangeSync.Library
             string email,
             GCalVisibility visibility,
             GCalProjection projection,
+            bool expandRecurringEvents,
             DateTime modifiedSince,
             DateTimeRange window)
         {
@@ -154,7 +156,7 @@ namespace Google.GCalExchangeSync.Library
             }
 
             EventQuery query = new EventQuery(sb.ToString());
-            if (projection != GCalProjection.FreeBusy)
+            if (projection != GCalProjection.FreeBusy && expandRecurringEvents)
             {
                 query.SingleEvents = true;
             }
