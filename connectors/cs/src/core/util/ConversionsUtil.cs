@@ -271,7 +271,7 @@ namespace Google.GCalExchangeSync.Library.Util
             foreach (Who participant in googleAppsEvent.Participants)
             {
                 if (!string.IsNullOrEmpty(participant.Email) &&
-                    (participant.Email.Equals(user.Email) || 
+                    (participant.Email.Equals(user.Email) ||
                      participant.Email.Equals(externalEmail)))
                 {
                     switch (SafeGetValue(participant.Attendee_Status))

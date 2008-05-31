@@ -53,7 +53,7 @@ namespace Google.GCalExchangeSync.Library.Util
             // comes from the free busy projection
             status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
             Assert.AreEqual(status, MeetingStatus.Confirmed);
-            
+
             // Confirmed event should be converted to confirmed.
             googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
             status = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);

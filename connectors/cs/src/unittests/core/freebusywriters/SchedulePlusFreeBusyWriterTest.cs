@@ -146,11 +146,12 @@ namespace Google.GCalExchangeSync.Library
             Who john = new Who();
             googleAppsEvent.Participants.Add(john);
 
-            // Busy event attendee tentative should be treated as tentative.
             john.Attendee_Status = new Who.AttendeeStatus();
-            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
             john.Email = user.Email;
             googleAppsEvent.Status = EventEntry.EventStatus.CONFIRMED;
+
+            // Busy event with attendee tentative should be treated as tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
             CallConvertEventToFreeBusy(user,
                                        googleAppsEvent,
                                        coveredRange,
@@ -163,6 +164,160 @@ namespace Google.GCalExchangeSync.Library
             Assert.AreEqual(tentativeTimes[0].Start, startDate);
             Assert.AreEqual(tentativeTimes[0].End, endDate);
             tentativeTimes.Clear();
+
+
+            // Busy event with attendee invited should be treated as tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_INVITED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(busyTimes.Count, 0);
+            Assert.AreEqual(tentativeTimes.Count, 1);
+            Assert.AreEqual(tentativeTimes[0].Start, startDate);
+            Assert.AreEqual(tentativeTimes[0].End, endDate);
+            tentativeTimes.Clear();
+
+            // Busy event with attendee accepted should be treated as busy.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_ACCEPTED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 1);
+            Assert.AreEqual(busyTimes[0].Start, startDate);
+            Assert.AreEqual(busyTimes[0].End, endDate);
+            busyTimes.Clear();
+
+            // Busy event with attendee declined should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_DECLINED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
+
+            googleAppsEvent.Status = EventEntry.EventStatus.TENTATIVE;
+
+            // Tentative event with attendee tentative should be treated as tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(busyTimes.Count, 0);
+            Assert.AreEqual(tentativeTimes.Count, 1);
+            Assert.AreEqual(tentativeTimes[0].Start, startDate);
+            Assert.AreEqual(tentativeTimes[0].End, endDate);
+            tentativeTimes.Clear();
+
+
+            // Tentative event with attendee invited should be treated as tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_INVITED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(busyTimes.Count, 0);
+            Assert.AreEqual(tentativeTimes.Count, 1);
+            Assert.AreEqual(tentativeTimes[0].Start, startDate);
+            Assert.AreEqual(tentativeTimes[0].End, endDate);
+            tentativeTimes.Clear();
+
+            // Tentative event with attendee accepted should be treated as tentative.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_ACCEPTED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(busyTimes.Count, 0);
+            Assert.AreEqual(tentativeTimes.Count, 1);
+            Assert.AreEqual(tentativeTimes[0].Start, startDate);
+            Assert.AreEqual(tentativeTimes[0].End, endDate);
+            tentativeTimes.Clear();
+
+            // Tentative event with attendee declined should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_DECLINED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
+
+            googleAppsEvent.Status = EventEntry.EventStatus.CANCELED;
+
+            // Cancelled event with attendee tentative should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_TENTATIVE;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
+
+
+            // Cancelled event with attendee invited should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_INVITED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
+
+            // Cancelled event with attendee accepted should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_ACCEPTED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
+
+            // Cancelled event with attendee declined should be treated as free.
+            john.Attendee_Status.Value = Who.AttendeeStatus.EVENT_DECLINED;
+            CallConvertEventToFreeBusy(user,
+                                       googleAppsEvent,
+                                       coveredRange,
+                                       busyTimes,
+                                       tentativeTimes);
+            Assert.AreEqual(coveredRange.Start, startDate);
+            Assert.AreEqual(coveredRange.End, endDate);
+            Assert.AreEqual(tentativeTimes.Count, 0);
+            Assert.AreEqual(busyTimes.Count, 0);
         }
 
         [Test]
