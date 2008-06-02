@@ -895,23 +895,17 @@ namespace Google.CalendarConnector.Plugin
             }
         }
 
-        static int Main(string[] args)
+        /// <summary>
+        /// The function builds the free busy message for GWise contatcs w/o one.
+        /// </summary>
+        private static void BuildFreeBusy()
         {
-            bool verbose = false;
             string freeBusyUrl = null;
             string searchRootPath = null;
             string userName = null;
             string password = null;
             ICredentials credentials =
                 BuildCredentialsHelper(userName, password);
-            Process currentProcess = Process.GetCurrentProcess();
-
-            currentProcess.PriorityClass = ProcessPriorityClass.BelowNormal;
-
-            if ((args.Length > 0) && ((args[0] == "-v") || (args[0] == "/v")))
-            {
-                verbose = true;
-            }
 
             Dictionary<string, GWiseContact> gwiseContacts =
                 GetGWiseContactsFromAD(
@@ -946,6 +940,42 @@ namespace Google.CalendarConnector.Plugin
                 "recreated the free busy email for {1} of them " +
                 "and skipped {2} of them due to errors.",
                 contactsFound, contactsFixed, contactsSkipped);
+        }
+
+        static int Main(string[] args)
+        {
+            bool verbose = false;
+            Process currentProcess = Process.GetCurrentProcess();
+
+            currentProcess.PriorityClass = ProcessPriorityClass.BelowNormal;
+
+            if ((args.Length > 0) && ((args[0] == "-v") || (args[0] == "/v")))
+            {
+                verbose = true;
+            }
+
+            try
+            {
+                BuildFreeBusy();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed with error \"{0}\" = \"{1}\" from \"{2}\".",
+                                  ex.GetType().ToString() ?? string.Empty,
+                                  ex.Message ?? string.Empty,
+                                  ex.Source ?? string.Empty);
+                if (verbose)
+                {
+                    Exception ex2 = ex;
+                    while (ex2 != null)
+                    {
+                        Console.WriteLine("Error details:\n{0}", ex2.ToString());
+                        ex2 = ex2.InnerException;
+                    }
+                }
+
+                return -1;
+            }
 
             if (verbose)
             {
