@@ -101,3 +101,51 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 *How do I force a complete re-sync of the Google Calendar Sync Service?*
 
   * Delete the file !UserModifiedTimes.xml from C:\google\data and restart the Google Calendar Sync Service. This will force a full re-sync for each user.
+
+*How is the free busy status mapped from the Google Calendar to Exchange?*
+
+The GCal meetings can have 5 possible statuses:
+ # Cancelled.
+ # Confirmed. 
+ # Tentative. 
+ # Not set. 
+ # Any unknown value. 
+
+The attendees of a meeting in GCal can have 6 possible statuses:
+ # Accepted.
+ # Declined.
+ # Invited.
+ # Tentative.
+ # Not set.
+ # Any unknown value.
+
+The combination of those (event status X attendee status) are mapped to the following Exchange free busy statuses:
+ # Free.
+ # Busy.
+ # Tentative.
+ # OOF.
+
+First several special cases:
+ # Nothing is mapped to the Exchange OOF, since no such information is available from GCal.
+ # The meeting status is not set when the projection is just free busy. In such case, it is considered same as Confirmed.
+ # The attendee status is not set when the projection is just free busy. In such case, it is considered same as Accepted.
+ # Unknown value for meeting status is treated as Confirmed. There is no perfect match here, but this should not happen unless calendar introduces new status.
+ # Unknown value for attendee status is treaded as Accepted. Same logic as above.
+
+So here are the rules
+ # If the meeting is Cancelled, regardless of the attendee status, the time is considered Free.
+ # If the attendee status is declined, regardless of the meeting status, the time is considered Free.
+ # If the meeting is not Cancelled, and the attendee status is Invited, the time is considered Tentative (to match Exchange/Outlook behavior).
+ # If the meeting is Tentative, and the attendee status is not declined, the time is considered Tentative.
+ # If the meeting is Confirmed and the attendee status is accepted, the time is considered Busy.
+ # If the meeting is Confirmed and the attendee status is tentative, the time is considered Tentative.
+
+Here is the mapping in table format:
+
+|| ||Confirmed ||Not set ||Unknown ||Tentative ||Cancelled ||
+||Accepted ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Not set ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Unknown ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Invited ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
+||Tentative ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
+||Declined ||Free ||Free ||Free ||Free ||Free ||
