@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="dt">DateTime to get the month from</param>
         /// <returns>The month value in the free busy format</returns>
-        public static int GetFreeBusyMonthValue( DateTime dt )
+        public static int GetFreeBusyMonthValue(DateTime dt)
         {
             return dt.Year * 16 + dt.Month;
         }
@@ -46,9 +47,9 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="exchangeMonth">The Exchange free busy format month value</param>
         /// <returns>Datetime with the month set</returns>
-        public static DateTime ParseFreeBusyMonthValue( int exchangeMonth )
+        public static DateTime ParseFreeBusyMonthValue(int exchangeMonth)
         {
-            return new DateTime( exchangeMonth >> 4, exchangeMonth & 15, 1 );
+            return new DateTime(exchangeMonth >> 4, exchangeMonth & 15, 1);
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
         /// <returns>Integer to represent the date</returns>
-        public static int GetFreeBusyTimeValue( DateTime dt )
+        public static int GetFreeBusyTimeValue(DateTime dt)
         {
             return (60 * ((24 * (dt.Day - 1)) + dt.Hour)) + dt.Minute;
         }
@@ -182,7 +183,8 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="base64FreeBusyData">Exchange free busy date time data</param>
         /// <returns>A list of date time ranges</returns>
         public static List<DateTimeRange> ConvertBase64StringsToDateTimeBlocks(
-            int exchangeMonthValue, string base64FreeBusyData)
+            int exchangeMonthValue,
+            string base64FreeBusyData)
         {
             List<DateTimeRange> dateTimeRanges = new List<DateTimeRange>();
 
@@ -193,16 +195,47 @@ namespace Google.GCalExchangeSync.Library
                 throw new Exception( "Byte array is not valid length" );
             }
 
-            BinaryReader reader = new BinaryReader(new MemoryStream(hexValuesArray));
-            DateTime monthStart = new DateTime(exchangeMonthValue >> 4, exchangeMonthValue & 15, 1);
+            DateTime monthStart = ParseFreeBusyMonthValue(exchangeMonthValue);
+            DateTime start = DateTime.MinValue;
+            DateTime end = DateTime.MinValue;
+            uint lowByte = 0;
+            uint state = 0;
 
-            while (reader.BaseStream.Length - reader.BaseStream.Position >= 4)
+            foreach (uint hexValue in hexValuesArray)
             {
-                DateTime start = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
-                DateTime end = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
+                // This loop essentially does:
+                // start = monthStart +
+                //     TimeSpan.FromMinutes(hexValuesArray[i + 0] + hexValuesArray[i + 1] << 8);
+                // end   = monthStart +
+                //     TimeSpan.FromMinutes(hexValuesArray[i + 2] + hexValuesArray[i + 3] << 8);
+                // The dance is necessary in order to convince the JIT not to do size checks,
+                // which happens 4 times if indexing was used.
+                // So the state variable is used to keep the offset (0, 1, 2 or 3) and do
+                // the right action.
+                switch (state)
+                {
+                    case 0:
+                    case 2:
+                        lowByte = hexValue;
+                        state++;
 
-                dateTimeRanges.Add(new DateTimeRange(start, end));
+                        break;
+
+                    case 1:
+                        start = monthStart + TimeSpan.FromMinutes(lowByte + (uint)(hexValue << 8));
+                        state = 2;
+
+                        break;
+
+                    case 3:
+                        end = monthStart + TimeSpan.FromMinutes(lowByte + (uint)(hexValue << 8));
+                        dateTimeRanges.Add(new DateTimeRange(start, end));
+                        state = 0;
+
+                        break;
+                }
             }
+
             return dateTimeRanges;
         }
 
