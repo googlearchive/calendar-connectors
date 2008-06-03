@@ -52,23 +52,21 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// Get the hex values used in the free busy format for the DateTime
+        /// Get the integer used in the free busy format for the DateTime
         /// </summary>
         /// <param name="dt">Datetime to convert</param>
-        /// <returns>Hex values to represent the date</returns>
-        public static string GetFreeBusyHexTimeValue( DateTime dt )
+        /// <returns>Integer to represent the date</returns>
+        public static int GetFreeBusyTimeValue( DateTime dt )
         {
-            int intTime = ( 60 * ( ( 24 * ( dt.Day - 1 ) ) + dt.Hour ) ) + dt.Minute;
-
-            return intTime.ToString( "X" ).PadLeft( 4, '0' );
+            return (60 * ((24 * (dt.Day - 1)) + dt.Hour)) + dt.Minute;
         }
 
         private static void AddFreeBusyHexTimeValue(List<Byte> hexValues, DateTime dt)
         {
-            string s = GetFreeBusyHexTimeValue(dt);
+            int freeBusyTime = GetFreeBusyTimeValue(dt);
 
-            byte b1 = byte.Parse(s.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            byte b2 = byte.Parse(s.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            byte b1 = (byte)(freeBusyTime & 0xff);
+            byte b2 = (byte)((freeBusyTime >> 8) & 0xff);
 
             hexValues.Add(b1);
             hexValues.Add(b2);
