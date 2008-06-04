@@ -54,12 +54,23 @@ class GDataAccessObject extends Configurable {
   
   private CalendarService calendarService;
   private UserService userService;
+  private ConnectionThrottle throttle;
+  
 
   public GDataAccessObject() {
     super("gdata");
     registerParameter(USER, string);
     registerParameter(PASS, string);
     registerParameter(DOMAIN, string);
+    throttle = new ConnectionThrottle();
+  }
+  
+  /**
+   * Sets the maximum of requests per second that the access-object 
+   * should permit.
+   */
+  public void setMaxRequestsPerSecond(int max) {
+    throttle.setMaxRequestsPerSecond(max);    
   }
   
   /**
@@ -82,18 +93,32 @@ class GDataAccessObject extends Configurable {
     return APPS_FEEDS_URL_BASE + getDomain() + "/";
   }
   
-  public CalendarService getCalendarService() {
+  public synchronized CalendarService getCalendarService() {
     if (calendarService == null) {
       calendarService = auth(new CalendarService("exchangeInteropCal"));
     }
     return calendarService;
   }
   
-  public UserService getUserService() {
+  public synchronized UserService getUserService() {
     if (userService == null) {
       userService = auth(new UserService("exchangeInteropUser"));
     }
     return userService;
+  }
+  
+  /**
+   * This method is called when the use of the Gdata Api threw an Exception.
+   * The method will determine whether to abandon the current client and
+   * start a new instance instead.
+   * @param e the exception that was thrown
+   */
+  synchronized void onException(ServiceException e) {
+    Preconditions.checkNotNull(e);
+    if (e instanceof AuthenticationException) {
+      userService = null;
+      calendarService = null;
+    }
   }
   
   /**
@@ -114,7 +139,6 @@ class GDataAccessObject extends Configurable {
   public UserFeed retrieveAllUsers() {
 
     // Check prerequisites
-    LOGGER.log(Level.INFO, "Retrieving all users.");
     URL retrieveUrl;
     try {
       retrieveUrl = new URL(getDomainBase() + "user/2.0/");
@@ -122,51 +146,70 @@ class GDataAccessObject extends Configurable {
       LOGGER.log(Level.SEVERE, "Malformed feed url", e);
       return null;
     }    
-    final UserService service = getUserService();
-    if (service == null) {
-      LOGGER.log(Level.SEVERE, "Could not retrieve service");
-      return null;      
-    }
     
-    // Perform the query and any followup queries
-    final UserFeed allUsers = new UserFeed();
-    Link nextLink = null;
-    do {
+    // Check if we need to wait, then fetch user service
+    throttle.checkoutTimer();
+    LOGGER.log(Level.INFO, "Retrieving all users.");
+    boolean connectionProblem = true;
+    try {
       
-      // Current query
-      Exception exception = null;
-      UserFeed currentPage = null;
-      try {
-        LOGGER.log(Level.FINE, "Query: " + retrieveUrl);
-        currentPage = service.getFeed(retrieveUrl, UserFeed.class);
-      } catch (AppsForYourDomainException e) {
-        exception = e;
-      } catch (IOException e) {
-        exception = e;
-      } catch (ServiceException e) {
-        exception = e;
-      }
-      if (exception != null) {
-        LOGGER.log(Level.WARNING, "GData query failed");
-        return null;    
+      final UserService service = getUserService();
+      if (service == null) {
+        LOGGER.log(Level.SEVERE, "Could not retrieve service");
+        return null;      
       }
       
-      // Any followup links?
-      allUsers.getEntries().addAll(currentPage.getEntries());
-      nextLink = currentPage.getLink(Link.Rel.NEXT, Link.Type.ATOM);
-      if (nextLink != null) {
+      // Perform the query and any followup queries
+      final UserFeed allUsers = new UserFeed();
+      Link nextLink = null;
+      do {
+        
+        // Current query
+        Exception exception = null;
+        UserFeed currentPage = null;
         try {
-          retrieveUrl = new URL(nextLink.getHref());
-        } catch (MalformedURLException e) {
-          LOGGER.log(Level.SEVERE, "Malformed url in GData feedback: " + 
-              nextLink.getHref());
-          return null;
+          LOGGER.log(Level.FINE, "Query: " + retrieveUrl);
+          currentPage = service.getFeed(retrieveUrl, UserFeed.class);
+        } catch (AppsForYourDomainException e) {
+          exception = e;
+        } catch (IOException e) {
+          exception = e;
+        } catch (ServiceException e) {
+          onException(e);
+          exception = e;
         }
-       }
-    } while (nextLink != null);
-
-    // Done
-    return allUsers;
+        if (exception != null) {
+          LOGGER.log(Level.WARNING, "GData query failed");
+          return null;    
+        }
+        
+        // Any followup links?
+        allUsers.getEntries().addAll(currentPage.getEntries());
+        nextLink = currentPage.getLink(Link.Rel.NEXT, Link.Type.ATOM);
+        if (nextLink != null) {
+          try {
+            retrieveUrl = new URL(nextLink.getHref());
+          } catch (MalformedURLException e) {
+            LOGGER.log(Level.SEVERE, "Malformed url in GData feedback: " + 
+                nextLink.getHref());
+            return null;
+          }
+         }
+      } while (nextLink != null);
+  
+      // Done
+      connectionProblem = false;
+      return allUsers;
+      
+    // "Release" this code block after the appropriate amount of time
+    } finally {
+      if (connectionProblem) {
+        throttle.reportFailure();
+      } else {
+        throttle.reportSuccess();
+      }
+      throttle.rewindTimer();
+    }
   }
   
   private static final int FETCH_SIZE = 50;
@@ -181,58 +224,77 @@ class GDataAccessObject extends Configurable {
   public Iterable<CalendarEventFeed> 
       retrieveFreeBusy(String userEmail, long fromUtc, long untilUtc) {
     // Check prerequisites
-    LOGGER.log(Level.INFO, "Retrieving free/busy feed for " + userEmail + ".");
     Preconditions.checkNotNull(userEmail);
     if (fromUtc > untilUtc) {
       throw new IllegalArgumentException("fromUtc > untilUtc");
     }
-    final CalendarService service = getCalendarService();
-    if (service == null) {
-      LOGGER.log(Level.SEVERE, "Could not retrieve service");
-      return null;      
-    }
-    URL feedUrl;
-    String base = String.format(
-        "https://www.google.com/calendar/feeds/%s/private/free-busy" +
-        "?start-min=%s&start-max=%s&max-results=%s",
-      userEmail,
-      new DateTime(fromUtc).toString(),
-      new DateTime(untilUtc).toString(),
-      FETCH_SIZE
-      );
+
+    // Check if we need to wait, then fetch user service
+    throttle.checkoutTimer();
+    LOGGER.log(Level.INFO, "Retrieving free/busy feed for " + userEmail + ".");
+    boolean connectionProblem = true;
     try {
-      feedUrl = new URL(base);
-      LOGGER.log(Level.FINE, "Base query: " + feedUrl);
-    } catch (MalformedURLException e) {
-      LOGGER.log(Level.SEVERE, "Malformed feed url", e);
-      return null;      
-    }
-    base += "&start-index=";
-    
-    // Perform the queries
-    List<CalendarEventFeed> result = new ArrayList<CalendarEventFeed>();
-    for (int index = 1; (index - 1) % FETCH_SIZE == 0; ) {
-      try {
-        LOGGER.log(Level.FINE, "Fetching for start index: " + index);
-        feedUrl = new URL(base + index);
-        CalendarEventFeed feed = 
-          service.getFeed(feedUrl, CalendarEventFeed.class);
-        result.add(feed);
-        if (feed.getEntries().size() == 0) {
-          break;
-        }
-        index += feed.getEntries().size();
-      } catch (IOException e) {
-        LOGGER.log(Level.WARNING, "I/O communication failed", e);
-        return null;
-      } catch (ServiceException e) {
-        LOGGER.log(Level.WARNING, 
-            "Problem with accessing f/b data for " + userEmail, e);
-        return null;
+      
+      final CalendarService service = getCalendarService();
+      if (service == null) {
+        LOGGER.log(Level.SEVERE, "Could not retrieve service");
+        return null;      
       }
+      URL feedUrl;
+      String base = String.format(
+          "https://www.google.com/calendar/feeds/%s/private/free-busy" +
+          "?start-min=%s&start-max=%s&max-results=%s",
+        userEmail,
+        new DateTime(fromUtc).toString(),
+        new DateTime(untilUtc).toString(),
+        FETCH_SIZE
+        );
+      try {
+        feedUrl = new URL(base);
+        LOGGER.log(Level.FINE, "Base query: " + feedUrl);
+      } catch (MalformedURLException e) {
+        LOGGER.log(Level.SEVERE, "Malformed feed url", e);
+        return null;      
+      }
+      base += "&start-index=";
+      
+      // Perform the queries
+      List<CalendarEventFeed> result = new ArrayList<CalendarEventFeed>();
+      for (int index = 1; (index - 1) % FETCH_SIZE == 0; ) {
+        try {
+          LOGGER.log(Level.FINE, "Fetching for start index: " + index);
+          feedUrl = new URL(base + index);
+          CalendarEventFeed feed = 
+            service.getFeed(feedUrl, CalendarEventFeed.class);
+          result.add(feed);
+          if (feed.getEntries().size() == 0) {
+            break;
+          }
+          index += feed.getEntries().size();
+        } catch (IOException e) {
+          LOGGER.log(Level.WARNING, "I/O communication failed", e);
+          return null;
+        } catch (ServiceException e) {
+          onException(e);
+          LOGGER.log(Level.WARNING, 
+              "Problem with accessing f/b data for " + userEmail, e);
+          return null;
+        }
+      }
+      LOGGER.log(Level.FINE, "All subqueries done");
+      connectionProblem = false;
+      return result;
+      
+      
+    // "Release" this code block after the appropriate amount of time
+    } finally {
+      if (connectionProblem) {
+        throttle.reportFailure();
+      } else {
+        throttle.reportSuccess();
+      }
+      throttle.rewindTimer();
     }
-    LOGGER.log(Level.FINE, "All subqueries done");
-    return result;
   }
 }
  
