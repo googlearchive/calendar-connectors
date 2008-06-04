@@ -1,3 +1,4 @@
+#labels Featured
 = Google Calendar Web Service Protocol =
 
 == Introduction ==
@@ -83,8 +84,6 @@ where:
   * *<status>*: Free/Busy status
 
 _Note:_ All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
-
-
 
 
 
