@@ -106,19 +106,19 @@ namespace Google.GCalExchangeSync.Library.Util
             DateTimeRange range,
             int interval)
         {
-            string userParams = string.Empty;
-            foreach(ExchangeUser user in users.Values)
+            StringBuilder result = new StringBuilder(256);
+
+            result.AppendFormat("{0}/public/?cmd=freebusy&start={1}&end={2}&interval={3}",
+                                exchangeServer,
+                                DateUtil.FormatDateForISO8601(range.Start),
+                                DateUtil.FormatDateForISO8601(range.End),
+                                interval);
+            foreach (ExchangeUser user in users.Values)
             {
-                userParams += string.Format("&u={0}", user.Email);
+                result.AppendFormat("&u={0}", user.Email);
             }
 
-            return string.Format(
-                "{0}/public/?cmd=freebusy&start={1}&end={2}&interval={3}{4}",
-                exchangeServer,
-                DateUtil.FormatDateForISO8601(range.Start),
-                DateUtil.FormatDateForISO8601(range.End),
-                interval,
-                userParams);
+            return result.ToString();
         }
 
         private static string ExchangeEncode( string element )

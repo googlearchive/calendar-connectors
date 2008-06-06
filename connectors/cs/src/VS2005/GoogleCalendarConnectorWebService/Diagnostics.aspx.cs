@@ -166,7 +166,7 @@ namespace GCalExchangeLookup
 
                         foreach (FreeBusyTimeBlock tb in user.BusyTimes.Values)
                         {
-                            sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate, tb.EndDate);
+                            sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate.ToLocalTime(), tb.EndDate.ToLocalTime());
                         }
                         sb.AppendFormat("</ul></li></ul>");
                     }

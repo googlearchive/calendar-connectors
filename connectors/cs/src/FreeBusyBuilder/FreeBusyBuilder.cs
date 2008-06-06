@@ -927,6 +927,8 @@ namespace Google.CalendarConnector.Plugin
 
                 MarkWorkingContacts(gwiseContacts, stream);
 
+                stream.Close();
+
                 CreateGWiseFreeBusyEmails(
                     gwiseContacts,
                     credentials,

@@ -62,7 +62,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="body">The request body to use</param>
         /// <param name="headers">Optional headers to add to the request</param>
         /// <returns>The response body</returns>
-        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
+        public Stream IssueRequest(string url, Method method, string body, HttpHeader[] headers)
         {
             int remainingAttempts = maxRedirects;
 
@@ -118,55 +118,44 @@ namespace Google.GCalExchangeSync.Library.WebDav
                     }
                 }
 
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                switch (response.StatusCode)
                 {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.Found:
-                        case HttpStatusCode.Moved:
-                        case HttpStatusCode.RedirectKeepVerb:
-                        case HttpStatusCode.RedirectMethod:
-                            url = response.GetResponseHeader("Location");
+                    case HttpStatusCode.Found:
+                    case HttpStatusCode.Moved:
+                    case HttpStatusCode.RedirectKeepVerb:
+                    case HttpStatusCode.RedirectMethod:
+                        url = response.GetResponseHeader("Location");
 
-                            if (response.GetResponseStream() != null)
-                                response.GetResponseStream().Close();
-                            response.Close();
+                        if (response.GetResponseStream() != null)
+                            response.GetResponseStream().Close();
+                        response.Close();
 
-                            if (!string.IsNullOrEmpty(ConfigCache.ExchangeDefaultDomain))
+                        if (!string.IsNullOrEmpty(ConfigCache.ExchangeDefaultDomain))
+                        {
+                            // If a default domain is provided, don't redirect outside it
+                            Uri uri = new Uri(url);
+                            if (!uri.Host.EndsWith(ConfigCache.ExchangeDefaultDomain))
                             {
-                                // If a default domain is provided, don't redirect outside it
-                                Uri uri = new Uri(url);
-                                if (!uri.Host.EndsWith(ConfigCache.ExchangeDefaultDomain))
-                                {
-                                    throw new WebException("Cannot redirect outside the default domain");
-                                }
+                                throw new WebException("Cannot redirect outside the default domain");
                             }
+                        }
 
-                            log.DebugFormat(
-                                "Redirect: {0} to {1} status {2}",
-                                method, url, response.StatusCode);
+                        log.DebugFormat(
+                            "Redirect: {0} to {1} status {2}",
+                            method, url, response.StatusCode);
 
-                            // Preserve the credentials and verb though all types
-                            // of redirects for WebDAV
-                            remainingAttempts--;
-                            break;
+                        // Preserve the credentials and verb though all types
+                        // of redirects for WebDAV
+                        remainingAttempts--;
+                        break;
 
-                        default:
-                            {
-                                StreamReader reader = new StreamReader(response.GetResponseStream());
-                                string result = reader.ReadToEnd();
-
-                                reader.Close();
-                                response.GetResponseStream().Close();
-                                response.Close();
-
-                                return result;
-                            }
-                    }
+                    default:
+                        return response.GetResponseStream();
                 }
             }
 
-            return string.Empty;
+            return new MemoryStream();
         }
    }
 }

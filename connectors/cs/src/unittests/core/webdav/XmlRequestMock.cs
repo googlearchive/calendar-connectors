@@ -29,7 +29,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
     public class XmlRequestMock : IXmlRequest
     {
         private Exception _exceptionToThrow = null;
-        private string _response;
+        private Stream _response;
         private string _validUrl;
         private Method _method;
 
@@ -39,7 +39,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             set { _exceptionToThrow = value; }
         }
 
-        public string ResponseBody
+        public Stream ResponseBody
         {
             get { return _response; }
             set { _response = value; }
@@ -57,7 +57,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             set { _method = value; }
         }
 
-        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
+        public Stream IssueRequest(string url, Method method, string body, HttpHeader[] headers)
         {
             if ( _exceptionToThrow != null )
                 throw _exceptionToThrow;

@@ -70,6 +70,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="body">The optional request body</param>
         /// <param name="headers">Optional headers to add to the request</param>
         /// <returns>The Response from the call</returns>
-        string IssueRequest(string url, Method method, string body, HttpHeader[] headers);
+        Stream IssueRequest(string url, Method method, string body, HttpHeader[] headers);
     }
 }

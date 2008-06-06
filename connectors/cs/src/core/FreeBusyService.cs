@@ -242,8 +242,6 @@ namespace Google.GCalExchangeSync.Library
 
             try
             {
-                string response = null;
-
                 webDavQueryBuilder.Reset();
 
                 BuildSpecialFreeBusyPropertiesQuery();
@@ -256,15 +254,14 @@ namespace Google.GCalExchangeSync.Library
                                       endDate,
                                       true);
 
-                response = webDavQuery.IssueRequest(targetUrl,
-                                                    Method.PROPPATCH,
-                                                    webDavQueryBuilder.BuildQueryBody(),
-                                                    kBriefHeader);
+                webDavQuery.IssueRequestIgnoreResponse(targetUrl,
+                                                       Method.PROPPATCH,
+                                                       webDavQueryBuilder.BuildQueryBody(),
+                                                       kBriefHeader);
                 if (log.IsDebugEnabled)
                 {
-                    log.DebugFormat("Creating free/busy message for: {0} succeeded with {1}",
-                                    targetUrl,
-                                    response ?? string.Empty);
+                    log.DebugFormat("Creating free/busy message for: {0} succeeded.",
+                                    targetUrl);
                 }
             }
             catch (Exception ex)
