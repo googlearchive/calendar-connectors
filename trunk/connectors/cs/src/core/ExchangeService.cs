@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Configuration;
 using System.DirectoryServices;
@@ -328,6 +329,7 @@ namespace Google.GCalExchangeSync.Library
                 IntervalTree<FreeBusyTimeBlock> freeBusyIntervals =
                     new IntervalTree<FreeBusyTimeBlock>();
                 FreeBusyCollection busyTimes = new FreeBusyCollection();
+                int appointmentsCount = 0;
 
                 /* Add the date ranges from each collection in the FreeBusy object */
                 foreach (DateTimeRange range in freeBusy.All)
@@ -350,6 +352,7 @@ namespace Google.GCalExchangeSync.Library
 
                 if (appointments != null && appointments.Count > 0)
                 {
+                    appointmentsCount = appointments.Count;
                     foreach (Appointment appt in appointments)
                     {
                         DateTimeRange range = new DateTimeRange(appt.StartDate, appt.EndDate);
@@ -368,7 +371,9 @@ namespace Google.GCalExchangeSync.Library
                 }
 
                 log.InfoFormat("Merge Result of FB {0} + Appointment {1} -> {2}",
-                    freeBusy.All.Count, appointments.Count, busyTimes.Count);
+                               freeBusy.All.Count,
+                               appointmentsCount,
+                               busyTimes.Count);
 
                 /* Assign the data structure to the exchange user */
                 exchangeUser.BusyTimes = busyTimes;
@@ -386,7 +391,7 @@ namespace Google.GCalExchangeSync.Library
 
             try
             {
-                webDavQuery.IssueRequest( url, Method.GET, string.Empty );
+                webDavQuery.IssueRequestIgnoreResponse(url, Method.GET, string.Empty);
             }
             catch ( WebException we )
             {

@@ -114,13 +114,6 @@ namespace Google.GCalExchangeSync.Library
             GetBooleanSetting("Exchange.EnableAppointmentLookup", "true");
 
         /// <summary>
-        /// Support new optimized Free / Busy lookup that uses custom API instead
-        /// of WebDAV
-        /// </summary>
-        public static readonly bool EnableOptimizedFreeBusy =
-            GetBooleanSetting("Exchange.EnableOptimizedFreeBusy", "false");
-
-        /// <summary>
         /// Maximum # of simultaneious open connections back to exchange
         /// </summary>
         public static readonly int ExchangeMaxConnections =

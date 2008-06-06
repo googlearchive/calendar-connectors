@@ -19,6 +19,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.XPath;
 
 using Google.GCalExchangeSync.Library;
@@ -399,12 +400,15 @@ namespace Google.GCalExchangeSync.Library.WebDav
         protected static readonly log4net.ILog _log =
            log4net.LogManager.GetLogger(typeof(WebDavQuery));
 
-        private static readonly int freeBusyInterval = 15;
+        private static readonly int kFreeBusyInterval = 15;
+        // Convert interval in mins to Ticks
+        // Ticks is in 100 Nanosecond = 1 E -7 s
+        private static readonly long kFreeBusyIntervalTicks =
+            (long)kFreeBusyInterval * 60 * 10000000;
 
         private ICredentials _credentials;
         private bool _isLogToFileEnabled;
         private IXmlRequest _requestor;
-        private bool _fastFreeBusyLookup;
 
         /// <summary>
         /// Create a WebDAV manager
@@ -426,7 +430,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
             _credentials = credentials;
             _isLogToFileEnabled = false;
             _requestor = requestor;
-            _fastFreeBusyLookup = ConfigCache.EnableOptimizedFreeBusy;
         }
 
         /// <summary>
@@ -439,22 +442,13 @@ namespace Google.GCalExchangeSync.Library.WebDav
         }
 
         /// <summary>
-        /// Enable the faster free buy lookup
-        /// </summary>
-        public bool FastFreeBusyLookup
-        {
-            get { return _fastFreeBusyLookup; }
-            set { _fastFreeBusyLookup = value; }
-        }
-
-        /// <summary>
         /// Issue a requet to the networking implementation
         /// </summary>
         /// <param name="url">The URL to request</param>
         /// <param name="method">The HTTP method to use</param>
         /// <param name="body">The request body to send</param>
         /// <returns>The response body</returns>
-        public string IssueRequest(string url, Method method, string body)
+        public Stream IssueRequest(string url, Method method, string body)
         {
             return _requestor.IssueRequest(url, method, body, null);
         }
@@ -467,9 +461,66 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="body">The request body to send</param>
         /// <param name="headers">Optional headers to add to the request</param>
         /// <returns>The response body</returns>
-        public string IssueRequest(string url, Method method, string body, HttpHeader[] headers)
+        public Stream IssueRequest(string url, Method method, string body, HttpHeader[] headers)
         {
             return _requestor.IssueRequest(url, method, body, headers);
+        }
+
+        /// <summary>
+        /// Issue a requet to the networking implementation
+        /// </summary>
+        /// <param name="url">The URL to request</param>
+        /// <param name="method">The HTTP method to use</param>
+        /// <param name="body">The request body to send</param>
+        /// <returns>void</returns>
+        public void IssueRequestIgnoreResponse(
+            string url,
+            Method method,
+            string body)
+        {
+            _requestor.IssueRequest(url, method, body, null).Close();
+        }
+
+        /// <summary>
+        /// Issue a requet to the networking implementation
+        /// </summary>
+        /// <param name="url">The URL to request</param>
+        /// <param name="method">The HTTP method to use</param>
+        /// <param name="body">The request body to send</param>
+        /// <param name="headers">Optional headers to add to the request</param>
+        /// <returns>void</returns>
+        public void IssueRequestIgnoreResponse(
+            string url,
+            Method method,
+            string body,
+            HttpHeader[] headers)
+        {
+            _requestor.IssueRequest(url, method, body, headers).Close();
+        }
+
+        /// <summary>
+        /// Issue a requet to the networking implementation
+        /// </summary>
+        /// <param name="url">The URL to request</param>
+        /// <param name="method">The HTTP method to use</param>
+        /// <param name="body">The request body to send</param>
+        /// <returns>The response read into string body</returns>
+        public string IssueRequestAndFetchReponse(
+            string url,
+            Method method,
+            string body)
+        {
+            Stream stream = _requestor.IssueRequest(url, method, body, null);
+
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string result = reader.ReadToEnd();
+
+                reader.Close();
+                stream.Close();
+
+                return result;
+            }
         }
 
         /// <summary>
@@ -509,8 +560,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="url">The URL of the resource</param>
         /// <param name="propName">Property name to remove</param>
         /// <param name="nameSpace">Property namespace to remove</param>
-        /// <returns>The response body</returns>
-        public string RemoveProperty( string url, string propName, string nameSpace )
+        /// <returns>void</returns>
+        public void RemoveProperty( string url, string propName, string nameSpace )
         {
             string body = string.Format(
                  "<?xml version=\"1.0\"?>" +
@@ -524,7 +575,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                  nameSpace,
                  propName );
 
-            return IssueRequest( url, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(url, Method.PROPPATCH, body);
         }
 
         /// <summary>
@@ -533,12 +584,12 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="destination">The URL of the resource</param>
         /// <param name="property">Property to modify</param>
         /// <param name="propertyValue">The new Property value</param>
-        /// <returns>The response body</returns>
-        public string UpdateProperty(string destination, Property property, string propertyValue)
+        /// <returns>void</returns>
+        public void UpdateProperty(string destination, Property property, string propertyValue)
         {
             string body = BuildPropertyQuery( property.Name, property.NameSpace, propertyValue );
 
-            return IssueRequest( destination, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(destination, Method.PROPPATCH, body);
         }
 
         /// <summary>
@@ -547,15 +598,15 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="destination">The URL of the resource</param>
         /// <param name="property">Property to modify</param>
         /// <param name="propertyValue">The new Property value</param>
-        /// <returns>The response body</returns>
-        public string UpdateFreeBusyProperty(
+        /// <returns>void</returns>
+        public void UpdateFreeBusyProperty(
             string destination,
             FreeBusyProperty property,
             string propertyValue)
         {
             string body = BuildFreeBusyPropertyQuery( property.Name, property.NameSpace, property.Type, propertyValue );
 
-            return IssueRequest( destination, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(destination, Method.PROPPATCH, body);
         }
 
         /// <summary>
@@ -564,15 +615,15 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// <param name="destination">The URL of the resource</param>
         /// <param name="property">Property to modify</param>
         /// <param name="propertyValues">The new Property values</param>
-        /// <returns>The response body</returns>
-        public string UpdateFreeBusyProperty(
+        /// <returns>void</returns>
+        public void UpdateFreeBusyProperty(
             string destination,
             FreeBusyProperty property,
             List<string> propertyValues )
         {
             string body = BuildFreeBusyMultiValuedPropertyQuery( property.Name, property.NameSpace, property.Type, propertyValues );
 
-            return IssueRequest( destination, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(destination, Method.PROPPATCH, body);
         }
 
         #region Property Query Builders
@@ -680,8 +731,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                 mailboxUrl,
                 Guid.NewGuid().ToString() );
 
-            string multiStatusResponse =
-                IssueRequest( appointmentUrl, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(appointmentUrl, Method.PROPPATCH, body);
 
             appointment.HRef = appointmentUrl;
 
@@ -712,8 +762,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                 appointment.Organizer,
                 appointment.BusyStatus.ToString() );
 
-            string multiStatusResponse =
-                IssueRequest( appointment.HRef, Method.PROPPATCH, body );
+            IssueRequestIgnoreResponse(appointment.HRef, Method.PROPPATCH, body);
 
             return appointment.HRef;
         }
@@ -736,7 +785,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                     DateUtil.FormatDateForDASL(start),
                     DateUtil.FormatDateForDASL(end));
 
-                string response = IssueRequest(folderUrl, Method.SEARCH, request);
+                string response = IssueRequestAndFetchReponse(folderUrl, Method.SEARCH, request);
                 XmlDocument responseXML = ParseExchangeXml(response);
                 return ParseAppointmentResultSetXml(responseXML);
             }
@@ -853,10 +902,10 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// Delete an item from a WebDAV store
         /// </summary>
         /// <param name="itemUrl">The item to delete</param>
-        /// <returns>The response from the server</returns>
-        public string Delete( string itemUrl )
+        /// <returns>void</returns>
+        public void Delete( string itemUrl )
         {
-            return IssueRequest( itemUrl, Method.DELETE, string.Empty );
+            IssueRequestIgnoreResponse(itemUrl, Method.DELETE, string.Empty);
         }
 
         /// <summary>
@@ -872,7 +921,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                 folderUrl,
                 contentClass);
 
-            string result = IssueRequest(folderUrl, Method.SEARCH, body);
+            string result = IssueRequestAndFetchReponse(folderUrl, Method.SEARCH, body);
 
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(result);
@@ -899,256 +948,231 @@ namespace Google.GCalExchangeSync.Library.WebDav
         /// Load free busy information from the public folder
         /// </summary>
         /// <param name="exchangeServerUrl">The exchange server to use</param>
-        /// <param name="user">The user to get free busy info for</param>
+        /// <param name="users">The set of users to get free busy info for</param>
         /// <param name="window">The DateTime range to get free busy info for</param>
-        /// <returns>FreeBusy information for the user</returns>
-        protected FreeBusy LoadFreeBusy(string exchangeServerUrl, ExchangeUser user, DateTimeRange window)
-        {
-            string folderUrl = FreeBusyUrl.GenerateAdminGroupUrlFromDN(
-                exchangeServerUrl, user.LegacyExchangeDN );
-            string folderPath = FreeBusyUrl.GenerateAdminGroupUrlFromDN(
-                "", user.LegacyExchangeDN);
-
-            string request = WebDavXmlResources.GetText(
-                WebDavXmlResources.LoadFreeBusy,
-                folderPath,
-                user.FreeBusyCommonName);
-
-            string response = IssueRequest(folderUrl, Method.SEARCH, request);
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(response);
-
-            XPathNavigator nav = doc.CreateNavigator();
-            nav.MoveToChild( XPathNodeType.Element );
-
-            XPathNavigator item = nav.SelectSingleNode( "//a:response/a:propstat[1]/a:prop[1]", nav );
-
-            FreeBusy fb = new FreeBusy();
-
-            fb.User = user;
-
-            fb.Busy = ParseFreeBusySection(
-                FreeBusyProperty.BusyMonths, FreeBusyProperty.BusyEvents, item );
-
-            fb.OutOfOffice = ParseFreeBusySection(
-                FreeBusyProperty.OutOfOfficeMonths, FreeBusyProperty.OutOfOfficeEvents, item );
-
-            fb.Tentative = ParseFreeBusySection(
-                FreeBusyProperty.TentativeMonths, FreeBusyProperty.TentativeEvents, item );
-
-            fb.All.AddRange( fb.Busy );
-            fb.All.AddRange( fb.OutOfOffice );
-            fb.All.AddRange( fb.Tentative );
-
-            return fb;
-        }
-
-        private Dictionary<ExchangeUser, FreeBusy> FastLoadFreeBusy(
-            string baseUrl,
+        /// <returns>A set of FreeBusy information for each user</returns>
+        public Dictionary<ExchangeUser, FreeBusy> LoadFreeBusy(
+            string exchangeServerUrl,
             ExchangeUserDict users,
             DateTimeRange window)
         {
-            Dictionary<ExchangeUser, FreeBusy> result = new Dictionary<ExchangeUser, FreeBusy>();
-            string url = FreeBusyUrl.GenerateFreeBusyLookupUrl(baseUrl, users, window, freeBusyInterval);
-            string response = IssueRequest(url, Method.GET, string.Empty);
 
-            // Convert interval in mins to Ticks
-            // Ticks is in 100 Nanosecond = 1 E -7 s
-            long interval = (long)freeBusyInterval * 60 * 10000000;
-            DateTime baseTime =
-                new DateTime(window.Start.Ticks + (interval - (window.Start.Ticks % interval)),
-                DateTimeKind.Unspecified);
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(response);
-
-            XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-            ns.AddNamespace("a", "WM");
-
-            XmlNodeList items = doc.SelectNodes("//a:response/a:recipients/a:item", ns);
-            foreach (XmlNode item in items)
+            long roundUp = window.Start.Ticks % kFreeBusyIntervalTicks;
+            if (roundUp != 0)
             {
-                XmlNode emailNode = item.SelectSingleNode("a:email", ns);
-                if (emailNode != null && users.ContainsKey(emailNode.InnerXml.ToLower()))
+                roundUp = kFreeBusyIntervalTicks - roundUp;
+            }
+
+            DateTime baseTime = new DateTime(window.Start.Ticks + roundUp,
+                                             DateTimeKind.Unspecified);
+            DateTimeRange roundedWindow = new DateTimeRange(baseTime, window.End);
+
+            string url = FreeBusyUrl.GenerateFreeBusyLookupUrl(exchangeServerUrl,
+                                                               users,
+                                                               roundedWindow,
+                                                               kFreeBusyInterval);
+            Stream response = IssueRequest(url, Method.GET, string.Empty);
+            Dictionary<ExchangeUser, FreeBusy> result = null;
+
+            try
+            {
+                result = ParseRasterFreeBusyResponse(users,
+                                                     baseTime,
+                                                     response);
+            }
+            finally
+            {
+                response.Close();
+            }
+
+            return result;
+        }
+
+        private static Dictionary<ExchangeUser, FreeBusy> ParseRasterFreeBusyResponse(
+            ExchangeUserDict users,
+            DateTime baseTime,
+            Stream response)
+        {
+            Dictionary<ExchangeUser, FreeBusy> result = new Dictionary<ExchangeUser, FreeBusy>();
+            string emailAddress = null;
+            string freeBusyRaster = null;
+            string elementName = null;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.XmlResolver = null;
+            settings.IgnoreComments = true;
+            settings.IgnoreWhitespace = true;
+            settings.ValidationType = ValidationType.None;
+            settings.ValidationFlags = XmlSchemaValidationFlags.None;
+            XmlReader reader = XmlReader.Create(response, settings);
+
+            reader.MoveToContent();
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
                 {
-                    ExchangeUser user = users[emailNode.InnerXml.ToLower()];
-                    FreeBusy fb = result[user] = new FreeBusy();
-                    fb.User = user;
-
-                    XmlNode fbData = item.SelectSingleNode("a:fbdata", ns);
-                    if (fbData != null)
-                    {
-                        char[] freeBusyState = fbData.InnerXml.ToCharArray();
-                        FreeBusyState oldState = FreeBusyState.Free;
-                        int startRun = 0;
-
-                        // From: http://support.microsoft.com/kb/813268
-                        //
-                        // The data is encoded as a raster(!) string with a
-                        // digit for each 15 min block
-                        //
-                        // 0 - Free
-                        // 1 - Busy - This seems to actually be 2!
-                        // 2 - Tentative - This seems to actually be 1!
-                        // 3 - Out of Office
-                        // 4 - Data not available
-
-                        for (int idx = 0; idx < freeBusyState.Length; idx++)
+                    case XmlNodeType.Element:
+                        elementName = reader.LocalName;
+                        if (elementName == "item")
                         {
-                            FreeBusyState newState = FreeBusyState.Free;
+                            emailAddress = null;
+                            freeBusyRaster = null;
+                        }
 
-                            switch (freeBusyState[idx])
+                        break;
+
+                    case XmlNodeType.Text:
+                        if (elementName == "email")
+                        {
+                            emailAddress = reader.Value.ToLower();
+                        }
+                        else
+                        {
+                            if (elementName == "fbdata")
                             {
-                                case '0': // Free
-                                    newState = FreeBusyState.Free;
-                                    break;
-
-                                case '1': // Tentative
-                                    newState = FreeBusyState.Tentative;
-                                    break;
-
-                                case '2': // Busy
-                                    newState = FreeBusyState.Busy;
-                                    break;
-
-                                case '3': // OOF
-                                    newState = FreeBusyState.OOO;
-                                    break;
-
-                                default:
-                                case '4': // Data not available
-                                    newState = FreeBusyState.Unavailable;
-                                    break;
-                            }
-
-                            if (newState != oldState)
-                            {
-                                DateTime eventStart = baseTime.AddMinutes(startRun * freeBusyInterval);
-                                DateTime eventEnd = baseTime.AddMinutes((idx - 1) * freeBusyInterval);
-                                DateTimeRange range = new DateTimeRange(eventStart, eventEnd);
-
-                                // Handle state transition
-                                switch (oldState)
-                                {
-                                    default:
-                                    case FreeBusyState.Unavailable:
-                                    case FreeBusyState.Free:
-                                        // We don't record these gaps
-                                        break;
-
-                                    case FreeBusyState.Busy:
-                                        // End of busy gap
-                                        fb.All.Add(range);
-                                        fb.Busy.Add(range);
-                                        break;
-
-                                    case FreeBusyState.Tentative:
-                                        // End of tentative gap
-                                        fb.All.Add(range);
-                                        fb.Tentative.Add(range);
-                                        break;
-
-                                    case FreeBusyState.OOO:
-                                        // End of OOO gap
-                                        fb.All.Add(range);
-                                        fb.OutOfOffice.Add(range);
-                                        break;
-                                }
-
-                                oldState = newState;
-                                startRun = idx;
+                                freeBusyRaster = reader.Value;
                             }
                         }
-                    }
+
+                        break;
+
+                    case XmlNodeType.EndElement:
+                        if (reader.LocalName == "item")
+                        {
+                            ParseFreeBusyRaster(users,
+                                                baseTime,
+                                                emailAddress,
+                                                freeBusyRaster,
+                                                result);
+
+                            emailAddress = null;
+                            freeBusyRaster = null;
+                        }
+                        elementName = string.Empty;
+
+                        break;
                 }
             }
 
             return result;
         }
 
-        /// <summary>
-        /// Load free busy information from the public folder
-        /// </summary>
-        /// <param name="exchangeServerUrl">The exchange server to use</param>
-        /// <param name="users">The set of users to get free busy info for</param>
-        /// <param name="window">The DateTime range to get free busy info for</param>
-        /// <returns>A set of FreeBusy information for each user</returns>
-        public Dictionary<ExchangeUser,FreeBusy> LoadFreeBusy(
-            string exchangeServerUrl,
+        private static void ParseFreeBusyRaster(
             ExchangeUserDict users,
-            DateTimeRange window )
+            DateTime baseTime,
+            string emailAddress,
+            string freeBusyRaster,
+            Dictionary<ExchangeUser, FreeBusy> result)
         {
-            if (_fastFreeBusyLookup)
-            {
-                return FastLoadFreeBusy(exchangeServerUrl, users, window);
-            }
-            else
-            {
-                Dictionary<ExchangeUser, FreeBusy> result = new Dictionary<ExchangeUser, FreeBusy>();
+            ExchangeUser user = null;
 
-                // TODO: OPTIMIZATION: put each user in a collection for its admin group
-                foreach (ExchangeUser user in users.Values)
+            if (emailAddress == null || !users.TryGetValue(emailAddress, out user))
+            {
+                return;
+            }
+
+            FreeBusy freeBusy = new FreeBusy();
+            freeBusy.User = user;
+
+            if (freeBusyRaster != null)
+            {
+                FreeBusyState oldState = FreeBusyState.Free;
+                int startRun = 0;
+                int idx = 0;
+
+                foreach (char current in freeBusyRaster)
                 {
-                    result.Add(user, LoadFreeBusy(exchangeServerUrl, user, window));
+                    FreeBusyState newState = MapRasterToFreeBusy(current);
+
+                    if (newState != oldState)
+                    {
+                        RecordFreeBusyInterval(baseTime, oldState, startRun, idx, freeBusy);
+
+                        oldState = newState;
+                        startRun = idx;
+                    }
+
+                    idx++;
                 }
 
-                return result;
+                if (freeBusyRaster.Length != 0)
+                {
+                    RecordFreeBusyInterval(baseTime, oldState, startRun, idx + 1, freeBusy);
+                }
             }
+
+            result[user] = freeBusy;
         }
 
-        private List<DateTimeRange> ParseFreeBusySection(
-            FreeBusyProperty months, FreeBusyProperty events, XPathNavigator nav )
+        private static readonly FreeBusyState[] freeBusyToRasterMap =
+        { 
+            FreeBusyState.Free,         // '0'/0 -> Free
+            FreeBusyState.Tentative,    // '1'/1 -> Tentative
+            FreeBusyState.Busy,         // '2'/2 -> Busy
+            FreeBusyState.OOO,          // '3'/3 -> OOF
+            FreeBusyState.Unavailable,  // '4'/4 -> Unavailable
+        };
+
+        private static FreeBusyState MapRasterToFreeBusy(
+            char current)
         {
-            List<DateTimeRange> fbBlocks = new List<DateTimeRange>();
+            // From: http://support.microsoft.com/kb/813268
+            //
+            // The data is encoded as a raster(!) string with a
+            // digit for each 15 min block
+            //
+            // 0 - Free
+            // 1 - Busy - This seems to actually be 2!
+            // 2 - Tentative - This seems to actually be 1!
+            // 3 - Out of Office
+            // 4 - Data not available
+            // The reason for the ordering mapping, is that in cases of overlaps,
+            // the bigger number wins. So if the user is both tentative and busy
+            // (2 meetings at the same time), 2 = busy wins.
 
-            // in this case, f/b information might not be populated yet.
-            if ( nav == null )
-                return fbBlocks;
-
-            XPathNodeIterator monthNodes = nav.Select( "e:" + months.Name + "/c:v", nav );
-            XPathNodeIterator eventNodes = nav.Select( "e:" + events.Name + "/c:v", nav );
-
-            // in this case, there may be no f/b information for this f/b type.
-            if ( monthNodes == null || eventNodes == null )
-                return fbBlocks;
-
-            if ( monthNodes.Count != eventNodes.Count )
-                throw new ApplicationException( "Invalid free/busy message format." );
-
-            List<int> monthValues = new List<int>();
-            List<byte[]> eventEntries = new List<byte[]>();
-
-            foreach ( XPathNavigator node in monthNodes )
+            if (current < '0' || current > '4')
             {
-                monthValues.Add( Convert.ToInt32( node.Value ) );
+                return FreeBusyState.Unavailable;
             }
 
-            foreach ( XPathNavigator node in eventNodes )
+            return freeBusyToRasterMap[current - '0'];
+        }
+
+        private static void RecordFreeBusyInterval(
+            DateTime baseTime,
+            FreeBusyState state,
+            int start,
+            int end,
+            FreeBusy freeBusy)
+        {
+            DateTime eventStart = baseTime.AddMinutes(start * kFreeBusyInterval);
+            DateTime eventEnd = baseTime.AddMinutes(end * kFreeBusyInterval);
+            DateTimeRange range = new DateTimeRange(eventStart, eventEnd);
+
+            // Handle the state
+            switch (state)
             {
-                eventEntries.Add( Convert.FromBase64String( node.Value ) );
+                default:
+                case FreeBusyState.Unavailable:
+                case FreeBusyState.Free:
+                    // We don't record these
+                    break;
+
+                case FreeBusyState.Busy:
+                    // Busy is recorded in busy and all
+                    freeBusy.All.Add(range);
+                    freeBusy.Busy.Add(range);
+                    break;
+
+                case FreeBusyState.Tentative:
+                    freeBusy.Tentative.Add(range);
+                    break;
+
+                case FreeBusyState.OOO:
+                    // OOO is recorded in out of office and all
+                    freeBusy.All.Add(range);
+                    freeBusy.OutOfOffice.Add(range);
+                    break;
             }
-
-            BinaryReader reader;
-            DateTime monthStart;
-            DateTime start;
-            DateTime end;
-
-            for (int i = 0; i < Math.Min(monthValues.Count, eventEntries.Count); i++)
-            {
-                monthStart = new DateTime(monthValues[i] >> 4, monthValues[i] & 15, 1);
-                reader = new BinaryReader(new MemoryStream(eventEntries[i]));
-
-                while (reader.BaseStream.Length - reader.BaseStream.Position >= 4)
-                {
-                    start = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
-                    end = (monthStart + TimeSpan.FromMinutes(reader.ReadUInt16()));
-
-                    fbBlocks.Add( new DateTimeRange( start, end ) );
-                }
-            }
-
-            return fbBlocks;
         }
 
         #endregion
