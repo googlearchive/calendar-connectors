@@ -83,6 +83,9 @@
     <Compile Include="..\..\unittests\core\util\DateTimeRangeTest.cs">
       <Link>core\util\DateTimeRangeTest.cs</Link>
     </Compile>
+    <Compile Include="..\..\unittests\core\util\DateUtilTest.cs">
+      <Link>core\util\DateUtilTest.cs</Link>
+    </Compile>
     <Compile Include="..\..\unittests\core\util\FreeBusyUrlTest.cs">
       <Link>core\util\FreeBusyUrlTest.cs</Link>
     </Compile>
