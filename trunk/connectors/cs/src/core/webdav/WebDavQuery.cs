@@ -392,8 +392,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
     /// </summary>
     public class WebDavQuery
     {
-        private enum FreeBusyState { Free, Busy, Tentative, OOO, Unavailable };
-
         /// <summary>
         /// Logger for WebDavQuery
         /// </summary>
@@ -1073,106 +1071,12 @@ namespace Google.GCalExchangeSync.Library.WebDav
             FreeBusy freeBusy = new FreeBusy();
             freeBusy.User = user;
 
-            if (freeBusyRaster != null)
-            {
-                FreeBusyState oldState = FreeBusyState.Free;
-                int startRun = 0;
-                int idx = 0;
-
-                foreach (char current in freeBusyRaster)
-                {
-                    FreeBusyState newState = MapRasterToFreeBusy(current);
-
-                    if (newState != oldState)
-                    {
-                        RecordFreeBusyInterval(baseTime, oldState, startRun, idx, freeBusy);
-
-                        oldState = newState;
-                        startRun = idx;
-                    }
-
-                    idx++;
-                }
-
-                if (freeBusyRaster.Length != 0)
-                {
-                    RecordFreeBusyInterval(baseTime, oldState, startRun, idx + 1, freeBusy);
-                }
-            }
+            FreeBusyConverter.ParseRasterFreeBusy(baseTime,
+                                                      kFreeBusyInterval,
+                                                      freeBusyRaster,
+                                                      freeBusy);
 
             result[user] = freeBusy;
-        }
-
-        private static readonly FreeBusyState[] freeBusyToRasterMap =
-        { 
-            FreeBusyState.Free,         // '0'/0 -> Free
-            FreeBusyState.Tentative,    // '1'/1 -> Tentative
-            FreeBusyState.Busy,         // '2'/2 -> Busy
-            FreeBusyState.OOO,          // '3'/3 -> OOF
-            FreeBusyState.Unavailable,  // '4'/4 -> Unavailable
-        };
-
-        private static FreeBusyState MapRasterToFreeBusy(
-            char current)
-        {
-            // From: http://support.microsoft.com/kb/813268
-            //
-            // The data is encoded as a raster(!) string with a
-            // digit for each 15 min block
-            //
-            // 0 - Free
-            // 1 - Busy - This seems to actually be 2!
-            // 2 - Tentative - This seems to actually be 1!
-            // 3 - Out of Office
-            // 4 - Data not available
-            // The reason for the ordering mapping, is that in cases of overlaps,
-            // the bigger number wins. So if the user is both tentative and busy
-            // (2 meetings at the same time), 2 = busy wins.
-
-            if (current < '0' || current > '4')
-            {
-                return FreeBusyState.Unavailable;
-            }
-
-            return freeBusyToRasterMap[current - '0'];
-        }
-
-        private static void RecordFreeBusyInterval(
-            DateTime baseTime,
-            FreeBusyState state,
-            int start,
-            int end,
-            FreeBusy freeBusy)
-        {
-            DateTime eventStart = baseTime.AddMinutes(start * kFreeBusyInterval);
-            DateTime eventEnd = baseTime.AddMinutes(end * kFreeBusyInterval);
-            DateTimeRange range = new DateTimeRange(eventStart, eventEnd);
-
-            // Handle the state
-            switch (state)
-            {
-                default:
-                case FreeBusyState.Unavailable:
-                case FreeBusyState.Free:
-                    // We don't record these
-                    break;
-
-                case FreeBusyState.Busy:
-                    // Busy is recorded in busy and all
-                    freeBusy.All.Add(range);
-                    freeBusy.Busy.Add(range);
-                    break;
-
-                case FreeBusyState.Tentative:
-                    freeBusy.Tentative.Add(range);
-                    break;
-
-                case FreeBusyState.OOO:
-                    // OOO is recorded in out of office and all
-                    freeBusy.All.Add(range);
-                    freeBusy.OutOfOffice.Add(range);
-                    break;
-            }
         }
 
         #endregion

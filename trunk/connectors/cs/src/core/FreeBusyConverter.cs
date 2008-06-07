@@ -29,7 +29,7 @@ namespace Google.GCalExchangeSync.Library
     /// </summary>
     public class FreeBusyConverter
     {
-        static private readonly DateTime utc1601_1_1 =
+        static private readonly DateTime kUtc1601_1_1 =
             new DateTime(1601, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
@@ -244,10 +244,141 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         /// <param name="dt">DateTime to convert</param>
         /// <returns>System time corresponding to the value</returns>
-        public static double ConvertToSysTime(DateTime dt)
+        public static int ConvertToSysTime(DateTime dt)
         {
-            TimeSpan ts = dt.Subtract(utc1601_1_1);
-            return ts.TotalMinutes;
+            TimeSpan ts = dt.Subtract(kUtc1601_1_1);
+            return (int)ts.TotalMinutes;
+        }
+
+        private static readonly BusyStatus[] kRasterToFreeBusyMap =
+        { 
+            BusyStatus.Free,        // '0'/0 -> Free
+            BusyStatus.Tentative,   // '1'/1 -> Tentative
+            BusyStatus.Busy,        // '2'/2 -> Busy
+            BusyStatus.OutOfOffice, // '3'/3 -> OOF
+            BusyStatus.Free,        // '4'/4 -> Free
+        };
+
+        /// <summary>
+        /// Converst Exchange raster free busy character to BusyStatus
+        /// </summary>
+        /// <param name="raster">The character to convert</param>
+        /// <returns>The free busy status corresponding to the character</returns>
+        public static BusyStatus ConvertRasterToFreeBusy(
+            char raster)
+        {
+            // From: http://support.microsoft.com/kb/813268
+            //
+            // The data is encoded as a raster(!) string with a
+            // digit for each 15 min block
+            //
+            // 0 - Free
+            // 1 - Busy - This seems to actually be 2!
+            // 2 - Tentative - This seems to actually be 1!
+            // 3 - Out of Office
+            // 4 - Data not available
+            // The reason for the ordering mapping, is that in cases of overlaps,
+            // the bigger number wins. So if the user is both tentative and busy
+            // (2 meetings at the same time), 2 = busy wins.
+
+            if (raster < '0' || raster > '4')
+            {
+                return BusyStatus.Free;
+            }
+
+            return kRasterToFreeBusyMap[raster - '0'];
+        }
+
+        /// <summary>
+        /// Converst Exchange raster free busy string to FreeBusy
+        /// </summary>
+        /// <param name="baseTime">The start date of the free busy</param>
+        /// <param name="freeBusyInterval">The granularity of the free busy in minutes</param>
+        /// <param name="freeBusyRaster">The raster to parse</param>
+        /// <param name="freeBusy">The free busy result</param>
+        /// <returns>void</returns>
+        public static void ParseRasterFreeBusy(
+            DateTime baseTime,
+            int freeBusyInterval,
+            string freeBusyRaster,
+            FreeBusy freeBusy)
+        {
+            BusyStatus oldState = BusyStatus.Free;
+            int startRun = 0;
+            int idx = 0;
+
+            if (freeBusyRaster == null)
+            {
+                return;
+            }
+
+            foreach (char current in freeBusyRaster)
+            {
+                BusyStatus newState = ConvertRasterToFreeBusy(current);
+
+                if (newState != oldState)
+                {
+                    RecordFreeBusyInterval(baseTime,
+                                           oldState,
+                                           freeBusyInterval,
+                                           startRun,
+                                           idx,
+                                           freeBusy);
+
+                    oldState = newState;
+                    startRun = idx;
+                }
+
+                idx++;
+            }
+
+            if (freeBusyRaster.Length != 0)
+            {
+                RecordFreeBusyInterval(baseTime,
+                                       oldState,
+                                       freeBusyInterval,
+                                       startRun,
+                                       idx,
+                                       freeBusy);
+            }
+        }
+
+        private static void RecordFreeBusyInterval(
+            DateTime baseTime,
+            BusyStatus state,
+            int freeBusyInterval,
+            int start,
+            int end,
+            FreeBusy freeBusy)
+        {
+            DateTime eventStart = baseTime.AddMinutes(start * freeBusyInterval);
+            DateTime eventEnd = baseTime.AddMinutes(end * freeBusyInterval);
+            DateTimeRange range = new DateTimeRange(eventStart, eventEnd);
+
+            // Handle the state
+            switch (state)
+            {
+                default:
+                case BusyStatus.Free:
+                    // We don't record these
+                    break;
+
+                case BusyStatus.Busy:
+                    // Busy is recorded in busy and all
+                    freeBusy.All.Add(range);
+                    freeBusy.Busy.Add(range);
+                    break;
+
+                case BusyStatus.Tentative:
+                    freeBusy.Tentative.Add(range);
+                    break;
+
+                case BusyStatus.OutOfOffice:
+                    // OOO is recorded in out of office and all
+                    freeBusy.All.Add(range);
+                    freeBusy.OutOfOffice.Add(range);
+                    break;
+            }
         }
     }
 }
