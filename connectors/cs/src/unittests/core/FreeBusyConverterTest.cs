@@ -33,6 +33,9 @@ namespace Google.GCalExchangeSync.Library
     [TestFixture]
     public class FreeBusyConverterTest
     {
+        static private readonly DateTime kUtc1601_1_1 =
+            new DateTime(1601, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         [Test]
         public void TestDateAdvance()
         {
@@ -41,6 +44,205 @@ namespace Google.GCalExchangeSync.Library
             r = DateUtil.StartOfNextMonth(r);
 
             Assert.AreEqual(new DateTime(2008, 01, 01, 00, 00, 00, DateTimeKind.Unspecified), r);
+        }
+
+        [Test]
+        public void TestConvertToSysTime()
+        {
+            long ticksInMinute = (long)60 * 10000000;
+            DateTime utc1601_1_1 = new DateTime(1601, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime rawNow = DateTime.Now;
+            DateTime now = new DateTime(rawNow.Year,
+                                        rawNow.Month,
+                                        rawNow.Day,
+                                        rawNow.Hour,
+                                        rawNow.Minute,
+                                        0,
+                                        0,
+                                        rawNow.Kind);
+            int prevSysTime = FreeBusyConverter.ConvertToSysTime(now) - 1;
+
+            for (int i = 0; i < 60 * 24 * 368; i++)
+            {
+                DateTime future = now.AddTicks(i * ticksInMinute);
+                int sysTime = FreeBusyConverter.ConvertToSysTime(future);
+                DateTime check = utc1601_1_1.AddTicks(sysTime * ticksInMinute);
+
+                Assert.AreEqual(future, check);
+                Assert.AreEqual(prevSysTime + 1, sysTime);
+
+                prevSysTime++;
+            }
+        }
+
+        [Test]
+        public void TestConvertRasterToFreeBusy()
+        {
+            for (char c = ' '; c < 256; c++)
+            {
+                if (c < '0' || c > '4')
+                {
+                    Assert.AreEqual(BusyStatus.Free, FreeBusyConverter.ConvertRasterToFreeBusy(c));
+                }
+            }
+
+            Assert.AreEqual(BusyStatus.Free, FreeBusyConverter.ConvertRasterToFreeBusy('0'));
+            Assert.AreEqual(BusyStatus.Tentative, FreeBusyConverter.ConvertRasterToFreeBusy('1'));
+            Assert.AreEqual(BusyStatus.Busy, FreeBusyConverter.ConvertRasterToFreeBusy('2'));
+            Assert.AreEqual(BusyStatus.OutOfOffice, FreeBusyConverter.ConvertRasterToFreeBusy('3'));
+            Assert.AreEqual(BusyStatus.Free, FreeBusyConverter.ConvertRasterToFreeBusy('4'));
+        }
+
+        private static void ClearFreeBusy(
+            FreeBusy freeBusy)
+        {
+            freeBusy.All.Clear();
+            freeBusy.Busy.Clear();
+            freeBusy.Tentative.Clear();
+            freeBusy.OutOfOffice.Clear();
+        }
+
+        [Test]
+        public void TestParseRasterFreeBusy()
+        {
+            DateTime startDate = new DateTime(2008, 05, 1, 10, 0, 0, DateTimeKind.Utc);
+            DateTime date1 = new DateTime(2008, 05, 1, 10, 15, 0, DateTimeKind.Utc);
+            DateTime date2 = new DateTime(2008, 05, 1, 10, 30, 0, DateTimeKind.Utc);
+            DateTime date3 = new DateTime(2008, 05, 1, 10, 45, 0, DateTimeKind.Utc);
+            DateTime date4 = new DateTime(2008, 05, 1, 11, 0, 0, DateTimeKind.Utc);
+            DateTime date5 = new DateTime(2008, 05, 1, 11, 15, 0, DateTimeKind.Utc);
+            FreeBusy freeBusy = new FreeBusy();
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "1", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative[0].Start, startDate);
+            Assert.AreEqual(freeBusy.Tentative[0].End, date1);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "2", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 1);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, startDate);
+            Assert.AreEqual(freeBusy.All[0].End, date1);
+            Assert.AreEqual(freeBusy.Busy[0].Start, startDate);
+            Assert.AreEqual(freeBusy.Busy[0].End, date1);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "3", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, startDate);
+            Assert.AreEqual(freeBusy.All[0].End, date1);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].Start, startDate);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].End, date1);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "4", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "11", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative[0].Start, startDate);
+            Assert.AreEqual(freeBusy.Tentative[0].End, date2);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "22", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 1);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, startDate);
+            Assert.AreEqual(freeBusy.All[0].End, date2);
+            Assert.AreEqual(freeBusy.Busy[0].Start, startDate);
+            Assert.AreEqual(freeBusy.Busy[0].End, date2);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "33", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, startDate);
+            Assert.AreEqual(freeBusy.All[0].End, date2);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].Start, startDate);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].End, date2);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "44", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "0114", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative[0].Start, date1);
+            Assert.AreEqual(freeBusy.Tentative[0].End, date3);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "0224", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 1);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, date1);
+            Assert.AreEqual(freeBusy.All[0].End, date3);
+            Assert.AreEqual(freeBusy.Busy[0].Start, date1);
+            Assert.AreEqual(freeBusy.Busy[0].End, date3);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "0334", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 1);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            Assert.AreEqual(freeBusy.All[0].Start, date1);
+            Assert.AreEqual(freeBusy.All[0].End, date3);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].Start, date1);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].End, date3);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "0440", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 0);
+            Assert.AreEqual(freeBusy.Busy.Count, 0);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 0);
+            Assert.AreEqual(freeBusy.Tentative.Count, 0);
+            ClearFreeBusy(freeBusy);
+
+            FreeBusyConverter.ParseRasterFreeBusy(startDate, 15, "40312", freeBusy);
+            Assert.AreEqual(freeBusy.All.Count, 2);
+            Assert.AreEqual(freeBusy.Busy.Count, 1);
+            Assert.AreEqual(freeBusy.OutOfOffice.Count, 1);
+            Assert.AreEqual(freeBusy.Tentative.Count, 1);
+            Assert.AreEqual(freeBusy.All[0].Start, date2);
+            Assert.AreEqual(freeBusy.All[0].End, date3);
+            Assert.AreEqual(freeBusy.All[1].Start, date4);
+            Assert.AreEqual(freeBusy.All[1].End, date5);
+            Assert.AreEqual(freeBusy.Busy[0].Start, date4);
+            Assert.AreEqual(freeBusy.Busy[0].End, date5);
+            Assert.AreEqual(freeBusy.Tentative[0].Start, date3);
+            Assert.AreEqual(freeBusy.Tentative[0].End, date4);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].Start, date2);
+            Assert.AreEqual(freeBusy.OutOfOffice[0].End, date3);
+            ClearFreeBusy(freeBusy);
         }
 
         [Test]
