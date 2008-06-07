@@ -753,7 +753,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             _requestor.ResponseBody = getResponseXML("FreeBusyResponse.xml");
 
             // These dates correspond to when the response XML was captured
-            DateTime start = DateUtil.ParseDateToUtc("2007-12-25T01:42:50Z");
+            DateTime start = DateUtil.ParseDateToUtc("2007-12-25T01:46:50Z");
             DateTime end = DateUtil.ParseDateToUtc("2008-01-08T01:42:50Z");
             DateTimeRange range = new DateTimeRange(start, end);
 

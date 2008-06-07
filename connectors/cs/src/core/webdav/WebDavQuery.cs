@@ -399,10 +399,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
            log4net.LogManager.GetLogger(typeof(WebDavQuery));
 
         private static readonly int kFreeBusyInterval = 15;
-        // Convert interval in mins to Ticks
-        // Ticks is in 100 Nanosecond = 1 E -7 s
-        private static readonly long kFreeBusyIntervalTicks =
-            (long)kFreeBusyInterval * 60 * 10000000;
 
         private ICredentials _credentials;
         private bool _isLogToFileEnabled;
@@ -954,16 +950,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             ExchangeUserDict users,
             DateTimeRange window)
         {
-
-            long roundUp = window.Start.Ticks % kFreeBusyIntervalTicks;
-            if (roundUp != 0)
-            {
-                roundUp = kFreeBusyIntervalTicks - roundUp;
-            }
-
-            DateTime baseTime = new DateTime(window.Start.Ticks + roundUp,
-                                             DateTimeKind.Unspecified);
-            DateTimeRange roundedWindow = new DateTimeRange(baseTime, window.End);
+            DateTimeRange roundedWindow = DateUtil.RoundRangeToInterval(window, kFreeBusyInterval);
 
             string url = FreeBusyUrl.GenerateFreeBusyLookupUrl(exchangeServerUrl,
                                                                users,
@@ -975,7 +962,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
             try
             {
                 result = ParseRasterFreeBusyResponse(users,
-                                                     baseTime,
+                                                     roundedWindow.Start,
                                                      response);
             }
             finally

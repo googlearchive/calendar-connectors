@@ -29,6 +29,9 @@ namespace Google.GCalExchangeSync.Library.Util
         protected static readonly log4net.ILog _log =
             log4net.LogManager.GetLogger( typeof( DateUtil ) );
 
+        // Used to convert minutes to ticks. Ticks is in 100 Nanosecond = 1 E -7 seconds.
+        private static readonly long kTicksInMinute = (long)60 * 10000000;
+
         /// <summary>
         /// Is the DateTime within the date range
         /// </summary>
@@ -171,5 +174,31 @@ namespace Google.GCalExchangeSync.Library.Util
         {
             get { return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified); }
         }
+
+        /// <summary>
+        /// Expands a range, so it starts and ends at times divisible by the given minutes
+        /// </summary>
+        /// <param name="range">The range to round</param>
+        /// <param name="minutes">The number of minutes to round to</param>
+        /// <returns>The adjusted range</returns>
+        public static DateTimeRange RoundRangeToInterval(
+            DateTimeRange range,
+            int minutes)
+        {
+            long ticks = kTicksInMinute * minutes;
+
+            long temp = range.Start.Ticks;
+            long roundDown = temp - temp % ticks;
+
+            temp = range.End.Ticks + ticks - 1;
+            long roundUp = temp - temp % ticks;
+
+            DateTime start = new DateTime(roundDown, DateTimeKind.Unspecified);
+            DateTime end = new DateTime(roundUp, DateTimeKind.Unspecified);
+            DateTimeRange rounded = new DateTimeRange(start, end);
+
+            return rounded;
+        }
+
     }
 }
