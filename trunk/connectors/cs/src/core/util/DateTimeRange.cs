@@ -152,7 +152,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>True if t is within this DateTimeRange</returns>
         public bool InRange(DateTime t)
         {
-            return start <= t && t <= end;
+            return DateUtil.IsWithinRange(t, start, end);
         }
     }
 }
