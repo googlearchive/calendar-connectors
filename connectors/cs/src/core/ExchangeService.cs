@@ -191,10 +191,10 @@ namespace Google.GCalExchangeSync.Library
                     else
                     {
                         userCollection.Add( user.Email.ToLower(), user );
-                        log.InfoFormat( "Found and added '{0}' as an ExchangeUser.", user.Email );
+                        log.InfoFormat("Found and added '{0}' as an ExchangeUser.", user.Email);
                     }
 
-                    log.DebugFormat( "LDAP object debug info: " + user );
+                    log.DebugFormat("LDAP object debug info: {0}", user);
                 }
             }
 

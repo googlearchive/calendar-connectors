@@ -197,11 +197,19 @@ namespace Google.GCalExchangeSync.Library
             try
             {
                 string[] parts = legacyDN.ToUpper().Split('/');
-                return string.Format("USER-/{0}/{1}", parts[parts.Length - 2], parts[parts.Length - 1]);
+                int partsLength = parts.Length;
+
+                if (partsLength < 2)
+                {
+                    log.DebugFormat("Cannot parse legacyDN = \"{0}\"", legacyDN);
+                    return string.Empty;
+                }
+
+                return string.Format("USER-/{0}/{1}", parts[partsLength - 2], parts[partsLength - 1]);
             }
             catch (Exception e)
             {
-                log.DebugFormat("EXCEPTION parseFreeBusyCommonName {0} - {1)", legacyDN, e.Message);
+                log.DebugFormat("EXCEPTION parseFreeBusyCommonName {0} - {1}", legacyDN, e.Message);
                 return string.Empty;
             }
         }
@@ -216,42 +224,41 @@ namespace Google.GCalExchangeSync.Library
 
         private void Validate()
         {
-            string objectDetail = string.Format(
-                "LDAP attributes: sAMAccountName='{0}', email='{1}', ProxyAddresses='{2}'",
-                accountName ?? "(null)",
-                email ?? "(null)",
-                proxyAddresses ?? "(null)" );
-
             if ( string.IsNullOrEmpty( this.accountName ) )
             {
-                log.WarnFormat(
-                    "Invalid user - null or empty sAMAccountName attribute. [{0}]", objectDetail );
+                log.WarnFormat("Invalid user - null or empty sAMAccountName attribute.");
 
                 isValid = false;
             }
 
             if ( string.IsNullOrEmpty( this.proxyAddresses ) )
             {
-                log.WarnFormat(
-                    "Invalid user - null or empty ProxyAddresses attribute. [{0}]", objectDetail );
+                log.WarnFormat("Invalid user - null or empty ProxyAddresses attribute.");
 
                 isValid = false;
             }
 
             if ( string.IsNullOrEmpty( this.email ) )
             {
-                log.WarnFormat(
-                    "Invalid user - null or empty email attribute. [{0}]", objectDetail );
+                log.WarnFormat("Invalid user - null or empty email attribute.");
 
                 isValid = false;
             }
 
             if ( string.IsNullOrEmpty( this.legacyExchangeDN ) )
             {
-                log.WarnFormat(
-                    "Invalid user - null or empty legacyExchangeDN attribute. [{0}]", objectDetail );
+                log.WarnFormat("Invalid user - null or empty legacyExchangeDN attribute.");
 
                 isValid = false;
+            }
+
+            if (!isValid)
+            {
+                log.WarnFormat(
+                    "Invalid user LDAP attributes: sAMAccountName='{0}', email='{1}', ProxyAddresses='{2}'",
+                    accountName ?? "(null)",
+                    email ?? "(null)",
+                    proxyAddresses ?? "(null)");
             }
         }
 

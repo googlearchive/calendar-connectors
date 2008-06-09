@@ -39,16 +39,12 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <param name="startDate">Start of interval</param>
         /// <param name="endDate">End of interval</param>
         /// <returns>True if dateToCompare is within the range</returns>
-        public static bool IsWithinRange( DateTime dateToCompare, DateTime startDate, DateTime endDate )
+        public static bool IsWithinRange(
+            DateTime dateToCompare,
+            DateTime startDate,
+            DateTime endDate)
         {
-            bool val = false;
-
-            if ( dateToCompare >= startDate && dateToCompare <= endDate )
-            {
-                val = true;
-            }
-
-            return val;
+            return dateToCompare >= startDate && dateToCompare <= endDate;
         }
 
         /// <summary>
