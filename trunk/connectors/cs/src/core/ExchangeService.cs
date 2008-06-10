@@ -293,7 +293,7 @@ namespace Google.GCalExchangeSync.Library
                     /* Retrieve the free busy blocks */
                     FreeBusy freeBusy = freeBusyBlocks[user];
 
-                    user.AccessLevel = GCalAccessLevel.FreeBusyAccess;
+                    user.AccessLevel = GCalAccessLevel.ReadAccess;
 
                     List<Appointment> appointments = future.getResult(user);
 
