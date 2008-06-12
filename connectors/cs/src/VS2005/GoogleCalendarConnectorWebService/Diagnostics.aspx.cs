@@ -161,10 +161,20 @@ namespace GCalExchangeLookup
                         sb.AppendFormat("<li>Email: {0}</li>", user.Email);
                         sb.AppendFormat("<li>Account Name: {0}</li>", user.AccountName);
                         sb.AppendFormat("<li>Mail Nickname: {0}</li>", user.MailNickname);
+
                         sb.AppendFormat("<li>Busy Times:");
                         sb.AppendFormat("<ul>");
 
                         foreach (FreeBusyTimeBlock tb in user.BusyTimes.Values)
+                        {
+                            sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate.ToLocalTime(), tb.EndDate.ToLocalTime());
+                        }
+                        sb.AppendFormat("</ul></li>");
+
+                        sb.AppendFormat("<li>Tentative Times:");
+                        sb.AppendFormat("<ul>");
+
+                        foreach (FreeBusyTimeBlock tb in user.TentativeTimes.Values)
                         {
                             sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate.ToLocalTime(), tb.EndDate.ToLocalTime());
                         }

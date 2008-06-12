@@ -138,7 +138,7 @@ namespace Google.GCalExchangeSync.Library
         public void TestFreeBusyAppointmentMerge()
         {
             FreeBusy fb = createFreeBusy(_user);
-            this.MergeFreeBusyWithAppointments(_user, fb, _appointments, _window.Start, _window.End);
+            this.MergeFreeBusyWithAppointments(_user, fb, _appointments, _window);
 
             Assert.AreEqual(5, _user.BusyTimes.Count);
             Assert.AreEqual(7, _appointments.Count);
@@ -187,7 +187,7 @@ namespace Google.GCalExchangeSync.Library
 
             Assert.AreEqual(start, _user.BusyTimes[start].StartDate);
             Assert.AreEqual(end, _user.BusyTimes[start].EndDate);
-            Assert.AreEqual(1, _user.BusyTimes[start].Appointments.Count);
+            Assert.AreEqual(2, _user.BusyTimes[start].Appointments.Count);
             Assert.AreEqual(start, _user.BusyTimes[start].Appointments[0].StartDate);
             Assert.AreEqual(start.AddHours(2), _user.BusyTimes[start].Appointments[0].EndDate);
 

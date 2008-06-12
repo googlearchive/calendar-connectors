@@ -90,6 +90,38 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         /// <summary>
+        /// Convert an Exchange Event Busy Status to a Google Calendar response
+        /// </summary>
+        /// <param name="busyStatus">The Exchange event status</param>
+        /// <returns>The Google Calendar response</returns>
+        public static int ConvertBusyStatusToGoogleResponse(BusyStatus busyStatus)
+        {
+            GCalResponseStatus googleStatus = GCalResponseStatus.Uninvited;
+
+            switch (busyStatus)
+            {
+                case BusyStatus.OutOfOffice:
+                case BusyStatus.Busy:
+                    googleStatus = GCalResponseStatus.Accepted;
+                    break;
+
+                case BusyStatus.Free:
+                    googleStatus = GCalResponseStatus.Declined;
+                    break;
+
+                case BusyStatus.Tentative:
+                    googleStatus = GCalResponseStatus.Tentative;
+                    break;
+
+                default:
+                    googleStatus = GCalResponseStatus.Uninvited;
+                    break;
+            }
+
+            return (int)googleStatus;
+        }
+
+        /// <summary>
         /// Perform escaping on the string for use in Exchange WebDAV messages
         /// </summary>
         /// <param name="input">The string to escape</param>

@@ -103,6 +103,8 @@ namespace Google.GCalExchangeSync.Library.Util
             return string.Format("{0}T{1}", dt.ToString("yyyyMMdd"), dt.ToString("HHmmss"));
         }
 
+        private static readonly string[] kGoogleDateFormat = { "yyyyMMdd'T'HHmmss", "yyyyMMdd" };
+
         /// <summary>
         /// Parses date supplied from GCal requests. Parses dates in form "yyyyMMddTHHmmss"
         /// where T is the delimiter between date and time information
@@ -117,7 +119,7 @@ namespace Google.GCalExchangeSync.Library.Util
             {
                 dt = DateTime.ParseExact(
                     dateString,
-                    new string[] { "yyyyMMdd'T'HHmmss", "yyyyMMdd" },
+                    kGoogleDateFormat,
                     DateTimeFormatInfo.InvariantInfo,
                     DateTimeStyles.None );
             }

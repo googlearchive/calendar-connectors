@@ -792,11 +792,12 @@ namespace Google.GCalExchangeSync.Library.WebDav
             bool active = nav.MoveToFirstChild();
 
             XmlNamespaceManager ns = new XmlNamespaceManager( doc.NameTable );
-            ns.AddNamespace( "dav", "DAV:" );
-            ns.AddNamespace( "cal", "urn:schemas:calendar:" );
-            ns.AddNamespace( "mail", "urn:schemas:mailheader:" );
-            ns.AddNamespace( "g", "http://schemas.microsoft.com/mapi/proptag/");
-            ns.AddNamespace( "h", "http://schemas.microsoft.com/mapi/id/{00062008-0000-0000-C000-000000000046}/");
+            ns.AddNamespace("dav", "DAV:");
+            ns.AddNamespace("cal", "urn:schemas:calendar:");
+            ns.AddNamespace("mail", "urn:schemas:mailheader:");
+            ns.AddNamespace("f", "http://schemas.microsoft.com/mapi/proptag/");
+            ns.AddNamespace("g", "http://schemas.microsoft.com/mapi/id/{00062008-0000-0000-C000-000000000046}/");
+            ns.AddNamespace("h", "http://schemas.microsoft.com/mapi/id/{00062002-0000-0000-C000-000000000046}/");
 
             XmlNodeList nodes = doc.SelectNodes( "//dav:response", ns );
             foreach ( XmlNode node in nodes )
@@ -810,7 +811,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                     GetPropertyAsBool(prop, "cal:alldayevent", ns);
 
                 appt.Body =
-                    GetPropertyAsXML(prop, "g:x1000001e", ns);
+                    GetPropertyAsXML(prop, "f:x1000001e", ns);
 
                 appt.BusyStatus = ConversionsUtil.ParseBusyStatus(
                     GetPropertyAsString(prop, "cal:busystatus", appt.BusyStatus.ToString(), ns));
@@ -833,7 +834,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                     true);
 
                 appt.IsPrivate =
-                    GetPropertyAsBool(prop, "h:x8506", ns);
+                    GetPropertyAsBool(prop, "g:x8506", ns);
 
                 appt.Location =
                     GetPropertyAsString(prop, "cal:location", ns);
@@ -846,10 +847,7 @@ namespace Google.GCalExchangeSync.Library.WebDav
                 appt.Organizer =
                     GetPropertyAsString(prop, "cal:organizer", ns);
 
-                appt.ResponseStatus = (ResponseStatus)Enum.Parse(
-                    typeof(ResponseStatus),
-                    GetPropertyAsString(prop, "h:x8218", appt.ResponseStatus.ToString(), ns),
-                    true);
+                appt.ResponseStatus = (ResponseStatus)GetPropertyAsInt(prop, "h:x8218", (int)appt.ResponseStatus, ns);
 
                 appt.Subject =
                     GetPropertyAsString(prop, "mail:subject", ns);
@@ -869,6 +867,30 @@ namespace Google.GCalExchangeSync.Library.WebDav
         {
             XmlNode node = props.SelectSingleNode(id, ns);
             return (node != null) ? node.InnerText : defaultValue;
+        }
+
+        private int GetPropertyAsInt(XmlNode props, string id, int defaultValue, XmlNamespaceManager ns)
+        {
+            XmlNode node = props.SelectSingleNode(id, ns);
+            if (node == null)
+            {
+                return defaultValue;
+            }
+
+            string innerText = node.InnerText;
+            if (string.IsNullOrEmpty(innerText))
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                return int.Parse(innerText);
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
 
         private string GetPropertyAsXML(XmlNode props, string id, XmlNamespaceManager ns)

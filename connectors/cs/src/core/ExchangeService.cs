@@ -301,8 +301,7 @@ namespace Google.GCalExchangeSync.Library
                         user,
                         freeBusy,
                         appointments,
-                        window.Start,
-                        window.End);
+                        window);
                 }
             }
         }
@@ -315,40 +314,32 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="exchangeUser">Exchange users to apply freeBusy and appointments</param>
         /// <param name="freeBusy">The collection of FreeBusy blocks to assign to exchangeUser</param>
         /// <param name="appointments">The collection of appointment blocks to assign to exchangeUser</param>
-        /// <param name="startDate">Start of the date window to merge for</param>
-        /// <param name="endDate">End of the date window to merge for</param>
+        /// <param name="window">Window to merge for</param>
         protected void MergeFreeBusyWithAppointments(
             ExchangeUser exchangeUser,
             FreeBusy freeBusy,
             List<Appointment> appointments,
-            DateTime startDate,
-            DateTime endDate)
+            DateTimeRange window)
         {
             using (BlockTimer bt = new BlockTimer("MergeFreeBusyWithAppointments"))
             {
-                IntervalTree<FreeBusyTimeBlock> freeBusyIntervals =
+                IntervalTree<FreeBusyTimeBlock> busyIntervals =
                     new IntervalTree<FreeBusyTimeBlock>();
                 FreeBusyCollection busyTimes = new FreeBusyCollection();
+                IntervalTree<FreeBusyTimeBlock> tentativeIntervals =
+                    new IntervalTree<FreeBusyTimeBlock>();
+                FreeBusyCollection tentativeTimes = new FreeBusyCollection();
                 int appointmentsCount = 0;
 
                 /* Add the date ranges from each collection in the FreeBusy object */
-                foreach (DateTimeRange range in freeBusy.All)
-                {
-                    /* If the free busy date is between the start and end dates request */
-                    if (DateUtil.IsWithinRange(range.Start, startDate, endDate) ||
-                        DateUtil.IsWithinRange(range.End, startDate, endDate))
-                    {
-                        /* Add the a new FreeBusyTimeBlock to the collection, with a status of Busy,
-                         * Set the key to the start date of the block */
-                        FreeBusyTimeBlock block = new FreeBusyTimeBlock(range);
-
-                        if (!busyTimes.ContainsKey(range.Start))
-                        {
-                            busyTimes.Add(range.Start, block);
-                            freeBusyIntervals.Insert(range, block);
-                        }
-                    }
-                }
+                ConvertFreeBusyToBlocks(window,
+                                        freeBusy.All,
+                                        busyTimes,
+                                        busyIntervals);
+                ConvertFreeBusyToBlocks(window,
+                                        freeBusy.Tentative,
+                                        tentativeTimes,
+                                        tentativeIntervals);
 
                 if (appointments != null && appointments.Count > 0)
                 {
@@ -356,10 +347,35 @@ namespace Google.GCalExchangeSync.Library
                     foreach (Appointment appt in appointments)
                     {
                         DateTimeRange range = new DateTimeRange(appt.StartDate, appt.EndDate);
-                        List<FreeBusyTimeBlock> result = freeBusyIntervals.FindAll(range);
+                        List<FreeBusyTimeBlock> result = null;
 
-                        log.DebugFormat("Appt added: {0} {1}", appt.Range, appt.StartDate.Kind);
-                        log.DebugFormat("Found {0} in [{1}] with {2} FB", result.Count, range, result.Count);
+                        log.DebugFormat("Appt added: {0} {1} {2} {3} {4}",
+                                        appt.Range,
+                                        appt.StartDate.Kind,
+                                        appt.ResponseStatus,
+                                        appt.MeetingStatus,
+                                        appt.BusyStatus);
+
+                        if (appt.BusyStatus == BusyStatus.Free)
+                        {
+                            continue;
+                        }
+
+                        if (appt.BusyStatus == BusyStatus.Tentative)
+                        {
+                            result = tentativeIntervals.FindAll(range, IntervalTreeMatch.Overlap);
+                        }
+                        else
+                        {
+                            result = busyIntervals.FindAll(range, IntervalTreeMatch.Overlap);
+                        }
+
+                        log.DebugFormat("Found {0} in [{1}] in {2}",
+                                        result.Count,
+                                        range,
+                                        appt.BusyStatus == BusyStatus.Tentative ?
+                                            "Tentative" : "Busy");
+
                         foreach (FreeBusyTimeBlock block in result)
                         {
                             log.DebugFormat("FB: {0} {1}", block.Range, block.StartDate.Kind);
@@ -370,13 +386,44 @@ namespace Google.GCalExchangeSync.Library
                     }
                 }
 
-                log.InfoFormat("Merge Result of FB {0} + Appointment {1} -> {2}",
+                log.InfoFormat("Merge Result of Busy {0} + Appointment {1} -> {2}",
                                freeBusy.All.Count,
                                appointmentsCount,
                                busyTimes.Count);
 
+                log.InfoFormat("Merge Result of Tentative {0} + Appointment {1} -> {2}",
+                               freeBusy.Tentative.Count,
+                               appointmentsCount,
+                               tentativeTimes.Count);
+
                 /* Assign the data structure to the exchange user */
                 exchangeUser.BusyTimes = busyTimes;
+                exchangeUser.TentativeTimes = tentativeTimes;
+            }
+        }
+
+        private static void ConvertFreeBusyToBlocks(
+            DateTimeRange window,
+            List<DateTimeRange> ranges,
+            FreeBusyCollection times,
+            IntervalTree<FreeBusyTimeBlock> intervals)
+        {
+            foreach (DateTimeRange range in ranges)
+            {
+                /* If the free busy date is between the start and end dates request */
+                if (DateUtil.IsWithinRange(range.Start, window.Start, window.End) ||
+                    DateUtil.IsWithinRange(range.End, window.Start, window.End))
+                {
+                    /* Add the a new FreeBusyTimeBlock to the collection,
+                     * Set the key to the start date of the block */
+                    FreeBusyTimeBlock block = new FreeBusyTimeBlock(range);
+
+                    if (!times.ContainsKey(range.Start))
+                    {
+                        times.Add(range.Start, block);
+                        intervals.Insert(range, block);
+                    }
+                }
             }
         }
 
