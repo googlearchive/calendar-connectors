@@ -131,8 +131,8 @@ namespace Google.GCalExchangeSync.Library
                 ConvertEventToFreeBusy(user, googleAppsEvent, coveredRange, busyTimes, tentativeTimes);
             }
 
-            CondenseFreeBusyTimes(busyTimes);
-            CondenseFreeBusyTimes(tentativeTimes);
+            FreeBusyConverter.CondenseFreeBusyTimes(busyTimes);
+            FreeBusyConverter.CondenseFreeBusyTimes(tentativeTimes);
 
             FreeBusyConverter.ConvertDateTimeBlocksToBase64String(coveredRange.Start,
                                                                   coveredRange.End,
@@ -201,112 +201,6 @@ namespace Google.GCalExchangeSync.Library
                 Debug.Assert(userStatus == BusyStatus.Busy);
                 busyTimes.Add(new DateTimeRange(utcStartDate, utcEndDate));
             }
-        }
-
-        private static int CompareRangesByStartThenEnd(
-            DateTimeRange x,
-            DateTimeRange y)
-        {
-            if ((x == null) && (y == null))
-            {
-                // If x is null and y is null, they are equal.
-                return 0;
-            }
-
-            if (x == null)
-            {
-                // If x is null and y is not null, y is greater.
-                return -1;
-            }
-
-            if (y == null)
-            {
-                // If x is not null and y is null, x is greater.
-                return 1;
-            }
-
-            int result = x.Start.CompareTo(y.Start);
-
-            if (result == 0)
-            {
-                result = x.End.CompareTo(y.End);
-            }
-
-            #if DEBUG
-                Debug.Assert((result == 0) == (x.CompareTo(y) == 0) &&
-                             (result > 0) == (x.CompareTo(y) > 0));
-            #endif
-
-            return result;
-        }
-
-        private static bool IsMarkedToBeDeleted(
-            DateTimeRange range)
-        {
-            return (range.Start == DateTime.MinValue) && (range.End == DateTime.MinValue);
-        }
-
-        private static void CondenseFreeBusyTimes(
-            List<DateTimeRange> freeBusyTimes)
-        {
-            freeBusyTimes.Sort(CompareRangesByStartThenEnd);
-
-            IEnumerable<DateTimeRange> enumerable = freeBusyTimes as IEnumerable<DateTimeRange>;
-            IEnumerator<DateTimeRange> enumerator = enumerable.GetEnumerator();
-            DateTimeRange previous = null;
-            DateTimeRange current = null;
-            int markedToBeDeleted = 0;
-            int deleted = 0;
-
-            if (!enumerator.MoveNext())
-            {
-                // The list is empty
-                return;
-            }
-
-            previous = enumerator.Current;
-
-            while (enumerator.MoveNext())
-            {
-                current = enumerator.Current;
-
-                #if DEBUG
-                    Debug.Assert(previous.Start <= previous.End);
-                    Debug.Assert(current.Start <= current.End);
-                    Debug.Assert(previous.Start <= current.End);
-                #endif
-
-                // If the events touch or overlap
-                if (previous.End >= current.Start)
-                {
-                    // Make the current the union of both
-                    #if DEBUG
-                        Debug.Assert(previous.Start <= current.Start);
-                    #endif
-                    current.Start = previous.Start;
-
-                    if (current.End < previous.End)
-                    {
-                        current.End = previous.End;
-                    }
-                    #if DEBUG
-                        Debug.Assert(current.End >= previous.End);
-                    #endif
-
-
-                    // Mark the previous to be deleted
-                    previous.Start = DateTime.MinValue;
-                    previous.End = DateTime.MinValue;
-                    markedToBeDeleted++;
-                }
-
-                previous = current;
-            }
-
-            deleted = freeBusyTimes.RemoveAll(IsMarkedToBeDeleted);
-            #if DEBUG
-                Debug.Assert(markedToBeDeleted == deleted);
-            #endif
         }
     }
 }

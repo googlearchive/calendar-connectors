@@ -1085,6 +1085,8 @@ namespace Google.GCalExchangeSync.Library.WebDav
                                                       freeBusyRaster,
                                                       freeBusy);
 
+            FreeBusyConverter.CondenseFreeBusyTimes(freeBusy.All);
+
             result[user] = freeBusy;
         }
 
