@@ -43,6 +43,41 @@ namespace Google.GCalExchangeSync.Library.Util
         {
         }
 
+        private static readonly BusyStatus[] kBusyStatuses =
+        {
+            BusyStatus.Free,
+            BusyStatus.Busy,
+            BusyStatus.OutOfOffice,
+            BusyStatus.Tentative,
+        };
+
+        private static readonly GCalResponseStatus[] kResponseStatuses =
+        {
+            GCalResponseStatus.Declined,
+            GCalResponseStatus.Accepted,
+            GCalResponseStatus.Accepted,
+            GCalResponseStatus.Tentative,
+        };
+
+        private static readonly int[] kIntegerStatuses =
+        {
+            2,
+            1,
+            1,
+            3,
+        };
+
+        [Test]
+        public void TestConvertBusyStatusToGoogleResponse()
+        {
+            for (int i = 0; i < kBusyStatuses.Length; i++)
+            {
+                int responseStatus = ConversionsUtil.ConvertBusyStatusToGoogleResponse(kBusyStatuses[i]);
+                Assert.AreEqual(kIntegerStatuses[i], responseStatus);
+                Assert.AreEqual(kResponseStatuses[i], (GCalResponseStatus)responseStatus);
+            }
+        }
+
         [Test]
         public void TestConvertGoogleEventStatus()
         {

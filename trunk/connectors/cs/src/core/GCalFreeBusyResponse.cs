@@ -35,6 +35,10 @@ namespace Google.GCalExchangeSync.Library
            log4net.LogManager.GetLogger(typeof(GCalFreeBusyResponse));
 
         private GCalFreeBusyRequest request;
+        private StringBuilder escapedSubject;
+        private StringBuilder escapedLocation;
+        private StringBuilder escapedOrganizer;
+        private StringBuilder escapedCommonName;
 
         /// <summary>
         /// Request to generate response for
@@ -50,6 +54,10 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="request">Incoming request from which to generate a response</param>
         public GCalFreeBusyResponse(GCalFreeBusyRequest request)
         {
+            escapedSubject = new StringBuilder(256);
+            escapedLocation = new StringBuilder(1024);
+            escapedOrganizer = new StringBuilder(256);
+            escapedCommonName = new StringBuilder(256);
             this.request = request;
         }
 
@@ -61,10 +69,6 @@ namespace Google.GCalExchangeSync.Library
         {
             /* Create a string builder to hold the text for the response */
             StringBuilder result = new StringBuilder(4096);
-            StringBuilder escapedSubject = new StringBuilder(256);
-            StringBuilder escapedLocation = new StringBuilder(1024);
-            StringBuilder escapedOrganizer = new StringBuilder(256);
-            StringBuilder escapedCommonName = new StringBuilder(256);
 
             /* Create an exchange provider */
             ExchangeService gateway = new ExchangeService(
@@ -80,9 +84,9 @@ namespace Google.GCalExchangeSync.Library
             result.AppendFormat("['{0}','{1}',", request.VersionNumber, request.MessageId);
 
             result.AppendFormat("['_ME_AddData','{0}/{1}','{2}'",
-                DateUtil.FormatDateForGoogle(request.StartDate),
-                DateUtil.FormatDateForGoogle(request.EndDate),
-                DateUtil.FormatDateTimeForGoogle(request.Since));
+                                DateUtil.FormatDateForGoogle(request.StartDate),
+                                DateUtil.FormatDateForGoogle(request.EndDate),
+                                DateUtil.FormatDateTimeForGoogle(request.Since));
 
             /* Flag for inserting commas */
             bool firstUser = true;
@@ -91,9 +95,6 @@ namespace Google.GCalExchangeSync.Library
 
             foreach (ExchangeUser user in exchangeUsers.Values)
             {
-                /* Flag for inserting commas */
-                bool firstAppointment = true;
-
                 /* Don't add a comma if this is the first user */
                 if (!firstUser)
                 {
@@ -102,98 +103,195 @@ namespace Google.GCalExchangeSync.Library
 
                 /* Add the user's credentials */
                 string email = ConfigCache.MapToExternalDomain(user.Email);
-                result.AppendFormat("'{0}','{1}','{2}',[", user.DisplayName, email, (int)user.AccessLevel);
+                result.AppendFormat("'{0}','{1}','{2}',[",
+                                    user.DisplayName,
+                                    email,
+                                    (int)user.AccessLevel);
 
-                /* If a user has time blocks associate with him / her */
-                if (user.BusyTimes != null && user.BusyTimes.Count > 0)
-                {
-                    /* Iterate over each FreeBusyTimeBlock */
-                    foreach (FreeBusyTimeBlock timeBlock in user.BusyTimes.Values)
-                    {
-                        if ( timeBlock.Appointments != null && timeBlock.Appointments.Count > 0)
-                        {
-                            foreach ( Appointment appt in timeBlock.Appointments )
-                            {
-                                if (!firstAppointment)
-                                {
-                                    result.Append(",");
-                                }
-
-                                DateTime startLocal = OlsonUtil.ConvertFromUTC(appt.StartDate, Request.TimeZone);
-                                DateTime endLocal = OlsonUtil.ConvertFromUTC(appt.EndDate, Request.TimeZone);
-                                if (!appt.IsPrivate)
-                                {
-                                    //log.DebugFormat("Public Appointment Block: {0} {1}", startLocal, endLocal);
-                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Subject,
-                                                                          escapedSubject);
-                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Location,
-                                                                          escapedLocation);
-                                    ConversionsUtil.EscapeNonAlphaNumeric(appt.Organizer,
-                                                                          escapedOrganizer);
-                                    result.AppendFormat("['{0}','{1}','{2}','{3}','{4}','{5}']",
-                                        escapedSubject,
-                                        DateUtil.FormatDateTimeForGoogle(startLocal),
-                                        DateUtil.FormatDateTimeForGoogle(endLocal),
-                                        escapedLocation,
-                                        escapedOrganizer,
-                                        ConversionsUtil.ConvertExchangeResponseToGoogleResponse( appt.ResponseStatus ) );
-                                }
-                                else
-                                {
-                                    //log.DebugFormat("Private Appointment Block: {0} {1}", startLocal, endLocal);
-
-                                    ConversionsUtil.EscapeNonAlphaNumeric(user.CommonName, escapedCommonName);
-                                    AppendPrivateFreeBusyEntry(startLocal, endLocal, escapedCommonName, result);
-                                }
-
-                                firstAppointment = false;
-                            }
-                        }
-                        else
-                        {
-                            if (!firstAppointment)
-                            {
-                                result.Append(",");
-                            }
-
-                            DateTime startLocal = OlsonUtil.ConvertFromUTC(timeBlock.StartDate, Request.TimeZone);
-                            DateTime endLocal = OlsonUtil.ConvertFromUTC(timeBlock.EndDate, Request.TimeZone);
-
-                            //log.DebugFormat("FB Block: {0} {1}", startLocal, endLocal);
-
-                            ConversionsUtil.EscapeNonAlphaNumeric(user.CommonName, escapedCommonName);
-                            AppendPrivateFreeBusyEntry(startLocal, endLocal, escapedCommonName, result);
-
-                            firstAppointment = false;
-                        }
-                    }
-                }
+                GenerateResponseForTimeBlocks(user,
+                                              result);
 
                 result.Append("]");
                 firstUser = false;
             }
+
             result.Append("]");
             result.Append("]");
             result.Append("]");
 
-            log.Info( "GCal Free/Busy response successfully generated." );
+            log.Info("GCal Free/Busy response successfully generated.");
+            log.DebugFormat("Response = {0}", result);
 
             return result.ToString();
         }
 
-        private void AppendPrivateFreeBusyEntry(
-            DateTime startDate,
-            DateTime endDate,
-            StringBuilder escapedCommonName,
+        private void GenerateResponseForTimeBlocks(
+            ExchangeUser user,
             StringBuilder result)
         {
-            result.AppendFormat( "['{0}','{1}','{2}','{3}','{4}','{5}']",
-               "",
-               DateUtil.FormatDateTimeForGoogle(startDate),
-               DateUtil.FormatDateTimeForGoogle(endDate),
-               "",
-               escapedCommonName,
-               "1");
+            /* If a user has time no blocks associate with him / her */
+            if ((user.BusyTimes == null || user.BusyTimes.Count == 0) &&
+                (user.TentativeTimes == null && user.TentativeTimes.Count == 0))
+            {
+                return;
+            }
+        
+            /* Flag for inserting commas */
+            bool firstAppointment = true;
+            IEnumerable<FreeBusyTimeBlock> busyEnumerable =
+                user.BusyTimes.Values as IEnumerable<FreeBusyTimeBlock>;
+            IEnumerable<FreeBusyTimeBlock> tentativeEnumerable =
+                user.TentativeTimes.Values as IEnumerable<FreeBusyTimeBlock>;
+            IEnumerator<FreeBusyTimeBlock> busyEnumerator =
+                busyEnumerable.GetEnumerator();
+            IEnumerator<FreeBusyTimeBlock> tentativeEnumerator =
+                tentativeEnumerable.GetEnumerator();
+            bool moreTentative = tentativeEnumerator.MoveNext();
+            bool moreBusy = busyEnumerator.MoveNext();
+
+            while (moreBusy && moreTentative)
+            {
+                FreeBusyTimeBlock busyBlock = busyEnumerator.Current;
+                FreeBusyTimeBlock tentativeBlock = tentativeEnumerator.Current;
+
+                FreeBusyTimeBlock timeBlock = null;
+                BusyStatus busyStatus = BusyStatus.Busy;
+
+                if (busyBlock.Range.Start < tentativeBlock.Range.Start)
+                {
+                    timeBlock = busyBlock;
+                    moreBusy = busyEnumerator.MoveNext();
+                }
+                else
+                {
+                    timeBlock = tentativeBlock;
+                    busyStatus = BusyStatus.Tentative;
+                    moreTentative = tentativeEnumerator.MoveNext();
+                }
+
+                GenerateResponseForTimeBlock(user,
+                                             timeBlock,
+                                             busyStatus,
+                                             firstAppointment,
+                                             result);
+                firstAppointment = false;
+            }
+
+            while (moreBusy)
+            {
+                GenerateResponseForTimeBlock(user,
+                                             busyEnumerator.Current,
+                                             BusyStatus.Busy,
+                                             firstAppointment,
+                                             result);
+                moreBusy = busyEnumerator.MoveNext();
+                firstAppointment = false;
+            }
+
+            while (moreTentative)
+            {
+                GenerateResponseForTimeBlock(user,
+                                             tentativeEnumerator.Current,
+                                             BusyStatus.Tentative,
+                                             firstAppointment,
+                                             result);
+                moreTentative = tentativeEnumerator.MoveNext();
+                firstAppointment = false;
+            }
+        }
+
+        private void GenerateResponseForTimeBlock(
+            ExchangeUser user,
+            FreeBusyTimeBlock timeBlock,
+            BusyStatus busyStatus,
+            bool firstAppointment,
+            StringBuilder result)
+        {
+            if (timeBlock.Appointments == null || timeBlock.Appointments.Count == 0)
+            {
+                if (!firstAppointment)
+                {
+                    result.Append(",");
+                }
+
+                AppendPrivateFreeBusyEntry(timeBlock.StartDate,
+                                           timeBlock.EndDate,
+                                           user.CommonName,
+                                           busyStatus,
+                                           result);
+                return;
+            }
+
+            foreach (Appointment appt in timeBlock.Appointments)
+            {
+                if (!firstAppointment)
+                {
+                    result.Append(",");
+                }
+
+                if (!appt.IsPrivate)
+                {
+                    AppendFreeBusyEntry(appt.StartDate,
+                                        appt.EndDate,
+                                        appt.Subject,
+                                        appt.Location,
+                                        appt.Organizer,
+                                        appt.BusyStatus,
+                                        result);
+                }
+                else
+                {
+                    AppendPrivateFreeBusyEntry(appt.StartDate,
+                                               appt.EndDate,
+                                               user.CommonName,
+                                               appt.BusyStatus,
+                                               result);
+                }
+
+                firstAppointment = false;
+            }
+        }
+
+        private void AppendFreeBusyEntry(
+            DateTime startUtc,
+            DateTime endUtc,
+            string subject,
+            string location,
+            string organizer,
+            BusyStatus busyStatus,
+            StringBuilder result)
+        {
+            DateTime startLocal = OlsonUtil.ConvertFromUTC(startUtc, Request.TimeZone);
+            DateTime endLocal = OlsonUtil.ConvertFromUTC(endUtc, Request.TimeZone);
+            int status = ConversionsUtil.ConvertBusyStatusToGoogleResponse(busyStatus);
+
+            ConversionsUtil.EscapeNonAlphaNumeric(subject, escapedSubject);
+            ConversionsUtil.EscapeNonAlphaNumeric(location, escapedLocation);
+            ConversionsUtil.EscapeNonAlphaNumeric(organizer, escapedOrganizer);
+
+            result.AppendFormat("['{0}','{1}','{2}','{3}','{4}',{5}]",
+                                escapedSubject,
+                                DateUtil.FormatDateTimeForGoogle(startLocal),
+                                DateUtil.FormatDateTimeForGoogle(endLocal),
+                                escapedLocation,
+                                escapedOrganizer,
+                                status);
+        }
+
+        private void AppendPrivateFreeBusyEntry(
+            DateTime startUtc,
+            DateTime endUtc,
+            string commonName,
+            BusyStatus busyStatus,
+            StringBuilder result)
+        {
+            AppendFreeBusyEntry(startUtc,
+                                endUtc,
+                                "",
+                                "",
+                                commonName,
+                                busyStatus,
+                                result);
         }
     }
 
