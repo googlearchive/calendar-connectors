@@ -924,38 +924,6 @@ namespace Google.GCalExchangeSync.Library.WebDav
             IssueRequestIgnoreResponse(itemUrl, Method.DELETE, string.Empty);
         }
 
-        /// <summary>
-        /// Get the URLs for all of the items in a WebDAV folder
-        /// </summary>
-        /// <param name="folderUrl">The folder to get items for</param>
-        /// <param name="contentClass">Content class</param>
-        /// <returns>A list of URLs for items in the folder</returns>
-        public List<string> FindItemUrls(string folderUrl, string contentClass)
-        {
-            string body = WebDavXmlResources.GetText(
-                WebDavXmlResources.FindItemUrls,
-                folderUrl,
-                contentClass);
-
-            string result = IssueRequestAndFetchReponse(folderUrl, Method.SEARCH, body);
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(result);
-
-            XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-            ns.AddNamespace("a", "DAV:");
-            ns.AddNamespace("c", "urn:schemas:calendar:");
-
-            List<string> itemUrls = new List<string>();
-            XmlNodeList nodes = doc.SelectNodes("//a:response/a:href", ns);
-
-            foreach (XmlNode node in nodes)
-            {
-                itemUrls.Add(node.InnerText);
-            }
-            return itemUrls;
-        }
-
         #endregion
 
         #region Free Busy Queries
@@ -1081,9 +1049,9 @@ namespace Google.GCalExchangeSync.Library.WebDav
             freeBusy.User = user;
 
             FreeBusyConverter.ParseRasterFreeBusy(baseTime,
-                                                      kFreeBusyInterval,
-                                                      freeBusyRaster,
-                                                      freeBusy);
+                                                  kFreeBusyInterval,
+                                                  freeBusyRaster,
+                                                  freeBusy);
 
             FreeBusyConverter.CondenseFreeBusyTimes(freeBusy.All);
 

@@ -251,7 +251,7 @@ namespace Google.GCalExchangeSync.Library
         }
 
         private static readonly BusyStatus[] kRasterToFreeBusyMap =
-        { 
+        {
             BusyStatus.Free,        // '0'/0 -> Free
             BusyStatus.Tentative,   // '1'/1 -> Tentative
             BusyStatus.Busy,        // '2'/2 -> Busy
