@@ -135,7 +135,7 @@ namespace Google.GCalExchangeSync.Library
             {
                 return;
             }
-        
+
             /* Flag for inserting commas */
             bool firstAppointment = true;
             IEnumerable<FreeBusyTimeBlock> busyEnumerable =
