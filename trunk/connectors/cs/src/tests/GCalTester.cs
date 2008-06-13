@@ -24,18 +24,58 @@ using Google.GCalExchangeSync.Library;
 
 namespace Google.GCalExchangeSync.Tests.Diagnostics
 {
+    /// <summary>
+    /// Class to throttle connections made to Google, if failures occur.
+    /// </summary>
+    public class FakeThrottle : IConnectionThrottle
+    {
+        /// <summary>
+        /// Create a fake throttler
+        /// </summary>
+        public FakeThrottle()
+        {
+        }
+
+        /// <summary>
+        /// Report a success to the throttler. Should be called after successfully getting a feed.
+        /// </summary>
+        /// <returns>void</returns>
+        public void ReportSuccess()
+        {
+        }
+
+        /// <summary>
+        /// Report a failure to the throttler. Should be called after failing to get a feed.
+        /// </summary>
+        /// <returns>void</returns>
+        public void ReportFailure()
+        {
+        }
+
+        /// <summary>
+        /// Ask the throttler to wait as necessary before new connection.
+        /// Should be called before asking for a feed.
+        /// </summary>
+        /// <returns>void</returns>
+        public void WaitBeforeNewConnection()
+        {
+        }
+    };
+
     public class GCalTester
     {
-        public static EventFeed QueryGCalFreeBusy( string gcalUserEmail )
+        public static EventFeed QueryGCalFreeBusy(
+            string gcalUserEmail)
         {
-            GCalGateway gw =
-                new GCalGateway(
-                    ConfigCache.GoogleAppsLogin,
-                    ConfigCache.GoogleAppsPassword,
-                    ConfigCache.GoogleAppsDomain );
+            IConnectionThrottle throttle = new FakeThrottle();
+            GCalGateway gw = new GCalGateway(ConfigCache.GoogleAppsLogin,
+                                             ConfigCache.GoogleAppsPassword,
+                                             ConfigCache.GoogleAppsDomain,
+                                             throttle);
 
-            DateTime start = DateTime.Now.AddDays(-7);
-            DateTime end = DateTime.Now.AddDays(+7);
+            DateTime now = DateTime.Now;
+            DateTime start = now.AddDays(-7);
+            DateTime end = now.AddDays(+7);
             DateTimeRange range = new DateTimeRange(start, end);
 
             EventFeed feed = gw.QueryGCal(gcalUserEmail,

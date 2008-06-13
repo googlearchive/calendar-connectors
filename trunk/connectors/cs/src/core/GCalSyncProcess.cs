@@ -116,9 +116,9 @@ namespace Google.GCalExchangeSync.Library
             using ( BlockTimer bt = new BlockTimer( "RunSyncProcess" ) )
             {
                 gcalGateway =
-                    new GCalGateway(googleAppsLogin, googleAppsPassword, googleAppsDomain);
+                    new GCalGateway(googleAppsLogin, googleAppsPassword, googleAppsDomain, null);
                 exchangeGateway =
-                    new ExchangeService(exchangeServer, networkLogin, networkPassword );
+                    new ExchangeService(exchangeServer, networkLogin, networkPassword);
 
                 ExchangeUserDict users;
 
