@@ -544,13 +544,7 @@ namespace Google.GCalExchangeSync.Library
             DateTimeRange x,
             DateTimeRange y)
         {
-            object[] parameters = new object[2] { y, x };
-            BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic;
-
-            Type type = typeof(FreeBusyConverter);
-            MethodInfo methodInfo = type.GetMethod("CompareRangesByStartThenEnd", flags);
-
-            return (int)methodInfo.Invoke(null, parameters);
+            return FreeBusyConverter.CompareRangesByStartThenEnd(y, x);
         }
 
         private static List<DateTimeRange> OldCondenseFreeBusyTimes(
