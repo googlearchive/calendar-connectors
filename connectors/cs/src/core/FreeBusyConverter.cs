@@ -18,6 +18,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+using log4net;
+
 using Google.GData.Calendar;
 using Google.GCalExchangeSync.Library.WebDav;
 using Google.GCalExchangeSync.Library.Util;
@@ -29,6 +31,12 @@ namespace Google.GCalExchangeSync.Library
     /// </summary>
     public class FreeBusyConverter
     {
+        /// <summary>
+        /// Logger for FreeBusyConverter
+        /// </summary>
+        protected static readonly ILog log =
+           LogManager.GetLogger(typeof(FreeBusyConverter));
+
         static private readonly DateTime kUtc1601_1_1 =
             new DateTime(1601, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -307,10 +315,12 @@ namespace Google.GCalExchangeSync.Library
             int startRun = 0;
             int idx = 0;
 
-            if (freeBusyRaster == null)
+            if (string.IsNullOrEmpty(freeBusyRaster))
             {
                 return;
             }
+
+            log.DebugFormat("Parsing the raster {0}", freeBusyRaster);
 
             foreach (char current in freeBusyRaster)
             {
@@ -332,15 +342,17 @@ namespace Google.GCalExchangeSync.Library
                 idx++;
             }
 
-            if (freeBusyRaster.Length != 0)
-            {
-                RecordFreeBusyInterval(baseTime,
-                                       oldState,
-                                       freeBusyInterval,
-                                       startRun,
-                                       idx,
-                                       freeBusy);
-            }
+            RecordFreeBusyInterval(baseTime,
+                                   oldState,
+                                   freeBusyInterval,
+                                   startRun,
+                                   idx,
+                                   freeBusy);
+
+            log.DebugFormat("Parsed the raster into {0} busy and {1} tentative ranges",
+                            freeBusy.Busy.Count,
+                            freeBusy.Tentative.Count);
+
         }
 
         private static void RecordFreeBusyInterval(
@@ -381,7 +393,7 @@ namespace Google.GCalExchangeSync.Library
             }
         }
 
-        private static int CompareRangesByStartThenEnd(
+        public static int CompareRangesByStartThenEnd(
             DateTimeRange x,
             DateTimeRange y)
         {
@@ -489,6 +501,80 @@ namespace Google.GCalExchangeSync.Library
             #if DEBUG
                 Debug.Assert(markedToBeDeleted == deleted);
             #endif
+        }
+
+        /// <summary>
+        /// Merges two sorted lists of ranges and condenses the resulting one
+        /// </summary>
+        /// <param name="left">List of ranges to merge</param>
+        /// <param name="right">List of ranges to merge</param>
+        /// <returns>The sorted and condensed union of the two lists</returns>
+        public static List<DateTimeRange> MergeFreeBusyLists(
+            List<DateTimeRange> left,
+            List<DateTimeRange> right)
+        {
+            IEnumerable<DateTimeRange> leftEnumerable = left as IEnumerable<DateTimeRange>;
+            IEnumerator<DateTimeRange> leftEnumerator = leftEnumerable.GetEnumerator();
+            bool moreLeft = leftEnumerator.MoveNext();
+
+            IEnumerable<DateTimeRange> rightEnumerable = right as IEnumerable<DateTimeRange>;
+            IEnumerator<DateTimeRange> rightEnumerator = rightEnumerable.GetEnumerator();
+            bool moreRight = rightEnumerator.MoveNext();
+
+            List<DateTimeRange> result = new List<DateTimeRange>(left.Capacity + right.Capacity);
+
+            while (moreLeft && moreRight)
+            {
+                DateTimeRange leftRange = leftEnumerator.Current;
+                DateTimeRange rightRange = rightEnumerator.Current;
+
+                DateTimeRange range = null;
+
+                if (leftRange.CompareTo(rightRange) < 0)
+                {
+                    range = leftRange;
+                    moreLeft = leftEnumerator.MoveNext();
+                }
+                else
+                {
+                    range = rightRange;
+                    moreRight = rightEnumerator.MoveNext();
+                }
+
+                result.Add(new DateTimeRange(range.Start, range.End));
+            }
+
+            while (moreLeft)
+            {
+                DateTimeRange range = leftEnumerator.Current;
+
+                result.Add(new DateTimeRange(range.Start, range.End));
+
+                moreLeft = leftEnumerator.MoveNext();
+            }
+
+            while (moreRight)
+            {
+                DateTimeRange range = rightEnumerator.Current;
+
+                result.Add(new DateTimeRange(range.Start, range.End));
+
+                moreRight = rightEnumerator.MoveNext();
+            }
+
+            log.DebugFormat("Merged {0} + {1} into {2} ranges",
+                            left.Count,
+                            right.Count,
+                            result.Count);
+
+            CondenseFreeBusyTimes(result);
+
+            log.DebugFormat("Compressed {0} + {1} into {2} ranges",
+                            left.Count,
+                            right.Count,
+                            result.Count);
+
+            return result;
         }
     }
 }

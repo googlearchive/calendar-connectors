@@ -122,6 +122,12 @@ namespace Google.GCalExchangeSync.Library.Util
         public override bool Equals(object obj)
         {
             DateTimeRange r = obj as DateTimeRange;
+
+            if (r == null)
+            {
+                return false;
+            }
+
             return Start.Equals(r.Start) && End.Equals(r.End);
         }
 
@@ -132,7 +138,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>True if the two ranges overlap</returns>
         public bool Overlaps(DateTimeRange range)
         {
-            return InRange(range.Start) || InRange(range.End);
+            return range.Start <= End && range.End >= Start;
         }
 
         /// <summary>
@@ -142,7 +148,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// <returns>True if range is contained within this DateTimeRange</returns>
         public bool Contains(DateTimeRange range)
         {
-            return InRange(range.Start) && InRange(range.End);
+            return range.Start >= Start && range.End <= End;
         }
 
         /// <summary>

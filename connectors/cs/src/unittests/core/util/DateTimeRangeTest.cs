@@ -53,6 +53,60 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         [Test]
+        public void TestOverlapsAndContains()
+        {
+            DateTime date7AM = new DateTime(2007, 1, 1, 7, 0, 0);
+            DateTime date8AM = new DateTime(2007, 1, 1, 8, 0, 0);
+            DateTime date9AM = new DateTime(2007, 1, 1, 9, 0, 0);
+            DateTime date10AM = new DateTime(2007, 1, 1, 10, 0, 0);
+
+            DateTimeRange range7AM8AM = new DateTimeRange(date7AM, date8AM);
+            DateTimeRange range9AM10AM = new DateTimeRange(date9AM, date10AM);
+
+            // The first test case is
+            // 7-8  [.....]
+            // 9-10           [.....]
+            // Don't intersect and don't contain
+            Assert.IsFalse(range7AM8AM.Overlaps(range9AM10AM));
+            Assert.IsFalse(range9AM10AM.Overlaps(range7AM8AM));
+            Assert.IsFalse(range7AM8AM.Contains(range9AM10AM));
+            Assert.IsFalse(range9AM10AM.Contains(range7AM8AM));
+
+            DateTimeRange range7AM10AM = new DateTimeRange(date7AM, date10AM);
+            DateTimeRange range8AM9AM = new DateTimeRange(date8AM, date9AM);
+
+            // The second test case is
+            // 7-10 [...............]
+            // 8-9       [.....]
+            // Intersect, the bigger contains the smaller
+            Assert.IsTrue(range7AM10AM.Overlaps(range8AM9AM));
+            Assert.IsTrue(range8AM9AM.Overlaps(range7AM10AM));
+            Assert.IsTrue(range7AM10AM.Contains(range8AM9AM));
+            Assert.IsFalse(range8AM9AM.Contains(range7AM10AM));
+
+            // The third test case is
+            // 8-9       [.....]
+            // 9-10           [.....]
+            // Intersect (touch), don't contain each other
+            Assert.IsTrue(range8AM9AM.Overlaps(range9AM10AM));
+            Assert.IsTrue(range9AM10AM.Overlaps(range8AM9AM));
+            Assert.IsFalse(range8AM9AM.Contains(range9AM10AM));
+            Assert.IsFalse(range9AM10AM.Contains(range8AM9AM));
+
+            DateTimeRange range7AM9AM = new DateTimeRange(date7AM, date9AM);
+            DateTimeRange range8AM10AM = new DateTimeRange(date8AM, date10AM);
+
+            // The third test case is
+            // 7-9  [..........]
+            // 9-10      [..........]
+            // Intersect (touch), don't contain each other
+            Assert.IsTrue(range7AM9AM.Overlaps(range8AM10AM));
+            Assert.IsTrue(range8AM10AM.Overlaps(range7AM9AM));
+            Assert.IsFalse(range7AM9AM.Contains(range8AM10AM));
+            Assert.IsFalse(range8AM10AM.Contains(range7AM9AM));
+        }
+
+        [Test]
         public void TestDateTimeCompare()
         {
             // (From MSDN) For objects A, B, and C, the following must be true:
