@@ -96,10 +96,10 @@ namespace Google.GCalExchangeSync.Library.Util
             DateTimeRange range7AM9AM = new DateTimeRange(date7AM, date9AM);
             DateTimeRange range8AM10AM = new DateTimeRange(date8AM, date10AM);
 
-            // The third test case is
+            // The forth test case is
             // 7-9  [..........]
             // 9-10      [..........]
-            // Intersect (touch), don't contain each other
+            // Intersect, don't contain each other
             Assert.IsTrue(range7AM9AM.Overlaps(range8AM10AM));
             Assert.IsTrue(range8AM10AM.Overlaps(range7AM9AM));
             Assert.IsFalse(range7AM9AM.Contains(range8AM10AM));
