@@ -267,7 +267,8 @@ namespace Google.GCalExchangeSync.Library
                     {
                         /* No Google App Feed was returned,  skip to next user */
                         log.WarnFormat(
-                            "GCal feed could not be read for '{0}'.  This user may not have activated their account or may be inactive.",
+                            "GCal feed could not be read for '{0}'.  This user may not have activated their account or may be inactive." +
+                            "For resources the admin must share their calendars for the domain and set correctly the timezone.",
                             login );
 
                         continue;
