@@ -130,74 +130,24 @@ namespace Google.GCalExchangeSync.Library
             StringBuilder result)
         {
             /* If a user has time no blocks associate with him / her */
-            if ((user.BusyTimes == null || user.BusyTimes.Count == 0) &&
-                (user.TentativeTimes == null && user.TentativeTimes.Count == 0))
+            if (user.BusyTimes == null || user.BusyTimes.Count == 0)
             {
                 return;
             }
 
             /* Flag for inserting commas */
             bool firstAppointment = true;
-            IEnumerable<FreeBusyTimeBlock> busyEnumerable =
-                user.BusyTimes.Values as IEnumerable<FreeBusyTimeBlock>;
-            IEnumerable<FreeBusyTimeBlock> tentativeEnumerable =
-                user.TentativeTimes.Values as IEnumerable<FreeBusyTimeBlock>;
-            IEnumerator<FreeBusyTimeBlock> busyEnumerator =
-                busyEnumerable.GetEnumerator();
-            IEnumerator<FreeBusyTimeBlock> tentativeEnumerator =
-                tentativeEnumerable.GetEnumerator();
-            bool moreTentative = tentativeEnumerator.MoveNext();
-            bool moreBusy = busyEnumerator.MoveNext();
 
-            while (moreBusy && moreTentative)
+            foreach (FreeBusyTimeBlock timeBlock in user.BusyTimes.Values)
             {
-                FreeBusyTimeBlock busyBlock = busyEnumerator.Current;
-                FreeBusyTimeBlock tentativeBlock = tentativeEnumerator.Current;
-
-                FreeBusyTimeBlock timeBlock = null;
-                BusyStatus busyStatus = BusyStatus.Busy;
-
-                if (busyBlock.Range.Start < tentativeBlock.Range.Start)
-                {
-                    timeBlock = busyBlock;
-                    moreBusy = busyEnumerator.MoveNext();
-                }
-                else
-                {
-                    timeBlock = tentativeBlock;
-                    busyStatus = BusyStatus.Tentative;
-                    moreTentative = tentativeEnumerator.MoveNext();
-                }
-
                 GenerateResponseForTimeBlock(user,
                                              timeBlock,
-                                             busyStatus,
-                                             firstAppointment,
-                                             result);
-                firstAppointment = false;
-            }
-
-            while (moreBusy)
-            {
-                GenerateResponseForTimeBlock(user,
-                                             busyEnumerator.Current,
                                              BusyStatus.Busy,
                                              firstAppointment,
                                              result);
-                moreBusy = busyEnumerator.MoveNext();
                 firstAppointment = false;
             }
 
-            while (moreTentative)
-            {
-                GenerateResponseForTimeBlock(user,
-                                             tentativeEnumerator.Current,
-                                             BusyStatus.Tentative,
-                                             firstAppointment,
-                                             result);
-                moreTentative = tentativeEnumerator.MoveNext();
-                firstAppointment = false;
-            }
         }
 
         private void GenerateResponseForTimeBlock(

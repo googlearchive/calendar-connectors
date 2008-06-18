@@ -46,7 +46,6 @@ namespace Google.GCalExchangeSync.Library
         private bool isValid = true;
         private GCalAccessLevel accessLevel = 0;
         private FreeBusyCollection busyTimesBlocks;
-        private FreeBusyCollection tentativeTimesBlocks;
         private bool haveAppointmentInfo = false;
 
         /// <summary>
@@ -110,15 +109,6 @@ namespace Google.GCalExchangeSync.Library
         {
             get { return this.busyTimesBlocks; }
             set { this.busyTimesBlocks = value; }
-        }
-
-        /// <summary>
-        /// Tentative times for this user
-        /// </summary>
-        public FreeBusyCollection TentativeTimes
-        {
-            get { return this.tentativeTimesBlocks; }
-            set { this.tentativeTimesBlocks = value; }
         }
 
         /// <summary>
@@ -189,7 +179,6 @@ namespace Google.GCalExchangeSync.Library
 
             this.freeBusyCommonName = parseFreeBusyCommonName(legacyExchangeDN);
             this.busyTimesBlocks = new FreeBusyCollection();
-            this.tentativeTimesBlocks = new FreeBusyCollection();
 
             AdjustAccountName();
             Validate();

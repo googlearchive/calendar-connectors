@@ -169,15 +169,6 @@ namespace GCalExchangeLookup
                         {
                             sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate.ToLocalTime(), tb.EndDate.ToLocalTime());
                         }
-                        sb.AppendFormat("</ul></li>");
-
-                        sb.AppendFormat("<li>Tentative Times:");
-                        sb.AppendFormat("<ul>");
-
-                        foreach (FreeBusyTimeBlock tb in user.TentativeTimes.Values)
-                        {
-                            sb.AppendFormat("<li>{0} to {1}</li>", tb.StartDate.ToLocalTime(), tb.EndDate.ToLocalTime());
-                        }
                         sb.AppendFormat("</ul></li></ul>");
                     }
 
