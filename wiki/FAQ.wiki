@@ -107,8 +107,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   Yes! 
 
   * Create an Exchange contact with the e-mail address of the Google Apps Calendar Resource.
-   * Define a timezone for the Resource calendar. To set the timezone login as an Admin of the Gooogle Apps domain and load Google Calendar. Added the Resource calendar to your "My Calendars" by entering the e-mail address for the resource. Click on Settings | Calendars | click on the Resource calendar. Under "Calendar Time Zone:" select a timezone and click Save.
-    * Configure the Google Calendar Connector Sync service using !SchedulePlus mode. Ensure the contact object is in scope of the sync service. 
+  * Define a timezone for the Resource calendar. To set the timezone login as an Admin of the Gooogle Apps domain and load Google Calendar. Added the Resource calendar to your "My Calendars" by entering the e-mail address for the resource. Click on Settings | Calendars | click on the Resource calendar. Under "Calendar Time Zone:" select a timezone and click Save.
+  * Configure the Google Calendar Connector Sync service using !SchedulePlus mode. Ensure the contact object is in scope of the sync service. 
 
 *How is the free busy status mapped from the Google Calendar to Exchange?*
 
