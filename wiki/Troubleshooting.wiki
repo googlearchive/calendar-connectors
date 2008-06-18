@@ -6,6 +6,12 @@
   * Check the webservice.log to determine if the web service is receiving the request?
   * Enable DEBUG for the web service to see the details of the request being passed and why it might be failing to look up the Exchange user. 
 
+* I am not able to sync free/busy data for Google Calendar Resources into a contact object in Exchange? In the log I get the error: "This user may not have activated their account or may be inactive."
+
+  * Before the calendar can be read successfully a timezone must be defined in the Resource calendar. To set the timezone login as an Admin of the Gooogle Apps domain and load Google Calendar. Added the Resource calendar to your "My Calendars" by entering the e-mail address for the resource. Click on Settings | Calendars | click on the Resource calendar. Under "Calendar Time Zone:" select a timezone and click Save.
+
+  If you don't know the e-mail address for the Resource open the Google Apps control panel select  Service Settings | Calendar | click Resources. Click on the resource name. It will display the e-mail address for the resource.
+
 * Lookups from Google Calendar to Exchange time out after 30 seconds *
   * Make sure the URL address registered with Google Apps for your domain is correct. 
   * Make sure you include "Exchangequerier.aspx" as part of the url.
