@@ -256,7 +256,7 @@ namespace Google.GCalExchangeSync.Library
                 appt.Location = "";
             }
 
-            appt.Subject = ConfigCache.PlaceHolderMessage;
+            appt.Subject = ConversionsUtil.SafeGetText(googleAppsEvent.Title);
 
             appt.MeetingStatus = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
 

@@ -229,7 +229,7 @@ namespace Google.GCalExchangeSync.Library.Util
         /// Get the content of possibly null AtomContent
         /// </summary>
         /// <param name="content">The Google AtomContent</param>
-        /// <returns>The content or empty string if the content was null</returns>
+        /// <returns>The content or empty string if the content or it's Content was null</returns>
         public static string SafeGetContent(AtomContent content)
         {
             if (content == null)
@@ -237,14 +237,14 @@ namespace Google.GCalExchangeSync.Library.Util
                 return string.Empty;
             }
 
-            return content.Content;
+            return content.Content ?? string.Empty;
         }
 
         /// <summary>
         /// Get the Value of possibly null EnumConstruct
         /// </summary>
         /// <param name="enumConstruct">The Google EnumConstruct</param>
-        /// <returns>The value or empty string if the enumConstruct was null</returns>
+        /// <returns>The value or empty string if the enumConstruct or it's Value was null</returns>
         public static string SafeGetValue(EnumConstruct enumConstruct)
         {
             if (enumConstruct == null)
@@ -252,7 +252,22 @@ namespace Google.GCalExchangeSync.Library.Util
                 return string.Empty;
             }
 
-            return enumConstruct.Value;
+            return enumConstruct.Value ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Get the Text of possibly null AtomTextConstruct
+        /// </summary>
+        /// <param name="textConstruct">The Google AtomTextConstruct</param>
+        /// <returns>The value or empty string if the textConstruct or it's Text was null</returns>
+        public static string SafeGetText(AtomTextConstruct textConstruct)
+        {
+            if (textConstruct == null)
+            {
+                return string.Empty;
+            }
+
+            return textConstruct.Text ?? string.Empty;
         }
 
         /// <summary>

@@ -393,6 +393,14 @@ namespace Google.GCalExchangeSync.Library
             }
         }
 
+
+        /// <summary>
+        /// Explicit comparison of DateTimeRanges to be used as a delegate.
+        /// The result is the same as the DateTimeRange.CompareTo.
+        /// </summary>
+        /// <param name="x">The start date of the free busy</param>
+        /// <param name="y">The granularity of the free busy in minutes</param>
+        /// <returns>Negative, zero or possitive number if x is smaller, equal or bigger than y respectively</returns>
         public static int CompareRangesByStartThenEnd(
             DateTimeRange x,
             DateTimeRange y)
