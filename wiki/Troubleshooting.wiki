@@ -128,3 +128,16 @@
 *I am getting the error: "ERROR Google.GCalExchangeSync.Library.Util.!ModifiedDateUtil - System.Xml.!XmlException: 'None' is an invalid !XmlNodeType." How do I fix this?*
 
   * You might see this error when setting up the connectors for the first time. Until a valid sync occurs, the xml file might be incomplete. To resolve this simply delete the !UserModifiedTimes.xml from C:\google\data. This file will be rebuilt on the next sync service execution.
+
+
+*How do I verify if the Google Calendar is using HTTPS (SSL) for Exchange free/busy requests being sent to the Google Calendar Connector Web Service?
+
+ Enable debug logging for the Google Calendar Connector Web Service. The debug logging will print the requester URL.
+
+ To enable DEBUG logging for the Google Calendar Connector Web Service:
+  * Edit web.config in C:\inetpub\wwwroot\GCalExchangeLookup
+  * Find the default entry: <level value="INFO" />
+  * Replace this line with: <level value="DEBUG" />
+  * Load Google Calendar issue a lookup for an Exchange user
+  * Review the web service logs C:\google\logs\webservice.log
+  * Search for "Request URL" verify the URL is HTTPS
