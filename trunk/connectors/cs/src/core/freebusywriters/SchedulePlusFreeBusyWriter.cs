@@ -50,14 +50,6 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// The schedule plus writer needs the feed to expand the recurring events, so return true.
-        /// </summary>
-        public bool RequiresEventExpansion()
-        {
-            return true;
-        }
-
-        /// <summary>
         /// Sync a users free busy information between Google Calendar and the
         /// SchedulePlus Public Folder store
         /// </summary>
@@ -80,7 +72,6 @@ namespace Google.GCalExchangeSync.Library
             string userFreeBusyUrl = FreeBusyUrl.GenerateUrlFromDN(_exchangeServerUrl,
                                                                    user.LegacyExchangeDN);
 
-            DateTimeRange coveredRange = new DateTimeRange(window.Start, window.End);
             List<string> busyMonthValues = new List<string>();
             List<string> busyBase64Data = new List<string>();
             List<string> tentativeMonthValues = new List<string>();
@@ -88,7 +79,7 @@ namespace Google.GCalExchangeSync.Library
 
             ConvertEventsToFreeBusy(user,
                                     googleAppsFeed.Entries,
-                                    coveredRange,
+                                    window,
                                     busyMonthValues,
                                     busyBase64Data,
                                     tentativeMonthValues,
@@ -96,8 +87,8 @@ namespace Google.GCalExchangeSync.Library
 
 
 
-            string startDate = FreeBusyConverter.ConvertToSysTime(coveredRange.Start).ToString();
-            string endDate = FreeBusyConverter.ConvertToSysTime(coveredRange.End).ToString();
+            string startDate = FreeBusyConverter.ConvertToSysTime(window.Start).ToString();
+            string endDate = FreeBusyConverter.ConvertToSysTime(window.End).ToString();
 
             exchangeGateway.FreeBusy.CreateFreeBusyMessage(userFreeBusyUrl,
                                                            user.FreeBusyCommonName,

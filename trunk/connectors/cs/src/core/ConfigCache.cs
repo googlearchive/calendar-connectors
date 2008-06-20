@@ -140,7 +140,7 @@ namespace Google.GCalExchangeSync.Library
         /// Number of days in future + past to synchronize for
         /// </summary>
         public static readonly int GCalSyncWindow =
-            GetIntegerSetting("GoogleApps.GCal.SyncWindow", "60");
+            GetIntegerSetting("GoogleApps.GCal.SyncWindow", "30", 1, 30);
 
         /// <summary>
         /// URL of Google Calendar mailslot that Free / Busy lookup results are sent to
@@ -252,6 +252,13 @@ namespace Google.GCalExchangeSync.Library
         private static int GetIntegerSetting(string setting, string defaultValue)
         {
             return Convert.ToInt32(ConfigurationManager.AppSettings[setting] ?? defaultValue);
+        }
+
+        private static int GetIntegerSetting(string setting, string defaultValue, int min, int max)
+        {
+            return System.Math.Max(min,
+                                   System.Math.Min(max,
+                                                   GetIntegerSetting(setting, defaultValue)));
         }
 
         private static string GetServiceModifedXmlFileName()

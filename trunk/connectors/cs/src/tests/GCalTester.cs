@@ -81,7 +81,6 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             EventFeed feed = gw.QueryGCal(gcalUserEmail,
                                           GCalVisibility.Private,
                                           GCalProjection.FreeBusy,
-                                          false,
                                           DateTime.MinValue,
                                           range);
             return feed;

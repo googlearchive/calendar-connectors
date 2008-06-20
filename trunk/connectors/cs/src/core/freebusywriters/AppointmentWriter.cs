@@ -69,14 +69,6 @@ namespace Google.GCalExchangeSync.Library
         }
 
         /// <summary>
-        /// The appointment writer can handle recurring events by itself, so return false.
-        /// </summary>
-        public bool RequiresEventExpansion()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// Merges a users appointment schedule from with appointments generated from a
         /// GoogleApps feed
         /// </summary>
@@ -249,14 +241,21 @@ namespace Google.GCalExchangeSync.Library
             }
             if ( googleAppsEvent.Locations != null && googleAppsEvent.Locations.Count > 0 )
             {
-                appt.Location = googleAppsEvent.Locations[0].ValueString;
+                appt.Location = googleAppsEvent.Locations[0].ValueString ?? string.Empty;
             }
             else
             {
-                appt.Location = "";
+                appt.Location = String.Empty;
             }
 
-            appt.Subject = ConversionsUtil.SafeGetText(googleAppsEvent.Title);
+            string subject = ConfigCache.PlaceHolderMessage + ": " + ConversionsUtil.SafeGetText(googleAppsEvent.Title);
+            if (subject.Length > 255)
+            {
+                subject = subject.Remove(255);
+            }
+            appt.Subject = subject;
+
+            appt.Body = ConversionsUtil.SafeGetContent(googleAppsEvent.Content);
 
             appt.MeetingStatus = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
 
