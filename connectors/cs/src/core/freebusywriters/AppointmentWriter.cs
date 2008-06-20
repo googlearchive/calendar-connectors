@@ -239,7 +239,10 @@ namespace Google.GCalExchangeSync.Library
 
                 appt.AllDayEvent = googleAppsEvent.Times[0].AllDay;
             }
-            if ( googleAppsEvent.Locations != null && googleAppsEvent.Locations.Count > 0 )
+
+            if (ConfigCache.SyncAppointmentDetails &&
+                googleAppsEvent.Locations != null &&
+                googleAppsEvent.Locations.Count > 0 )
             {
                 appt.Location = googleAppsEvent.Locations[0].ValueString ?? string.Empty;
             }
@@ -248,14 +251,23 @@ namespace Google.GCalExchangeSync.Library
                 appt.Location = String.Empty;
             }
 
-            string subject = ConfigCache.PlaceHolderMessage + ": " + ConversionsUtil.SafeGetText(googleAppsEvent.Title);
-            if (subject.Length > 255)
+            string subject = ConfigCache.PlaceHolderMessage;
+
+            if (ConfigCache.SyncAppointmentDetails)
             {
-                subject = subject.Remove(255);
+                subject += ": " + ConversionsUtil.SafeGetText(googleAppsEvent.Title);
+                if (subject.Length > 255)
+                {
+                    subject = subject.Remove(255);
+                }
             }
+
             appt.Subject = subject;
 
-            appt.Body = ConversionsUtil.SafeGetContent(googleAppsEvent.Content);
+            if (ConfigCache.SyncAppointmentDetails)
+            {
+                appt.Body = ConversionsUtil.SafeGetContent(googleAppsEvent.Content);
+            }
 
             appt.MeetingStatus = ConversionsUtil.ConvertGoogleEventStatus(googleAppsEvent.Status);
 

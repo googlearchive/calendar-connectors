@@ -223,6 +223,12 @@ namespace Google.GCalExchangeSync.Library
             GCalProjection.Full;
 
         /// <summary>
+        /// Allow enable / disable of meeting details synchronization in the appointment writer
+        /// </summary>
+        public static readonly bool SyncAppointmentDetails =
+            GetBooleanSetting("SyncService.SyncAppointmentDetails", "true");
+
+        /// <summary>
         /// Allow enable / disable of Exchange appointment lookup
         /// </summary>
         public static readonly string PlaceHolderMessage =
