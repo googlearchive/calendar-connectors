@@ -240,7 +240,7 @@ namespace Google.GCalExchangeSync.Library
                     // so we only modify events in the window.
 
                     DateTime start = currentDate.AddDays(-ConfigCache.GCalSyncWindow);
-                    DateTime end = currentDate.AddDays(ConfigCache.GCalSyncWindow);
+                    DateTime end = currentDate.AddDays(2 * ConfigCache.GCalSyncWindow);
                     DateTimeRange syncWindow = new DateTimeRange(start, end);
 
                     log.InfoFormat("Processing user {0} for {1}", login, syncWindow);
@@ -249,7 +249,6 @@ namespace Google.GCalExchangeSync.Library
                         user.Email,
                         GCalVisibility.Private,
                         ConfigCache.FreeBusyDetailLevel,
-                        freeBusyWriter.RequiresEventExpansion(),
                         modifiedDate,
                         syncWindow);
 
