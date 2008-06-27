@@ -216,7 +216,7 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         public static readonly GCalProjection FreeBusyDetailLevel =
             string.Compare(
-                ConfigurationManager.AppSettings["SyncService.FreeBusy.DetailLevel"] ?? "Basic",
+                ConfigurationManager.AppSettings["SyncService.FreeBusy.DetailLevel"] ?? "Full",
                 "Basic",
                 true) == 0 ?
             GCalProjection.FreeBusy :
@@ -226,7 +226,7 @@ namespace Google.GCalExchangeSync.Library
         /// Allow enable / disable of meeting details synchronization in the appointment writer
         /// </summary>
         public static readonly bool SyncAppointmentDetails =
-            GetBooleanSetting("SyncService.SyncAppointmentDetails", "true");
+            GetBooleanSetting("SyncService.SyncAppointmentDetails", "false");
 
         /// <summary>
         /// Allow enable / disable of Exchange appointment lookup
