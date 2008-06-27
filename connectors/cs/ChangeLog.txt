@@ -1,6 +1,8 @@
 
 Google Calendar Connectors Changelog
 ====================================
+v1.2 []
+------------------
 * FEATURE: Removed the need from a template user, the FB messages are created from scratch now.
 * BUG FIX: Reduced to 1 the number of WebDAV requests made to create a FB message.
 * FEATURE: The Exchange FB for the GCalendar users now has tentative.

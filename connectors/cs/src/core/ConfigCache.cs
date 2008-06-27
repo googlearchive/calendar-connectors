@@ -216,7 +216,7 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         public static readonly GCalProjection FreeBusyDetailLevel =
             string.Compare(
-                ConfigurationManager.AppSettings["SyncService.FreeBusy.DetailLevel"] ?? "Full",
+                ConfigurationManager.AppSettings["SyncService.FreeBusy.DetailLevel"] ?? "Basic",
                 "Basic",
                 true) == 0 ?
             GCalProjection.FreeBusy :
