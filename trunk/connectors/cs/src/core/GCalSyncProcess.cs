@@ -231,7 +231,7 @@ namespace Google.GCalExchangeSync.Library
 
                     // Pick a window to synchronize for:
                     //
-                    // [-N, +N] days where N is settable in the config file
+                    // [-N, +2N] days where N is settable in the config file
                     //
                     // Scanning back in time is necessary so that we pickup changes to meetings and events that were
                     // made invisible.
