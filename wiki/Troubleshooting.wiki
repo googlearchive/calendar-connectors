@@ -152,3 +152,8 @@
  * Errors:
   * Unable to find Requestor in Directory
   * !HrProcessNextTransaction Failed
+
+
+* How can I enable logging for the Microsoft Exchange Connectivity Controller Connectors to troubleshoot issues with the Google Calendar Connector Plugin?
+
+ Please follow the instructions to enable logging via Exchange System Manager found here: http://support.microsoft.com/kb/295307/en-us.
