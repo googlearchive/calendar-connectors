@@ -141,3 +141,14 @@
   * Load Google Calendar issue a lookup for an Exchange user
   * Review the web service logs C:\google\logs\webservice.log
   * Search for "Request URL" verify the URL is HTTPS
+
+
+* Google Calendar Connector Plug-In is not getting free/busy requests from the Microsoft Calendar Connector? Event ID 6001 Unable to find Requestor in Directory.
+
+ To help debug the issue run the "C:\Program Files\Exchsrvr\bin\calcon.exe" interactively. If you see the request but see the following error, make sure the System Attendant Account has a valid GWISE: proxy address. For more details you can review the following article: http://support.microsoft.com/kb/312483
+  
+ To resolve the issue edit via ADSIEdit the Microsoft System Attendant object in Active Directory and set a proxyaddress entry such as GWISE:domain.domain to enable routing. The value is not really relevant so long as you don't have any other Groupwise infrastructure. Use the same value you defined when configuring the Groupwise Connector in Exchange System Manager.
+
+ * Errors:
+  * Unable to find Requestor in Directory
+  * !HrProcessNextTransaction Failed
