@@ -71,7 +71,7 @@ namespace Google.GCalExchangeSync.Library
 
         private int delay = 0;
         private int minDelay = 1;
-        private int maxDelay = 32768;
+        private int maxDelay = 30 * 65536;
         private int multiplier = 2;
         private object lockObject = new object();
         private Random random = new Random();
