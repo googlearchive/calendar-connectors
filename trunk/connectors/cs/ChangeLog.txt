@@ -7,6 +7,7 @@ v1.2 []
 * BUG FIX: Reduced to 1 the number of WebDAV requests made to create a FB message.
 * FEATURE: The Exchange FB for the GCalendar users now has tentative.
 * BUG FIX: Various performance optimizations.
+* BUG FIX: Small tweaks to the diagnostics page
 
 v1.1 [14-May-2008]
 ------------------

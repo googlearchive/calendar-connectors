@@ -46,7 +46,7 @@
       <li>GoogleApps.DomainName: <asp:Label ID="LabelAppsDomainName" Runat="server"/></li>
       <li>GoogleApps.AdminUser.Login: <asp:Label ID="LabelAppsUser" Runat="server"/></li>
       <li>SyncService.FreeBusy.AdminGroup: <asp:Label ID="LabelAdminGroup" Runat="server"/></li>
-      <li id="DomainMappingInfo">DomainMapping: <asp:Label ID="LabelMappings" Runat="server"/></li>
+      <li id="MachineName">Local Machine Name: <asp:Label ID="LabelMachineName" Runat="server"/></li>
     </ul>
       <asp:Button ID="Encrypt" Text="Encrypt Config Settings" runat="server" OnClick="EncryptSettings_Click" CssClass="button" /><br />
   </fieldset>
