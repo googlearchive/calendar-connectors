@@ -2,7 +2,7 @@
 
 == Contents ==
 
-  * [WikiSyntax#Introduction Introduction]
+  * [#Introduction Introduction]
   * [WikiSyntax#Overview Connectors Overview]
    * [WikiSyntax#Google_Calendar_Connector_Web_Service Google Calendar Connector Web Service]
    * [WikiSyntax#Google_Calendar_Connector_Sync_Service Google Calendar Connector Sync Service]
