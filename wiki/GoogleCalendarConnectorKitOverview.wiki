@@ -2,14 +2,14 @@
 
 == Contents ==
 
-  * Introduction
-  * Connectors Overview
-   * Google Calendar Connector Web Service
-   * Google Calendar Connector Sync Service
-   * Google Calendar Connector Plug-In
-  * Security Considerations
-  * Additional Resources
-  * Copyright Notices
+  * [WikiSyntax#Introduction Introduction]
+  * [WikiSyntax#Overview Connectors Overview]
+   * [WikiSyntax#Google_Calendar_Connector_Web_Service Google Calendar Connector Web Service]
+   * [WikiSyntax#Google_Calendar_Connector_Sync_Service Google Calendar Connector Sync Service]
+   * [WikiSyntax#Google_Calendar_Connector_Plug-In Google Calendar Connector Plug-In]
+  * [WikiSyntax#Security_Considerations Security Considerations]
+  * [WikiSyntax#Additional_Resources Additional Resources]
+  * [WikiSyntax#Copyright_Notices Copyright Notices]
 
 = Introduction =
 
@@ -40,10 +40,10 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/image
 
 {Insert Chart Here}
 
-"*"The option of writing Google Calendar free/busy data into an Exchange
+*_The option of writing Google Calendar free/busy data into an Exchange
 mailbox is possible, but is not the recommended configuration. The
 appointment writer has very limited functionality and is considered an
-experimental feature.
+experimental feature._*
 
 = Google Calendar Connector Web Service =
 
@@ -55,16 +55,16 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/image
 
 The following is a step-by-step process overview of the Web Service:
 
-  # A user opens the Google Calendar Scheduler dialog, and enters the e-mail address of a Microsoft Exchange user, user@acme.com. (_See Security Note_)
-  # Google Calendar checks to see if external free/busy look up is enabled for the current Google Apps domain, and if so, it finds the Intranet or Internet accessible URL of the Google Calendar Connector Web Service that has been installed on your server. (_See Security Note_)
-  # Google Calendar uses HTTP POST to send a free/busy look up request for user@acme.com to the Google Calendar Connector Web Service. (_See Security Note_)
-  # The Google Calendar Connector Web Service parses the free/busy request and issues an Active Directory LDAP query for the user account that matches user@acme.com. (_See Security Note_)
+  # A user opens the Google Calendar Scheduler dialog, and enters the e-mail address of a Microsoft Exchange user, user@acme.com. *(_See Security Note_)*
+  # Google Calendar checks to see if external free/busy look up is enabled for the current Google Apps domain, and if so, it finds the Intranet or Internet accessible URL of the Google Calendar Connector Web Service that has been installed on your server. *(_See Security Note_)*
+  # Google Calendar uses HTTP POST to send a free/busy look up request for user@acme.com to the Google Calendar Connector Web Service. *(_See Security Note_)*
+  # The Google Calendar Connector Web Service parses the free/busy request and issues an Active Directory LDAP query for the user account that matches user@acme.com. *(_See Security Note_)*
   # Microsoft Active Directory returns a user object to the Google Calendar Connector Web Service which contains the Exchange mailbox name and Display Name for user@acme.com.
-  # The Google Calendar Connector Web Service parses the returned LDAP results and issues a single WebDAV query to the Exchange free/busy store. (_See Security Note_)
+  # The Google Calendar Connector Web Service parses the returned LDAP results and issues a single WebDAV query to the Exchange free/busy store. *(_See Security Note_)*
   # The WebDAV query returns with free/busy information for the matching user, assuming proper access privileges.
-  # The Google Calendar Connector Web Service retrieves appointment data for events occurring within the free/busy query's date range, assuming access privileges have been enabled. (_See Security Note_)
+  # The Google Calendar Connector Web Service retrieves appointment data for events occurring within the free/busy query's date range, assuming access privileges have been enabled. *(_See Security Note_)*
   # The Google Calendar Connector Web Service merges the separate appointment details with the free/busy information and Display Name of the user.
-  # The Google Calendar Connector Web Service uses HTTP POST to send the combined free/busy and appointment details back to Google Calendar's Scheduler. (_See Security Note_)
+  # The Google Calendar Connector Web Service uses HTTP POST to send the combined free/busy and appointment details back to Google Calendar's Scheduler. *(_See Security Note_)*
   # Google Calendar's Scheduler receives the results and displays the data appropriately in Scheduler view.
 
 Notes about data security and access permissions:
@@ -82,7 +82,7 @@ Notes about data security and access permissions:
 
 The Google Calendar Connector Sync Service allows Microsoft Exchange users to see free/busy information for Google Apps users. The sync service is a Windows service written in C# that periodically queries Google Apps for updated free/busy information and writes the changes directly into Exchange. The changes are written directly into the Exchange free/busy store. 
 
-_NOTE: For users that have both a Google Apps and Exchange mailbox free/busy data from Google Calendar can be written into a user's calendar as a placeholder appointment (an empty appointment that represents the free/busy information from Google Calendar). The Appointment writer option is an experimental option as it supports a very limited set of functionality and is NOT an appointment/data synchronization utility._ 
+*_NOTE: For users that have both a Google Apps and Exchange mailbox free/busy data from Google Calendar can be written into a user's calendar as a placeholder appointment (an empty appointment that represents the free/busy information from Google Calendar). The Appointment writer option is an experimental option as it supports a very limited set of functionality and is NOT an appointment/data synchronization utility._*
 
 When a Microsoft Exchange user looks up free/busy information for a Google Apps user, the Exchange server accesses the local free/busy information written by the sync service. The Google Calendar Connector Sync Service should be installed on a server that has network access to your Active Directory server and your Microsoft Exchange server.
 
@@ -90,11 +90,11 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/image
 
 Google Calendar Connector Sync Service process overview:
 
-  # On a configurable and periodic basis (default 15 minutes), the Google Calendar Connector Sync Service queries Active Directory using LDAP for the list of users who are defined as Google Calendar users. This list of users is defined by an custom LDAP filter in the Google Calendar Connector Sync Service configuration file. (_See Security Note_)
+  # On a configurable and periodic basis (default 15 minutes), the Google Calendar Connector Sync Service queries Active Directory using LDAP for the list of users who are defined as Google Calendar users. This list of users is defined by an custom LDAP filter in the Google Calendar Connector Sync Service configuration file. *(_See Security Note_)*
   # Active Directory returns to the Google Calendar Connector Sync Service each user and their e-mail address that matches the LDAP query.
-  # The Google Calendar Connector Sync Service uses the Google Calendar GData API (HTTP/XML) to request free/busy information from Google Calendar for the users match by the LDAP query. (_See Security Note_)
-  # The Google Calendar Connector Sync Service writes new free/busy messages to the Exchange free/busy store via WebDAV for non-Exchange users. For Exchange users the Google Calendar Connector Sync Service writes a new placeholder appointment to the user's calendar. (_See Security Note_)
-  # If an appointment is created in Step 4, Exchange will populate the free/busy store with an appropriate free/busy message. (_See Security Note_)
+  # The Google Calendar Connector Sync Service uses the Google Calendar GData API (HTTP/XML) to request free/busy information from Google Calendar for the users match by the LDAP query. *(_See Security Note_)*
+  # The Google Calendar Connector Sync Service writes new free/busy messages to the Exchange free/busy store via WebDAV for non-Exchange users. For Exchange users the Google Calendar Connector Sync Service writes a new placeholder appointment to the user's calendar. *(_See Security Note_)*
+  # If an appointment is created in Step 4, Exchange will populate the free/busy store with an appropriate free/busy message. *(_See Security Note_)*
   # The Google Calendar Connector Sync Service generates an XML file that contains the last time each user was synchronized. On the next scheduled synchronization a check is performed to determine if the user's calendar data has changed or not. If no changes are detected no data is downloaded for that user.
 
 Typical use case:
@@ -123,7 +123,7 @@ The following is a process overview of the Google Calendar Connector Plug-In: Go
   # A Microsoft Exchange user in Microsoft Outlook attempts to look up free/busy information for a Google Apps user.
   # Microsoft Outlook forwards the free/busy request to the Novell GroupWise Calendar Connector using a file-based API request.
   # The Google Calendar Connector Plug-In parses the free/busy request from Microsoft Outlook.
-  # The Google Calendar Connector Plug-In queries Google Apps for the free/busy data via the Google Calendar GData API. (_See Security Note_)
+  # The Google Calendar Connector Plug-In queries Google Apps for the free/busy data via the Google Calendar GData API. *(_See Security Note_)*
   # The Google Calendar Connector Plug-In writes the returned result back to the Novell GroupWise Calendar Connector using the file-based API response.
   # Microsoft Outlook is returned the free/busy data and displays the free/busy data from Google Apps.
 
@@ -134,16 +134,16 @@ Notes about data security and access permissions:
 
 Google Calendar Plug-in Directory/User Synchronization:
 
-  # The Novell GroupWise Calendar Connector requests via the file-based API a directory synchronization. (_See Security Note_)
+  # The Novell GroupWise Calendar Connector requests via the file-based API a directory synchronization. *(_See Security Note_)*
   # The Google Calendar Connector Plug-in reads the file-based API request.
-  # The Google Calendar Connector Plug-in will enumerate all users in the Google Apps Domain via the GData API. (_See Security Note_)
+  # The Google Calendar Connector Plug-in will enumerate all users in the Google Apps Domain via the GData API. *(_See Security Note_)*
   # The Google Calendar Connector Plug-in will perform an LDAP query to Active Directory if configured based on the whitelist or blacklist setting in the configuration file.
   # The Google Calendar Connector Plug-in will include or filter out users from the user list returned from Google Apps based on the whitelist and blacklist data returned from Active Directory.
   # The Google Calendar Connector Plug-in will write a file-based API response with the list of Google Apps users with the whitelist/blacklist filters applied.
   # The NNovell GroupWise Calendar Connector will process the file-based API response file and create or delete GroupWise addressed contact objects based on the list of users returned in the file-based API response from the Google Calendar Connector Plug-in
   # The Google Calendar Connector Plug-in will execute the FreeBusyBuilder helper .Net application.
-  # The FreeBusyBuilder application queries LDAP for all GroupWise addressed contacts. (_See Security Note_)
-  # The FreeBusyBuilder application verifies or creates the proper MAPI attributes in the Exchange free/busy store. These MAPI attributes configure Exchange to use the Novell GroupWise Calendar Connector for the imported GroupWise (i.e Google Apps) contacts for free/busy requests. (_See Security Note_)
+  # The FreeBusyBuilder application queries LDAP for all GroupWise addressed contacts. *(_See Security Note_)*
+  # The FreeBusyBuilder application verifies or creates the proper MAPI attributes in the Exchange free/busy store. These MAPI attributes configure Exchange to use the Novell GroupWise Calendar Connector for the imported GroupWise (i.e Google Apps) contacts for free/busy requests. *(_See Security Note_)*
 
 Notes about data security and access permissions:
 
@@ -227,9 +227,9 @@ The Google Calendar Connectors will only return free/busy information and non-pr
 
 The Google Calendar Scheduler is returned the free/busy and appointment information from your Exchange environment, but this information is not stored on Google's servers, and it only transits Google's servers to be parsed and rendered via javascript within the user's browser.
 
-The Web Service responds to any valid requests it receives, and so access to the Web Service URL should be limited appropriately.  See the Security Consideration "Limiting Access to the Web Service" for more details.
+*_The Web Service responds to any valid requests it receives, and so access to the Web Service URL should be limited appropriately.  See the Security Consideration "Limiting Access to the Web Service" for more details._*
 
-Concurrent, malicious javascript execution in the browser could expose your free/busy and appointment information to an outside party.  This is mentioned only as a precaution. 
+*_Concurrent, malicious javascript execution in the browser could expose your free/busy and appointment information to an outside party.  This is mentioned only as a precaution._*
 
 === Google Calendar Connector Sync Service: ===
 
@@ -241,13 +241,16 @@ No additional corporate data is exposed to Google Calendar when operating the Sy
 
 == Configuration file protection and encryption ==
 
-  The Google Calendar Connectors use configuration files that are installed with the connector software. To protect the sensitive account information in the files, Google recommends you restrict access to these files. The configuration files are stored in plain text which means they can be viewed with a standard text editor. The Google Calendar Connector Web Service and the Google Calendar Connector Sync Service can optionally have their appSettings node encrypted, rendering their sensitive information permanently unreadable. The Google Calendar Connector Plug-in supports password obfuscation or encryption.
+  * The Google Calendar Connectors use configuration files that are installed with the connector software. To protect the sensitive account information in the files, Google recommends you restrict access to these files. The configuration files are stored in plain text which means they can be viewed with a standard text editor. The Google Calendar Connector Web Service and the Google Calendar Connector Sync Service can optionally have their appSettings node encrypted, rendering their sensitive information permanently unreadable. The Google Calendar Connector Plug-in supports password obfuscation or encryption.
 
 = Additional Resources =
 
-[GoogleCalendarConnectorWebServiceGuide.html Google Calendar Connector Web Service Install and Configure Guide]
-[GoogleCalendarConnectorSyncServiceGuide.html Google Calendar Connector Sync Service Install and Configure Guide]
-[GoogleCalendarConnectorPluginGuide.html Google Calendar Connector Plug-In Install and Configure Guide]
+[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorWebServiceGuide.htmll Google Calendar Connector Web Service Install and Configure Guide]
+
+[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorSyncServiceGuide.html Google Calendar Connector Sync Service Install and Configure Guide]
+
+[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorPluginGuide.html Google Calendar Connector Plug-In Install and Configure Guide]
+
 [http://code.google.com/p/google-calendar-connectors/wiki/FAQ Google Calendar Connector Technical FAQ Guide]
 
 = Copyright Notices =
@@ -256,31 +259,36 @@ Library and license attributions are provided to conform with the Apache License
 
 The following licenses and libraries are used in the Google Calendar Connector Web Service:
 
-* Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
-* Apache log4net licensed under the *Apache License, Version 2.0.* ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
-* tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Apache log4net licensed under the *Apache License, Version 2.0.* ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
+  * tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Sync Service:
 
-* Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
-* Apache log4net licensed under the *Apache License, Version 2.0.* ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
-* tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
+  * Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Apache log4net licensed under the *Apache License, Version 2.0.* ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
+  * tz4net v3.0.2.0 licensed under the *GNU LGPL V2*. ([http://www.babiej.demon.nl/Tz4Net/main.htm project], [http://www.gnu.org/copyleft/lgpl.html license])
 
 The following licenses and libraries are used in the Google Calendar Connector Plug-In:
 
-* Google Data (GData) Java Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/gdata-java-client/ project] , [http://www.apache.org/licenses/LICENSE-2.0 license])
-* Google Collections Library and its dependencies licensed under the *Apache License, Version 2.0* ([http://code.google.com/p/google-collections/ project], [http://www.apache.org/licenses/LICENSE-2.0 license] )
+  * Google Data (GData) Java Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/gdata-java-client/ project] , [http://www.apache.org/licenses/LICENSE-2.0 license])
+  * Google Collections Library and its dependencies licensed under the *Apache License, Version 2.0* ([http://code.google.com/p/google-collections/ project], [http://www.apache.org/licenses/LICENSE-2.0 license] )
 
 The following licenses and libraries are used to build the Google Calendar Connector Plug-In:
 
   * Apache Ant Project and its dependencies licensed under the *Apache License, Version 2.0.* ([http://ant.apache.org/ project], [http://ant.apache.org/license.html license])
 
 The following licenses and libraries are used for testing the Google Calendar Connector Plug-In:
-
   * JUnit and its dependencies ([http://www.junit.org/ project])
   * JMock and its dependencies ([http://jmock.codehaus.org/ project], [http://jmock.codehaus.org/license.html license])
 
-The Google Calendar Connector Plug-In optionally supports, but does not require, building Windows executables using JSmooth. JSmooth is not distributed with the Google Calendar Connector Plug-In open source release and its use represents an optional step in the build process.  JSmooth may be obtained and used in accordance with its license, both of which are provided below (for the sake of convenience): JSmooth project: [http://jsmooth.sourceforge.net/ http://jsmooth.sourceforge.net] JSmooth license: http://jsmooth.sourceforge.net/license.php Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig
+The Google Calendar Connector Plug-In optionally supports, but does not require, building Windows executables using JSmooth. JSmooth is not distributed with the Google Calendar Connector Plug-In open source release and its use represents an optional step in the build process.  JSmooth may be obtained and used in accordance with its license, both of which are provided below (for the sake of convenience): 
+
+JSmooth project: [http://jsmooth.sourceforge.net/ http://jsmooth.sourceforge.net]
+
+JSmooth license: http://jsmooth.sourceforge.net/license.php
+
+Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig
 
 ----
 
