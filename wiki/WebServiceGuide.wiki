@@ -10,7 +10,7 @@ Contents
    # [#Prerequisites Prerequisites]
    # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
    # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
-   # [#PreInstallation_Checklist PreInstallation Checklist]
+   # [#Installation_Checklist Installation Checklist]
   # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service] 
    # [#MSI_Installation MSI Installation]
    # [#File_Permissions File Permissions]
@@ -135,7 +135,7 @@ To restart the service Microsoft Exchange Information Store:
  # Open the services.msc
  # In right pane view, locate *Microsoft Exchange Information Store*, right click and select *Restart*
 
-=== PreInstallation Checklist ===
+=== Installation Checklist ===
 
 || *Task* || *Completed?* || *Notes* ||
 || Verify that Windows environment prerequisites are met || || ||
