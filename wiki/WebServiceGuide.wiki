@@ -10,7 +10,7 @@ Contents
    # [#Prerequisites Prerequisites]
    # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
    # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
-   # [#Preinstallation_Checklist Preinstallation Checklist]
+   # [#PreInstallation_Checklist Pre-Installation Checklist]
   # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service] 
    # [#MSI_Installation MSI Installation]
    # [#File_Permissions File Permissions]
