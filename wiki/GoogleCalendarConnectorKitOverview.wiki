@@ -3,21 +3,21 @@
 == Contents ==
 
   * [#Introduction Introduction]
-  * [WikiSyntax#Overview Connectors Overview]
-   * [WikiSyntax#Google_Calendar_Connector_Web_Service Google Calendar Connector Web Service]
-   * [WikiSyntax#Google_Calendar_Connector_Sync_Service Google Calendar Connector Sync Service]
-   * [WikiSyntax#Google_Calendar_Connector_Plug-In Google Calendar Connector Plug-In]
-  * [WikiSyntax#Security_Considerations Security Considerations]
-  * [WikiSyntax#Additional_Resources Additional Resources]
-  * [WikiSyntax#Copyright_Notices Copyright Notices]
+  * [#Overview Connectors Overview]
+   * [#Google_Calendar_Connector_Web_Service Google Calendar Connector Web Service]
+   * [#Google_Calendar_Connector_Sync_Service Google Calendar Connector Sync Service]
+   * [#Google_Calendar_Connector_PlugIn Google Calendar Connector PlugIn]
+  * [#Security_Considerations Security Considerations]
+  * [#Additional_Resources Additional Resources]
+  * [#Copyright_Notices Copyright Notices]
 
 = Introduction =
 
 The Google Calendar Connector Kit is a set of tools that enable users to look up free/busy information for their domain across Microsoft Exchange and Google Apps. Google Apps users can see free/busy information for Microsoft Exchange users from within the Google Calendar resource scheduling interface, and Microsoft Exchange users can see free/busy information for Google Apps users from within the Microsoft Outlook calendar scheduler.
 
-The Google Calendar Connector Kit is a set of server-installed tools that require knowledgeable installation and configuration, tailored to the particulars of a customer's environment.  These tools are only the technological part of the integration experience.
+The Google Calendar Connector Kit is a set of server-installed tools that require knowledgeable installation and configuration, tailored to the particulars of a customer's environment.  These tools are only the *technological part* of the integration experience.
 
-Before proceeding to install the Google Calendar Connector Kit, please read and understand the important Security Considerations outlined below.
+Before proceeding to install the Google Calendar Connector Kit, please read and understand the important [#Security_Considerations Security Considerations] outlined below.
 
 = Overview =
 
@@ -38,9 +38,9 @@ The diagrams below illustrates the similarities and differences between the comp
 
 http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/comparison.png
 
-{Insert Chart Here}
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/features.png
 
-*_The option of writing Google Calendar free/busy data into an Exchange
+*_NOTE: The option of writing Google Calendar free/busy data into an Exchange
 mailbox is possible, but is not the recommended configuration. The
 appointment writer has very limited functionality and is considered an
 experimental feature._*
@@ -110,9 +110,9 @@ Notes about data security and access permissions:
   * 4. The Google Calendar Connector Sync Service writes free/busy messages to the free/busy store using an Active Directory account with write permission to the free/busy store for other users. This requires an Exchange account with Admin privileges.
   * 5. If the Appointment writer is used instead of the !SchedulePlus writer, the Google Calendar Connector Sync Service must use an Active Directory account with write permission to the Exchange users' calendar.
 
-= Google Calendar Connector Plug-In =
+= Google Calendar Connector !PlugIn =
 
-The Google Calendar Connector Plug-In allows Microsoft Exchange users to request, in real-time, free/busy information for Google Apps users. The Plug-In is a Java Windows service (with a supplemental .NET executable) that handles free/busy requests from the Novell !GroupWise Calendar Connector for Microsoft Exchange.  When a Microsoft Exchange user looks up free/busy information for a Google Apps user, Exchange issues a free/busy request that is serviced by the Google Calendar Connector Plug-In.  The Google Calendar Connector Plug-in translates the request and queries Google Apps using the Google Calendar GData API. The free/busy data is then returned to Microsoft Exchange for it to present to the requesting user. The Google Calendar Connector Plug-In should be installed on the same server as the Novell !GroupWise Calendar Connector for Microsoft Exchange.
+The Google Calendar Connector Plug-In allows Microsoft Exchange users to request, in real-time, free/busy information for Google Apps users. The Plug-In is a Java Windows service (with a supplemental .NET executable) that handles free/busy requests from the Novell !!GroupWise Calendar Connector for Microsoft Exchange.  When a Microsoft Exchange user looks up free/busy information for a Google Apps user, Exchange issues a free/busy request that is serviced by the Google Calendar Connector Plug-In.  The Google Calendar Connector Plug-in translates the request and queries Google Apps using the Google Calendar GData API. The free/busy data is then returned to Microsoft Exchange for it to present to the requesting user. The Google Calendar Connector Plug-In should be installed on the same server as the Novell !!GroupWise Calendar Connector for Microsoft Exchange.
 
 http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/free_busy_request.png
 
@@ -121,10 +121,10 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/image
 The following is a process overview of the Google Calendar Connector Plug-In: Google Calendar Connector Plug-in free/busy request:
 
   # A Microsoft Exchange user in Microsoft Outlook attempts to look up free/busy information for a Google Apps user.
-  # Microsoft Outlook forwards the free/busy request to the Novell GroupWise Calendar Connector using a file-based API request.
+  # Microsoft Outlook forwards the free/busy request to the Novell !GroupWise Calendar Connector using a file-based API request.
   # The Google Calendar Connector Plug-In parses the free/busy request from Microsoft Outlook.
   # The Google Calendar Connector Plug-In queries Google Apps for the free/busy data via the Google Calendar GData API. *(_See Security Note_)*
-  # The Google Calendar Connector Plug-In writes the returned result back to the Novell GroupWise Calendar Connector using the file-based API response.
+  # The Google Calendar Connector Plug-In writes the returned result back to the Novell !GroupWise Calendar Connector using the file-based API response.
   # Microsoft Outlook is returned the free/busy data and displays the free/busy data from Google Apps.
 
 
@@ -134,23 +134,23 @@ Notes about data security and access permissions:
 
 Google Calendar Plug-in Directory/User Synchronization:
 
-  # The Novell GroupWise Calendar Connector requests via the file-based API a directory synchronization. *(_See Security Note_)*
+  # The Novell !GroupWise Calendar Connector requests via the file-based API a directory synchronization. *(_See Security Note_)*
   # The Google Calendar Connector Plug-in reads the file-based API request.
   # The Google Calendar Connector Plug-in will enumerate all users in the Google Apps Domain via the GData API. *(_See Security Note_)*
   # The Google Calendar Connector Plug-in will perform an LDAP query to Active Directory if configured based on the whitelist or blacklist setting in the configuration file.
   # The Google Calendar Connector Plug-in will include or filter out users from the user list returned from Google Apps based on the whitelist and blacklist data returned from Active Directory.
   # The Google Calendar Connector Plug-in will write a file-based API response with the list of Google Apps users with the whitelist/blacklist filters applied.
-  # The NNovell GroupWise Calendar Connector will process the file-based API response file and create or delete GroupWise addressed contact objects based on the list of users returned in the file-based API response from the Google Calendar Connector Plug-in
-  # The Google Calendar Connector Plug-in will execute the FreeBusyBuilder helper .Net application.
-  # The FreeBusyBuilder application queries LDAP for all GroupWise addressed contacts. *(_See Security Note_)*
-  # The FreeBusyBuilder application verifies or creates the proper MAPI attributes in the Exchange free/busy store. These MAPI attributes configure Exchange to use the Novell GroupWise Calendar Connector for the imported GroupWise (i.e Google Apps) contacts for free/busy requests. *(_See Security Note_)*
+  # The NNovell !GroupWise Calendar Connector will process the file-based API response file and create or delete !GroupWise addressed contact objects based on the list of users returned in the file-based API response from the Google Calendar Connector Plug-in
+  # The Google Calendar Connector Plug-in will execute the !FreeBusyBuilder helper .Net application.
+  # The !FreeBusyBuilder application queries LDAP for all !GroupWise addressed contacts. *(_See Security Note_)*
+  # The !FreeBusyBuilder application verifies or creates the proper MAPI attributes in the Exchange free/busy store. These MAPI attributes configure Exchange to use the Novell !GroupWise Calendar Connector for the imported !GroupWise (i.e Google Apps) contacts for free/busy requests. *(_See Security Note_)*
 
 Notes about data security and access permissions:
 
-  * 1. The Novell GroupWise Calendar Connector requires a local administrator account on the server it is running.
+  * 1. The Novell !GroupWise Calendar Connector requires a local administrator account on the server it is running.
   * 3. The Google Apps domain must have the Provisioning API enabled for account enumeration. GData API authentication and data is transferred securely via HTTPS.
-  * 9. The user account the Google Calendar Connector Plug-in service logs on as must have access to query Active Directory as a "Domain User" as this account is used to execute the FreeBusyBuilder.exe help application.
-  * 10. The user account the Google Calendar Connector Plug-in service logs on as must have read and write access to the Exchange free/busy store as this account is used to execute the FreeBusyBuilder.exe help application.
+  * 9. The user account the Google Calendar Connector Plug-in service logs on as must have access to query Active Directory as a "Domain User" as this account is used to execute the !FreeBusyBuilder.exe help application.
+  * 10. The user account the Google Calendar Connector Plug-in service logs on as must have read and write access to the Exchange free/busy store as this account is used to execute the !FreeBusyBuilder.exe help application.
 
 = Security considerations =
 
@@ -188,7 +188,7 @@ The Google Calendar Connectors generally require a Google Apps account to access
   # The Windows System account NETWORK SERVICE is used by ASP.NET and needs MODIFY privileges to:
    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}
    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}\Web.config
-   * GoogleApps.GCal.LogDirectory
+   * !GoogleApps.GCal.!LogDirectory
 
 === Google Calendar Connector Sync Service: ===
 
@@ -196,13 +196,13 @@ The Google Calendar Connectors generally require a Google Apps account to access
   # Active Directory user with standard DOMAIN USER privileges.
   # Active Directory user with Exchange extended "Receive As" privileges for writing free/busy or appointment details.
   # The Windows System account SYSTEM requires:
-   * MODIFY privileges for SyncServiceXmlStorageDirectory
+   * MODIFY privileges for !SyncServiceXmlStorageDirectory
    * MODIFY privileges for the install directory
 
 === Google Calendar Connector Plug-In: ===
 
   # Google Apps Administrator account.
-  # Local server user account with READ/WRITE privileges to the Novell GroupWise Calendar Connector API path.
+  # Local server user account with READ/WRITE privileges to the Novell !GroupWise Calendar Connector API path.
   # Active Directory DOMAIN USER credentials for querying via LDAP and writing free/busy store MAPI attributes.
 
 == Free/busy and appointment details privacy ==
@@ -217,7 +217,7 @@ Free/busy information is generally available to all users of the domain, without
 
   * *Google Calendar Connector Plug-In:*
 
-  Free/busy information is accessible by any Google Apps domain user, for any other domain user on Google Apps. Appointment details are not supported with the Novell GroupWise Connector for Exchange.
+  Free/busy information is accessible by any Google Apps domain user, for any other domain user on Google Apps. Appointment details are not supported with the Novell !GroupWise Connector for Exchange.
 
 == Google Calendar's access to your corporate data ==
 
