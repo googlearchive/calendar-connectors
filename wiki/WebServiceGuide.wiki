@@ -1,0 +1,90 @@
+
+= Google Calendar Connector Web Service Installation and Configuration Guide= 
+
+In the Google Calendar Connector framework, data flow from Exchange is provided by the Google Calendar Connector Web Service. Google Calendar connects to the Web Service to query Exchange servers for free/busy data and appointment data, which includes the name, place, and attendees of events.  This document provides instructions for installing and configuring the Google Calendar Connector Web Service.
+Contents
+
+  # About This Document
+   # Audience
+   # For More Information
+  # Before You Install
+   # Prerequisites
+   # Google Calendar Account Setup
+   # Dedicated Windows Service Accounts
+   # Preinstallation Checklist
+  # Installing the Google Calendar Connector Web Service
+   # MSI Installation
+   # File Permissions
+  # Configuring the Google Calendar Connector Web Service
+   # Editing the Configuration File
+   # Encrypting the Configuration File
+   # HTTP Proxy Configuration (optional)
+  # Installation Success
+   # Verifying Communication
+  # Testing and Troubleshooting
+   # Running Diagnostics Tests
+   # Logging Configuration
+   # HTTP Checking
+  # Known Issues
+  # Copyright Notices
+
+
+== 1 About This Document ==
+
+This section describes the audience for this document, the organization of the material, and some additional sources of information.
+
+
+The Google Calendar Connector Kit is a set of server-installed tools that require knowledgeable  installation and configuration, tailored to the particulars of a customer's environment.  These tools are only the *technological part* of the integration experience.
+
+Before proceeding to install the Google Calendar Connector Web Service, please read and understand the important *Security Considerations* outlined in the *Overview Guide*.
+
+=== 1.1 Audience ===
+
+This documentation is for systems administrators tasked with setting up and managing the Google Calendar Connector Web Service. Users of this documentation need to be familiar with the administration of Google Calendar, Microsoft Exchange Server, Active Directory, and Internet Information Services (IIS).
+
+It is important to note that this tool only represents part of a solution for free/busy interoperability. 
+
+=== 1.2 For More Information ===
+
+This document is part of the Google Calendar Connector document set, which includes the following related documents:
+
+  * Overview Guide. Describes the components, process flow, and security considerations for the Google Calendar Connector Kit.
+
+  * Web Service Installation and Configuration Guide. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
+  
+* Sync Service Installation and Configuration Guide. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
+
+  * Plug-In Installation and Configuration Guide. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
+
+For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
+
+For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
+
+
+=== 2. Before You Install === 
+
+Before you install and configure the Google Calendar Connector Web Service, make sure your Windows environment meets the following prerequisites, and that Google Calendar and Exchange are prepared for sharing data.
+
+=== 2.1 Prerequisites ===
+  
+* Google Apps Premier Edition domain
+
+
+To support the Web Service, your Windows environment must meet these prerequisites:
+ * Microsoft Windows Server 2003
+ * Internet Information Services (IIS) 6.0
+ * Microsoft Exchange Server 2003 SP2
+ * ASP.NET 2.
+
+=== 2.2 Google Calendar Account Setup ===
+
+To prepare Google Calendar for sharing free/busy data, you must perform these tasks:
+
+
+  * Specify the Google Calendar Connector Web Service URL.
+ As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
+
+
+ * Create dedicated Google Apps service account and perform an initial login.
+
+ The user name and password are required when you populate the GoogleApps.AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the connector you must login to Google Apps account and accept the standard terms of service agreement for the user account.
