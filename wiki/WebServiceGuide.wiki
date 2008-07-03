@@ -19,7 +19,7 @@ Contents
    # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
    # [#HTTP_Proxy_Configuration_Optional HTTP Proxy Configuration Optional]
   # [#5_Installation_Success Installation Success]
-   # [#Verifying_communication_between_Google_Calendar_and_the_Web_Service Verifying communication between Google Calendar and the Web Service]
+   # [#Verifying_Communication Verifying Communication]
   # [#6_Testing_and_Troubleshooting Testing and Troubleshooting]
    # [#Running_Diagnostics_Tests Running Diagnostics Tests]
    # [#Logging_Configuration Logging Configuration]
@@ -246,7 +246,7 @@ _*Important Note: Please carefully consider whether your Microsoft Exchange serv
 
 == 5 Installation Success ==
 
-=== Verifying communication between Google Calendar and the Web Service ===
+=== Verifying Communication ===
 
 After completing the installation and configuration tasks, perform the following to verify that the Google Calendar can query free/busy data from Exchange.
 
