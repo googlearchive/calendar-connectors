@@ -11,21 +11,21 @@ Contents
    # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
    # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
    # [#Preinstallation_Checklist Preinstallation Checklist]
-  # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service]
+  # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service]                                          ƒ
    # [#MSI_Installation MSI Installation]
    # [#File_Permissions File Permissions]
   # [#4_Configuring_the_Google_Calendar_Connector_Web_Service Configuring the Google Calendar Connector Web Service]
-   # [#Editing_the_Configuration File Editing the Configuration File]
+   # [#EEditing_the_Configuration_File Editing the Configuration File]
    # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
    # [#HTTP_Proxy_Configuration_Optional HTTP Proxy Configuration Optional]
   # [#5_Installation_Success Installation Success]
-   # [#Verifying_Communication Verifying Communication]
+   # [#Verifying_communication_between_Google_Calendar_and_the_Web_ƒsService Verifying communication between Google Calendar and the Web Service]
   # [#6_Testing_and_Troubleshooting Testing and Troubleshooting]
    # [#Running_Diagnostics_Tests Running Diagnostics Tests]
    # [#Logging_Configuration Logging Configuration]
    # [#HTTP_Checking HTTP Checking]
   # [#7_Known_Issues Known Issues]
-  # [#8_Copyright Notices Copyright Notices]
+  # [#8_Copyright_Notices Copyright Notices]
 
 == 1 About This Document ==
 
@@ -135,7 +135,7 @@ To restart the service Microsoft Exchange Information Store:
  # Open the services.msc
  # In right pane view, locate *Microsoft Exchange Information Store*, right click and select *Restart*
 
-=== Pre-Installation Checklist ===
+=== PreInstallation Checklist ===
 
 || *Task* || *Completed?* || *Notes* ||
 || Verify that Windows environment prerequisites are met || || ||
@@ -178,7 +178,7 @@ The local NETWORK SERVICE account requires modify access to the Web Service's vi
 
 
 In Web.config\appSettings\:
- * *NETWORK SERVICE* must have "*MODIFY*" privileges to the _!GoogleApps.GCal.!LogDirectory_ directory.
+ * *NETWORK SERVICE* must have "*MODIFY*" privileges to the _ !GoogleApps.GCal.!LogDirectory _ directory.
  * *NETWORK SERVICE* must have "*MODIFY*" privileges to _Web.config_ file.
 
 In _Web.config\configuration\log4net\appender\_:
@@ -271,11 +271,11 @@ This section describes simple verification tests for the Web Service and provide
 === Running Diagnostics Tests ===
 
 The Web Service contains a diagnostics page that can help diagnose issues. Diagnostics.aspx, located in the root of the Web Service virtual directory, contains the following diagnostic tests for the web service:
- * Verify users can be found in Active Directory
+ * *Verify users can be found in Active Directory*
 
  This test queries the Active Directory domain controller specified in !ActiveDirectory.!DomainController and returns all objects found in the result set. Specific LDAP queries can be tested using the text-area (cn=`*` is the default). This test verifies that the Web Service can properly connect to an Active Directory server and retrieve user/contact information.
  
- * Verify free / busy information can be found in Exchange (+/- 7 days)
+ * *Verify free / busy information can be found in Exchange (+/- 7 days)*
 
  This test verifies that the Web Service is correctly configured to talk to the Exchange server, and retrieve  free/busy information for a user or contact. Please be aware that this test only returns free/busy information within 7 days of the current date.
 
@@ -299,10 +299,10 @@ Increase the logging level
 
 There are four logging levels, with DEBUG providing the most output and ERROR only logging severe events:
 
-* DEBUG
-* INFO
-* WARN
-* ERROR
+ * DEBUG
+ * INFO
+ * WARN
+ * ERROR
 
 The Web Service has many potential logging points for the DEBUG and ERROR levels. When logging is set to these levels, the size of the log file may grow very rapidly.
 
@@ -329,7 +329,7 @@ To grant "*Modify*" access to a directory do the following:
 
 === HTTP Checking ===
 
-In addition to diagnostic tests, HTTP analysis tools can be used to view the actual data that is being passed between Google Calendar and the Web Service. _HTTP Analyze_r (for Microsoft Internet Explorer) or _Live HTTP Headers_ (for Firefox) are examples of HTTP analysis tools.
+In addition to diagnostic tests, HTTP analysis tools can be used to view the actual data that is being passed between Google Calendar and the Web Service. _HTTP Analyzer_ (for Microsoft Internet Explorer) or _Live HTTP Headers_ (for Firefox) are examples of HTTP analysis tools.
 
 To troubleshoot the Web Service with an HTTP utility:
  # Check whether a lookup request is sent from Google Calendar to the Web Service. The link for the request should match the Web Service URL provided to Google Apps.
@@ -353,7 +353,8 @@ Library and license attributions are provided to conform with the Apache License
 
 Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei
 A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig
-____
+
+----
 
 _Google, Google Calendar, Google Calendar Connector, Google Calendar Connector Web Service, Google Calendar Connector Sync Service_ are trademarks of Google, Inc.
 
