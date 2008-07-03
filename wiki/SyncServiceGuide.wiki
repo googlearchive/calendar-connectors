@@ -1,0 +1,150 @@
+= Google Calendar Connector Sync Service Installation and Configuration Guide=
+
+The Google Calendar Connector Sync Service provides data flow from Google Calendar. The Sync Service periodically polls Google Calendar for free/busy data and appointment data, which includes the name, place, and attendees of events.
+
+This document provides detailed instructions for installing and configuring the Google Calendar Connector Sync Service.
+Contents
+
+ # [#1_About_This_Document About This Document]
+  # [#Audience Audience]
+  # [#For_More_Information For More Information]
+ # [#Before_You_Install Before You Install]
+  # [#Prerequisites Prerequisites]
+  # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
+  # [#Exchange_User_Mapping Exchange User Mapping]
+  # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
+  # [#Preinstallation_Checklist Preinstallation Checklist]
+ # [#Installing_the_Google_Calendar_Connector_Sync_Service Installing the Google Calendar Connector Sync Service]
+  # [#MSI_Installation MSI Installation]
+  # [#Configuring_the_Google_Calendar_Connector_Sync_Service Configuring the Google Calendar Connector Sync Service]
+  # [#Editing_the_Configuration_File Editing the Configuration File]
+  # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
+  # [#HTTP_Proxy_Configuration_Optional HTTP Proxy Configuration Optional]
+ # [#Installation_Success Installation Success]
+  # [#Starting_the_Google_Calendar_Connector_Sync_Service Starting the Google Calendar Connector Sync Service]
+ # [#Testing_and_Troubleshooting Testing and Troubleshooting]
+  # [#Running_Diagnostics_Test Running Diagnostics Test]
+  # [#Logging_Configuration Logging Configuration]
+ # [#Known_Issues Known Issues]
+ # [#Copyright_Notices Copyright Notices]
+
+== 1 About This Document == 
+
+This section describes the audience for this document, the organization of the material, and some additional sources of information.
+
+The Google Calendar Connector Kit is a set of server-installed tools that require knowledgeable  installation and configuration, tailored to the particulars of a customer's environment.  These tools are only the *technological part* of the integration experience.
+
+Before proceeding to install the Google Calendar Connector Sync Service, please read and understand the important *Security Considerations* outlined in the *Overview Guide*.
+
+=== Audience ===
+
+This document is for systems administrators tasked with setting up and managing the Google Calendar Connector Sync Service. Users of this documentation need to be familiar with Google Calendar administration, Microsoft Exchange Server and Windows network administration.
+
+It is important to note that this tool only represents part of a solution for free/busy interoperability.
+1.2 For More Information
+
+This document is part of the Google Calendar Connector document set, which includes the following related documents:
+
+Overview Guide. Describes the components, process flow, and security considerations for the connector.
+
+Web Service Installation and Configuration Guide. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
+
+Plug-In Installation and Configuration Guide. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
+
+For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
+
+For background or general information on Windows administration, see [http://technet.microsoft.com/ TechNet].
+
+== 2 Before You Install ==
+
+Before you install and configure the connector, make sure your Windows environment meets the prerequisites, and that your Google Calendar and Exchange accounts are prepared for sharing data.
+
+=== Prerequisites ===
+
+ * A Google Apps Premier Edition domain
+
+To support the Sync Service, your Windows environment must meet these prerequisites:
+ * Microsoft Advanced Server 2003
+ * Internet Information Services (IIS) 6.0
+ * Microsoft Exchange Server 2003 SP2
+ * ASP.NET 2.0 runtime
+
+=== Google Calendar Account Setup ===
+
+Create a dedicated Google Apps Administrator account and perform an initial login. The user name and password are required later when you populate the !GoogleApps.AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the Sync service you must login to Google Apps account and accept the standard terms of service agreement for the user account.
+
+=== Exchange User Mapping ===
+
+Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object. Whether you choose to map Google Apps users to contact objects or user objects depends upon whether you have chosen the !AppointmentWriter or !SchedulePlus writer for synchronizing user data.
+
+See the _Overview Guide_ for more information.
+
+For instructions on how to create a mail-enabled users, see the Microsoft TechNet article, [http://technet.microsoft.com/en-us/library/bb125258.aspx How to Create a New Mail-Enabled User].
+
+For instructions on how to create an Active Directory contact, see the Microsoft TechNet article, [http://technet.microsoft.com/en-us/library/aa995841.aspx How to Create a Contact in Active Directory].
+
+=== Dedicated Windows Service Accounts ===
+
+The Sync Service requires dedicated Active Directory role accounts for performing LDAP queries against Active Directory and performing free/busy reads and writes against Exchange.
+
+Create these service accounts as described in this section, and reference the user names and passwords when configuring the Sync Service.
+
+The required service accounts are itemized below:
+
+=== Active Directory LDAP Query User === 
+
+Create a dedicated user for performing Active Directory LDAP queries. The user name and password are required later when you populate the _!ActiveDirectory.DomainUser.Login_ and _Password_ parameters in the Sync Service configuration file.
+
+=== Exchange Query Admin User ===
+
+Create a dedicated user for the Sync Service to read and write free/busy or appointments against Exchange. The user name and password are required later when you populate _!Exchange.GCalQueryAdmin.Login _and _Password_ parameters in the Sync Service configuration file.
+
+The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy and appointments in Exchange.
+
+To configure the permissions for the query admin user:
+
+ # Start Registry Editor (regedit).
+ # Navigate to the following key: HKEY_CURRENT_USER\Software\Microsoft\Exchange\!ExAdmin
+ # On the *Edit* menu, click *Add Value*, and then add the following registry value:
+  Value Name : *!ShowSecurityPage*
+  Data Type : *REG_DWORD*
+  Value : *1*
+ # Close Registry Editor.
+ # Start the *Exchange System Manager*.
+ # Right Click on your *Exchange Organization Name* and select *Properties*
+ # Select the *Security* Tab
+ # Click the *Advanced* button
+ # Click *Add*
+ # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click *OK*
+ # Check the *Allow* box for the permission "*Receive As*" and click *OK*
+
+=== Remounting the Exchange Information Stores === 
+
+The Exchange Information store caches permissions data. To flush the cache immediately after setting new permissions, dismount and remount the appropriate information store or restart the Information Store service. Otherwise the changes will not take effect until Exchange rebuilds the permissions cache.
+
+To dismount and remount the public folder store:
+ # Open Exchange System Manager
+ # In tree view, expand *Administrative Groups*, {Your Administrative Group}, *Servers*,{Your local Exchange server}, and {Your Storage Group}.
+ # Right click on the *Public Folder Store*, select *Dismount Store* and click *Yes* to continue.
+ # Right click on the *Public Folder Store*, select *Mount Store* and click *Yes* at the success message dialog.
+
+To restart the service Microsoft Exchange Information Store:
+ # Open the *services.msc*
+ # In right pane view, locate *Microsoft Exchange Information Store*, right click and select *Restart*
+
+=== Installation Checklist ===
+
+|| *Task* || *Completed?* || *Notes* ||
+|| Verify that Windows environment prerequisites are met || || ||
+|| Create user mailboxes (Appointment writer) or contact objects (!SchedulePlus writer) for Google Apps users in Exchange. || || 
+||Create dedicated Google Apps Sync Service user || ||User name and password: ||
+||Create dedicated Active Directory user|| ||User name and password: ||
+||Create dedicated Exchange Query user|| ||User name and password: ||
+||Create dedicated Exchange Admin user|| ||User name and password: ||
+||Set Exchange permissions for Query and Admin users || || ||
+   	  
+== 3 Installing the Google Calendar Connector Sync Service ==
+
+=== MSI Installation ===
+
+The installer for the Sync Service is provided in the installation package file _GoogleCalendarConnectorSyncService.msi_.    
