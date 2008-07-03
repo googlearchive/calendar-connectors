@@ -152,7 +152,7 @@ Notes about data security and access permissions:
   * 9. The user account the Google Calendar Connector Plug-in service logs on as must have access to query Active Directory as a "Domain User" as this account is used to execute the !FreeBusyBuilder.exe help application.
   * 10. The user account the Google Calendar Connector Plug-in service logs on as must have read and write access to the Exchange free/busy store as this account is used to execute the !FreeBusyBuilder.exe help application.
 
-= Security considerations =
+= Security Considerations =
 
 The following are important security considerations to review when deploying the Google Calendar Connector Kit.
  
