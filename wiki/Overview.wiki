@@ -245,7 +245,7 @@ No additional corporate data is exposed to Google Calendar when operating the Sy
 
 = Additional Resources =
 
-[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorWebServiceGuide.htmll Google Calendar Connector Web Service Install and Configure Guide]
+[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorWebServiceGuide.html Google Calendar Connector Web Service Install and Configure Guide]
 
 [http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorSyncServiceGuide.html Google Calendar Connector Sync Service Install and Configure Guide]
 
