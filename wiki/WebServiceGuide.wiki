@@ -3,29 +3,29 @@
 In the Google Calendar Connector framework, data flow from Exchange is provided by the Google Calendar Connector Web Service. Google Calendar connects to the Web Service to query Exchange servers for free/busy data and appointment data, which includes the name, place, and attendees of events.  This document provides instructions for installing and configuring the Google Calendar Connector Web Service.
 Contents
 
-  # [#About_This_Document About This Document]
-   # [#Audience_About This Document
-   # [#For_More_Information For More Information
-  # [#Before_You_Install Before You Install
-   # [#Prerequisites Prerequisites
-   # [#Google_Calendar_Account_Setup Google Calendar Account Setup
-   # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts
-   # [#Preinstallation_Checklist Preinstallation Checklist
-  # [#Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service
-   # [#MSI_Installation MSI Installation
-   # [#File_Permissions File Permissions
-  # [#Configuring_the_Google_Calendar_Connector_Web_Service Configuring the Google Calendar Connector Web Service
-   # [#Editing_the_Configuration File Editing the Configuration File
-   # [#Encrypting_the_Configuration_File Encrypting the Configuration File
-   # [#HTTP_Proxy_Configuration_(optional) HTTP Proxy Configuration (optional)
-  # [#Installation_Success Installation Success
-   # [#Verifying_Communication Verifying Communication
-  # [#Testing_and_Troubleshooting Testing and Troubleshooting
-   # [#Running_Diagnostics_Tests Running Diagnostics Tests
-   # [#Logging_Configuration Logging Configuration
-   # [#HTTP_Checking HTTP Checking
-  # [#Known_Issues Known Issues]
-  # [#Copyright_Notices Copyright Notices]
+  # [#1_About_This_Document About This Document]
+   # [#Audience Audience]
+   # [#For_More_Information For More Information]
+  # [#2_Before_You_Install Before You Install]
+   # [#Prerequisites Prerequisites]
+   # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
+   # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
+   # [#Preinstallation_Checklist Preinstallation Checklist]
+  # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service]
+   # [#MSI_Installation MSI Installation]
+   # [#File_Permissions File Permissions]
+  # [#4_Configuring_the_Google_Calendar_Connector_Web_Service Configuring the Google Calendar Connector Web Service]
+   # [#Editing_the_Configuration File Editing the Configuration File]
+   # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
+   # [#HTTP_Proxy_Configuration_Optional HTTP Proxy Configuration Optional]
+  # [#5_Installation_Success Installation Success]
+   # [#Verifying_Communication Verifying Communication]
+  # [#6_Testing_and_Troubleshooting Testing and Troubleshooting]
+   # [#Running_Diagnostics_Tests Running Diagnostics Tests]
+   # [#Logging_Configuration Logging Configuration]
+   # [#HTTP_Checking HTTP Checking]
+  # [#7_Known_Issues Known Issues]
+  # [#8_Copyright Notices Copyright Notices]
 
 == 1 About This Document ==
 
@@ -36,91 +36,87 @@ The Google Calendar Connector Kit is a set of server-installed tools that requir
 
 Before proceeding to install the Google Calendar Connector Web Service, please read and understand the important *Security Considerations* outlined in the *Overview Guide*.
 
-=== 1.1 Audience ===
+=== Audience ===
 
 This documentation is for systems administrators tasked with setting up and managing the Google Calendar Connector Web Service. Users of this documentation need to be familiar with the administration of Google Calendar, Microsoft Exchange Server, Active Directory, and Internet Information Services (IIS).
 
 It is important to note that this tool only represents part of a solution for free/busy interoperability. 
 
-=== 1.2 For More Information ===
+=== For More Information ===
 
 This document is part of the Google Calendar Connector document set, which includes the following related documents:
 
-  * Overview Guide. Describes the components, process flow, and security considerations for the Google Calendar Connector Kit.
+  * *Overview Guide*. Describes the components, process flow, and security considerations for the Google Calendar Connector Kit.
 
-  * Web Service Installation and Configuration Guide. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
+  * *Web Service Installation and Configuration Guide*. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
   
-  * Sync Service Installation and Configuration Guide. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
+  * *Sync Service Installation and Configuration Guide*. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
 
-  * Plug-In Installation and Configuration Guide. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
+  * *Plug-In Installation and Configuration Guide*. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
 
 For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
 
 For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
 
 
-=== 2. Before You Install === 
+=== 2 Before You Install === 
 
 Before you install and configure the Google Calendar Connector Web Service, make sure your Windows environment meets the following prerequisites, and that Google Calendar and Exchange are prepared for sharing data.
 
-=== 2.1 Prerequisites ===
+=== Prerequisites ===
   
-* Google Apps Premier Edition domain
-
-
+ * Google Apps Premier Edition domain
+       
 To support the Web Service, your Windows environment must meet these prerequisites:
  * Microsoft Windows Server 2003
  * Internet Information Services (IIS) 6.0
  * Microsoft Exchange Server 2003 SP2
  * ASP.NET 2.
 
-=== 2.2 Google Calendar Account Setup ===
+=== Google Calendar Account Setup ===
 
 To prepare Google Calendar for sharing free/busy data, you must perform these tasks:
 
-
-  * Specify the Google Calendar Connector Web Service URL.
+ * Specify the Google Calendar Connector Web Service URL.
  As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
 
-
  * Create dedicated Google Apps service account and perform an initial login.
-
  The user name and password are required when you populate the !GoogleApps.!AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the connector you must login to Google Apps account and accept the standard terms of service agreement for the user account.
 
-=== 2.3 Dedicated Windows Service Accounts ===
+=== Dedicated Windows Service Accounts ===
 
 The Web Service requires dedicated Active Directory user accounts for performing LDAP queries and diagnostic tests with Exchange. Create these users as described in this section, and note the user names and passwords to provide when configuring the web service. 
 
 
- * *Active Directory LDAP Query User*
+ ==== *Active Directory LDAP Query User* ====
 
  Create a dedicated user for performing Active Directory LDAP queries. The user name and password are required later when you populate the _!ActiveDirectory.!DomainUser.Login_ and _Password_ parameters in the configuration process. This account is also used by the Google Calendar Connector Sync Service if it is installed in the same environment.
 
- * *Exchange Query User*
+ ==== *Exchange Query User* ====
  Create a dedicated user for the connector web service to use for retrieving free/busy data. The user name and password are required later when you populate the _Exchange.GCalQueryUser.Login_ and _Password_ parameters in the configuration process.
 
  _NOTE: If you want to include appointment detail along with free/busy data, the Exchange Query User will need to be granted "Receive As" permission for all mailboxes. Refer to the Exchange Query Admin User for details on how to delegate this permission._
 
- * *Exchange Query Admin User*
+ ==== *Exchange Query Admin User* ====
  Create a dedicated user for the connector web service to use for running diagnostic tests. The user name and password are required later when you populate _Exchange.GCalQueryAdmin.Login_ and _Password_ parameters in the configuration process. This account is also used by the Google Calendar Connector Sync Service if it is installed in the same environment. 
 
-The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy or appointments in Exchange.
+ The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy or appointments in Exchange.
 
-To configure the permissions for the query admin user: 
- # Start Registry Editor (regedit).
- # Navigate to the following key: HKEY_CURRENT_USER\Software\Microsoft\Exchange\!ExAdmin
- # On the *Edit* menu, click *Add Value*, and then add the following registry value:
- # Value Name : *!ShowSecurityPage*
- # Data Type : *REG_DWORD*
- # Value : *1*
- # Close Registry Editor.
- # Start the *Exchange System Manager*.
- # Right Click on your *Exchange Organization Name* and select *Properties*
- # Select the *Security Tab*
- # Click the *Advanced* button
- # Click *Add*
- # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click OK
- # Check the *Allow* box for the permission "*Receive As*" and click *OK*
+ To configure the permissions for the query admin user: 
+  # Start Registry Editor (regedit).
+  # Navigate to the following key: HKEY_CURRENT_USER\Software\Microsoft\Exchange\!ExAdmin
+  # On the *Edit* menu, click *Add Value*, and then add the following registry value:
+  # Value Name : *!ShowSecurityPage*
+  # Data Type : *REG_DWORD*
+  # Value : *1*
+  # Close Registry Editor.
+  # Start the *Exchange System Manager*.
+  # Right Click on your *Exchange Organization Name* and select *Properties*
+  # Select the *Security Tab*
+  # Click the *Advanced* button
+  # Click *Add*
+  # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click OK
+  # Check the *Allow* box for the permission "*Receive As*" and click *OK*
 
 
 == Remounting the Exchange Information Stores ==
@@ -139,7 +135,7 @@ To restart the service Microsoft Exchange Information Store:
  # Open the services.msc
  # In right pane view, locate *Microsoft Exchange Information Store*, right click and select *Restart*
 
-=== 2.4 Pre-Installation Checklist ===
+=== Pre-Installation Checklist ===
 
 || *Task* || *Completed?* || *Notes* ||
 || Verify that Windows environment prerequisites are met || || ||
@@ -151,16 +147,16 @@ To restart the service Microsoft Exchange Information Store:
 ||Set Exchange permissions for Query and Admin users || || ||
  
 
-== 3. Installing the Google Calendar Connector Web Service ==
+== 3 Installing the Google Calendar Connector Web Service ==
 
-=== 3.1 MSI Installation === 
+=== MSI Installation === 
 
-The installer for the Web Service is provided as the file !GoogleCalendarConnectorWebService.msi.
+The installer for the Web Service is provided as the file _!GoogleCalendarConnectorWebService.msi_.
 
 To install the Web Service:
- # Locate and open the file !GoogleCalendarConnectorWebService.msi.
+ # Locate and open the file _!GoogleCalendarConnectorWebService.msi_.
  # In the welcome dialog, click *Next*.
- # Specify the desired virtual directory location, or accept the default value GCalExchangeLookup on the Default Web Site, and click *Next*.
+ # Specify the desired virtual directory location, or accept the default value _GCalExchangeLookup_ on the Default Web Site, and click *Next*.
  # Click *Next* to begin the installation, and then *Close* when the dialog displays the message "Installation Complete".
  # Open Internet Information Services (IIS) Manager and verify that the ASP.NET 2.0 Web Service Extension is "Allowed".
   * In the IIS Manager tree view, expand the local server.
@@ -172,7 +168,7 @@ To install the Web Service:
   * Select the *ASP.NET* tab and set the ASP.NET version to 2.0.
   * Click *OK* to close the *Properties* dialog.
 
-=== 3.2 File Permissions ===
+=== File Permissions ===
 
 Special file system permissions must be set to allow the encryption of the web.config and the ability for the Web service to write files to the file system.
 
@@ -182,11 +178,11 @@ The local NETWORK SERVICE account requires modify access to the Web Service's vi
 
 
 In Web.config\appSettings\:
- * *NETWORK SERVICE* must have "*MODIFY*" privileges to the !GoogleApps.GCal.!LogDirectory directory.
- * *NETWORK SERVICE* must have "*MODIFY*" privileges to Web.config file.
+ * *NETWORK SERVICE* must have "*MODIFY*" privileges to the _!GoogleApps.GCal.!LogDirectory_ directory.
+ * *NETWORK SERVICE* must have "*MODIFY*" privileges to _Web.config_ file.
 
-In Web.config\configuration\log4net\appender\:
- * *NETWORK SERVICE* must have "*MODIFY*" privileges to configuration\log4net\appender\file.
+In _Web.config\configuration\log4net\appender\_:
+ * *NETWORK SERVICE* must have "*MODIFY*" privileges to _configuration\log4net\appender\file_.
 
 To grant "Modify" access to a directory do the following:
  # Open Windows Explorer.
@@ -196,36 +192,35 @@ To grant "Modify" access to a directory do the following:
  # With the *NETWORK SERVICE* user highlighted, check *Allow* for *Modify* privileges.
 
 
-== 4. Configuring the Google Calendar Connector Web Service ==
+== 4 Configuring the Google Calendar Connector Web Service ==
 
-Configuration settings for the Web Service are stored in _Web.config_. You must edit this file to enter appropriate values for your setup. Additional configuration options for advanced users are available with in-line comments in _Web.config_. It is recommended you enable Configuration.!EncryptOnNextRun when you have finished editing and tested the Web.config.
+Configuration settings for the Web Service are stored in _Web.config_. You must edit this file to enter appropriate values for your setup. Additional configuration options for advanced users are available with in-line comments in _Web.config_. It is recommended you enable _Configuration.!EncryptOnNextRun_ when you have finished editing and tested the _Web.config_.
 
-=== 4.1 Editing the Configuration File ===
+=== Editing the Configuration File ===
 
-The "appSettings" section of web.config, located in the Web Service virtual directory, contains the following important configuration keys:
-|| Configuration Key ||Description || Default Value ||
-|| || || ||
-|| !ActiveDirectory.!DomainController || Specify the fully qualified domain name of a domain controller for your Windows Active Directory domain. This server is used for LDAP queries to retrieve user login and Exchange user attributes. For queries directly against a domain controller, prefix the machine name with LDAP://. For queries against the Global Catalog, prefix the machine name with GC://. For example: _<add key="!ActiveDirectory.!DomainController" value="LDAP://HQAD1.corp.acme.com"/> || ||
-|| !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the web service to perform Active Directory lookups. [#See_Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: _<add key="!ActiveDirectory.!DomainUser.Login" value="!ADDomainUser@corp.acme.com"/>_ || ||
+The "appSettings" section of _web.config_, located in the Web Service virtual directory, contains the following important configuration keys:
+|| * Configuration Key * || * Description * || * Default Value * ||
+|| !ActiveDirectory.!DomainController || Specify the fully qualified domain name of a domain controller for your Windows Active Directory domain. This server is used for LDAP queries to retrieve user login and Exchange user attributes. For queries directly against a domain controller, prefix the machine name with LDAP://. For queries against the Global Catalog, prefix the machine name with GC://. For example: _<add key="ActiveDirectory.DomainController" value="LDAP://HQAD1.corp.acme.com"/> || ||
+|| !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the web service to perform Active Directory lookups. [#See_Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: _<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>_ || ||
 || !ActiveDirectory.!DomainUser.Password || The password for the user account used by the web service to perform Active Directory lookups. || ||
-|| Exchange.!!ServerName || The full qualified domain name of the target Exchange for the web service to communicate with. If this server does not host a copy of the Free/Busy Public Information store you must specify the setting: Exchange.!FreeBusy!ServerName. For example: _<add key="Exchange.!ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
+|| Exchange.!ServerName || The full qualified domain name of the target Exchange for the web service to communicate with. If this server does not host a copy of the Free/Busy Public Information store you must specify the setting: Exchange.!FreeBusyServerName. For example: _<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
 || Exchange.GCalQueryUser.Login || The userPrincipalName of the user account used to query Exchange for free/busy data. [#See_Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: _<add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@corp.acme.com"/>_ || ||
 || Exchange.GCalQueryUser.Password || The password for the Active Directory user account used to query Exchange for free/busy data. Exchange. || ||
-|| GCalQueryAdmin.Login ||The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users‚Äô calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: _<add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@corp.acme.com"/>_ This account is also used to write appointments to calendars in Exchange when using the appointment writer. || ||
+|| GCalQueryAdmin.Login ||The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users' calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: _<add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@corp.acme.com"/>_ This account is also used to write appointments to calendars in Exchange when using the appointment writer. || ||
 || Exchange.GCalQueryAdmin.Password || The password for the user account used in running diagnostic tests for the web service. || ||
-|| !GoogleApps.DomainName || The domain name used by Google Apps. For example: _<add key="!GoogleApps.DomainName" value="acme.com" />_ || ||
-|| !GoogleApps.!!AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: _<add key="!GoogleApps.!AdminUser.Login" value="gcc_websvc" />_ || ||
+|| !GoogleApps.!DomainName || The domain name used by Google Apps. For example: _<add key="GoogleApps.DomainName" value="acme.com" />_ || ||
+|| !GoogleApps.!AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: _<add key="GoogleApps.AdminUser.Login" value="gcc_websvc" />_ || ||
 || !GoogleApps.!AdminUser.Password ||The password for the Google Apps user account used for querying Google Calendar. || ||
-|| !SyncService?.!FreeBusy.!AdminGroup || The Exchange organization and path to the administrative group where the free/busy template message is stored. This is based on the legacyExchangeDN for the template user. For example: _<add key="!SyncService?.!FreeBusy.!AdminGroup" value="/o=Acme/ou=First Administrative Group"/>_ For the web service, this is used only by the diagnostics page. || /o=Your Organization/u=Any Administrative Group ||
-|| !SyncService?.!FreeBusy.TemplateUserName || The cn attribute of the user account to be used as the template for the  free/busy message. The TemplateUserName is used for creating the the Exchange Public folder free/busy messages. This template is only required ifSyncServuce.!FreeBusy.Writer is configured forSchedulePlus. For example: _<add key="!SyncService?.!FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/> To create the Free/Busy template user, create a normal mailbox enabled Exchange user account. Login into the user account via Outlook Web Access and create a single appointment on the calendar. This will generate an entry in the Exchange Public Folder Free/Busy store which creates the free/busy template message. || GCalExchange Template ||
-|| Exchange.!EnableAppointmentLookup || This setting controls if the free/busy lookup should also retrieve and return appointment details. To disable appointment details from being returned set the value to False. For Example: _<add key="Exchange.!EnableAppointmentLookup" value="True"/>_ _NOTE: See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on how to grant access to read appointment data for the service accounts. || _True_ ||
-|| !GoogleApps.GCal.!DomainMapping || This setting allows the definition of SMTP domain name mappings. Use this setting if your Exchange Primary SMTP address is different from the Google Apps SMTP domain name. When enabled the connector maps the external Google Apps SMTP domain name to the internal Exchange SMTP domain name. This setting by default is commented out in the config file. To enable this setting remove comments and define the External and Internal SMTP domain names. For example: _<add key="!GoogleApps.GCal.!DomainMapping" value="acme.com,exchange.acme.com"/>_ || DISABLED ||
-|| Exchange.!FreeBusy!ServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the SchedulePlus  Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.!FreeBusy!ServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED || 
-|| !GoogleApps.GCal.!LogDirectory || This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="!GoogleApps.GCal.!LogDirectory" value="C:\Google\logs"/>_ || DISABLED ||
-|| Exchange.!MaxConnections || This setting defines the maximum number of  concurrent connections that can be made to configured Exchange server. To enable this setting remove comments and and define the max number of connections. For Example: _<add key="Exchange.!MaxConnections" value="50"/>_ || ||
-|| Exchange.!DefaultDomain || This setting prevents Exchange WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: _<add key="Exchange.!DefaultDomain" value=".corp.acme.com"/>_ || DISABLED ||
+|| !SyncService.!FreeBusy.!AdminGroup || The Exchange organization and path to the administrative group where the free/busy template message is stored. This is based on the legacyExchangeDN for the template user. For example: _<add key="SyncService.FreeBusy.AdminGroup" value="/o=Acme/ou=First Administrative Group"/>_ For the web service, this is used only by the diagnostics page. || /o=Your Organization/u=Any Administrative Group ||
+|| !SyncService.FreeBusy.TemplateUserName || The cn attribute of the user account to be used as the template for the  free/busy message. The !TemplateUserName is used for creating the the Exchange Public folder free/busy messages. This template is only required ifSyncServuce.!FreeBusy.Writer is configured forSchedulePlus. For example: _<add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/> To create the Free/Busy template user, create a normal mailbox enabled Exchange user account. Login into the user account via Outlook Web Access and create a single appointment on the calendar. This will generate an entry in the Exchange Public Folder Free/Busy store which creates the free/busy template message. || GCalExchange Template ||
+|| Exchange.!EnableAppointmentLookup || This setting controls if the free/busy lookup should also retrieve and return appointment details. To disable appointment details from being returned set the value to False. For Example: _<add key="Exchange.EnableAppointmentLookup" value="True"/>_ _NOTE: See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on how to grant access to read appointment data for the service accounts. || _True_ ||
+|| !GoogleApps.GCal.!DomainMapping || This setting allows the definition of SMTP domain name mappings. Use this setting if your Exchange Primary SMTP address is different from the Google Apps SMTP domain name. When enabled the connector maps the external Google Apps SMTP domain name to the internal Exchange SMTP domain name. This setting by default is commented out in the config file. To enable this setting remove comments and define the External and Internal SMTP domain names. For example: _<add key="GoogleApps.GCal.DomainMapping" value="acme.com,exchange.acme.com"/>_ || DISABLED ||
+|| Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the !SchedulePlus  Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED || 
+|| !GoogleApps.GCal.!LogDirectory || This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="GoogleApps.GCal.LogDirectory" value="C:\Google\logs"/>_ || DISABLED ||
+|| Exchange.!MaxConnections || This setting defines the maximum number of  concurrent connections that can be made to configured Exchange server. To enable this setting remove comments and and define the max number of connections. For Example: _<add key="Exchange.MaxConnections" value="50"/>_ || ||
+|| Exchange.!DefaultDomain || This setting prevents Exchange !WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: _<add key="Exchange.DefaultDomain" value=".corp.acme.com"/>_ || DISABLED ||
 
-=== 4.2 Encrypting the Configuration File ===
+=== Encrypting the Configuration File ===
 
 Because some configuration keys contain user names and passwords in plain text, it is recommended that you encrypt these configuration parameters. To enable encryption, Load the Diagnostics.aspx page. Click the "Encrypt Config Settings" button. This will rewrite the web.config with the configuration values encrypted. _NOTE: "Network Service" must have modify privileges to the directory to rewrite the encrypted file._
 
@@ -233,7 +228,7 @@ Because some configuration keys contain user names and passwords in plain text, 
 This encryption method will encrypt the entire appSettings node of the configuration file, rendering it unreadable. The process is irreversible, so once the file is encrypted you can no longer change any of the application settings. For this reason, it is recommended that you create a backup copy of the configuration file. 
 
 
-=== 4.3 HTTP Proxy Configuration (Optional) ====
+=== HTTP Proxy Configuration Optional ====
 
 The Web Service can optionally be configured to work with an HTTP proxy. This configuration may be required if all out-bound communication needs to be routed through a proxy. Configuring the HTTP proxy parameters in Web.config will instruct the Web Service to forward its communication through such a proxy.
 
@@ -249,9 +244,9 @@ The table below outlines the configuration parameters located under the <system.
 
 _*Important Note: Please carefully consider whether your Microsoft Exchange server communication should be sent through a custom proxy. Including Microsoft Exchange servers in a custom proxy scheme could result in decreased performance and certain types of Windows authentication may fail._*
 
-== 5. Installation Success ==
+== 5 Installation Success ==
 
-=== 5.1 Verifying communication between Google Calendar and the Web Service ===
+=== Verifying communication between Google Calendar and the Web Service ===
 
 After completing the installation and configuration tasks, perform the following to verify that the Google Calendar can query free/busy data from Exchange.
 
@@ -266,19 +261,19 @@ To look up an Exchange user's free/busy information from Google Calendar:
 If the Web Service does not work as expected, diagnostics should be run to identify any issues.
 If no data is return to Google Calendar, enable DEBUG logging to verify the web service is receiving the Google Calendar free/busy request. Refer to the "Logging" section for details. If unexpected issues persist, please refer to the sections entitled "Logging" and "HTTP Checking".
 
-== 6. Testing and Troubleshooting ==
+== 6 Testing and Troubleshooting ==
 
 This section describes simple verification tests for the Web Service and provides some resources for troubleshooting common test failures. If the Web Service does not return free/busy data, use the following diagnostics tests, logging information, and troubleshooting checklist to identify and correct any issues.
 
 
 *Important Note:* Please review [#Logging_Configuration Logging Configuration] before beginning to test any of the functionality of the service.
 
-=== 6.1 Running Diagnostics Tests ===
+=== Running Diagnostics Tests ===
 
 The Web Service contains a diagnostics page that can help diagnose issues. Diagnostics.aspx, located in the root of the Web Service virtual directory, contains the following diagnostic tests for the web service:
  * Verify users can be found in Active Directory
 
- This test queries the Active Directory domain controller specified in !ActiveDirectory.!DomainController and returns all objects found in the result set. Specific LDAP queries can be tested using the text-area (cn=*** is the default). This test verifies that the Web Service can properly connect to an Active Directory server and retrieve user/contact information.
+ This test queries the Active Directory domain controller specified in !ActiveDirectory.!DomainController and returns all objects found in the result set. Specific LDAP queries can be tested using the text-area (cn=`*` is the default). This test verifies that the Web Service can properly connect to an Active Directory server and retrieve user/contact information.
  
  * Verify free / busy information can be found in Exchange (+/- 7 days)
 
@@ -287,7 +282,7 @@ The Web Service contains a diagnostics page that can help diagnose issues. Diagn
  * Diagnostics.aspx also contains other tests which are intended for test and troubleshooting the Sync Service.
 
 
-=== 6.2 Logging Configuration ===
+=== Logging Configuration ===
 
 The Google Calendar Connector includes a configuration node named <log4net> in Web.config which controls the logging behavior of the Web Service.
 
@@ -332,7 +327,7 @@ To grant "*Modify*" access to a directory do the following:
  # Select the *Security* tab and click *Add*, type *NETWORK SERVICE* and click *OK*.
  # With the *NETWORK SERVICE* user highlighted, check *Allow* for *Modify* privileges.
 
-=== 6.3 HTTP Checking ===
+=== HTTP Checking ===
 
 In addition to diagnostic tests, HTTP analysis tools can be used to view the actual data that is being passed between Google Calendar and the Web Service. _HTTP Analyze_r (for Microsoft Internet Explorer) or _Live HTTP Headers_ (for Firefox) are examples of HTTP analysis tools.
 
@@ -344,11 +339,11 @@ To troubleshoot the Web Service with an HTTP utility:
  # If a Google Calendar request is being made and the Web Service is responding, verify that the Web Service response is an HTML snippet with a POST action to the Google Calendar servers. If it is not, please send a copy of the response to Google Apps Support.
  # If Google Calendar fails to add free/busy information from a valid Web Service response, there may be browser issues. Please contact Google Apps Support with your browser version and error information.
 
-== 7. Known Issues ==
+== 7 Known Issues ==
 
  * Some versions of Firefox 3 Beta do not pass the referrer header to the Google Calendar Connector Web Service. When using SSL, this can result in the Google Calendar free-busy lookup requests causing a redirect to the login page. The referrer header is used to determine if the mailslot post url should be HTTP or HTTPS. To force SSL if the header is not being passed you can set the config setting: !WebService.DefaultGoogleCalendarSSL=True
 
-== 8. Copyright Notices ==
+== 8 Copyright Notices ==
 
 Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [http://www.apache.org/licenses/LICENSE-2.0.html here]. The following licenses and libraries are used in the Google Calendar Connector Web Service:
  
