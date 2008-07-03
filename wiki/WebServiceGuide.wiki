@@ -1,4 +1,3 @@
-
 = Google Calendar Connector Web Service Installation and Configuration Guide= 
 
 In the Google Calendar Connector framework, data flow from Exchange is provided by the Google Calendar Connector Web Service. Google Calendar connects to the Web Service to query Exchange servers for free/busy data and appointment data, which includes the name, place, and attendees of events.  This document provides instructions for installing and configuring the Google Calendar Connector Web Service.
@@ -52,7 +51,7 @@ This document is part of the Google Calendar Connector document set, which inclu
 
   * Web Service Installation and Configuration Guide. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
   
-* Sync Service Installation and Configuration Guide. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
+  * Sync Service Installation and Configuration Guide. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
 
   * Plug-In Installation and Configuration Guide. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
 
@@ -88,3 +87,55 @@ To prepare Google Calendar for sharing free/busy data, you must perform these ta
  * Create dedicated Google Apps service account and perform an initial login.
 
  The user name and password are required when you populate the GoogleApps.AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the connector you must login to Google Apps account and accept the standard terms of service agreement for the user account.
+
+=== 2.3 Dedicated Windows Service Accounts ===
+
+The Web Service requires dedicated Active Directory user accounts for performing LDAP queries and diagnostic tests with Exchange. Create these users as described in this section, and note the user names and passwords to provide when configuring the web service. 
+
+
+ * *Active Directory LDAP Query User*
+
+ Create a dedicated user for performing Active Directory LDAP queries. The user name and password are required later when you populate the _ActiveDirectory.DomainUser.Login_ and _Password_ parameters in the configuration process. This account is also used by the Google Calendar Connector Sync Service if it is installed in the same environment.
+
+ * *Exchange Query User*
+ Create a dedicated user for the connector web service to use for retrieving free/busy data. The user name and password are required later when you populate the _Exchange.GCalQueryUser.Login_ and _Password_ parameters in the configuration process.
+
+ _NOTE: If you want to include appointment detail along with free/busy data, the Exchange Query User will need to be granted "Receive As" permission for all mailboxes. Refer to the Exchange Query Admin User for details on how to delegate this permission._
+
+ * *Exchange Query Admin User*
+ Create a dedicated user for the connector web service to use for running diagnostic tests. The user name and password are required later when you populate _Exchange.GCalQueryAdmin.Login_ and _Password_ parameters in the configuration process. This account is also used by the Google Calendar Connector Sync Service if it is installed in the same environment. 
+
+The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy or appointments in Exchange.
+
+To configure the permissions for the query admin user: 
+ # Start Registry Editor (regedit).
+ # Navigate to the following key: HKEY_CURRENT_USER\Software\Microsoft\Exchange\ExAdmin
+ # On the *Edit* menu, click *Add Value*, and then add the following registry value:
+ # Value Name : *!ShowSecurityPage*
+ # Data Type : *REG_DWORD*
+ # Value : *1*
+ # Close Registry Editor.
+ # Start the *Exchange System Manager*.
+ # Right Click on your *Exchange Organization Name* and select *Properties*
+ # Select the *Security Tab*
+ # Click the *Advanced* button
+ # Click *Add*
+ # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click OK
+ # Check the *Allow* box for the permission "*Receive As*" and click *OK*
+
+
+== Remounting the Exchange Information Stores ==
+
+The Exchange Information store caches permissions data. To flush the cache immediately after setting new permissions, dismount and remount the appropriate public folder store or restart the Information Store service. Otherwise the changes will not take effect until Exchange rebuilds the permissions cache.
+
+
+To dismount and remount the public folder store:
+
+ # Open Exchange System Manager
+ # In tree view, expand *Administrative Groups*, _{Your Administrative Group}_, *Servers*,_{Your local Exchange server}_, and _{Your Storage Group}_.
+ # Right click on the *Public Folder Store*, select *Dismount Store* and click *Yes* to continue.
+ # Right click on the *Public Folder Store*, select *Mount Store* and click *Yes* at the success message dialog.
+
+To restart the service Microsoft Exchange Information Store:
+ # Open the services.msc
+ # In right pane view, locate *Microsoft Exchange Information Store*, right click and select *Restart*
