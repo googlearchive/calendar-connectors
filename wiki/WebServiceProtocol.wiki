@@ -58,7 +58,11 @@ where:
   [<version>,<messageId>,
     ['_ME_AddData', '<start>/<end>','<since>',
       [
-        <userName>,<email>,<accessLevel>, // for each user
+        <user1>,<email>,<accessLevel>, // for each user
+          [
+            [<subject>,<start>,<end>,<location>,<organizer>,<status>] // for each appointment
+          ],
+       <user2>,<email>,<accessLevel>, // for each user
           [
             [<subject>,<start>,<end>,<location>,<organizer>,<status>] // for each appointment
           ]
@@ -84,7 +88,5 @@ where:
   * *<status>*: Free/Busy status
 
 _Note:_ All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
-
-
 
 
