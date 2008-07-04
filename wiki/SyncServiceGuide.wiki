@@ -156,7 +156,7 @@ To install the Sync Service:
  # In the *Select Installation Folder* dialog use the radio buttons at the bottom of the dialog to determine whether to install the service only for yourself, or for all users, and click *Next*.
  # Click *Next* to begin the installation, and then Close when the dialog displays the message "Installation Complete".
 
-== 4 Configuring the Google_Calendar Connector Sync Service ==
+== 4 Configuring the Google Calendar Connector Sync Service ==
 
 Configuration settings for the Sync Service are stored in the configuration file _GoogleGCalExhangeSync.Service.exe.config_. You must edit this file and enter values appropriate to your setup.
 
@@ -247,10 +247,10 @@ Important Note: Please review [#Logging_Configuration Logging Configuration] bef
 
 The Google Calendar Connector Web Service contains a diagnostics page that can help diagnose issues. *Diagnostics.aspx*, located in the root of the Web Service virtual directory, contains the following diagnostic tests relevant to the Sync Service:
 
-* *Verify free/busy data can be found in Google Calendar*
+ * *Verify free/busy data can be found in Google Calendar*
  This test attempts to retrieve free/busy information for a specific Google Calendar user. If the Sync Service and Google Apps are configured correctly, free/busy data should be returned.
 
-* *Verify Appointments can be written to Exchange*
+ * *Verify Appointments can be written to Exchange*
  The Sync Service can be configured to store Google free/busy data in Exchange using an appointment writer. The appointment writer creates new events on a particular user's calendar and lets Exchange handle the generation of free/busy messages. This test attempts to create such an appointment for the specified user.
 
  * *Verify free/busy can be written to Exchange*
@@ -293,8 +293,8 @@ Verify that the following log file permissions have been set up properly:
 
 In _GoogleGCalExchangeSync.Service.exe.config\appSettings\_:
 
- * *SYSTEM* should have "*MODIFY*" privileges to the _GoogleApps.GCal.LogDirectory_ directory.
- * *SYSTEM* should have "*MODIFY*" privileges to the SyncService.XmlStorageDirectory directory.
+ * *SYSTEM* should have "*MODIFY*" privileges to the _!GoogleApps.GCal.!LogDirectory_ directory.
+ * *SYSTEM* should have "*MODIFY*" privileges to the _!SyncService.!XmlStorageDirectory_ directory.
  * *SYSTEM* should have "*MODIFY*" privileges to the install directory or the file _GoogleGCalExchangeSync.Service.exe.config_.
 
 In _GoogleGCalExchangeSync.Service.exe.config\configuration\log4net\appender\_:
@@ -316,7 +316,7 @@ To grant "Modify" access to a directory do the following:
 
 == 8 Copyright Notices == 
 
-Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [Create dedicated Google Apps Sync Service user here]. The following licenses and libraries are used in the Google Calendar Connector Sync Service: 
+Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [http://www.apache.org/licenses/LICENSE-2.0.html here]. The following licenses and libraries are used in the Google Calendar Connector Sync Service: 
 
 Google Data (GData) API .NET Client Library and its dependencies licensed under the *Apache License, Version 2.0.* ([http://code.google.com/p/google-gdata/ project], [http://www.apache.org/licenses/LICENSE-2.0 license])
 Apache log4net licensed under the *Apache License, Version 2.0*. ([http://logging.apache.org/log4net/index.html project], [http://logging.apache.org/log4net/license.html license])
