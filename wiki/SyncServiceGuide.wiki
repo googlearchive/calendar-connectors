@@ -7,13 +7,12 @@ Contents
 
  # [#1_About_This_Document About This Document]
   # [#Audience Audience]
-  # [#For_More_Information For More Information]
  # [#2_Before_You_Install Before You Install]
   # [#Prerequisites Prerequisites]
   # [#Google_Calendar_Account_Setup Google Calendar Account Setup]
   # [#Exchange_User_Mapping Exchange User Mapping]
   # [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts]
-  # [#Preinstallation_Checklist Preinstallation Checklist]
+  # [#Installation_Checklist Installation Checklist]
  # [#3_Installing_the_Google_Calendar_Connector_Sync_Service Installing the Google Calendar Connector Sync Service]
   # [#MSI_Installation MSI Installation]
  # [#4_Configuring_the_Google_Calendar_Connector_Sync_Service Configuring the Google Calendar Connector Sync Service]
@@ -21,9 +20,9 @@ Contents
   # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
   # [#HTTP_Proxy_Configuration_Optional HTTP Proxy Configuration Optional]
  # [#5_Installation_Success Installation Success]
-  # [#Starting_the_Google_Calendar_Connector_Sync_Service Starting the Google Calendar Connector Sync Service]
+  # [#Start_the_Google_Calendar_Connector_Sync_Service Start the Google Calendar Connector Sync Service]
  # [#6_Testing_and_Troubleshooting Testing and Troubleshooting]
-  # [#Running_Diagnostics_Test Running Diagnostics Test]
+  # [#Running_Diagnostics_Tests Running Diagnostics Tests]
   # [#Logging_Configuration Logging Configuration]
  # [#7_Known_Issues Known Issues]
  # [#8_Copyright_Notices Copyright Notices]
@@ -53,7 +52,7 @@ Plug-In Installation and Configuration Guide. Provides instructions for installi
 
 For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
 
-For background or general information on Windows administration, see [http://technet.microsoft.com/ TechNet].
+For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
 
 == 2 Before You Install ==
 
@@ -71,7 +70,7 @@ To support the Sync Service, your Windows environment must meet these prerequisi
 
 === Google Calendar Account Setup ===
 
-Create a dedicated Google Apps Administrator account and perform an initial login. The user name and password are required later when you populate the !GoogleApps.AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the Sync service you must login to Google Apps account and accept the standard terms of service agreement for the user account.
+Create a dedicated Google Apps Administrator account and perform an initial login. The user name and password are required later when you populate the !GoogleApps.!AdminUser.Login and Password parameters in the configuration process. NOTE: Before this account can be used with the Sync service you must login to Google Apps account and accept the standard terms of service agreement for the user account.
 
 === Exchange User Mapping ===
 
@@ -79,9 +78,9 @@ Each Google Calendar user must have a corresponding mail-enabled Active Director
 
 See the _Overview Guide_ for more information.
 
-For instructions on how to create a mail-enabled users, see the Microsoft TechNet article, [http://technet.microsoft.com/en-us/library/bb125258.aspx How to Create a New Mail-Enabled User].
+For instructions on how to create a mail-enabled users, see the Microsoft !TechNet article, [http://technet.microsoft.com/en-us/library/bb125258.aspx How to Create a New Mail-Enabled User].
 
-For instructions on how to create an Active Directory contact, see the Microsoft TechNet article, [http://technet.microsoft.com/en-us/library/aa995841.aspx How to Create a Contact in Active Directory].
+For instructions on how to create an Active Directory contact, see the Microsoft !TechNet article, [http://technet.microsoft.com/en-us/library/aa995841.aspx How to Create a Contact in Active Directory].
 
 === Dedicated Windows Service Accounts ===
 
@@ -136,7 +135,7 @@ To restart the service Microsoft Exchange Information Store:
 
 || *Task* || *Completed?* || *Notes* ||
 || Verify that Windows environment prerequisites are met || || ||
-|| Create user mailboxes (Appointment writer) or contact objects (!SchedulePlus writer) for Google Apps users in Exchange. || || 
+|| Create user mailboxes (Appointment writer) or contact objects (!SchedulePlus writer) for Google Apps users in Exchange. || || ||
 ||Create dedicated Google Apps Sync Service user || ||User name and password: ||
 ||Create dedicated Active Directory user|| ||User name and password: ||
 ||Create dedicated Exchange Query user|| ||User name and password: ||
@@ -157,7 +156,7 @@ To install the Sync Service:
  # In the *Select Installation Folder* dialog use the radio buttons at the bottom of the dialog to determine whether to install the service only for yourself, or for all users, and click *Next*.
  # Click *Next* to begin the installation, and then Close when the dialog displays the message "Installation Complete".
 
-== 4 Configuring the Google Calendar Sync Service ==
+== 4 Configuring the Google_Calendar Connector Sync Service ==
 
 Configuration settings for the Sync Service are stored in the configuration file _GoogleGCalExhangeSync.Service.exe.config_. You must edit this file and enter values appropriate to your setup.
 
@@ -172,43 +171,43 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
  * Google Apps
 
 || Configuration Key || Description || Default Value ||
-|| Configuration.EncryptOnNextRun || If set to “true”, the configuration file is automatically encrypted the next time the application runs. See Encrypting the Configuration File for more information. || false ||
-|| ActiveDirectory.DomainController || Specify the fully qualified domain name of a domain controller for your Windows Active Directory domain. This server is used for LDAP queries to retrieve user login and Exchange user attributes. For queries directly against a domain controller, prefix the machine name with LDAP://. For queries against the Global Catalog, prefix the machine name with GC://. For example: /-<add key="ActiveDirectory.DomainController" value="HQAD1.corp.acme.com,"/>_ || ||
-|| Exchange.ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: _<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
-|| ActiveDirectory.DomainUser.Login || The userPrincipalName for the user account used by the sync service to perform Active Directory lookups. See Dedicated Windows Service Accounts for more information on this user account. For example: _<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>_ || ||
-|| ActiveDirectory.DomainUser.Password || The password for the user account used by the sync service to perform Active Directory lookups. || ||
-|| Exchange.ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: _<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
-|| Exchange.FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.ServerName is used. Use this value if the default Exchange server does not host a replica of the SchedulePlus Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED ||
-|| GoogleApps.GCal.LogDirectory || This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="GoogleApps.GCal.LogDirectory" value="C:\Google\logs"/>_ || DISABLED ||
-|| Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users’ calendars. See Dedicated Windows User Service Accounts for more information on this user account. For example: _<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>_ This account is also used to write appointments to calendars in Exchange when using the SyncService.FreeBusy.Writer in Appointment mode. || ||
+|| Configuration.!EncryptOnNextRun || If set to “true”, the configuration file is automatically encrypted the next time the application runs. See Encrypting the Configuration File for more information. || false ||
+|| !ActiveDirectory.!DomainController || Specify the fully qualified domain name of a domain controller for your Windows Active Directory domain. This server is used for LDAP queries to retrieve user login and Exchange user attributes. For queries directly against a domain controller, prefix the machine name with LDAP://. For queries against the Global Catalog, prefix the machine name with GC://. For example: /-<add key="ActiveDirectory.DomainController" value="HQAD1.corp.acme.com,"/>_ || ||
+|| Exchange.!ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: _<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
+|| !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the sync service to perform Active Directory lookups. See Dedicated Windows Service Accounts for more information on this user account. For example: _<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>_ || ||
+|| !ActiveDirectory.!DomainUser.Password || The password for the user account used by the sync service to perform Active Directory lookups. || ||
+|| Exchange.!ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: _<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>_ || ||
+|| Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the !SchedulePlus Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED ||
+|| !GoogleApps.GCal.!LogDirectory || This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="GoogleApps.GCal.LogDirectory" value="C:\Google\logs"/>_ || DISABLED ||
+|| Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users’ calendars. See Dedicated Windows User Service Accounts for more information on this user account. For example: _<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>_ This account is also used to write appointments to calendars in Exchange when using the !SyncService.!FreeBusy.Writer in Appointment mode. || ||
 || Exchange.GCalQueryAdmin.Password || The password for the user account used to create appointments. || ||
-|| GoogleApps.DomainName || The domain name used by Google Apps. For example: _<add key="GoogleApps.DomainName" value="acme.com" />_ || ||
-|| GoogleApps.AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: _<add key="GoogleApps.AdminUser.Login" value="gcc_syncsvc"/>_ || ||
-|| GoogleApps.AdminUser.Password || The password for the Google user account used for querying Google Apps and Google Calendar. || ||
-|| GoogleApps.GCal.EnableHttpCompression || This setting determines whether or not to enable GZip compression with the GDATA API calls to Google Apps. The default setting is true for optimum performance. _<add key="GoogleApps.GCal.EnableHttpCompression" value="true"/>_ || true ||
-|| SyncService.RefreshTimeInMinutes || This setting specifies the interval in minutes to sleep between each completed synchronization before starting again. _<add key="SyncService.RefreshTimeInMinutes" value="15"/>_ || 15 ||
-|| SyncService.ErrorCountThreshold || This setting specifies how many errors the service allows before aborting the current synchronization run. If the value is reached during a synchronization run it halts. Once the SyncService.RefreshTimeInMinutes has expired the counter is reset to 0 and a synchronization starts again. _<add key="SyncService.ErrorCountThreshold" value="20"/>_ || 20 ||
-|| SyncService.XmlStorageDirectory || This setting specifies where the service stores data cached as XML documents. _NOTE: The service needs write access to this directory._ _<add key="SyncService.XmlStorageDirectory" value="C:\Google\data"/>_ || C:\Google\data\ ||
-|| SyncService.ThreadCount || This setting specifies the number of threads to create when performing a synchronization from Google Calendar in to Exchange. The more threads the fast the sync will complete. NOTE: The more threads the more system and network resources the sync service will utilize. _<add key="SyncService.ThreadCount" value="10"/>_ || 1 ||
-|| SyncService.LDAPUserFilter || This setting allows the option to define an LDAP filer which determines which users or contacts are included in the synchronizing of data  from Google Calendar to Exchange. For example to include all members of an Active Directory Group: _<add key="SyncService.LDAPUserFilter" value="(memberof=CN=GCAL_Users,CN=Users,DC=corp,DC=acme,DC=com)"/>_ _NOTE: If left blank, all users in Active Directory are included in the sync process._ || ||
-|| SyncService.FreeBusy.Writer || This setting determines the write mode for how free/busy information is populated in Exchange. Valid values are !SchedulePlus or Appointment. The Appointment option is experimental as it supports a very limited set of functionality. The Appointment writer is a one-way sync of free/busy data into Exchange mailboxes that creates empty meeting placeholders based on free/busy data from Google Calendar. It is NOT designed to perform full appointment/data synchronization. For Example: _<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>_ If set to !SchedulePlus the service will only write free/busy data to the !SchedulePlus Free/Busy Information Store. This mode only works for contact or mail enabled objects that do not have Exchange an  mailbox. If set to Appointment the service will create a calendar placeholder appointment for each Google Calendar event in the calendar of the user's Exchange mailbox. This mode only works if the user has a Exchange mailbox. _NOTE: The service can only be configured in a single mode. If you wish to run the sync for both contacts and mailbox enabled users you will need to install the sync service on two separate servers. || SchedulePlus ||
-|| SyncService.FreeBusy.AdminGroup || The Exchange organization and path to the admin group where the free/busy template message is stored. This is based on the !legacyExchangeDN for the template user. For example: _<add key="SyncService.FreeBusy.AdminGroup" value="o/=Acme/ou=First Administrative Group"/>_ || ||
-|| SyncService.FreeBusy.TemplateUserName || The cn attribute of the user account to be used as the template for the free/busy message. The TemplateUserName is used for creating the the Exchange Public folder free/busy messages. This template is only required if SyncService.FreeBusy.Writer is configured for SchedulePlus. For example: _<add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/>_ To create the Free/Busy template user, create a normal mailbox enabled Exchange user account. Login into the user account via Outlook Web Access and create a single appointment on the calendar. This will generate an entry in the Exchange Public Folder Free/Busy store which creates the free/busy template message. || GCalExchangeTemplate ||
-|| Exchange.FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.ServerName is used. Use this value if the default Exchange server does not host a replica of the SchedulePlus  Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED ||
-|| GoogleApps.GCal.DomainMapping || This setting allows the definition of SMTP domain name mappings. Use this setting if your Exchange Primary SMTP address is different from the Google Apps SMTP domain name. When enabled the connector will properly map the external Google Apps SMTP domain name to the internal Exchange SMTP domain name. This setting by default is commented out in the config file. To enable this setting remove comments and define the External and Internal SMTP domain names. For example: _<add key="GoogleApps.GCal.DomainMapping" value="acme.com,exchange.acme.com"/>_ To configure multiple domain mappings use ";" as the delimiter between the domain mapping values. For Example: _<add key="GoogleApps.GCal.DomainMapping value="acme.com,exchange.acme.com;company.com,exchange.company.com"/>_ || DISABLED ||
-|| SyncService.PlaceHolderMessage || This setting allows for customization of the subject text placed in each calendar placeholder appointment when running the Sync service SyncService.FreeBusy.Writer in Appointment mode. For example: _<add key="SyncService.PlaceHolderMessage" value="GCal Free/Busy Placeholder"/>_ || GCal Free/Busy Placeholder ||                                                                            
-|| Exchange.DefaultDomain || This setting prevents Exchange WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: _<add key="Exchange.DefaultDomain" value=".corp.acme.com"/>_ || DISABLED ||
-|| GoogleApps.GCal.LogDirectory	|| This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="GoogleApps.GCal.LogDirectory" value="C:\Google\logs"/>_ || DISABLED || 
+|| !GoogleApps.!DomainName || The domain name used by Google Apps. For example: _<add key="GoogleApps.DomainName" value="acme.com" />_ || ||
+|| !GoogleApps.!AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: _<add key="GoogleApps.AdminUser.Login" value="gcc_syncsvc"/>_ || ||
+|| !GoogleApps.!AdminUser.!Password || The password for the Google user account used for querying Google Apps and Google Calendar. || ||
+|| !GoogleApps.GCal.!EnableHttpCompression || This setting determines whether or not to enable GZip compression with the GDATA API calls to Google Apps. The default setting is true for optimum performance. _<add key="GoogleApps.GCal.EnableHttpCompression" value="true"/>_ || true ||
+|| !SyncService.!RefreshTimeInMinutes || This setting specifies the interval in minutes to sleep between each completed synchronization before starting again. _<add key="SyncService.RefreshTimeInMinutes" value="15"/>_ || 15 ||
+|| !SyncService.!ErrorCountThreshold || This setting specifies how many errors the service allows before aborting the current synchronization run. If the value is reached during a synchronization run it halts. Once the !SyncService.!RefreshTimeInMinutes has expired the counter is reset to 0 and a synchronization starts again. _<add key="SyncService.ErrorCountThreshold" value="20"/>_ || 20 ||
+|| !SyncService.!XmlStorageDirectory || This setting specifies where the service stores data cached as XML documents. _NOTE: The service needs write access to this directory._ _<add key="SyncService.XmlStorageDirectory" value="C:\Google\data"/>_ || C:\Google\data\ ||
+|| !SyncService.!ThreadCount || This setting specifies the number of threads to create when performing a synchronization from Google Calendar in to Exchange. The more threads the fast the sync will complete. NOTE: The more threads the more system and network resources the sync service will utilize. _<add key="SyncService.ThreadCount" value="10"/>_ || 1 ||
+|| !SyncService.LDAPUserFilter || This setting allows the option to define an LDAP filer which determines which users or contacts are included in the synchronizing of data  from Google Calendar to Exchange. For example to include all members of an Active Directory Group: _<add key="SyncService.LDAPUserFilter" value="(memberof=CN=GCAL_Users,CN=Users,DC=corp,DC=acme,DC=com)"/>_ _NOTE: If left blank, all users in Active Directory are included in the sync process._ || ||
+|| !SyncService.!FreeBusy.Writer || This setting determines the write mode for how free/busy information is populated in Exchange. Valid values are !SchedulePlus or Appointment. The Appointment option is experimental as it supports a very limited set of functionality. The Appointment writer is a one-way sync of free/busy data into Exchange mailboxes that creates empty meeting placeholders based on free/busy data from Google Calendar. It is NOT designed to perform full appointment/data synchronization. For Example: _<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>_ If set to !SchedulePlus the service will only write free/busy data to the !SchedulePlus Free/Busy Information Store. This mode only works for contact or mail enabled objects that do not have Exchange an  mailbox. If set to Appointment the service will create a calendar placeholder appointment for each Google Calendar event in the calendar of the user's Exchange mailbox. This mode only works if the user has a Exchange mailbox. _NOTE: The service can only be configured in a single mode. If you wish to run the sync for both contacts and mailbox enabled users you will need to install the sync service on two separate servers. || !SchedulePlus ||
+|| !SyncService.!FreeBusy.!AdminGroup || The Exchange organization and path to the admin group where the free/busy template message is stored. This is based on the !legacyExchangeDN for the template user. For example: _<add key="SyncService.FreeBusy.AdminGroup" value="o/=Acme/ou=First Administrative Group"/>_ || ||
+|| !SyncService.!FreeBusy.!TemplateUserName || The cn attribute of the user account to be used as the template for the free/busy message. The !TemplateUserName is used for creating the the Exchange Public folder free/busy messages. This template is only required if !SyncService.!FreeBusy.!Writer is configured for !SchedulePlus. For example: _<add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/>_ To create the Free/Busy template user, create a normal mailbox enabled Exchange user account. Login into the user account via Outlook Web Access and create a single appointment on the calendar. This will generate an entry in the Exchange Public Folder Free/Busy store which creates the free/busy template message. || GCalExchangeTemplate ||
+|| Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the !SchedulePlus  Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: _<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>_ || DISABLED ||
+|| !GoogleApps.GCal.!DomainMapping || This setting allows the definition of SMTP domain name mappings. Use this setting if your Exchange Primary SMTP address is different from the Google Apps SMTP domain name. When enabled the connector will properly map the external Google Apps SMTP domain name to the internal Exchange SMTP domain name. This setting by default is commented out in the config file. To enable this setting remove comments and define the External and Internal SMTP domain names. For example: _<add key="GoogleApps.GCal.DomainMapping" value="acme.com,exchange.acme.com"/>_ To configure multiple domain mappings use ";" as the delimiter between the domain mapping values. For Example: _<add key="GoogleApps.GCal.DomainMapping value="acme.com,exchange.acme.com;company.com,exchange.company.com"/>_ || DISABLED ||
+|| !SyncService.!PlaceHolderMessage || This setting allows for customization of the subject text placed in each calendar placeholder appointment when running the Sync service !SyncService.!FreeBusy.Writer in Appointment mode. For example: _<add key="SyncService.PlaceHolderMessage" value="GCal Free/Busy Placeholder"/>_ || GCal Free/Busy Placeholder ||                                                                            
+|| Exchange.!DefaultDomain || This setting prevents Exchange !WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: _<add key="Exchange.DefaultDomain" value=".corp.acme.com"/>_ || DISABLED ||
+|| !GoogleApps.GCal.!LogDirectory || This setting defines the directory to write debug output for the GDATA API feed for each user account queried from Google Apps. An individual file is written out per user request. The output contains the calendar feed data for the specific user. If no value is defined no output is written. For Example: _<add key="GoogleApps.GCal.LogDirectory" value="C:\Google\logs"/>_ || DISABLED || 
 
 To edit the configuration file:
  # Using your preferred XML or text editor, open GoogleGCalExhangeSync.Service.exe.config. The default location is C:\Program Files\Google\Google Calendar Connector Sync Service\.
- # Scroll to the appSettings section and enter appropriate values for each of the required values shown in the table above. For example, if you are using the SchedulePlus writer  option instead of the Appointment writer, specify it in the SyncService.FreeBusy.Writer key: _<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>_
+ # Scroll to the appSettings section and enter appropriate values for each of the required values shown in the table above. For example, if you are using the !SchedulePlus writer  option instead of the Appointment writer, specify it in the !SyncService.!FreeBusy.Writer key: _<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>_
  # Save the file.
  # Save or copy a backup copy of the file to a secure location.
 
 === Encrypting the Configuration File ===
 
-Because some configuration keys contain user names and passwords in plain text, it is recommended that you encrypt these configuration parameters. To enable encryption, set the value of the _Config.EncryptOnNextRun_ key to _true_. The next time the sync service starts, the _appSettings_ keys will be automatically encrypted.
+Because some configuration keys contain user names and passwords in plain text, it is recommended that you encrypt these configuration parameters. To enable encryption, set the value of the _Config.!EncryptOnNextRun _ key to _true_. The next time the sync service starts, the _appSettings_ keys will be automatically encrypted.
 This encryption method will encrypt the entire appSettings node of the configuration file, rendering it unreadable. The process is irreversible, so once the file is encrypted you can no longer change any of the application settings. For this reason, it is recommended that you create a backup copy of the configuration file.
 
 === HTTP Proxy Configuration Optional ===
@@ -231,11 +230,10 @@ The table below outlines the configuration parameters located under the <system.
 === Start the Google Calendar Connector Sync Service ===
 
  # Open the Windows Services Management console.
- # Select the "Microsoft Exchange connector for Novell GroupWise" and right-click for properties.
+ # Select the "Microsoft Exchange connector for Novell !GroupWise" and right-click for properties.
  # Click "Start" if the service is not already started.
- # Browse to log file path as defined by GoogleApps.
- GCal.LogDirectory (i.e. C:\google\logs)
- # Review the log file SyncService.log and verify success messages
+ # Browse to log file path as defined by !GoogleApps.GCal.!LogDirectory (i.e. C:\google\logs)
+ # Review the log file !SyncService.log and verify success messages
 
 == 6 Testing and Troubleshooting ==
 
