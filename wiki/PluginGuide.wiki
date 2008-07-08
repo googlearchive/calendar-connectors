@@ -6,7 +6,7 @@ Contents
 
  # [#1_Background Background]
  # [#2_Prerequisites Prerequisites]
- # [#3_Installation_of_Novell_Groupwise_connector_for_Microsoft_Exchange Installation of Novell `Groupwise` connector for Microsoft Exchange]
+ # [#3_Installation_of_Novell_Groupwise_connector_for_Microsoft_Exchange Installation of Novell Groupwise connector for Microsoft Exchange
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise_and_Calendar Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
   # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
