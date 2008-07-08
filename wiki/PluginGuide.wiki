@@ -4,43 +4,43 @@ The Google Calendar Connector Plug-in utilizes the Novell !!GroupWise Connector 
 This document gives instructions for installing and configuring the Google Calendar Connector Plug-in.
 Contents
 
- *[#`1.0_Background` Background]
- *[#2_Prerequisites Prerequisites]
- *[#Installation of Novell GroupWise connector for Microsoft Exchange]
- *[#Run Microsoft Exchange setup]
- *[#Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar]
- *[#Re-Install any service pack and hot-fix you have already applied to Microsoft Exchange 2003 (such as Service Pack 2)]
- *[#Configuration of Novell GroupWise connector for Microsoft Exchange]
- *[#Create an Active Directory Organizational Unit for Google Apps users]
- *[#Create a shared folder for communicating with the Google Calendar Connector Plug-In]
- *[#Configure the Novell GroupWise connector options in Exchange System Manager]
- *[#Configure the Calendar Connector in Exchange System Manager]
- *[#Installation and Configuration of Google Calendar Connector Plug-In]
- *[#Install the Google Calendar Connector Plug-In into the folder share]
- *[#Use LDAP to filter users in scope of the Google Calendar Connector Plug-In (Optional)v
- *[#Modify mail routing for Google Apps contact objects in Active Directory]
- *[#Install the Google Calendar Connector Plug-In as a Windows Service]
- *[#Test configuration with Exchange's gwrouter.exe]
- *[#Turn on the Microsoft Exchange Connector for Novell GroupWise]
- *[#Turn on the Microsoft Exchange Router for Novell GroupWise]
- *[#Force an initial, immediate synchronization]
- *[#Start the Microsoft Calendar Connector service]
- *[#Installation Success]
- *[#Execute SelfTest.exe]
- *[#Review the output of SelfTest.exe to determine whether your services are correctly configured]
- *[#Verify Calendar Look up]
- *[#Enabling automatic startup for services]
- *[#Enable Services]
- *[#Config.txt Password Encryption]
- *[#Enable Encryption for Config.txt Passwords]
- *[#Enabled Certificate Enrollment]
- *[#Grant Administrative Rights]
- *[#Enroll in Certificate]
- *[#Configure Service to Run As User Account and Encrypt Passwords]
- *[#Troubleshooting]
- *[#Copyright Notices]
+ # [#1_Background Background]
+ # [#2_Prerequisites Prerequisites]
+ # [#3_Installation_of_Novell_GroupWise_connector_for_Microsoft_Exchange Installation of Novell GroupWise connector for Microsoft Exchange]
+  # [#Run_Microsoft_Exchange_setup_Run_Microsoft_Exchange_setup Run_Microsoft Exchange setup Run Microsoft Exchange setup]
+  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_GroupWise_and_Calendar Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar]
+  # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
+ # [#4_Configuration_of_Novell_GroupWise_connector_for_Microsoft_Exchange Configuration of Novell GroupWise connector for Microsoft Exchange]
+ # [#Create_an_Active_Directory_Organizational_Unit_for_Google_Apps_users Create an Active Directory Organizational Unit for Google Apps users]
+ # [#Create a shared folder for communicating with the Google Calendar Connector PlugIn Create a shared folder for communicating with the Google Calendar Connector PlugIn]
+ # [#Configure_the_Novell_GroupWise_connector_options_in_Exchange_System_Manager Configure the Novell GroupWise connector options in Exchange System Manager]
+ # [#Configure_the_Calendar_Connector_in_Exchange_System_Manager Configure the Calendar Connector in Exchange System Manager]
+ #  [#5_Installation_and_Configuration_of_Google_Calendar_Connector_PlugIn Installation and Configuration of Google Calendar Connector PlugIn]
+   # [#Install_the_Google_Calendar_Connector_PlugIn_into_the_folder_share Install the Google Calendar Connector PlugIn into the folder share]
+   # [#Use_LDAP_to_filter_users_in_scope_of_the_Google_Calendar_Connector_PlugIn_Optional Use LDAP to filter users in scope of the Google Calendar Connector PlugIn Optional]
+   # [#Modify_mail_routing_for_Google_Apps_contact_objects_in_Active_Directory Modify mail routing for Google Apps contact objects in Active Directory]
+   # [#Install_the_Google_Calendar_Connector_PlugIn_as_a_Windows_Service Install the Google Calendar Connector PlugIn as a Windows Service]
+   # [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
+   # [#Turn_on_the_Microsoft_Exchange_Connector_for_Novell_GroupWise Turn on the Microsoft Exchange Connector for Novell GroupWise]
+   # [#Turn_on_the_Microsoft_Exchange_Router_for_Novel_GroupWise Turn on the Microsoft Exchange Router for Novell GroupWise]
+   # [#Force_an_initial_synchronization Force an initial_synchronization]
+   # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
+ # [#6_Installation_Success Installation Success]
+  # [#Execute_SelfTest Execute SelfTest]
+  # [#Review_the_output_of_SelfTest_to_determine_whether_your_services_are_correctly_configured Review the output of SelfTest.exe to determine whether your services are correctly configured]
+ # [#Verify_Calendar_Look_up Verify Calendar Look up]
+ # [#7_Enabling_automatic_startup_for_services Enabling automatic startup for services]
+  # [#Enable_Services Enable Services]
+ # [#8_Config_Password_Encryption Config Password Encryption]
+  # [#Enable_Encryption_for_Config Passwords Enable_Encryption_for_Config Passwords]
+  # [#Enabled_Certificate_Enrollment Enabled Certificate Enrollment]
+  # [#Grant_Administrative_Rights Grant Administrative Rights]
+  # [#Enroll_in_Certificate Enroll in Certificate]
+  # [#Configure_Service_to_Run_As_User_Account_and_Encrypt_Passwords Configure Service to Run As User Account and Encrypt Passwords]
+ # [#9_Troubleshooting Troubleshooting]
+ # [#10_Copyright_Notices Copyright Notices]
 
-== 1.0 Background ==
+== 1 Background ==
 
 The Google Calendar Connector Plug-In service allows Microsoft Exchange (i.e. Outlook) users to see free/busy information for their Google Calendar colleagues from within the Exchange environment.  As Microsoft only provides two first-party connectors for its calendaring system, Google has utilized one of these, the Novell !GroupWise Calendar Connector, to aid in sharing free/busy information. 
 
@@ -78,11 +78,11 @@ The first step consists of installing and configuring the first-party Novell !Gr
  * 3.2 Install Microsoft Exchange calendar connectors
  * 3.3 Re-install Microsoft Exchange service packs
 
-== 3.1 Run Microsoft Exchange setup ==
+=== Run Microsoft Exchange setup ===
 
 Depending on your installation, you may want to run either i386/setup.exe from your Exchange 2003 source installation folder or go to Add/Remove Programs on the Windows Control Panel and select "Change/Remove" Microsoft Exchange.
 
-== 3.2 Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar ==
+=== Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar ===
 
 Installing the !GroupWise and Calendar connectors creates an interface by which the Google Calendar Connector Plug-In can interact with Exchange. Make sure to install both the Microsoft Exchange Connector for Novell !GroupWise and the Microsoft Exchange Calendar Connector.
 
@@ -94,7 +94,7 @@ Installing the !GroupWise and Calendar connectors creates an interface by which 
 
  Exchange will now install the new connectors. After setup is complete, you may be prompted to re-install an Exchange Server service pack.
  
-== 3.3 Re-Install any service pack and hot-fix you have already applied to Microsoft Exchange 2003 (such as Service Pack 2) ==
+=== ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003 ===
 
 Updating the components of Microsoft Exchange in the previous step may have overwritten some changes made by service packs, you will need to reinstall the latest Microsoft Exchange 2003 Service Pack.
 
@@ -110,7 +110,7 @@ _NOTE: For information on applying hotfixes and patches to Exchange, refer to ht
 Service Pack 2 for Exchange Server 2003 will now be installed and it will update the components marked with the "Update" Action.
 
  
-== 4. Configuration of Novell !GroupWise connector for Microsoft Exchange ==
+== 4 Configuration of Novell !GroupWise connector for Microsoft Exchange ==
 
 === Overview: ===
 
@@ -121,7 +121,7 @@ This install stage involves relatively standard configuration of the Novell !Gro
  * 4.3 Configure Novell !GroupWise connector options
  * 4.4 Configure Microsoft Exchange Calendar Connector
  
-== 4.1 Create an Active Directory Organizational Unit for Google Apps users ==
+=== Create an Active Directory Organizational Unit for Google Apps users ===
 
 Microsoft recommends allocating a special Active Directory Organizational Unit for !GroupWise (re: Google Apps) contacts (http://technet.microsoft.com/en-us/library/aa998406.aspx). During the process of full directory synchronization, when the Google Calendar Connector Plug-In returns contact information to Exchange, this organizational unit will be populated with the relevant users. After each directory synchronization initiated over the Novell API Gateway, Active Directory will contain a full set of Google Apps contacts in the special Organizational Unit. These contacts are used by Microsoft Exchange. You can configure a whitelist and blacklist to control what users are include or excluded from this import. Refer to section 5.2 Use LDAP to filter users for the Google Calendar Connector Plug-In
 for details.
@@ -131,7 +131,7 @@ for details.
  * 4.1.3. Name the Organizational Unit "GoogleApps" and press OK.
 
  
-== 4.2 Create a shared folder for communicating with the Google Calendar Connector Plug-In ==
+=== Create a shared folder for communicating with the Google Calendar Connector PlugIn ===
 
  Create a local shared folder that will serve as the API Gateway Path for the Novell !GroupWise connector. General Microsoft configuration instructions for the !GroupWise connector can be found here: http://technet.microsoft.com/en-us/library/bb124483.aspx . Since the Google Calendar Connector Plug-In is running locally instead of on a remote Novell Gateway server, we need to create a local Exchange-accessible shared folder to serve as the API Gateway Path.
 
@@ -142,7 +142,8 @@ for details.
  * 4.2.5. Respond "Yes" when prompted to create the folder.
  * 4.2.6. Add a description of your choosing to the folder share. We suggest: "Google Calendar Connector Plug-In UNC Working Share". Note that the share path is \\{Exchange Server}\{Share Name}.
  * 4.2.7. Select the permissions option "Administrators have full access; other users have read-only access."
- * 4.3 Configure the Novell !GroupWise connector options in Exchange System Manager
+
+=== Configure the Novell !GroupWise connector options in Exchange System Manager ===
 
 Next we configure the Exchange Connector for Novell !GroupWise to utilize the appropriate locally shared API Gateway folder, act on all Google contacts, store imported contacts in the correct Active Directory Organizational Unit and schedule directory synchronization. For details on general configuration, refer to Microsoft's guide to configuring the !GroupWise connector (http://technet.microsoft.com/en-us/library/bb124483.aspx).
 
@@ -162,7 +163,7 @@ Next we configure the Exchange Connector for Novell !GroupWise to utilize the ap
  * 4.3.14. Move to the Export Containers tab and uncheck "Export groups". Verify that "Export contacts" is already unchecked. You do not need to export the Exchange users for this connector to work.
  * 4.3.15. Press "Apply" and "OK" to save changes.
  
-== 4.4 Configure the Calendar Connector in Exchange System Manager ==
+=== Configure the Calendar Connector in Exchange System Manager ===
 
 Microsoft Exchange's Calendar Connector enables the sharing of free/busy information between Exchange and the Google Calendar Connector Plug-In. We will configure Calendar Connector's awareness of the Novell !GroupWise connector and its update schedule.
 
@@ -179,7 +180,7 @@ Microsoft Exchange's Calendar Connector enables the sharing of free/busy informa
   * Maximum number of seconds to wait for a response from Google Apps for free/busy data.
  
 
-== 5: Installation and Configuration of Google Calendar Connector Plug-In ==
+== 5 Installation and Configuration of Google Calendar Connector PlugIn ==
 
 === Overview ===
 
@@ -198,7 +199,7 @@ This process can be subdivided into the following areas:
 
 _NOTE: Backslashes in config.txt must be escaped with another backslash. E.g., to set C:\Program Files, you should enter C:\\Program Files in config.txt_
  
-== 5.1: Install the Google Calendar Connector Plug-In into the folder share ==
+=== Install the Google Calendar Connector PlugIn into the folder share ===
 
 This step copies the actual Google Calendar Connector Plug-In files into their install locations.
 
@@ -234,7 +235,7 @@ For example, if your HTTP proxy is http-proxy.acme.com port 8000, you would ente
 || fbfix.frequency || Specifies the interval in seconds at which the Google Calendar Connector Plug-in will execute the fbfix.command. For Example: fbfix.frequency=1080 || 1080 ||
 || win.certname || This setting defines the name of the certificate in the user's Personal certificate store to be used for encryption of the passwords in the config.txt  This setting is typically the "Issued To" value or CN of the user who requested the certificate. For example: win.certname=pluginsvc || DISABLED ||
  
-== 5.2 Use LDAP to filter users in scope of the Google Calendar Connector Plug-In (Optional) ==
+=== Use LDAP to filter users in scope of the Google Calendar Connector PlugIn Optional ===
 
 An optional step in setting up the Google Calendar Connector Plug-In is specifying a whitelist or blacklist LDAP query in config.txt. This is useful if your organization has users who exist in both Active Directory and Google Apps. This feature allows you to control what accounts are imported into Exchange to support Exchange lookup of a Google Apps user's free/busy data.
 
@@ -265,7 +266,7 @@ _*NOTE: If neither ldap.whitelist or ldap.blacklist is uncommented, no LDAP filt
 || ldap.blindfaith || Enables the Google Calendar Connector Plug-In to accept any TLS certificate when connecting to a secure LDAP server regardless of whether the certificate is trusted by a Certificate Authority listed in the machine's Trust Root Certificates certificate store. || true ||
 || ldap.domainMap || This setting allows the definition of SMTP domain name mappings. This value is used in conjunction with ldap.blacklist and/or ldap.whitelist. The mapping is applied to the LDAP black/white list response and is used to match against the Google Apps user SMTP address returned from the GData API. This setting maps an internal SMTP address from Exchange to the Google Apps SMTP address. For example: ldap.domainMap=exchange.acme.com,acme.com An Exchange user has the primary SMTP address of user@exchange.acme.com would match with the Google Apps user which has the SMTP address user@acme.com. To configure multiple domain mappings use ";" as the delimiter between the domain mapping values. For Example: ldap.domainMap=acme.com,exchange.acme.com;company.com,exchange.company.com || ||
 
-== 5.3. Modify mail routing for Google Apps contact objects in Active Directory ==
+=== Modify mail routing for Google Apps contact objects in Active Directory ===
 
 In order for mail to be correctly routed to Google Apps users, we tell the directory sync to write the Google Apps users' SMTP mail addresses as their contact objects' target email addresses. By default, the Novell !GroupWise connector will have mapped the namespaces in a safe but incompatible format for Google Apps. We will re-configure the default mapping from !GroupWise to Active Directory so that the Google users' Active Directory targetAddress attributes point to their Google Apps email addresses.
 
@@ -291,7 +292,7 @@ _*NOTE: Although the specific values described below may differ across environme
   Set `GAPPSALIAS = "SMTP:" OBJECT`
   Then to modify the targetAdress mapping in mexamap.tbl to `GAPPSALIAS 256 targetAddress`
        
-== 5.4: Install the Google Calendar Connector Plug-In as a Windows Service ==
+=== Install the Google Calendar Connector Plug-In as a Windows Service ===
 
  * 5.4.1. Open a command line in the API Gateway share directory C:\Program Files\Google\Google Calendar Connector Plug-In\bin.
  * 5.4.2. Execute install.bat This verifies that the necessary files exist, runs a self-test and installs the Google Calendar Connector Plug-In as a Windows service on your machine.
@@ -299,14 +300,15 @@ _*NOTE: Although the specific values described below may differ across environme
  * 5.4.4. Find the "Google Calendar Connector Plug-In" service and right-click for properties.
  * 5.4.5. Click "Start" to start the Google service.
 
-== 5.5: Test configuration with Exchange's gwrouter.exe ==
+=== Test configuration with Exchange gwrouter ===
 
 This is an optional step that can be used to verify the correct functioning of the services activated to this point. Following this step will allow Exchange to verify that it can reach out to the Novell !GroupWise API Gateway folders that the Google service created.
 
  * 5.5.1. To test and make sure the service was installed correctly, run C:\Program Files\Exchsrvr\bin\gwrouter.exe.
 
  * 5.5.2. If the service is working correctly, you should see output similar to that below: 
-Service Running
+{{{  
+  Service Running
   [00000D48]: The Microsoft Exchange Router for Novell !GroupWise v6.5 (Build 6944.0) has started
   [00000688]: API_IN directory is \\localhost\GCCPLUGIN\API_IN\.
   [00000688]: API_OUT directory is \\localhost\GCCPLUGIN\API_OUT\.
@@ -337,10 +339,11 @@ Service Running
   [00000688] (Debug): Checking mail from !GroupWise API Gateway output queue...
   [00000688] (Debug): Checking mail from Mex2Gw Router queue...
   [00000688] (Debug): Checking mail from Inbound To Router queue...
+}}}
 
  * 5.5.3 Once you are satisfied the services are activated correctly, close the command line window.
  
-== 5.6: Turn on the Microsoft Exchange Connector for Novell !GroupWise ==
+=== Turn on the Microsoft Exchange Connector for Novell GroupWise ===
 
 After installing all of the connectors, they need to be activated. First, we activate the Microsoft Exchange Connector for Novell !GroupWise.
 
@@ -348,7 +351,7 @@ After installing all of the connectors, they need to be activated. First, we act
  * 5.6.2. Select the "Microsoft Exchange connector for Novell !GroupWise" and right-click for properties.
  * 5.6.3. Click "Start" if the service is not already started.
  
-== 5.7 Turn on the Microsoft Exchange Router for Novell !GroupWise ==
+=== Turn on the Microsoft Exchange Router for Novell !GroupWise ===
 
 Next, activate the Microsoft Exchange Router for Novell !GroupWise.
 
@@ -356,7 +359,7 @@ Next, activate the Microsoft Exchange Router for Novell !GroupWise.
  * 5.7.2. Select the "Microsoft Exchange Router for Novell !GroupWise" and right-click it for properties.
  * 5.7.3. Click "Start" if the service is not already started
 
-== 5.8: Force an initial, immediate synchronization ==
+=== Force an initial, immediate synchronization ===
 
 Now that the basic connectors are connected and routing, we initiate an immediate full reload for directory synchronization. This will populate the GoogleApps Organizational Unit in Active Directory, which Microsoft Exchange uses. Note that the Calendar Connector has not yet been started.
 
@@ -367,7 +370,7 @@ Now that the basic connectors are connected and routing, we initiate an immediat
  * 5.8.5. Acknowledge that the process has started by clicking "OK".
  * 5.8.6. After the directory synchronization has completed, contacts from Google Apps should have been populated in the GoogleApps Active Directory Organizational Unit. 
  
-== 5.9: Start the Microsoft Calendar Connector service ==
+=== Start the Microsoft Calendar Connector service ===
 
 Finally, we enable the free/busy lookup service.
 
@@ -375,7 +378,7 @@ Finally, we enable the free/busy lookup service.
  * 5.9.2. Find the "Microsoft Exchange Calendar Connector" service.
  * 5.9.3. Start the service by right-clicking and selecting "Start".
 
-== 6. Installation Success ==
+== 6 Installation Success ==
 
 All necessary services should now be correctly installed and configured for Exchange users to see free/busy information for Google Apps users. This section is intended to verify the correct configuration and functioning of your deployment.
 
@@ -395,15 +398,16 @@ config.txt contains the correct configuration information to complete the above 
 _*Note: SelfTest.exe will not be able to confirm that you have configured Microsoft Exchange and the !GroupWise connector correctly*_. 
 
 Next, we will use Microsoft Outlook to complete an end-to-end verification test by creating a new appointment and inviting Google Apps users to attend. Along the way, we will view their Google Apps free/busy information from within Microsoft Outlook.
-== 6.1 Execute SelfTest.exe ==
+
+=== Execute SelfTest ===
 
  * 6.1.1 Open a command line and navigate to the C:\Program Files\Google\Google Calendar Connector Plug-In\bin directory with SelfTest.exe
  * 6.1.2 Execute SelfTest.exe from within the command line.
  
- == 6.2 Review the output of SelfTest.exe to determine whether your services are correctly configured ==
+ == Review the output of SelfTest.exe to determine whether your services are correctly configured ==
 
 If you see the final output line: "All tests passed you're good to go :-)", SelfTest.exe has completed successfully. A sample execution of SelfTest.exe has been included below for comparison.
-
+{{{
   C:\Program Files\Google\Google Calendar Connector Plug-in\bin>SelfTest.exe
   ResourceManager resource configuration:
   - Resource category: JAVA
@@ -475,8 +479,9 @@ If you see the final output line: "All tests passed you're good to go :-)", Self
   LDAP filter not used
   ... Done
   All tests passed -- you're good to go :-)
+}}}
 
-== 6.3 Verify Calendar Look up ==
+== Verify Calendar Look up ==
 
  * 6.3.1 Create a new appointment in Microsoft Outlook
  * 6.3.2 Invite a Google Apps user
@@ -484,7 +489,7 @@ If you see the final output line: "All tests passed you're good to go :-)", Self
  * 6.3.4 Click "Yes" on the security warning
  * 6.3.5 See free/busy Information for Google Apps!
 
-== 7. Enable Automatic Startup for Services ==
+== 7 Enable Automatic Startup for Services ==
 
 Once the Verify Calendar Look up test has been completed, you are ready to enable the calendar services to startup automatically upon reboot. The following services should be set to "Startup Type" "Automatic" in the Windows Services Management Console:
 
@@ -492,14 +497,14 @@ Once the Verify Calendar Look up test has been completed, you are ready to enabl
  * Microsoft Exchange Calendar Connector
  * Microsoft Exchange Connector for Novell !GroupWise
  
-== 7.1 Enable Services ==
+== Enable Services ==
 
  * 7.1.1. Open the Windows Services Management Console.
  * 7.1.2. Highlight the service you wish to enable to start up automatically.
  * 7.1.3. Right-click on the service and select "properties".
  * 7.1.4. Open the "Startup Type" drop-down menu and select "Automatic". Click the "OK" button. 
  
-== 8. Config.txt Password Encryption ==
+== 8 Config Password Encryption ==
 
 The config.txt contains passwords in plain text. To secure these passwords obfuscation or encryption is used so they are not saved is clear text. If win.certname is commented out obfuscation is used by default. The first time the service is started the passwords will be replaced with for example: _LDP_=-OB-fxtmpjZcmBgZHxhdyMh. The value _LDP_ indicates the ldap.password password and _GDP_ indicates the gdata.password. The "-OB-" after the equals denotes obfuscation was used and then is followed by the mask password. If certificate based encryption is used the value "-MS-" is used and is followed by the encrypted password.
 
@@ -511,18 +516,18 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.4 Enroll in Certificate
  * 8.5 Configure Service to Run As User Account and Encrypt Passwords
 
-=== 8.1 Enable Encryption for Config.txt Passwords ===
+=== Enable Encryption for Config Passwords ===
 
  * 8.1.1 Create an Active Directory user account which will run the Google Calendar Connector Plug-in service.
 
-=== 8.2 Enabled Certificate Enrollment ===
+=== Enabled Certificate Enrollment ===
 
  * 8.2.1 Run the Certificates Templates MMC with an administrative account that can modify certificate templates for the Certificate Authority.
  * 8.2.2 Locate the "Users" certificate template and select Properties
  * 8.2.3 Select the Security Tab and add the user account.
  * 8.2.4 Grant the user or group "enroll" privileges 
 
-=== 8.3 Grant Administrative Rights ===
+=== Grant Administrative Rights ===
 
  * 8.3.1 Login as an Administrator to the server where the plug-in is installed
  * 8.3.2 Run "compmgmt.msc"
@@ -532,7 +537,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.3.6 Click Add, type the name of the user account and press enter
  * 8.3.7 Click OK
 
-=== 8.4 Enroll in Certificate ===
+=== Enroll in Certificate ===
 
  * 8.4.1 Login to the server as the user account that was granted Administrative rights.
  * 8.4.2 Run "mmc.exe"
@@ -550,7 +555,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.4.14 Edit the config.txt in the bin folder in the path defined by general.baseDirectory
  * 8.4.15 Configure the option win.certname= to the value you obtained in step 8.4.13
 
-=== 8.5 Configure Service to Run As User Account and Encrypt Passwords ===
+=== Configure Service to Run As User Account and Encrypt Passwords ===
 
  * 8.5.1 Login to the server where the plug-in is installed
  * 8.5.2 Run "services.msc"
@@ -563,7 +568,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.6.9 Select "Google Calendar Connector Plug-in" service and right click and select Restart
  * 8.6.10 Review the config.txt in the bin folder in the path defined by general.baseDirectory option to verify the passwords are now displayed as encrypted lines and contain =-MS- to signify password encryption, not obfuscation.
 
-== 9. Troubleshooting ==
+== 9 Troubleshooting ==
  * Run SelfTest.exe to verify the Google Calendar Connector Plug-In settings are working.
  * Run FreeBusyBuilder.exe from the command line and verify it is seeing the Google Apps contacts properly and updating the free/busy store.
 _*NOTE: If you are using password encryption you must run the Selftest.exe as the user account which contains the "User" certificate*_. 
@@ -588,7 +593,7 @@ _*NOTE: If you are using password encryption you must run the Selftest.exe as th
   * Verify there is not a user or contact in Active Directory with the e-mail address of the Google Apps user. No two AD objects can have the same e-mail address.
   * Enable general.logMessage and review the API response file for the directory syncs to determine if the user is in the response being processed by Exchange.
 
-== 10. Copyright Notices ==
+== 10 Copyright Notices ==
 
 Library and license attributions are provided to conform with the Apache License, Version 2.0. A copy of the Apache License, Version 2.0 can be found [http://www.apache.org/licenses/LICENSE-2.0.html here].
 
