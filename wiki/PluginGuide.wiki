@@ -6,7 +6,7 @@ Contents
 
  # [#1_Background Background]
  # [#2_Prerequisites Prerequisites]
- # [#3_Installation_of_Novell_!GroupWise_connector_for_Microsoft_Exchange Installation of Novell GroupWise connector for Microsoft Exchange]
+ # [#3_Installation_of_Novell_GroupWise_connector_for_Microsoft_Exchange Installation of Novell GroupWise connector for Microsoft Exchange]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Modify_Microsoft_Exchange_by_installing_connectors_for_GroupWise_and_Calendar Modify Microsoft Exchange by installing connectors for GroupWise and Calendar]
   # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
@@ -68,7 +68,7 @@ _More information about implementing connectivity between the Google calendar co
 
 The Microsoft documentation above explains !GroupWise is limited to retrieving a maximum of 389 days of free/busy information. Trying to retrieve more will result in no data being returned. 
 
-== 3 Installation of Novell !GroupWise connector for Microsoft Exchange ==
+== 3 Installation of Novell GroupWise connector for Microsoft Exchange ==
 
 === Overview ===
 
