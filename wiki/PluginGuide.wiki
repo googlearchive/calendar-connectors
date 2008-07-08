@@ -7,8 +7,8 @@ Contents
  # [#1_Background Background]
  # [#2_Prerequisites Prerequisites]
  # [#3_Installation_of_Novell_GroupWise_connector_for_Microsoft_Exchange Installation of Novell GroupWise connector for Microsoft Exchange]
-  # [#Run_Microsoft_Exchange_setup_Run_Microsoft_Exchange_setup Run_Microsoft Exchange setup Run Microsoft Exchange setup]
-  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_GroupWise_and_Calendar Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar]
+  # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
+  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_GroupWise_and_Calendar Modify Microsoft Exchange by installing connectors for GroupWise and Calendar]
   # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
  # [#4_Configuration_of_Novell_GroupWise_connector_for_Microsoft_Exchange Configuration of Novell GroupWise connector for Microsoft Exchange]
  # [#Create_an_Active_Directory_Organizational_Unit_for_Google_Apps_users Create an Active Directory Organizational Unit for Google Apps users]
@@ -68,7 +68,7 @@ _More information about implementing connectivity between the Google calendar co
 
 The Microsoft documentation above explains !GroupWise is limited to retrieving a maximum of 389 days of free/busy information. Trying to retrieve more will result in no data being returned. 
 
-== 3 Installation of Novell !GroupWise connector for Microsoft Exchange ==
+== 3 Installation of Novell GroupWise connector for Microsoft Exchange ==
 
 === Overview ===
 
@@ -82,7 +82,7 @@ The first step consists of installing and configuring the first-party Novell !Gr
 
 Depending on your installation, you may want to run either i386/setup.exe from your Exchange 2003 source installation folder or go to Add/Remove Programs on the Windows Control Panel and select "Change/Remove" Microsoft Exchange.
 
-=== Modify Microsoft Exchange by installing connectors for !GroupWise and Calendar ===
+=== Modify Microsoft Exchange by installing connectors for GroupWise and Calendar ===
 
 Installing the !GroupWise and Calendar connectors creates an interface by which the Google Calendar Connector Plug-In can interact with Exchange. Make sure to install both the Microsoft Exchange Connector for Novell !GroupWise and the Microsoft Exchange Calendar Connector.
 
@@ -110,7 +110,7 @@ _NOTE: For information on applying hotfixes and patches to Exchange, refer to ht
 Service Pack 2 for Exchange Server 2003 will now be installed and it will update the components marked with the "Update" Action.
 
  
-== 4 Configuration of Novell !GroupWise connector for Microsoft Exchange ==
+== 4 Configuration of Novell GroupWise connector for Microsoft Exchange ==
 
 === Overview: ===
 
