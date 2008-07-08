@@ -16,13 +16,13 @@ Contents
   # [#Configure_Groupwise_connector_options Configure Groupwise connector options]
   # [#Configure_the_Calendar_Connector Configure the Calendar Connector]
  #  [#5_Google_Calendar_Connector_Plugin_Installation Google_Calendar_Connector_Plugin_Installation]
-   # [#Install_the_Google_Calendar_Connector_PlugIn_into_the_folder_share Install the Google Calendar Connector PlugIn into the folder share]
-   # [#Use_LDAP_to_filter_users_in_scope_of_the_Google_Calendar_Connector_PlugIn_Optional Use LDAP to filter users in scope of the Google Calendar Connector PlugIn Optional]
-   # [#Modify_mail_routing_for_Google_Apps_contact_objects_in_Active_Directory Modify mail routing for Google Apps contact objects in Active Directory]
-   # [#Install_the_Google_Calendar_Connector_PlugIn_as_a_Windows_Service Install the Google Calendar Connector PlugIn as a Windows Service]
+   # [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
+   # [#Define_LDAP_filters_Optional Define LDAP filters _Optional_]
+   # [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
+   # [#Install_Plugin_as_a_service Install Plugin as a service]
    # [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
-   # [#Turn_on_the_Microsoft_Exchange_Connector_for_Novell_Groupwise Turn on the Microsoft Exchange Connector for Novell Groupwise]
-   # [#Turn_on_the_Microsoft_Exchange_Router_for_Novel_Groupwise Turn on the Microsoft Exchange Router for Novell Groupwise]
+   # [#Start_Connector_for_Novell_Groupwise Start Connector for Novell Groupwise]
+   # [#Start_Router_for_Novell_Groupwise Start Router for Novell Groupwise]
    # [#Force_an_initial_synchronization Force an initial_synchronization]
    # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
  # [#6_Installation_Success Installation Success]
@@ -187,19 +187,19 @@ Microsoft Exchange's Calendar Connector enables the sharing of free/busy informa
 This is the final stage of the installation process, which involves bridging the Novell !Groupwise API Gateway folder with the Google Calendar Connector Plug-In. This stage will also cover the configuration and installation of the Google Calendar Connector Plug-In as a Windows service. Both the connector for Novell !Groupwise and the Calendar Connector will be enabled.
 This process can be subdivided into the following areas:
 
- * 5.1 Installing the Google Calendar Connector Plug-In code into the API Gateway Share Path
- * 5.2 Use LDAP to filter users for the Google Calendar Connector Plug-In
- * 5.3 Modify mail-routing for Google Apps contacts in Active Directory
- * 5.4 Install the Google Calendar Connector Plug-In as a Windows server
- * 5.5 Test your configuration with Microsoft's gwrouter.exe
- * 5.6 Turn on the Microsoft Exchange connector for Novell !Groupwise
- * 5.7 Make sure the Microsoft Exchange router for Novell !Groupwise is running
- * 5.8 Force an initial, immediate synchronization
+ * 5.1 Install the Google Calendar Connector Plugin
+ * 5.2 Define LDAP filters _Optional_
+ * 5.3 Mail routing for Google Apps contacts
+ * 5.4 Install Plugin as a service
+ * 5.5 Test configuration with Exchange gwrouter
+ * 5.6 Start Connector for Novell Groupwise
+ * 5.7 Start Router for Novell Groupwise
+ * 5.8 Force an initial synchronization
  * 5.9 Start the Microsoft Calendar Connector Service
 
 _NOTE: Backslashes in config.txt must be escaped with another backslash. E.g., to set C:\Program Files, you should enter C:\\Program Files in config.txt_
  
-=== Install the Google Calendar Connector PlugIn into the folder share ===
+=== Install the Google Calendar Connector Plugin ===
 
 This step copies the actual Google Calendar Connector Plug-In files into their install locations.
 
@@ -235,7 +235,7 @@ For example, if your HTTP proxy is http-proxy.acme.com port 8000, you would ente
 || fbfix.frequency || Specifies the interval in seconds at which the Google Calendar Connector Plug-in will execute the fbfix.command. For Example: fbfix.frequency=1080 || 1080 ||
 || win.certname || This setting defines the name of the certificate in the user's Personal certificate store to be used for encryption of the passwords in the config.txt  This setting is typically the "Issued To" value or CN of the user who requested the certificate. For example: win.certname=pluginsvc || DISABLED ||
  
-=== Use LDAP to filter users in scope of the Google Calendar Connector PlugIn Optional ===
+=== Define LDAP filters Optional ===
 
 An optional step in setting up the Google Calendar Connector Plug-In is specifying a whitelist or blacklist LDAP query in config.txt. This is useful if your organization has users who exist in both Active Directory and Google Apps. This feature allows you to control what accounts are imported into Exchange to support Exchange lookup of a Google Apps user's free/busy data.
 
@@ -266,7 +266,7 @@ _*NOTE: If neither ldap.whitelist or ldap.blacklist is uncommented, no LDAP filt
 || ldap.blindfaith || Enables the Google Calendar Connector Plug-In to accept any TLS certificate when connecting to a secure LDAP server regardless of whether the certificate is trusted by a Certificate Authority listed in the machine's Trust Root Certificates certificate store. || true ||
 || ldap.domainMap || This setting allows the definition of SMTP domain name mappings. This value is used in conjunction with ldap.blacklist and/or ldap.whitelist. The mapping is applied to the LDAP black/white list response and is used to match against the Google Apps user SMTP address returned from the GData API. This setting maps an internal SMTP address from Exchange to the Google Apps SMTP address. For example: ldap.domainMap=exchange.acme.com,acme.com An Exchange user has the primary SMTP address of user@exchange.acme.com would match with the Google Apps user which has the SMTP address user@acme.com. To configure multiple domain mappings use ";" as the delimiter between the domain mapping values. For Example: ldap.domainMap=acme.com,exchange.acme.com;company.com,exchange.company.com || ||
 
-=== Modify mail routing for Google Apps contact objects in Active Directory ===
+=== Mail routing for Google Apps contacts ===
 
 In order for mail to be correctly routed to Google Apps users, we tell the directory sync to write the Google Apps users' SMTP mail addresses as their contact objects' target email addresses. By default, the Novell !Groupwise connector will have mapped the namespaces in a safe but incompatible format for Google Apps. We will re-configure the default mapping from !Groupwise to Active Directory so that the Google users' Active Directory targetAddress attributes point to their Google Apps email addresses.
 
@@ -292,7 +292,7 @@ _*NOTE: Although the specific values described below may differ across environme
   Set `GAPPSALIAS = "SMTP:" OBJECT`
   Then to modify the targetAdress mapping in mexamap.tbl to `GAPPSALIAS 256 targetAddress`
        
-=== Install the Google Calendar Connector Plug-In as a Windows Service ===
+=== Install Plugin as a service ===
 
  * 5.4.1. Open a command line in the API Gateway share directory C:\Program Files\Google\Google Calendar Connector Plug-In\bin.
  * 5.4.2. Execute install.bat This verifies that the necessary files exist, runs a self-test and installs the Google Calendar Connector Plug-In as a Windows service on your machine.
@@ -343,7 +343,7 @@ This is an optional step that can be used to verify the correct functioning of t
 
  * 5.5.3 Once you are satisfied the services are activated correctly, close the command line window.
  
-=== Turn on the Microsoft Exchange Connector for Novell Groupwise ===
+=== Start Connector for Novell Groupwise ===
 
 After installing all of the connectors, they need to be activated. First, we activate the Microsoft Exchange Connector for Novell !Groupwise.
 
@@ -351,7 +351,7 @@ After installing all of the connectors, they need to be activated. First, we act
  * 5.6.2. Select the "Microsoft Exchange connector for Novell !Groupwise" and right-click for properties.
  * 5.6.3. Click "Start" if the service is not already started.
  
-=== Turn on the Microsoft Exchange Router for Novell !Groupwise ===
+=== Start Router for Novell Groupwise ===
 
 Next, activate the Microsoft Exchange Router for Novell !Groupwise.
 
@@ -359,7 +359,7 @@ Next, activate the Microsoft Exchange Router for Novell !Groupwise.
  * 5.7.2. Select the "Microsoft Exchange Router for Novell !Groupwise" and right-click it for properties.
  * 5.7.3. Click "Start" if the service is not already started
 
-=== Force an initial, immediate synchronization ===
+=== Force an initial synchronization ===
 
 Now that the basic connectors are connected and routing, we initiate an immediate full reload for directory synchronization. This will populate the GoogleApps Organizational Unit in Active Directory, which Microsoft Exchange uses. Note that the Calendar Connector has not yet been started.
 
