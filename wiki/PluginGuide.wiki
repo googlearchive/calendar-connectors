@@ -68,7 +68,7 @@ _More information about implementing connectivity between the Google calendar co
 
 The Microsoft documentation above explains !Groupwise is limited to retrieving a maximum of 389 days of free/busy information. Trying to retrieve more will result in no data being returned. 
 
-== 3 Installation of Novell `Groupwise` connector for Microsoft Exchange ==
+== 3 Installation of Novell Groupwise connector for Microsoft Exchange ==
 
 === Overview ===
 
