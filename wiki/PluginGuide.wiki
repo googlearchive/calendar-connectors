@@ -27,12 +27,12 @@ Contents
    # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
  # [#6_Installation_Success Installation Success]
   # [#Execute_SelfTest Execute SelfTest]
-  # [#Review_the_output_of_SelfTest_to_determine_whether_your_services_are_correctly_configured Review the output of SelfTest.exe to determine whether your services are correctly configured]
- # [#Verify_Calendar_Look_up Verify Calendar Look up]
- # [#7_Enabling_automatic_startup_for_services Enabling automatic startup for services]
+  # [#Review_the_output_of_Selftest Review the output of SelfTest]
+  # [#Verify_Calendar_Look_up Verify Calendar Look up]
+ # [#7_Enable_automatic_startup_for_services Enable automatic startup for services]
   # [#Enable_Services Enable Services]
  # [#8_Config_Password_Encryption Config Password Encryption]
-  # [#Enable_Encryption_for_Config Passwords Enable_Encryption_for_Config Passwords]
+  # [#Enable_Encryption_for_Config_Passwords Enable_Encryption_for Config Passwords]
   # [#Enabled_Certificate_Enrollment Enabled Certificate Enrollment]
   # [#Grant_Administrative_Rights Grant Administrative Rights]
   # [#Enroll_in_Certificate Enroll in Certificate]
@@ -382,8 +382,8 @@ Finally, we enable the free/busy lookup service.
 
 All necessary services should now be correctly installed and configured for Exchange users to see free/busy information for Google Apps users. This section is intended to verify the correct configuration and functioning of your deployment.
 
- * 6.1 Execute SelfTest.exe
- * 6.2 Review SelfTest.exe output
+ * 6.1 Execute Selftest
+ * 6.2 Review Selftest output
  * 6.3 Verify Calendar Look up
 
 First, we will independently run SelfTest.exe, an automated testing script that verifies:
@@ -399,12 +399,12 @@ _*Note: SelfTest.exe will not be able to confirm that you have configured Micros
 
 Next, we will use Microsoft Outlook to complete an end-to-end verification test by creating a new appointment and inviting Google Apps users to attend. Along the way, we will view their Google Apps free/busy information from within Microsoft Outlook.
 
-=== Execute SelfTest ===
+=== Execute Selftest ===
 
  * 6.1.1 Open a command line and navigate to the C:\Program Files\Google\Google Calendar Connector Plug-In\bin directory with SelfTest.exe
  * 6.1.2 Execute SelfTest.exe from within the command line.
  
- == Review the output of SelfTest.exe to determine whether your services are correctly configured ==
+ == Review the output of SelfTest ==
 
 If you see the final output line: "All tests passed you're good to go :-)", SelfTest.exe has completed successfully. A sample execution of SelfTest.exe has been included below for comparison.
 {{{
