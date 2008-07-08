@@ -6,7 +6,7 @@ Contents
 
  # [#1_Background Background]
  # [#2_Prerequisites Prerequisites]
- # [#3_Installation_of_Novell_Groupwise_connector_for_Microsoft_Exchange Installation of Novell Groupwise connector for Microsoft Exchange
+ # [#3_Installation_of_Novell_Groupwise_connector Installation of Novell Groupwise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise_and_Calendar Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
   # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
@@ -68,7 +68,7 @@ _More information about implementing connectivity between the Google calendar co
 
 The Microsoft documentation above explains !Groupwise is limited to retrieving a maximum of 389 days of free/busy information. Trying to retrieve more will result in no data being returned. 
 
-== 3 Installation of Novell Groupwise connector for Microsoft Exchange ==
+== 3 Installation of Novell Groupwise connector ==
 
 === Overview ===
 
@@ -619,4 +619,4 @@ JSmooth license: http://jsmooth.sourceforge.net/license.php
 ----
 _Google, Google Calendar, Google Calendar Connector, Google Calendar Connector Plug-In, Google Calendar Connector Sync Service, Google Calendar Connector Web Service are trademarks of Google, Inc_.
 
-_All other company and product names may be trademarks of the respective companies with which they are associated_.å
+_All other company and product names may be trademarks of the respective companies with which they are associated_.
