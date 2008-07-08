@@ -9,9 +9,9 @@ Contents
  # [#3_Installation_of_Novell_Groupwise_connector Installation of Novell Groupwise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
-  # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
- # [#4_Configuration_of_Novell_Groupwise_connector_for_Microsoft_Exchange Configuration of Novell Groupwise connector for Microsoft Exchange]
- # [#Create_an_Active_Directory_Organizational_Unit_for_Google_Apps_users Create an Active Directory Organizational Unit for Google Apps users]
+  # [#Reinstall_any_service_pack_and_hotfixes Reinstall any service pack and hotfixes]
+ # [#4_Configuration_of_Novell_Groupwise_connector Configuration of Novell Groupwise connector]
+ # [#Create_an_Active_Directory_Organizational_Unit Create an Active Directory Organizational Unit]
  # [#Create a shared folder for communicating with the Google Calendar Connector PlugIn Create a shared folder for communicating with the Google Calendar Connector PlugIn]
  # [#Configure_the_Novell_Groupwise_connector_options_in_Exchange_System_Manager Configure the Novell Groupwise connector options in Exchange System Manager]
  # [#Configure_the_Calendar_Connector_in_Exchange_System_Manager Configure the Calendar Connector in Exchange System Manager]
@@ -76,7 +76,7 @@ The first step consists of installing and configuring the first-party Novell !Gr
 
  * 3.1 Run Microsoft Exchange setup
  * 3.2 Install Microsoft Exchange calendar connectors
- * 3.3 Re-install Microsoft Exchange service packs
+ * 3.3 Reinstall any service pack and hotfixes
 
 === Run Microsoft Exchange setup ===
 
@@ -94,7 +94,7 @@ Installing the !Groupwise and Calendar connectors creates an interface by which 
 
  Exchange will now install the new connectors. After setup is complete, you may be prompted to re-install an Exchange Server service pack.
  
-=== ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003 ===
+=== Reinstall any service pack and hotfixes ===
 
 Updating the components of Microsoft Exchange in the previous step may have overwritten some changes made by service packs, you will need to reinstall the latest Microsoft Exchange 2003 Service Pack.
 
@@ -110,18 +110,18 @@ _NOTE: For information on applying hotfixes and patches to Exchange, refer to ht
 Service Pack 2 for Exchange Server 2003 will now be installed and it will update the components marked with the "Update" Action.
 
  
-== 4 Configuration of Novell Groupwise connector for Microsoft Exchange ==
+== 4 Configuration of Novell Groupwise connector ==
 
 === Overview: ===
 
 This install stage involves relatively standard configuration of the Novell !Groupwise connector. This step is concerned with specifying where the connector files are located on disk, how !Groupwise (re: Google) users are treated in Active Directory and how the Novell connector should behave. Notice that this configuration is achieved entirely through built-in Exchange and Active Directory tools.
 
- * 4.1 Create an Active Directory Organizational Unit for Google Apps users
+ * 4.1 Create an Active Directory Organizational Unit
  * 4.2 Create a shared folder for Google Calendar Connector Plug-In
  * 4.3 Configure Novell !Groupwise connector options
  * 4.4 Configure Microsoft Exchange Calendar Connector
  
-=== Create an Active Directory Organizational Unit for Google Apps users ===
+=== Create an Active Directory Organizational Unit ===
 
 Microsoft recommends allocating a special Active Directory Organizational Unit for !Groupwise (re: Google Apps) contacts (http://technet.microsoft.com/en-us/library/aa998406.aspx). During the process of full directory synchronization, when the Google Calendar Connector Plug-In returns contact information to Exchange, this organizational unit will be populated with the relevant users. After each directory synchronization initiated over the Novell API Gateway, Active Directory will contain a full set of Google Apps contacts in the special Organizational Unit. These contacts are used by Microsoft Exchange. You can configure a whitelist and blacklist to control what users are include or excluded from this import. Refer to section 5.2 Use LDAP to filter users for the Google Calendar Connector Plug-In
 for details.
