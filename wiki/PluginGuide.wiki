@@ -8,7 +8,7 @@ Contents
  # [#2_Prerequisites Prerequisites]
  # [#3_Installation_of_Novell_Groupwise_connector Installation of Novell Groupwise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
-  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise_and_Calendar Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
+  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
   # [#ReInstall_any_service_pack_and_hotfix_you_have_already_applied_to_Microsoft_Exchange_2003 ReInstall any service pack and hotfix you have already applied to Microsoft Exchange 2003]
  # [#4_Configuration_of_Novell_Groupwise_connector_for_Microsoft_Exchange Configuration of Novell Groupwise connector for Microsoft Exchange]
  # [#Create_an_Active_Directory_Organizational_Unit_for_Google_Apps_users Create an Active Directory Organizational Unit for Google Apps users]
