@@ -47,8 +47,6 @@ It is important to note that this tool only represents part of a solution for fr
 This document is part of the Google Calendar Connector document set, which includes the following related documents:
 
   * *[http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide]*. Describes the components, process flow, and security considerations for the Google Calendar Connector Kit.
-
-  * *[http://code.google.com/p/google-calendar-connectors/wiki/WebServiceGuide Web Service Installation and Configuration Guide]*. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
   
   * *[http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide Sync Service Installation and Configuration Guide]*. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
 
