@@ -8,7 +8,7 @@ Contents
  # [#2_Prerequisites Prerequisites]
  # [#3_Installation_of_Novell_Groupwise_connector Installation of Novell Groupwise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
-  # [#Modify_Microsoft_Exchange_by_installing_connectors_for_Groupwise Modify Microsoft Exchange by installing connectors for Groupwise and Calendar]
+  # [#Install_Microsoft_Exchange_calendar_connectors Install Microsoft Exchange calendar connectors]
   # [#Reinstall_any_service_pack_and_hotfixes Reinstall any service pack and hotfixes]
  # [#4_Configuration_of_Novell_Groupwise_connector Configuration of Novell Groupwise connector]
   # [#Create_an_Active_Directory_Organizational_Unit Create an Active Directory Organizational Unit]
@@ -82,7 +82,7 @@ The first step consists of installing and configuring the first-party Novell !Gr
 
 Depending on your installation, you may want to run either i386/setup.exe from your Exchange 2003 source installation folder or go to Add/Remove Programs on the Windows Control Panel and select "Change/Remove" Microsoft Exchange.
 
-=== Modify Microsoft Exchange by installing connectors for Groupwise and Calendar ===
+=== Install Microsoft Exchange calendar connectors ===
 
 Installing the !Groupwise and Calendar connectors creates an interface by which the Google Calendar Connector Plug-In can interact with Exchange. Make sure to install both the Microsoft Exchange Connector for Novell !Groupwise and the Microsoft Exchange Calendar Connector.
 
