@@ -39,6 +39,7 @@ Contents
   # [#Configure_Service_to_Run_As_User_Account_and_Encrypt_Passwords Configure Service to Run As User Account and Encrypt Passwords]
  # [#9_Troubleshooting Troubleshooting]
  # [#10_Copyright_Notices Copyright Notices]
+ # [GroupWise !GroupWise]
 
 == 1 Background ==
 
@@ -566,6 +567,8 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.6.8 Click Apply
  * 8.6.9 Select "Google Calendar Connector Plug-in" service and right click and select Restart
  * 8.6.10 Review the config.txt in the bin folder in the path defined by general.baseDirectory option to verify the passwords are now displayed as encrypted lines and contain =-MS- to signify password encryption, not obfuscation.
+
+=== GroupWise ===
 
 == 9 Troubleshooting ==
  * Run !Selftest.exe to verify the Google Calendar Connector Plug-In settings are working.
