@@ -85,8 +85,13 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 *I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
 
-  * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration setting in Google Apps. If the domain name does not match,  the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration. For example the default value might look like  "acme.com" to allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service.
-  * You also might need to configure multiple domain mapping values as well. 
+  * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration domain setting in Google Apps. If the domain name does not match,  the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration. 
+
+ By default value is your Google Apps domain name "acme.com". To allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service.
+
+ If you have other domains that are children of "acme.com" like child.acme.com or child-acme.com this value does not need to be updated as the sanity check will still match.
+
+  * You also might need to configure multiple domain mapping values as well depending on your Exchange configuration. 
 
 *I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
 
