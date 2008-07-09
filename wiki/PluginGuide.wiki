@@ -278,11 +278,14 @@ _*NOTE: Although the specific values described below may differ across environme
  * 5.3.1. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mexamap.tbl.
  * 5.3.2. Verify a line of the form:
  TA {some number like 64, 256} targetAddress exists. Do not make any changes to this line. 
+
  _*NOTE: Do not use TAB for spacing. Only use spaces for whitespace*_
+
  * 5.3.3. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mapgwise.tbl.
  * 5.3.4. Modify the line 'TA = "GWISE:" to read 'TA = "SMTP:" OBJECT'
  * 5.3.5. Save changes and close mapgwise.tbl.
- _*Note: If you are concerned, for other reasons, about overwriting an existing mapping by changing the value of the variable TA, you can use the alternative method below: *_
+
+ _*NOTE: If you are concerned, for other reasons, about overwriting an existing mapping by changing the value of the variable TA, you can use the alternative method below: *_
 
  _*NOTE: An alternative method to the one described above is to add the following new line to mapgwise.tbl*_:
 
@@ -358,7 +361,7 @@ Next, activate the Microsoft Exchange Router for Novell Groupwse.
 
 === Force an initial synchronization ===
 
-Now that the basic connectors are connected and routing, we initiate an immediate full reload for directory synchronization. This will populate the !GoogleApps Organizational Unit in Active Directory, which Microsoft Exchange uses. Note that the Calendar Connector has not yet been started.
+Now that the basic connectors are connected and routing, we initiate an immediate full reload for directory synchronization. This will populate the !GoogleApps Organizational Unit in Active Directory, which Microsoft Exchange uses. _*NOTE that the Calendar Connector has not yet been started*_.
 
  * 5.8.1. Navigate back to the Exchange System Manager.
  * 5.8.2. Select the "Connector for Novell Groupwse" and right-click to display its properties.
@@ -392,7 +395,7 @@ First, we will independently run Selftest.exe, an automated testing script that 
  * If defined, the LDAP query and filter complete successfully.
  * Config.txt contains the correct configuration information to complete the above tests successfully.
 
-_*Note: !Selftest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
+_*NOTE: !Selftest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
 
 Next, we will use Microsoft Outlook to complete an end-to-end verification test by creating a new appointment and inviting Google Apps users to attend. Along the way, we will view their Google Apps free/busy information from within Microsoft Outlook.
 
@@ -548,7 +551,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.4.10 Select the template "User" from the list
  * 8.4.11 Click Next and Finish
  * 8.4.12 At this point the certificate request should have completed and you should have a user certificate in the Personal store for the user.
- * 8.4.13 Note the name of the "Issued To" value which is typically the CN of the user account.
+ * 8.4.13 NOTE the name of the "Issued To" value which is typically the CN of the user account.
  * 8.4.14 Edit the config.txt in the bin folder in the path defined by general.baseDirectory
  * 8.4.15 Configure the option win.certname= to the value you obtained in step 8.4.13
 
