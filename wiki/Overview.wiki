@@ -245,11 +245,11 @@ No additional corporate data is exposed to Google Calendar when operating the Sy
 
 = Additional Resources =
 
-[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorWebServiceGuide.html Google Calendar Connector Web Service Install and Configure Guide]
+[http://code.google.com/p/google-calendar-connectors/wiki/WebServiceGuide Google Calendar Connector Web Service Install and Configure Guide]
 
-[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorSyncServiceGuide.html Google Calendar Connector Sync Service Install and Configure Guide]
+[http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide Google Calendar Connector Sync Service Install and Configure Guide]
 
-[http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/GoogleCalendarConnectorPluginGuide.html Google Calendar Connector Plug-In Install and Configure Guide]
+[http://code.google.com/p/google-calendar-connectors/wiki/PluginGuide Google Calendar Connector Plug-In Install and Configure Guide]
 
 [http://code.google.com/p/google-calendar-connectors/wiki/FAQ Google Calendar Connector Technical FAQ Guide]
 
