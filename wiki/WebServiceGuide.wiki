@@ -34,7 +34,7 @@ This section describes the audience for this document, the organization of the m
 
 The Google Calendar Connector Kit is a set of server-installed tools that require knowledgeable  installation and configuration, tailored to the particulars of a customer's environment.  These tools are only the *technological part* of the integration experience.
 
-Before proceeding to install the Google Calendar Connector Web Service, please read and understand the important *Security Considerations* outlined in the *Overview Guide*.
+Before proceeding to install the Google Calendar Connector Web Service, please read and understand the important *Security Considerations* outlined in the [http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide].
 
 === Audience ===
 
