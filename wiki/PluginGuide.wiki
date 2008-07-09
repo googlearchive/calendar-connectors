@@ -5,6 +5,7 @@ This document gives instructions for installing and configuring the Google Calen
 Contents
 
  # [#1_Background Background]
+  # [#For_More_Information For More Information]
  # [#2_Prerequisites Prerequisites]
  # [#3_Installation_of_Novell_Groupwise_connector Installation of Novell Groupwise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
@@ -49,6 +50,23 @@ The Google Calendar Connector Kit is a set of server-installed tools that requir
 Before proceeding to install the Google Calendar Connector Plug-In, please read and understand the important *Security Considerations* outlined in the *Overview Guide*.
 
 The Google Calendar Connector Plug-In, in particular, requires a sophisticated knowledge of Exchange system administration.
+
+=== For More Information ===
+
+This document is part of the Google Calendar Connector document set, which includes the following related documents:
+
+  * *[http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide]*. Describes the components, process flow, and security considerations for the Google Calendar Connector Kit.
+
+ * [http://code.google.com/p/google-calendar-connectors/wiki/WebServiceGuide Web Service Installation and Configuration Guide]. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
+  
+  * *[http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide Sync Service Installation and Configuration Guide]*. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
+
+For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
+
+For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
+
+
+
 == 2 Prerequisites ==
 
 In order for the Google Calendar Connector Plug-In to work, please make sure your environment satisfies the following requirements:
