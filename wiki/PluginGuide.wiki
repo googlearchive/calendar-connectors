@@ -39,7 +39,7 @@ Contents
   # [#Configure_Service_to_Run_As_User_Account_and_Encrypt_Passwords Configure Service to Run As User Account and Encrypt Passwords]
  # [#9_Troubleshooting Troubleshooting]
  # [#10_Copyright_Notices Copyright Notices]
- # [GroupWise `GroupWise`]
+ # [GroupWise GroupWise]
 
 == 1 Background ==
 
