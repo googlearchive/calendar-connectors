@@ -150,7 +150,7 @@ Next we configure the Exchange Connector for Novell Groupwse to utilize the appr
  * 4.3.2. Expand the Connectors tree to select the "Connector for Novell Groupwse"
  * 4.3.3. Right-click on the connector and select "Properties".
  * 4.3.4. On the General tab, set the "API Gateway Path" to the share path you specified in Step 4.2.4. For example, if your API Gateway folder is C:\Program Files\Google\Google Calendar Connector Plug-In\ with a share path of \\{Exchange Server}\Google Calendar Connector Plug-In, set the API Gateway Path to: \\localhost\Google Calendar Connector Plug-In
- * 4.3.5. Click "Modify" next to the Netware Account field and enter the account details for a user who has full access privileges to the local share path. This is the account that the Novell Groupwse connector will use to read and write to the directory. NOTE: This account should be a local account on the server and be a member of the local Administrators group. We recommend creating a new local account for this specific purpose instead of using the existing local Administrator account.
+ * 4.3.5. Click "Modify" next to the Netware Account field and enter the account details for a user who has full access privileges to the local share path. This is the account that the Novell Groupwse connector will use to read and write to the directory. _*NOTE: This account should be a local account on the server and be a member of the local Administrators group. We recommend creating a new local account for this specific purpose instead of using the existing local Administrator account*_.
  * 4.3.6. Move to the Address Space tab, since you need to assign at least one address space to the connector
  * 4.3.7. Choose "Add", select "GWISE" and press "OK".
  * 4.3.8. In the dialog that appears, put an asterisk `(*)` in the address field and press "OK". This enables the Groupwse connector for all users with a GWISE address. All free/busy requests for Google Apps users will be routed through the Novell Groupwse connector and then the Google Calendar Connector Plug-In service.
@@ -186,15 +186,15 @@ Microsoft Exchange's Calendar Connector enables the sharing of free/busy informa
 This is the final stage of the installation process, which involves bridging the Novell Groupwse API Gateway folder with the Google Calendar Connector Plug-In. This stage will also cover the configuration and installation of the Google Calendar Connector Plug-In as a Windows service. Both the connector for Novell Groupwse and the Calendar Connector will be enabled.
 This process can be subdivided into the following areas:
 
- * 5.1 Install the Google Calendar Connector Plugin
- * 5.2 Define LDAP filters _Optional_
- * 5.3 Mail routing for Google Apps contacts
- * 5.4 Install Plugin as a service
- * 5.5 Test configuration with Exchange gwrouter
- * 5.6 Start Connector for Novell Groupwise
- * 5.7 Start Router for Novell Groupwise
- * 5.8 Force an initial synchronization
- * 5.9 Start the Microsoft Calendar Connector Service
+ * 5.1 [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
+ * 5.2 [#Define_LDAP_filters_Optional Define LDAP filters _Optional_]
+ * 5.3 [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
+ * 5.4 [#Install_Plugin_as_a_service Install Plugin as a service]
+ * 5.5 [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
+ * 5.6 [#Start_Connector_for_Novell_Groupwise Start Connector for Novell Groupwise]
+ * 5.7 [#Start_Router_for_Novell_Groupwise Start Router for Novell Groupwise]
+ * 5.8 [#Force_an_initial_synchronization Force an initial_synchronization]
+ * 5.9 [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
 
 _NOTE: Backslashes in config.txt must be escaped with another backslash. E.g., to set C:\Program Files, you should enter C:\\Program Files in config.txt_
  
@@ -205,15 +205,13 @@ This step copies the actual Google Calendar Connector Plug-In files into their i
  * 5.1.1. Create a "bin" subdirectory beneath the folder share path. For example, C:\Program Files\Google\Google Calendar Connector Plug-In\bin. NOTE: Make sure that only the administrator has permission to read the config.txt file.
  * 5.1.2. Copy contents of the Google Calendar Connector Plug-In distribution into the \bin subdirectory.
  * 5.1.3. Open config.txt with a text editor
- * 5.1.4. Edit general.baseDirectory to point to the Share Folder Path defined earlier in Step 4.2.4. E.g., C:\Program Files\Google\Google Calendar Connector Plug-In. Note, this service does not work with mapped drives. This tells the Google Calendar Connector Plug-In where files should be read and written. 
+ * 5.1.4. Edit general.baseDirectory to point to the Share Folder Path defined earlier in Step [[#Create_a_shared_folder_for_Plugin 4.2.4]. E.g., C:\Program Files\Google\Google Calendar Connector Plug-In. Note, this service does not work with mapped drives. This tells the Google Calendar Connector Plug-In where files should be read and written. 
  * 5.1.5. Verify general.verboseLogging = false.
  * 5.1.6. Verify general.logMessages = false.
  * 5.1.7. Verify general.logfile has been set to an appropriate path for service logging (if logging is enabled).
  _*NOTE: You must grant the account that runs Java run-time MODIFY access to your log file. If not using password encryption this is the "SYSTEM" account. If using password encryption this is the user service account defined to run the service*-.
- * 5.1.8. (Optional) Enable web request proxying for Google Apps data. This configures Google Calendar Connector Plug-In to send its web requests to Google Apps through your organization's proxy server.
-Un-comment the general.httpProxy and/or general.httpsProxy lines, depending upon whether your proxy server supports only regular HTTP or HTTPS.
-Enter the DNS or IP addresses and ports of your company's web proxy(s).
-For example, if your HTTP proxy is http-proxy.acme.com port 8000, you would enter: general.httpProxy=http-proxy.acme.com:8000.
+ * 5.1.8. (Optional) Enable web request proxying for Google Apps data. This configures Google Calendar Connector Plug-In to send its web requests to Google Apps through your organization's proxy server. Un-comment the general.httpProxy and/or general.httpsProxy lines, depending upon whether your proxy server supports only regular HTTP or HTTPS.
+Enter the DNS or IP addresses and ports of your company's web proxy(s). For example, if your HTTP proxy is http-proxy.acme.com port 8000, you would enter: general.httpProxy=http-proxy.acme.com:8000.
  * 5.1.9. Set gdata.username to an administrator account on your Google Apps domain. For example: gccplugin@acme.com. This is the Google Apps account that will be used to access Google Calendar free/busy information. It is important that this account does not need to be used on a regular basis by a user because the use of this service may interfere with existing open sessions on the account.
  * 5.1.10. Set gdata.password to the corresponding password for the administrator account.
  * 5.1.11. Set gdata.domain to your Google Apps domain. For example: acme.com.
@@ -250,7 +248,7 @@ This is an important feature for environments with users who exist in both Activ
  * 5.2.2. Set ldap.authMethod=simple. This is equivalent to "unencrypted', but can still be used with LDAPS, if you can't support DIGEST-MD5
  * 5.2.3. Set ldap.base to the base LDAP query for your domain. This is useful for generally specifying your users' domain and organizational information.
  * 5.2.4. Uncomment either ldap.whitelist or ldap.blacklist and ldap.domainMap then enter your custom LDAP filter. This filter specifies which users to explicitly include or exclude from the Google Calendar Connector Plug-In service, respectively. An example white-list is displayed below. You must also configure the ldap.domainMap feature as well to map internal SMTP addresses returned from the whitelist or blacklist query to the SMTP addresses as defined in Google Apps. 
-_*NOTE: If neither ldap.whitelist or ldap.blacklist is uncommented, no LDAP filter will be applied. If no ldap.domainMap is configured then SMTP address matching will not take effect and the whitelist or blacklist filter is not applied*_.
+ _*NOTE: If neither ldap.whitelist or ldap.blacklist is uncommented, no LDAP filter will be applied. If no ldap.domainMap is configured then SMTP address matching will not take effect and the whitelist or blacklist filter is not applied*_.
  * 5.2.5. Verify ldap.blindFaith is set to "true". This enables the Google Calendar Connector Plug-In to accept any TLS certificate when connecting to a secure LDAP server regardless of whether the certificate is trusted by a Certificate Authority listed in the machine's Trust Root Certificates certificate store.
  * 5.2.6. Verify your LDAP configuration against the following checklist:
 
@@ -260,8 +258,8 @@ _*NOTE: If neither ldap.whitelist or ldap.blacklist is uncommented, no LDAP filt
 || ldap.password || The password for the ldap.user account || ||
 ||  ldap.authMethod || This setting defines the authentication method used to access LDAP; supported modes are "simple"and "DIGEST-MD5". Default method is "DIGEST-MD5" if none is specified. _* NOTE: To use DIGEST-MD5, the configured windows user account in Active Directory must have enabled "Store password using reversible encryption" set via Active Directory Users and Computers. Once this value is enabled the password must be changed in order to store the password in the reversible encryption format. || simple ||
 || ldap.base || The search base DN for the ldap.blacklist and ldap.whitelist queries. || ||
-||ldap.blacklist || This setting defines an LDAP filter of users to exclude from the Google Apps directory sync import. For Example: ldap.blacklist=(&(objectClass=user)(msExchHomeServerName=*)) This filter returns a list of all user objects that have an Exchange mailbox. || ||
-|| ldap.whitelist || This setting defines an LDAP filter of users to include in the Google Apps directory sync import. For Example: ldap.whitelist=(mail=*@exchange.acme)(objectcategory=person) This filter returns a list of all user and contact objects that have an internal mail address of @exchange.acme.com. This includes mailbox enabled users, mail enabled users  and contacts. || ||
+||ldap.blacklist || This setting defines an LDAP filter of users to exclude from the Google Apps directory sync import. For Example: `ldap.blacklist=(&(objectClass=user)(msExchHomeServerName=*))` This filter returns a list of all user objects that have an Exchange mailbox. || ||
+|| ldap.whitelist || This setting defines an LDAP filter of users to include in the Google Apps directory sync import. For Example: `ldap.whitelist=(mail=*@exchange.acme)(objectcategory=person)` This filter returns a list of all user and contact objects that have an internal mail address of @exchange.acme.com. This includes mailbox enabled users, mail enabled users  and contacts. || ||
 || ldap.blindfaith || Enables the Google Calendar Connector Plug-In to accept any TLS certificate when connecting to a secure LDAP server regardless of whether the certificate is trusted by a Certificate Authority listed in the machine's Trust Root Certificates certificate store. || true ||
 || ldap.domainMap || This setting allows the definition of SMTP domain name mappings. This value is used in conjunction with ldap.blacklist and/or ldap.whitelist. The mapping is applied to the LDAP black/white list response and is used to match against the Google Apps user SMTP address returned from the GData API. This setting maps an internal SMTP address from Exchange to the Google Apps SMTP address. For example: ldap.domainMap=exchange.acme.com,acme.com An Exchange user has the primary SMTP address of user@exchange.acme.com would match with the Google Apps user which has the SMTP address user@acme.com. To configure multiple domain mappings use ";" as the delimiter between the domain mapping values. For Example: ldap.domainMap=acme.com,exchange.acme.com;company.com,exchange.company.com || ||
 
@@ -279,7 +277,7 @@ _*NOTE: Although the specific values described below may differ across environme
 
  * 5.3.1. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mexamap.tbl.
  * 5.3.2. Verify a line of the form:
- TA {some number like 64, 256} targetAddress exists. Do not make any changes to this line.
+ TA {some number like 64, 256} targetAddress exists. Do not make any changes to this line. 
  _*NOTE: Do not use TAB for spacing. Only use spaces for whitespace*_
  * 5.3.3. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mapgwise.tbl.
  * 5.3.4. Modify the line 'TA = "GWISE:" to read 'TA = "SMTP:" OBJECT'
@@ -381,9 +379,9 @@ Finally, we enable the free/busy lookup service.
 
 All necessary services should now be correctly installed and configured for Exchange users to see free/busy information for Google Apps users. This section is intended to verify the correct configuration and functioning of your deployment.
 
- * 6.1 Execute Selftest
- * 6.2 Review Selftest output
- * 6.3 Verify Calendar Look up
+ * 6.1 [#Execute_SelfTest Execute SelfTest]
+ * 6.2 [#Review_the_output_of_Selftest Review the output of SelfTest]
+ * 6.3 [#Verify_Calendar_Look_up Verify Calendar Look up]
 
 First, we will independently run SelfTest.exe, an automated testing script that verifies:
 
@@ -392,9 +390,9 @@ First, we will independently run SelfTest.exe, an automated testing script that 
  * Your Google Apps domain is accessible via GData
  * The Provisioning API is accessible for your Google Apps domain
  * If defined, the LDAP query and filter complete successfully.
-config.txt contains the correct configuration information to complete the above tests successfully.
+ * Config.txt contains the correct configuration information to complete the above tests successfully.
 
-_*Note: SelfTest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
+_*Note: !SelfTest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
 
 Next, we will use Microsoft Outlook to complete an end-to-end verification test by creating a new appointment and inviting Google Apps users to attend. Along the way, we will view their Google Apps free/busy information from within Microsoft Outlook.
 
@@ -405,7 +403,7 @@ Next, we will use Microsoft Outlook to complete an end-to-end verification test 
  
  == Review the output of SelfTest ==
 
-If you see the final output line: "All tests passed you're good to go :-)", SelfTest.exe has completed successfully. A sample execution of SelfTest.exe has been included below for comparison.
+If you see the final output line: "All tests passed you're good to go :-)", !SelfTest.exe has completed successfully. A sample execution of !SelfTest.exe has been included below for comparison.
 {{{
   C:\Program Files\Google\Google Calendar Connector Plug-in\bin>SelfTest.exe
   ResourceManager resource configuration:
@@ -509,11 +507,11 @@ The config.txt contains passwords in plain text. To secure these passwords obfus
 
 Encryption is accomplished by using a user account enrolled with a user certificate. To accomplish this an Active Directory user account will need to be setup and enrolled with a certificate. The steps below detail how to accomplish this using a Microsoft Certificate Authority. The Google Calendar Connector Plug-in service is then configured to run under the security context of this user, which gives it access to the user's certificate private key which is used to encrypt the passwords in the config.txt file. 
 
- * 8.1 Enable Encryption for Config.txt Passwords
- * 8.2 Enabled Certificate Enrollment
- * 8.3 Grant Administrative Rights
- * 8.4 Enroll in Certificate
- * 8.5 Configure Service to Run As User Account and Encrypt Passwords
+ * 8.1 [#Enable_Encryption_for_Config_Passwords Enable_Encryption_for Config Passwords]
+ * 8.2 [#Enabled_Certificate_Enrollment Enabled Certificate Enrollment]
+ * 8.3 [#Grant_Administrative_Rights Grant Administrative Rights]
+ * 8.4 [#Enroll_in_Certificate Enroll in Certificate]
+ * 8.5 [#Configure_Service_to_Run_As_User_Account_and_Encrypt_Passwords Configure Service to Run As User Account and Encrypt Passwords]
 
 === Enable Encryption for Config Passwords ===
 
@@ -568,14 +566,13 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.6.10 Review the config.txt in the bin folder in the path defined by general.baseDirectory option to verify the passwords are now displayed as encrypted lines and contain =-MS- to signify password encryption, not obfuscation.
 
 == 9 Troubleshooting ==
- * Run SelfTest.exe to verify the Google Calendar Connector Plug-In settings are working.
+ * Run !SelfTest.exe to verify the Google Calendar Connector Plug-In settings are working.
  * Run !FreeBusyBuilder.exe from the command line and verify it is seeing the Google Apps contacts properly and updating the free/busy store.
-_*NOTE: If you are using password encryption you must run the Selftest.exe as the user account which contains the "User" certificate*_. 
+ _*NOTE: If you are using password encryption you must run the Selftest.exe as the user account which contains the "User" certificate*_. 
 
- * Calendar lookups are not working
+* Calendar lookups are not working
 
  Ensure the windows services are running:
-
   * Google Calendar Connector Plug-In
   * Microsoft Exchange Calendar Connector
   * Microsoft Exchange Connectivity Controller
@@ -583,12 +580,10 @@ _*NOTE: If you are using password encryption you must run the Selftest.exe as th
   * Microsoft Exchange Router for Novell Groupwse
 
  * Enabled general.logMessage, general.logFile and general.verboseLogging.
-
   * Enabling general.logMessage this will have the Google Calendar Connector Plug-In write each API message and its response into "C:\Program Files\Google\Google Calendar Connector Plug-In\WPCSIN". Run a directory sync and a free/busy request from Outlook for a Google Apps contact. Verify the API requests are being processed.
   * Enabling general.logFile and general.verboseLogging will get you a very verbose log will indicate where the Google Calendar Connector Plug-in is failing.
 
  * Some users in my Google Apps Domain are not showing up in Active Directory
-
   * Verify there is not a user or contact in Active Directory with the e-mail address of the Google Apps user. No two AD objects can have the same e-mail address.
   * Enable general.logMessage and review the API response file for the directory syncs to determine if the user is in the response being processed by Exchange.
 
