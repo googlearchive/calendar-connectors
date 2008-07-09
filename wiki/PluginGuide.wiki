@@ -13,14 +13,14 @@ Contents
   # [#Reinstall_any_service_pack_and_hotfixes Reinstall any service pack and hotfixes]
  # [#4_Configuration_of_Novell_GroupWise_connector Configuration of Novell GroupWise connector]
   # [#Create_an_Active_Directory_Organizational_Unit Create an Active Directory Organizational Unit]
-  # [#Create_a_shared_folder_for_Plugin Create a shared folder for Plugin]
+  # [#Create_a_shared_folder_for_PlugIn Create a shared folder for PlugIn]
   # [#Configure_GroupWise_connector_options GroupWise connector options]
   # [#Configure_the_Calendar_Connector Configure the Calendar Connector]
- #  [#5_Google_Calendar_Connector_Plugin_Installation Google Calendar Connector Plugin Installation]
-   # [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
+ #  [#5_Google_Calendar_Connector_PlugIn_Installation Google Calendar Connector PlugIn Installation]
+   # [#Install_the_Google_Calendar_Connector_PlugIn Install the Google Calendar Connector PlugIn]
    # [#Define_LDAP_filters_Optional Define LDAP filters Optional]
    # [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
-   # [#Install_Plugin_as_a_service Install Plugin as a service]
+   # [#Install_PlugIn_as_a_service Install PlugIn as a service]
    # [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
    # [#Start_Connector_for_Novell_GroupWise Start Connector for Novell GroupWise]
    # [#Start_Router_for_Novell_GroupWise Start Router for Novell GroupWise]
@@ -135,7 +135,7 @@ Service Pack 2 for Exchange Server 2003 will now be installed and it will update
 This install stage involves relatively standard configuration of the Novell Groupwse connector. This step is concerned with specifying where the connector files are located on disk, how Groupwse (re: Google) users are treated in Active Directory and how the Novell connector should behave. Notice that this configuration is achieved entirely through built-in Exchange and Active Directory tools.
 
  * 4.1 [#Create_an_Active_Directory_Organizational_Unit Create an Active Directory Organizational Unit]
- * 4.2 [#Create_a_shared_folder_for_Plugin Create a shared folder for Plugin]
+ * 4.2 [#Create_a_shared_folder_for_PlugIn Create a shared folder for PlugIn]
  * 4.3 [#Configure_GroupWise_connector_options Configure !GroupWise connector options]
  * 4.4 [#Configure_the_Calendar_Connector Configure the Calendar Connector]
 
@@ -148,7 +148,7 @@ Microsoft recommends allocating a special Active Directory Organizational Unit f
  * 4.1.3. Name the Organizational Unit "!GoogleApps" and press OK.
 
  
-=== Create a shared folder for Plugin ===
+=== Create a shared folder for !PlugIn ===
 
  Create a local shared folder that will serve as the API Gateway Path for the Novell Groupwse connector. General Microsoft configuration instructions for the Groupwse connector can be found here: http://technet.microsoft.com/en-us/library/bb124483.aspx. Since the Google Calendar Connector Plug-In is running locally instead of on a remote Novell Gateway server, we need to create a local Exchange-accessible shared folder to serve as the API Gateway Path.
 
@@ -197,17 +197,17 @@ Microsoft Exchange's Calendar Connector enables the sharing of free/busy informa
   * Maximum number of seconds to wait for a response from Google Apps for free/busy data.
  
 
-== 5 Google Calendar Connector Plugin Installation ==
+== 5 Google Calendar Connector !PlugIn Installation ==
 
 === Overview ===
 
 This is the final stage of the installation process, which involves bridging the Novell Groupwse API Gateway folder with the Google Calendar Connector Plug-In. This stage will also cover the configuration and installation of the Google Calendar Connector Plug-In as a Windows service. Both the connector for Novell Groupwse and the Calendar Connector will be enabled.
 This process can be subdivided into the following areas:
 
- * 5.1 [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
+ * 5.1 [#Install_the_Google_Calendar_Connector_PlugIn Install the Google Calendar Connector PlugIn]
  * 5.2 [#Define_LDAP_filters_Optional Define LDAP filters Optional]
  * 5.3 [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
- * 5.4 [#Install_Plugin_as_a_service Install Plugin as a service]
+ * 5.4 [#Install_PlugIn_as_a_service Install PlugIn as a service]
  * 5.5 [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
  * 5.6 [#Start_Connector_for_Novell_GroupWise Start Connector for Novell !GroupWise]
  * 5.7 [#Start_Router_for_Novell_GroupWise Start Router for Novell !GroupWise]
@@ -216,14 +216,14 @@ This process can be subdivided into the following areas:
 
 _*NOTE: Backslashes in config.txt must be escaped with another backslash. E.g., to set C:\Program Files, you should enter C:\\Program Files in config.txt*_
  
-=== Install the Google Calendar Connector Plugin ===
+=== Install the Google Calendar Connector !PlugIn ===
 
 This step copies the actual Google Calendar Connector Plug-In files into their install locations.
 
  * 5.1.1. Create a "bin" subdirectory beneath the folder share path. For example, `C:\Program Files\Google\Google Calendar Connector Plug-In\bin`. _*NOTE: Make sure that only the administrator has permission to read the config.txt file*_.
  * 5.1.2. Copy contents of the Google Calendar Connector Plug-In distribution into the \bin subdirectory.
  * 5.1.3. Open config.txt with a text editor
- * 5.1.4. Edit general.baseDirectory to point to the Share Folder Path defined earlier in Step [[#Create_a_shared_folder_for_Plugin 4.2.4]. E.g., C:\Program Files\Google\Google Calendar Connector Plug-In. Note, this service does not work with mapped drives. This tells the Google Calendar Connector Plug-In where files should be read and written. 
+ * 5.1.4. Edit general.baseDirectory to point to the Share Folder Path defined earlier in Step [[#Create_a_shared_folder_for_PlugIn 4.2.4]. E.g., C:\Program Files\Google\Google Calendar Connector Plug-In. Note, this service does not work with mapped drives. This tells the Google Calendar Connector Plug-In where files should be read and written. 
  * 5.1.5. Verify general.verboseLogging = false.
  * 5.1.6. Verify general.logMessages = false.
  * 5.1.7. Verify general.logfile has been set to an appropriate path for service logging (if logging is enabled).
@@ -236,15 +236,15 @@ This step copies the actual Google Calendar Connector Plug-In files into their i
 
 || Configuration Key || Description || Default Value ||
 ||general.baseDirectory || This setting defines the base directory where the Google Calendar Connector Plug-In is installed. This is also the API Share Path where the Exchange connector expects to find the API_IN and API_OUT folders. For Example: `general.baseDirectory=C:\\Program Files\\Google\\Google Calendar Connector Plug-In` || C:\\Program Files\\Google\\Google Calendar Connector Plug-In ||
-|| general.logFile || This setting defines the path and file name for the Google Calendar Connector Plug-In log file. For Example: `general.logFile=c:\\Google\\logs\\Plugin.log` || C:\\Google\\logs\\Google Calendar Connector Plug-In.log ||
+|| general.logFile || This setting defines the path and file name for the Google Calendar Connector Plug-In log file. For Example: `general.logFile=c:\\Google\\logs\\!PlugIn.log` || C:\\Google\\logs\\Google Calendar Connector Plug-In.log ||
 || general.verboseLogging || Setting this value to "true" enables verbose output in the general.logfile for debugging purposes. For Example: `general.verboseLogging=true` || false ||
-|| general.logMessages || Setting this value to "true" logs all incoming Groupwse API requests and the responses generated by the Google Calendar Connector Plugin. For Example: `general.logMessages=true` _*NOTE: These log files are written to the WPCSIN folder defined by general.basedDirectory*_. || false ||
+|| general.logMessages || Setting this value to "true" logs all incoming Groupwse API requests and the responses generated by the Google Calendar Connector !PlugIn. For Example: `general.logMessages=true` _*NOTE: These log files are written to the WPCSIN folder defined by general.basedDirectory*_. || false ||
 || general.httpProxy || This setting enables HTTP proxy support. The setting defines the proxy server address and port that all web requests will be forwarded through. For Example: `general.httpProxy=http-proxy.acme.com:8080` || DISABLED ||
 || general.httpsProxy || This setting enables HTTPS proxy support. The setting defines the proxy server address and port that all web requests will be forwarded through. For Example: `general.httpsProxy=https-proxy.acme.com:8181` || DISABLED ||
 || gdata.username || Admin user name used to login to the GData service for the Google Apps domain. For Example: `gdata.username=gccplugin@acme.com` _*NOTE: This user account must be granted administrator privileges within your Google Apps domain. The provisioning API must be enabled for the Google Apps domain as well*_. || ||
 || gdata.password || The password for the gdata.username login to the Google Apps domain. For Example: `gdata.password=adminpassword01` || ||
 || gdata.domain || The Google Apps domain name. For Example: `gdata.domain=acme.com` || ||	
-|| fbfix.command || The executable filename of a helper process for the Google Calendar Connector plug-in. This tool verifies that Google Apps users are correctly registered in the Exchange free/busy store so free/busy lookups are routed through the Groupwse/Google Calender Connector Plugin. For Example: `fbfix.command=freebusybuilder.exe` || freebusybuilder.exe ||
+|| fbfix.command || The executable filename of a helper process for the Google Calendar Connector plug-in. This tool verifies that Google Apps users are correctly registered in the Exchange free/busy store so free/busy lookups are routed through the Groupwse/Google Calender Connector !PlugIn. For Example: `fbfix.command=freebusybuilder.exe` || freebusybuilder.exe ||
 || fbfix.timeout || Specifies the number of seconds before the fbfix.command is killed. For Example: `fbfix.timeout=60` || 60 ||
 || fbfix.frequency || Specifies the interval in seconds at which the Google Calendar Connector Plug-in will execute the fbfix.command. For Example: `fbfix.frequency=1080` || 1080 ||
 || win.certname || This setting defines the name of the certificate in the user's Personal certificate store to be used for encryption of the passwords in the config.txt  This setting is typically the "Issued To" value or CN of the user who requested the certificate. For Example: `win.certname=pluginsvc` || DISABLED ||
@@ -309,7 +309,7 @@ _*NOTE: Although the specific values described below may differ across environme
   Set `GAPPSALIAS = "SMTP:" OBJECT`
   Then to modify the targetAdress mapping in mexamap.tbl to `GAPPSALIAS 256 targetAddress`
        
-=== Install Plugin as a service ===
+=== Install !PlugIn as a service ===
 
  * 5.4.1. Open a command line in the API Gateway share directory C:\Program Files\Google\Google Calendar Connector Plug-In\bin.
  * 5.4.2. Execute install.bat This verifies that the necessary files exist, runs a self-test and installs the Google Calendar Connector Plug-In as a Windows service on your machine.
