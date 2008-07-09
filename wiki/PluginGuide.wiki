@@ -7,7 +7,7 @@ Contents
  # [#1_Background Background]
   # [#For_More_Information For More Information]
  # [#2_Prerequisites Prerequisites]
- # [#3_Installation_of_Novell_connector Installation of Novell GroupWise connector]
+ # [#3_Installation_of_Novell_GroupWise_connector Installation of Novell GroupWise connector]
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Install_Microsoft_Exchange_calendar_connectors Install Microsoft Exchange calendar connectors]
   # [#Reinstall_any_service_pack_and_hotfixes Reinstall any service pack and hotfixes]
