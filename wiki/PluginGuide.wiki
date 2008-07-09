@@ -17,13 +17,13 @@ Contents
   # [#Configure_the_Calendar_Connector Configure the Calendar Connector]
  #  [#5_Google_Calendar_Connector_Plugin_Installation Google Calendar Connector Plugin Installation]
    # [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
-   # [#Define_LDAP_filters_Optional Define LDAP filters _Optional_]
+   # [#Define_LDAP_filters_Optional Define LDAP filters Optional]
    # [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
    # [#Install_Plugin_as_a_service Install Plugin as a service]
    # [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
    # [#Start_Connector_for_Novell_Groupwise Start Connector for Novell Groupwise]
    # [#Start_Router_for_Novell_Groupwise Start Router for Novell Groupwise]
-   # [#Force_an_initial_synchronization Force an initial_synchronization]
+   # [#Force_an_initial_synchronization Force an initial synchronization]
    # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
  # [#6_Installation_Success Installation Success]
   # [#Execute_Selftest Execute Selftest]
@@ -32,7 +32,7 @@ Contents
  # [#7_Enable_Automatic_startup_for_services Enable Automatic startup for services]
   # [#Enable_Services Enable Services]
  # [#8_Config_Password_Encryption Config Password Encryption]
-  # [#Enable_Encryption_for_Config_Passwords Enable_Encryption_for Config Passwords]
+  # [#Enable_Encryption_for_Config_Passwords Enable Encryption for Config Passwords]
   # [#Enabled_Certificate_Enrollment Enabled Certificate Enrollment]
   # [#Grant_Administrative_Rights Grant Administrative Rights]
   # [#Enroll_in_Certificate Enroll in Certificate]
@@ -187,13 +187,13 @@ This is the final stage of the installation process, which involves bridging the
 This process can be subdivided into the following areas:
 
  * 5.1 [#Install_the_Google_Calendar_Connector_Plugin Install the Google Calendar Connector Plugin]
- * 5.2 [#Define_LDAP_filters_Optional Define LDAP filters _Optional_]
+ * 5.2 [#Define_LDAP_filters_Optional Define LDAP filters Optional]
  * 5.3 [#Mail_routing_for_Google_Apps_contacts Mail routing for Google Apps contacts]
  * 5.4 [#Install_Plugin_as_a_service Install Plugin as a service]
  * 5.5 [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
  * 5.6 [#Start_Connector_for_Novell_Groupwise Start Connector for Novell Groupwise]
  * 5.7 [#Start_Router_for_Novell_Groupwise Start Router for Novell Groupwise]
- * 5.8 [#Force_an_initial_synchronization Force an initial_synchronization]
+ * 5.8 [#Force_an_initial_synchronization Force an initial synchronization]
  * 5.9 [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
 
 _NOTE: Backslashes in config.txt must be escaped with another backslash. E.g., to set C:\Program Files, you should enter C:\\Program Files in config.txt_
@@ -507,7 +507,7 @@ The config.txt contains passwords in plain text. To secure these passwords obfus
 
 Encryption is accomplished by using a user account enrolled with a user certificate. To accomplish this an Active Directory user account will need to be setup and enrolled with a certificate. The steps below detail how to accomplish this using a Microsoft Certificate Authority. The Google Calendar Connector Plug-in service is then configured to run under the security context of this user, which gives it access to the user's certificate private key which is used to encrypt the passwords in the config.txt file. 
 
- * 8.1 [#Enable_Encryption_for_Config_Passwords Enable_Encryption_for Config Passwords]
+ * 8.1 [#Enable_Encryption_for_Config_Passwords Enable Encryption for Config Passwords]
  * 8.2 [#Enabled_Certificate_Enrollment Enabled Certificate Enrollment]
  * 8.3 [#Grant_Administrative_Rights Grant Administrative Rights]
  * 8.4 [#Enroll_in_Certificate Enroll in Certificate]
