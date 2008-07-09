@@ -570,7 +570,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * Run !FreeBusyBuilder.exe from the command line and verify it is seeing the Google Apps contacts properly and updating the free/busy store.
  _*NOTE: If you are using password encryption you must run the Selftest.exe as the user account which contains the "User" certificate*_. 
 
-* Calendar lookups are not working
+ * Calendar lookups are not working
 
  Ensure the windows services are running:
   * Google Calendar Connector Plug-In
