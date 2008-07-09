@@ -11,7 +11,7 @@ Contents
   # [#Run_Microsoft_Exchange_setup Run Microsoft Exchange setup]
   # [#Install_Microsoft_Exchange_calendar_connectors Install Microsoft Exchange calendar connectors]
   # [#Reinstall_any_service_pack_and_hotfixes Reinstall any service pack and hotfixes]
- # [#4_Configuration_of_Novell Configuration of Novell GroupWise connector]
+ # [#4_Configuration_of_Novell_connector Configuration of Novell GroupWise connector]
   # [#Create_an_Active_Directory_Organizational_Unit Create an Active Directory Organizational Unit]
   # [#Create_a_shared_folder_for_Plugin Create a shared folder for Plugin]
   # [#Configure Configure GroupWise connector options]
@@ -86,7 +86,7 @@ _More information about setting up a local replica of the SCHEDULE+ FREE BUSY Pu
 
 The Microsoft documentation above explains Groupwse is limited to retrieving a maximum of 389 days of free/busy information. Trying to retrieve more will result in no data being returned. 
 
-== 3 Installation of Novell GroupWise connector ==
+== 3 Installation of Novell !GroupWise connector ==
 
 === Overview ===
 
@@ -128,7 +128,7 @@ _*NOTE: For information on applying hotfixes and patches to Exchange, refer to h
 Service Pack 2 for Exchange Server 2003 will now be installed and it will update the components marked with the "Update" Action.
 
  
-== 4 Configuration of Novell GroupWise connector ==
+== 4 Configuration of Novell !GroupWise connector ==
 
 === Overview: ===
 
