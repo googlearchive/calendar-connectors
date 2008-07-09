@@ -29,7 +29,7 @@ Contents
   # [#Execute_Selftest Execute Selftest]
   # [#Review_the_output_of_Selftest Review the output of Selftest]
   # [#Verify_Calendar_Look_up Verify Calendar Look up]
- # [#7_Enable_Automatic_startup_for_services Enable Automatic startup for services]
+ # [#7_Enable_Automatic_Startup_for_Services Enable Automatic Startup for Services]
   # [#Enable_Services Enable Services]
  # [#8_Config_Password_Encryption Config Password Encryption]
   # [#Enable_Encryption_for_Config_Passwords Enable Encryption for Config Passwords]
