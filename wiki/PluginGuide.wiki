@@ -217,6 +217,7 @@ Enter the DNS or IP addresses and ports of your company's web proxy(s). For exam
  * 5.1.11. Set gdata.domain to your Google Apps domain. For example: acme.com.
  * 5.1.12. Check your configuration against the following checklist:
 
+
 || Configuration Key || Description || Default Value ||
 ||general.baseDirectory || This setting defines the base directory where the Google Calendar Connector Plug-In is installed. This is also the API Share Path where the Exchange connector expects to find the API_IN and API_OUT folders. For example: general.baseDirectory=C:\\Program Files\\Google\\Google Calendar Connector Plug-In || C:\\Program Files\\Google\\Google Calendar Connector Plug-In ||
 || general.logFile || This setting defines the path and file name for the Google Calendar Connector Plug-In log file. For example: general.logFile=c:\\Google\\logs\\Plugin.log || C:\\Google\\logs\\Google Calendar Connector Plug-In.log ||
@@ -231,7 +232,8 @@ Enter the DNS or IP addresses and ports of your company's web proxy(s). For exam
 || fbfix.timeout || Specifies the number of seconds before the fbfix.command is killed. For Example: fbfix.timeout=60 || 60 ||
 || fbfix.frequency || Specifies the interval in seconds at which the Google Calendar Connector Plug-in will execute the fbfix.command. For Example: fbfix.frequency=1080 || 1080 ||
 || win.certname || This setting defines the name of the certificate in the user's Personal certificate store to be used for encryption of the passwords in the config.txt  This setting is typically the "Issued To" value or CN of the user who requested the certificate. For example: win.certname=pluginsvc || DISABLED ||
- 
+
+
 === Define LDAP filters Optional ===
 
 An optional step in setting up the Google Calendar Connector Plug-In is specifying a whitelist or blacklist LDAP query in config.txt. This is useful if your organization has users who exist in both Active Directory and Google Apps. This feature allows you to control what accounts are imported into Exchange to support Exchange lookup of a Google Apps user's free/busy data.
