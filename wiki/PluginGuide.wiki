@@ -26,8 +26,8 @@ Contents
    # [#Force_an_initial_synchronization Force an initial_synchronization]
    # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
  # [#6_Installation_Success Installation Success]
-  # [#Execute_SelfTest Execute SelfTest]
-  # [#Review_the_output_of_Selftest Review the output of SelfTest]
+  # [#Execute_Selftest Execute Selftest]
+  # [#Review_the_output_of_Selftest Review the output of Selftest]
   # [#Verify_Calendar_Look_up Verify Calendar Look up]
  # [#7_Enable_Automatic_startup_for_services Enable Automatic startup for services]
   # [#Enable_Services Enable Services]
@@ -98,7 +98,7 @@ Installing the Groupwse and Calendar connectors creates an interface by which th
 
 Updating the components of Microsoft Exchange in the previous step may have overwritten some changes made by service packs, you will need to reinstall the latest Microsoft Exchange 2003 Service Pack.
 
-_NOTE: For information on applying hotfixes and patches to Exchange, refer to http://support.microsoft.com/kb/328839_.
+_NOTE: For information on applying hotfixes and patches to Exchange, refer to http://support.microsoft.com/kb/328839
 
  * 3.3.1. Download Exchange Server 2003 Service Pack 2 (or later) from http://technet.microsoft.com/en-us/exchange/bb288486.aspx
  * 3.3.2. Run the installer.
@@ -217,7 +217,6 @@ Enter the DNS or IP addresses and ports of your company's web proxy(s). For exam
  * 5.1.11. Set gdata.domain to your Google Apps domain. For example: acme.com.
  * 5.1.12. Check your configuration against the following checklist:
 
-
 || Configuration Key || Description || Default Value ||
 ||general.baseDirectory || This setting defines the base directory where the Google Calendar Connector Plug-In is installed. This is also the API Share Path where the Exchange connector expects to find the API_IN and API_OUT folders. For example: general.baseDirectory=C:\\Program Files\\Google\\Google Calendar Connector Plug-In || C:\\Program Files\\Google\\Google Calendar Connector Plug-In ||
 || general.logFile || This setting defines the path and file name for the Google Calendar Connector Plug-In log file. For example: general.logFile=c:\\Google\\logs\\Plugin.log || C:\\Google\\logs\\Google Calendar Connector Plug-In.log ||
@@ -232,8 +231,7 @@ Enter the DNS or IP addresses and ports of your company's web proxy(s). For exam
 || fbfix.timeout || Specifies the number of seconds before the fbfix.command is killed. For Example: fbfix.timeout=60 || 60 ||
 || fbfix.frequency || Specifies the interval in seconds at which the Google Calendar Connector Plug-in will execute the fbfix.command. For Example: fbfix.frequency=1080 || 1080 ||
 || win.certname || This setting defines the name of the certificate in the user's Personal certificate store to be used for encryption of the passwords in the config.txt  This setting is typically the "Issued To" value or CN of the user who requested the certificate. For example: win.certname=pluginsvc || DISABLED ||
-
-
+ 
 === Define LDAP filters Optional ===
 
 An optional step in setting up the Google Calendar Connector Plug-In is specifying a whitelist or blacklist LDAP query in config.txt. This is useful if your organization has users who exist in both Active Directory and Google Apps. This feature allows you to control what accounts are imported into Exchange to support Exchange lookup of a Google Apps user's free/busy data.
@@ -381,11 +379,11 @@ Finally, we enable the free/busy lookup service.
 
 All necessary services should now be correctly installed and configured for Exchange users to see free/busy information for Google Apps users. This section is intended to verify the correct configuration and functioning of your deployment.
 
- * 6.1 [#Execute_SelfTest Execute SelfTest]
- * 6.2 [#Review_the_output_of_Selftest Review the output of SelfTest]
+ * 6.1 [#Execute_Selftest Execute Selftest]
+ * 6.2 [#Review_the_output_of_Selftest Review the output of Selftest]
  * 6.3 [#Verify_Calendar_Look_up Verify Calendar Look up]
 
-First, we will independently run SelfTest.exe, an automated testing script that verifies:
+First, we will independently run Selftest.exe, an automated testing script that verifies:
 
  * Java 6 Update 2 or later is installed correctly
  * The API Gateway Share Path is accessible
@@ -394,20 +392,20 @@ First, we will independently run SelfTest.exe, an automated testing script that 
  * If defined, the LDAP query and filter complete successfully.
  * Config.txt contains the correct configuration information to complete the above tests successfully.
 
-_*Note: !SelfTest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
+_*Note: !Selftest.exe will not be able to confirm that you have configured Microsoft Exchange and the Groupwse connector correctly*_. 
 
 Next, we will use Microsoft Outlook to complete an end-to-end verification test by creating a new appointment and inviting Google Apps users to attend. Along the way, we will view their Google Apps free/busy information from within Microsoft Outlook.
 
 === Execute Selftest ===
 
- * 6.1.1 Open a command line and navigate to the C:\Program Files\Google\Google Calendar Connector Plug-In\bin directory with SelfTest.exe
- * 6.1.2 Execute SelfTest.exe from within the command line.
+ * 6.1.1 Open a command line and navigate to the C:\Program Files\Google\Google Calendar Connector Plug-In\bin directory with Selftest.exe
+ * 6.1.2 Execute Selftest.exe from within the command line.
  
- == Review the output of SelfTest ==
+ == Review the output of Selftest ==
 
-If you see the final output line: "All tests passed you're good to go :-)", !SelfTest.exe has completed successfully. A sample execution of !SelfTest.exe has been included below for comparison.
+If you see the final output line: "All tests passed you're good to go :-)", !Selftest.exe has completed successfully. A sample execution of !Selftest.exe has been included below for comparison.
 {{{
-  C:\Program Files\Google\Google Calendar Connector Plug-in\bin>SelfTest.exe
+  C:\Program Files\Google\Google Calendar Connector Plug-in\bin>Selftest.exe
   ResourceManager resource configuration:
   - Resource category: JAVA
   - Current directory: C:\Program Files\Google\Google Calendar Connector Plug-in\bin\
@@ -421,7 +419,7 @@ If you see the final output line: "All tests passed you're good to go :-)", !Sel
   - Property: javaproperty_name_0=<config>
   - Property: javaproperty_value_0=<config.txt>
   - Property: jvmsearch=<registry;javahome;jrepath;jdkpath;exepath;jview>
-  - Property: mainclassname=<com.google.calendar.interoperability.connectorplugin.SelfTest>
+  - Property: mainclassname=<com.google.calendar.interoperability.connectorplugin.Selftest>
   - Property: maxheap=<134217728>
   - Property: maxversion=<>
   - Property: minversion=<1.6>
@@ -444,7 +442,7 @@ If you see the final output line: "All tests passed you're good to go :-)", !Sel
   - Trying registry: <C:\Program Files\Java\jre1.6.0_05><C:\Program Files\Java\jre1.6.0_05\bin\client\jvm.dll><1.6.0>
   Created temporary filename to hold the jar (C:\DOCUME~1\ADMINI~1.1BO\LOCALS~1\Temp\2\temp3.jar)
   NO JNI SMOOTH ID !!
-  COMMAND: <"C:\Program Files\Java\jre1.6.0_05\bin\java.exe" -Xmx134217728 -Xms67108864 "-Dconfig"="config.txt" -classpath "C:\DOCUME~1\ADMINI~1.1BO\LOCALS~1\Temp\2\temp3.jar;" com.google.calendar.interoperability.connectorplugin.SelfTest >
+  COMMAND: <"C:\Program Files\Java\jre1.6.0_05\bin\java.exe" -Xmx134217728 -Xms67108864 "-Dconfig"="config.txt" -classpath "C:\DOCUME~1\ADMINI~1.1BO\LOCALS~1\Temp\2\temp3.jar;" com.google.calendar.interoperability.connectorplugin.Selftest >
   Started successfully
   Loading configuration...
   ... Done
@@ -568,7 +566,7 @@ Encryption is accomplished by using a user account enrolled with a user certific
  * 8.6.10 Review the config.txt in the bin folder in the path defined by general.baseDirectory option to verify the passwords are now displayed as encrypted lines and contain =-MS- to signify password encryption, not obfuscation.
 
 == 9 Troubleshooting ==
- * Run !SelfTest.exe to verify the Google Calendar Connector Plug-In settings are working.
+ * Run !Selftest.exe to verify the Google Calendar Connector Plug-In settings are working.
  * Run !FreeBusyBuilder.exe from the command line and verify it is seeing the Google Apps contacts properly and updating the free/busy store.
  _*NOTE: If you are using password encryption you must run the Selftest.exe as the user account which contains the "User" certificate*_. 
 
