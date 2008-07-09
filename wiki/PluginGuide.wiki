@@ -23,7 +23,7 @@ Contents
    # [#Install_Plugin_as_a_service Install Plugin as a service]
    # [#Test_configuration_with_Exchange_gwrouter Test configuration with Exchange gwrouter]
    # [#Start_Connector_for_Novell_GroupWise Start Connector for Novell GroupWise]
-   # [#Start_Router_for_Novell Start Router for Novell GroupWise]
+   # [#Start_Router_for_Novell_GroupWise Start Router for Novell GroupWise]
    # [#Force_an_initial_synchronization Force an initial synchronization]
    # [#Start_the_Microsoft_Calendar_Connector_service Start the Microsoft Calendar Connector service]
  # [#6_Installation_Success Installation Success]
