@@ -37,8 +37,18 @@ namespace GCalExchangeLookup
 {
     public partial class Diagnostics : System.Web.UI.Page
     {
+        protected void verifyAllowed()
+        {
+            if (ConfigCache.RequireDiagnosticsLocalAccess && !Request.IsLocal)
+            {
+                throw new HttpException(403, "Diagnostics only available on local machine");
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             LabelAppsDomainName.Text = ConfigCache.GoogleAppsDomain;
             LabelAppsUser.Text = ConfigCache.GoogleAppsLogin;
 
@@ -62,6 +72,8 @@ namespace GCalExchangeLookup
 
         protected void ButtonQueryGCalFB_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             try
             {
                 EventFeed feed =
@@ -91,6 +103,8 @@ namespace GCalExchangeLookup
 
         protected void ButtonLdapQuery_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             try
             {
                 ExchangeUserDict users =
@@ -138,12 +152,16 @@ namespace GCalExchangeLookup
 
         protected void EncryptSettings_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
             ConfigCache.EncryptAppSettings(config);
         }
 
         protected void ButtonQueryExchFB_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             try
             {
                 ExchangeUserDict users =
@@ -193,6 +211,8 @@ namespace GCalExchangeLookup
 
         protected void ButtonWriteExchAppt_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             try
             {
                 ExchangeTester.WriteAppointment(TextBoxExchWriterEmail.Text, DateUtil.NowUtc);
@@ -210,6 +230,8 @@ namespace GCalExchangeLookup
 
         protected void ButtonWriteFreeBusy_Click(object sender, EventArgs e)
         {
+            verifyAllowed();
+
             try
             {
                 ExchangeTester.WriteFreeBusyMessage(TextBoxFreeBusyName.Text);

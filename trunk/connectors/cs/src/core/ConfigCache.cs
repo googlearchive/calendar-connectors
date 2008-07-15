@@ -165,6 +165,12 @@ namespace Google.GCalExchangeSync.Library
             GetBooleanSetting("WebService.DefaultGoogleCalendarSSL", "false");
 
         /// <summary>
+        /// Only allow access to the Diagnostic page from localhost
+        /// </summary>
+        public static readonly bool RequireDiagnosticsLocalAccess =
+            GetBooleanSetting("WebService.RequireLocalAccessforDiagnostics", "true");
+
+        /// <summary>
         /// Directory to write Google Calendar tracing to
         /// </summary>
         public static readonly string GCalLogDirectory = GetGCalLogDirectory();
