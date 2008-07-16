@@ -5,7 +5,7 @@ How To Build Google Calendar Connectors
 == Building Google Calendar Connector Web / Sync Service==
 
 === Prerequisites ===
-  * Visual Studio 2005 SP1(or later)
+  * Visual Studio 2005 SP1 (or later)
   * Install NUnit for running unit tests
   * Install Microsoft .NET Runtime 2.x
   
