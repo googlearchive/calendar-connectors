@@ -167,4 +167,4 @@
 * I get the message: "Although this page is encrypted, the information you have entered is
 to be sent over an unencrypted connection and could easily be read by a third party. Are you sure you want to continue sending this information?" How can I fix this?
 
- This is due to the fact your are accessing Google Caendar vis HTTPS and the URL defined for your Google Calendar Connector Web service is HTTP. When you enter the e-mail address to look up free/busy data, Google Calendar will send an HTTP or HTTPS request to the URL you defined as your web service URL. Since your URL is configured for HTTP and not HTTPS the browser will notify you are submitting and unencrypted request from a secure page. 
+ This is due to the fact your are accessing Google Calendar via HTTPS and the URL defined for your Google Calendar Connector Web service is HTTP. When you enter the e-mail address to look up free/busy data, Google Calendar will send an HTTP or HTTPS request to the URL you defined as your web service URL. Since your URL is configured for HTTP and not HTTPS the browser will notify you are submitting and unencrypted request from a secure page. 
