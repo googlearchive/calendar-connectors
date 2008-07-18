@@ -8,7 +8,7 @@ v1.2 []
 * FEATURE: The Exchange FB for the GCalendar users now has tentative.
 * BUG FIX: Various performance optimizations.
 * BUG FIX: Small tweaks to the diagnostics page
-* BUG FIX: Diagnosics page is only available from (can be disabled in .config)
+* BUG FIX: Diagnosics page is only available from localhost (can be disabled in .config)
 
 v1.1 [14-May-2008]
 ------------------
