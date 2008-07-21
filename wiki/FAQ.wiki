@@ -30,6 +30,32 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 * What is the Google Calendar Connector Web Service URL? *
   * This is the url that Google Calendar posts the free/busy lookup requests to get Exchange user free/busy data. (i.e. https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx). This URL must be defined in your Google Apps domain before Google Calendar can retrieve Exchange free/busy data. 
 
+
+* How do I register a Google Calendar Connector Web Service URL? *
+
+ As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
+
+To have your Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
+
+ * Use the Contact us online link that can be found in your Google Apps control panel Domain Settings | Account Information | Admin support
+ * Select the button: "If you issue is not covered above, report it via email"
+
+Complete the support request form:
+
+ ** Problem you're having: Enabling or verifying services
+ ** Brief Summary: Please enable my domain for Calendar interoperability with Exchange.  
+ ** Full Description:
+
+I would like to have my Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange.
+
+Here are the configuration details you need: 
+ # Google Apps Domain Name to enable service on: for example: acme.com
+ # Google Calendar Connector Web Service URI: for example:  https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Refer to the project FAQ for more details)
+ # Google Calendar Connector Web Service Domain Name value: for example: acme.com (Refer to the project FAQ for more details)
+
+Customer PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
+Support PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
+
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
   * There is a setting !SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
