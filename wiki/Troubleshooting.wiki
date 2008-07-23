@@ -162,7 +162,7 @@
 
  Some browsers do not always properly set the referrer header. We use the referrer header to know if you are using Google Calendar via HTTP or HTTPS. By default if no referrer header is found we use the HTTP as the default URL for Google Calendar. 
 
- If your Google Apps Domain is configured to always use HTTPS and the browser is not setting the referrer header the data will not be posted back to Google Calendar properly. To work around this problem you can force the Web Service to always post to HTTPS Google Calendar URL by adding the following property to the web.config file: `<add key="WebService.DefaultGoogleCalendarSSL" value="TRUE"/>`.
+ If your Google Apps Domain is configured to always use HTTPS and the browser is not setting the referrer header the data will not be posted back to Google Calendar properly. To work around this problem you can force the Web Service to always post to HTTPS Google Calendar URL by adding the following property to the web.config file: `<add key="WebService.DefaultGoogleCalendarSSL" value="True"/>`.
 
 * I get the message: "Although this page is encrypted, the information you have entered is
 to be sent over an unencrypted connection and could easily be read by a third party. Are you sure you want to continue sending this information?" How can I fix this?
