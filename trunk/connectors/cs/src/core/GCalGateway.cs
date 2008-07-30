@@ -70,7 +70,7 @@ namespace Google.GCalExchangeSync.Library
             log4net.LogManager.GetLogger(typeof(ConnectionThrottle));
 
         private int delay = 0;
-        private int minDelay = 1;
+        private int minDelay = 1000;
         private int maxDelay = 30 * 65536;
         private int multiplier = 2;
         private object lockObject = new object();
