@@ -33,7 +33,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 * How do I register a Google Calendar Connector Web Service URL? *
 
- As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
+ As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Apps Support. Google Apps Support will ensure your domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
 
   To have your Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
 
