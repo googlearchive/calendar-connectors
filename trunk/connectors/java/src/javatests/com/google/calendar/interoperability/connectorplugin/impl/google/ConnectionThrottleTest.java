@@ -91,21 +91,22 @@ public class ConnectionThrottleTest extends TestCase {
     testObject.setMaxRequestsPerSecond(3);
     final int[][] errorsAndDelays = {
         {0, 1000, 3},
-        {1, 1000, 3},
-        {2, 30000, 1},
-        {3, 30000, 1},
-        {4, 60000, 1},
-        {5, 60000, 1},
-        {6, 120000, 1},
-        {7, 120000, 1},
-        {8, 300000, 1},
-        {9, 300000, 1},
-        {10, 1500000, 1},
-        {11, 1500000, 1},
-        {12, 3000000, 1},
-        {13, 3000000, 1},
-        {-1, 3000000, 1},
-        {1000000000, 3000000, 1},
+        {1, 10, 1},
+        {2, 20, 1},
+        {3, 40, 1},
+        {4, 80, 1},
+        {5, 160, 1},
+        {6, 320, 1},
+        {7, 640, 1},
+        {8, 1280, 1},
+        {9, 2560, 1},
+        {10, 5120, 1},
+        {11, 10240, 1},
+        {12, 20480, 1},
+        {13, 40960, 1},
+        {14, 40960, 1},
+        {-1, 40960, 1},
+        {1000000000, 40960, 1},
     };
     for(int[] testCase : errorsAndDelays) {
       testObject.numErrors = testCase[0];
@@ -136,24 +137,16 @@ public class ConnectionThrottleTest extends TestCase {
     assertEquals(2, testObject.queue.size());
     assertEquals(1, testObject.queue.peek().getDelay(TimeUnit.SECONDS));
 
-    // Neither should the first failure    
-    testObject.reportFailure();
-    assertEquals(2, testObject.queue.size());
-    assertEquals(1, testObject.queue.peek().getDelay(TimeUnit.SECONDS));
-
-    // The second failure should shrink the queue to 1 and increase the timeout     
+    // The first failure should shrink the queue to 1 and modify the timeout     
     testObject.reportFailure();
     assertEquals(1, testObject.getTargetQueueSize());
     assertEquals(1, testObject.queue.size());
-    assertEquals(30, testObject.queue.peek().getDelay(TimeUnit.SECONDS));
-    testObject.reportFailure();
-    assertEquals(1, testObject.queue.size());
-    assertEquals(30, testObject.queue.peek().getDelay(TimeUnit.SECONDS));
-    testObject.reportFailure();
+    assertEquals(10, testObject.queue.peek().getDelay(TimeUnit.MILLISECONDS));
 
-    // The fourth failure should increase the timeout        
+    // The second failure should increase the timeout        
+    testObject.reportFailure();
     assertEquals(1, testObject.queue.size());
-    assertEquals(60, testObject.queue.peek().getDelay(TimeUnit.SECONDS));
+    assertEquals(20, testObject.queue.peek().getDelay(TimeUnit.MILLISECONDS));
     
     // Another success should get the queue into the original state...
     testObject.reportSuccess();
@@ -215,9 +208,9 @@ public class ConnectionThrottleTest extends TestCase {
     }
     assertEquals(1, testObject.queue.size());
     
-    // The "standard" delay is now 120 milliseconds, but that does not mean
+    // The "standard" delay is now 320 milliseconds, but that does not mean
     // that the regular delay should be...
-    assertEquals(120000, testObject.getDelayInMillis());
+    assertEquals(320, testObject.getDelayInMillis());
     for(int i = 0; i < 100; i++) {
       long time = testObject.queue.peek().getDelay(TimeUnit.MILLISECONDS);
       assertTrue(time > 0);
