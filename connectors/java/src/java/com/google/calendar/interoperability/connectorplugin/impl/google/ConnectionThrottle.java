@@ -38,8 +38,10 @@ class ConnectionThrottle {
   // List of Tuples <x,y>. If x or more consecutive requests fail,
   // wait for about y seconds (+/- randomTime) before retrying anything
   private static final List<Tuple<Integer>> escalationScale = 
-    Lists.immutableList(of(2, 30), of(4, 60), of(6, 120), of(8, 300), 
-                        of(10, 1500), of(12, 3000));
+    Lists.immutableList(
+        of(1, 10), of(2, 20), of(3, 40), of(4, 80), of(5, 160),
+        of(6, 320), of(7, 640), of(8, 1280), of(9, 2560), of(10, 5120),
+        of(11, 10240), of(12, 20480), of(13, 40960));
   
   private static final Logger LOGGER = 
     Logger.getLogger(ConnectionThrottle.class.getName());
@@ -119,14 +121,14 @@ class ConnectionThrottle {
   int getDelayInMillis() {
     final int border = numErrors;
     if (border < 0) { // possible integer overflow
-      return escalationScale.get(escalationScale.size() - 1).second * 1000;
+      return escalationScale.get(escalationScale.size() - 1).second;
     }
     int result = 1000;
     for(Tuple<Integer> entry : escalationScale) {
       if (entry.first > border) {
         return result;
       }
-      result = entry.second * 1000;
+      result = entry.second;
     }
     return result;
   }
