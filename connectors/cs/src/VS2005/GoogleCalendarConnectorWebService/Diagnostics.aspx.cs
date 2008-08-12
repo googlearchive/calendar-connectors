@@ -68,6 +68,8 @@ namespace GCalExchangeLookup
 
             Response.Cache.SetNoStore();
             Response.Expires = 0;
+
+            Encrypt.Attributes["onclick"] = "return confirmEncrypt();";
         }
 
         protected void ButtonQueryGCalFB_Click(object sender, EventArgs e)
