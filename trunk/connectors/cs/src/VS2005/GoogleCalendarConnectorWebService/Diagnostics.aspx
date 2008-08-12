@@ -28,8 +28,46 @@
     .verified { background-color: #D1FFCE; }
     .failed { background-color: #FFA4A0; }
     </style>
+    <script language="javascript">
+      function isEnterKeypress(event)
+      {
+        var key;
+        if (window.event)
+          key = window.event.keyCode;
+        else if (event)
+          key = event.which;
+        else
+          return false;
+
+        return key == 13;
+      }
+
+      function blockEnterKey(event)
+      {
+        return !isEnterKeypress(event);
+      }
+
+      function submitOnEnterKey(event, buttonId) {
+        if (isEnterKeypress(event))
+          document.getElementById(buttonId).click();
+      }
+
+      var encryptionWarning =
+          "This will encrypt the entire appSettings node of the XML\n" +
+          "configuration file, rendering it unreadable. The process is\n" +
+          "irreversible, so once the file is encrypted you can no longer\n" +
+          "change any of the application settings. For this reason, it is\n" +
+          "recommended that you create a backup copy of the\n" +
+          "configuration file.\n" +
+          "\n" +
+          "Are you sure you want to encrypt your config settings now?";
+
+      function confirmEncrypt() {
+        return confirm(encryptionWarning);
+      }
+    </script>
   </head>
-<body>
+<body onkeydown="return blockEnterKey(event);">
   <h1>Google Calendar Connector Diagnostics</h1>
   <form id="form1" runat="server">
     <div>
@@ -56,7 +94,7 @@
     <asp:TableRow Runat="server" id="WebServiceLdap" CssClass="unverified">
       <asp:TableCell>
         <b>Verify users can be found in Active Directory</b><br />
-        <asp:TextBox ID="TextBoxLdapQuery" Text="(cn=*)" Columns="30" runat="server" />
+        <asp:TextBox ID="TextBoxLdapQuery" Text="(cn=*)" Columns="30" onkeydown="submitOnEnterKey(event, 'ButtonLdapQuery');" runat="server" />
         <asp:Button ID="ButtonLdapQuery" Text="Verify" runat="server" OnClick="ButtonLdapQuery_Click" CssClass="button" /><br />
         <div id="WebServiceLdapResultSummary"><b><asp:Label ID="LabelLdapSummary" Runat="server">Not verified</asp:Label></b></div>
         <div id="WebServiceLdapResultDetail"><asp:Label ID="LabelLdapDetail" Runat="server">Not verified</asp:Label></div>
@@ -65,7 +103,7 @@
     <asp:TableRow Runat="server" id="WebServiceFreeBusy" CssClass="unverified">
       <asp:TableCell>
         <b>Verify Free / Busy information can be found in Exchange (+/- 7 days)</b><br />
-        <asp:TextBox ID="TextBoxQueryExchEmail" Text="ExchangeUser@example.com" Columns="30" runat="server" />
+        <asp:TextBox ID="TextBoxQueryExchEmail" Text="ExchangeUser@example.com" Columns="30" onkeydown="submitOnEnterKey(event, 'ButtonQueryExchFB');" runat="server" />
         <asp:Button ID="ButtonQueryExchFB" Text="Verify" runat="server" CssClass="button" OnClick="ButtonQueryExchFB_Click" /><br />
         <div id="WebServiceFBResultSummary"><b><asp:Label ID="LabelExchFBSummary" Runat="server">Not verified</asp:Label></b></div>
         <div id="WebServiceFBResultDetail"><asp:Label ID="LabelExchFBDetail" Runat="server"></asp:Label></div>
@@ -78,7 +116,7 @@
     <asp:TableRow Runat="server" id="SyncServiceFreeBusy" CssClass="unverified">
       <asp:TableCell>
         <b>Verify Free / Busy information can be found in Google Calendar (+/- 7 Days)</b><br />
-        <asp:TextBox ID="TextBoxQueryGCalEmail" Text="GoogleUser@example.com" Columns="30" runat="server" />
+        <asp:TextBox ID="TextBoxQueryGCalEmail" Text="GoogleUser@example.com" Columns="30" onkeydown="submitOnEnterKey(event, 'ButtonQueryGCalFB');" runat="server" />
         <asp:Button ID="ButtonQueryGCalFB" Text="Verify" runat="server" OnClick="ButtonQueryGCalFB_Click" CssClass="button" /><br />
         <div id="SyncServiceQueryGCalFBSummary"><b><asp:Label ID="LabelGCalFBSummary" Runat="server">Not verified</asp:Label></b></div>
         <div id="SyncServiceQueryGCalFBDetail"><asp:Label ID="LabelGCalFBDetail" Runat="server"></asp:Label></div>
@@ -87,7 +125,7 @@
     <asp:TableRow Runat="server" id="SyncServiceWriteAppointment" CssClass="unverified">
       <asp:TableCell>
         <b>Verify Appointment can be written to Exchange</b><br />
-        <asp:TextBox ID="TextBoxExchWriterEmail" Text="ExchangeUser@example.com" Columns="30" runat="server" />
+        <asp:TextBox ID="TextBoxExchWriterEmail" Text="ExchangeUser@example.com" Columns="30" onkeydown="submitOnEnterKey(event, 'ButtonWriteExchAppt');" runat="server" />
         <asp:Button ID="ButtonWriteExchAppt" Text="Verify" runat="server" CssClass="button" OnClick="ButtonWriteExchAppt_Click" /><br />
         <div id="SyncServiceWriteAppointmentSummary"><b><asp:Label ID="LabelWriteAppointmentSummary" Runat="server">Not verified</asp:Label></b></div>
         <div id="SyncServiceWriteAppointmentDetail"><asp:Label ID="LabelWriteAppointmentDetail" Runat="server"></asp:Label></div>
@@ -96,7 +134,7 @@
     <asp:TableRow Runat="server" id="SyncServiceWriteFreeBusy" CssClass="unverified">
       <asp:TableCell>
         <b>Verify Free/Busy can be written to Exchange</b><br />
-        <asp:TextBox ID="TextBoxFreeBusyName" Text="ExchangeUser@example.com" Columns="30" runat="server" />
+        <asp:TextBox ID="TextBoxFreeBusyName" Text="ExchangeUser@example.com" Columns="30" onkeydown="submitOnEnterKey(event, 'ButtonWriteFreeBusy');" runat="server" />
         <asp:Button ID="ButtonWriteFreeBusy" Text="Verify" runat="server" CssClass="button" OnClick="ButtonWriteFreeBusy_Click" /><br />
         <div id="SyncServiceWriteFreeBusySummary"><b><asp:Label ID="LabelWriteFreeBusySummary" Runat="server">Not verified</asp:Label></b></div>
         <div id="SyncServiceWriteFreeBusyDetail"><asp:Label ID="LabelWriteFreeBusyDetail" Runat="server"></asp:Label></div>
