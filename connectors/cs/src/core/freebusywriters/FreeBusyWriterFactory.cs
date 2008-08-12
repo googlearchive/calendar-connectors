@@ -33,13 +33,13 @@ namespace Google.GCalExchangeSync.Library
         {
             IFreeBusyWriter writer = null;
 
-            switch ( ConfigCache.FreeBusyWriter )
+            switch ( ConfigCache.FreeBusyWriter.ToUpperInvariant() )
             {
                 default:
-                case "SchedulePlus":
+                case "SCHEDULEPLUS":
                     writer = new SchedulePlusFreeBusyWriter();
                     break;
-                case "Appointment":
+                case "APPOINTMENT":
                     writer = new AppointmentWriter();
                     break;
             }
