@@ -61,9 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\core\GCalSyncProcess.cs">
-      <Link>GCalSyncProcess.cs</Link>
-    </Compile>
     <Compile Include="..\..\webservice\WebAppConfigureAction.cs">
       <Link>WebAppConfigureAction.cs</Link>
       <SubType>Component</SubType>
