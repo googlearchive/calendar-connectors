@@ -258,7 +258,7 @@ namespace Google.GCalExchangeSync.Library
 
         private static bool GetBooleanSetting(string setting, string defaultValue)
         {
-            return (ConfigurationManager.AppSettings[setting] ?? defaultValue) == "true";
+            return (ConfigurationManager.AppSettings[setting] ?? defaultValue).ToUpperInvariant() == "TRUE";
         }
 
         private static int GetIntegerSetting(string setting, string defaultValue)
