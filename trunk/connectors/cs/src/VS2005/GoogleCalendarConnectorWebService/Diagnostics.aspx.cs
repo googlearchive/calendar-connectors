@@ -239,7 +239,7 @@ namespace GCalExchangeLookup
                 ExchangeTester.WriteFreeBusyMessage(TextBoxFreeBusyName.Text);
                 LabelWriteFreeBusySummary.Text = "Verified";
                 SyncServiceWriteFreeBusy.CssClass = "verified";
-                LabelWriteFreeBusyDetail.Text = string.Format("Wrote Appointment Info for {0}", TextBoxFreeBusyName.Text);
+                LabelWriteFreeBusyDetail.Text = string.Format("Wrote Free/Busy Info for {0}", TextBoxFreeBusyName.Text);
             }
             catch (Exception ex)
             {
