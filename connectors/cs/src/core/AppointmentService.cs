@@ -129,7 +129,7 @@ namespace Google.GCalExchangeSync.Library
         /// <param name="appointments">The appointments to update</param>
         public virtual void UpdateAppointments(ExchangeUser user, List<Appointment> appointments)
         {
-            string userMailbox = ExchangeUtil.GetMailboxUrl(exchangeServerUrl, user.AccountName);
+            string userMailbox = ExchangeUtil.GetDefaultCalendarUrl(exchangeServerUrl, user.AccountName);
 
             try
             {
