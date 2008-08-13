@@ -99,8 +99,22 @@ namespace Google.GCalExchangeSync.Tests.Diagnostics
             SchedulePlusFreeBusyWriter writer =
                 new SchedulePlusFreeBusyWriter();
 
-            string userFreeBusyUrl = FreeBusyUrl.GenerateUrl(
-                ConfigCache.ExchangeFreeBusyServerUrl, ConfigCache.AdminServerGroup, commonName);
+            ExchangeUserDict users = QueryFreeBusy(commonName);
+            if (users.Count < 1)
+            {
+                string msg = string.Format("User {0} not found", commonName);
+                throw new Exception(msg);
+            }
+
+            if (users.Count > 1)
+            {
+                string msg = string.Format("More than one user matches {0}", commonName);
+                throw new Exception(msg);
+            }
+
+            string userFreeBusyUrl = FreeBusyUrl.GenerateUrlFromDN(
+                ConfigCache.ExchangeFreeBusyServerUrl,
+                users[commonName].LegacyExchangeDN);
 
             List<string> emtpyList = new List<string>();
             string nowMinus30Days =
