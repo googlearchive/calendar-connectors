@@ -24,23 +24,6 @@ namespace Google.GCalExchangeSync.Library.Util
     public class ExchangeUtil
     {
         /// <summary>
-        /// Returns the mailbox of the current user on the exchange server
-        /// </summary>
-        /// <param name="exchangeServer">The exchange server to use</param>
-        /// <param name="user">The user to get the mailbox URL for</param>
-        /// <returns>The Mailbox URL for the user</returns>
-        public static string GetMailboxUrl(string exchangeServer, string user)
-        {
-            if ( user.Contains( "@" ) )
-            {
-                string[] tokens = user.Split( '@' );
-                user = tokens[ 0 ];
-            }
-
-            return string.Format("{0}/exchange/{1}", exchangeServer, user);
-        }
-
-        /// <summary>
         /// Get the default calendar URL for the user
         /// </summary>
         /// <param name="exchangeServer">Exchnage Server to use</param>
