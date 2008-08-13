@@ -162,7 +162,7 @@ namespace Google.GCalExchangeSync.Library
         /// Default SSL setting for Google Calendar
         /// </summary>
         public static readonly bool DefaultGCalSSL =
-            GetBooleanSetting("WebService.DefaultGoogleCalendarSSL", "false");
+            GetBooleanSetting("WebService.DefaultGoogleCalendarSSL", "true");
 
         /// <summary>
         /// Only allow access to the Diagnostic page from localhost
