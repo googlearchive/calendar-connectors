@@ -300,6 +300,17 @@ namespace Google.GCalExchangeSync.Library.Util
         }
 
         /// <summary>
+        /// Determine whether a Google Calendar Event is transparent
+        /// </summary>
+        /// <param name="googleAppsEvent">The Google Calendar event</param>
+        /// <returns>True if the event is transparent</returns>
+        public static bool GoogleEventIsTransparent(EventEntry googleAppsEvent)
+        {
+            return SafeGetValue(googleAppsEvent.EventTransparency) ==
+                EventEntry.Transparency.TRANSPARENT_VALUE;
+        }
+
+        /// <summary>
         /// Convert a Google Calender attendee status to an Exchange status
         /// </summary>
         /// <param name="googleAppsEvent">The Google Calendar event</param>
@@ -382,6 +393,12 @@ namespace Google.GCalExchangeSync.Library.Util
 
             // If the meeting is cancelled, treat it as free time.
             if (meetingStatus == MeetingStatus.Cancelled)
+            {
+                return BusyStatus.Free;
+            }
+
+            // And if it's transparent, also treat it as free.
+            if (GoogleEventIsTransparent(googleAppsEvent))
             {
                 return BusyStatus.Free;
             }
