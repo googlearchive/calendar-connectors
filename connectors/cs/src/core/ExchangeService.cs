@@ -290,6 +290,11 @@ namespace Google.GCalExchangeSync.Library
 
                 foreach (ExchangeUser user in users.Values)
                 {
+                    // If the server gave us no data for a user, that's
+                    // fine.  We just skip the user.
+                    if (!freeBusyBlocks.ContainsKey(user))
+                        continue;
+
                     /* Retrieve the free busy blocks */
                     FreeBusy freeBusy = freeBusyBlocks[user];
 
