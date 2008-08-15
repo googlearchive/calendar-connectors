@@ -226,7 +226,7 @@ namespace Google.GCalExchangeSync.Library
         private CalendarService service;
         private static IConnectionThrottle connectionThrottler;
 
-        private static readonly string AgentIdentifier = "Google Calendar Connector Sync/1.0.0";
+        private static readonly string AgentIdentifier = "Google Calendar Connector Sync/1.2.0";
 
         /// <summary>
         /// Create a gateway for talking to Google Calendar
