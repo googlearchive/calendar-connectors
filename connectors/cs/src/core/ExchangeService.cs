@@ -271,7 +271,7 @@ namespace Google.GCalExchangeSync.Library
         public virtual void GetCalendarInfoForUser(ExchangeUser user, DateTimeRange window)
         {
             ExchangeUserDict users = new ExchangeUserDict();
-            users.Add(user.Email, user);
+            users.AddExchangeUser(user.Email, user);
 
             GetCalendarInfoForUsers(users, window);
         }
