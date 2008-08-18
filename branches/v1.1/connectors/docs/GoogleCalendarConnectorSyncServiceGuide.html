@@ -1,0 +1,1911 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+
+div, address, ol, ul, li, option, select { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+
+
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+  }
+
+  
+  *:first-child+html body {
+    min-height: 600px;
+  }
+
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    min-height: 1100px;
+    margin: 15px auto 25px !important;
+    padding: 40px 50px; 
+  }
+  /* IE6 */
+  * html.pageview body {
+    height: 1100px;
+    overflow-x: auto;
+  }
+  
+  
+}
+
+
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+a img {border: 0}
+
+.pb {height: 1px}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* end default css */
+
+
+  /* default print css */
+  
+  @media print {
+    body { 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+  }
+  /* end default print css */
+ 
+
+/* custom css */
+
+
+/* end custom css */
+
+
+
+  /* ui edited css */
+  
+  body {
+    font-family: Verdana;
+    
+    font-size: 10.0pt;
+    line-height: normal;
+    background-color: #ffffff;
+  }
+  /* end ui edited css */
+
+
+
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+
+
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+
+.editor .misspell {background-color: yellow}
+
+
+.editor .pb {
+  border-top: 1px dashed #C0C0C0; 
+  border-bottom: 1px dashed #C0C0C0
+}
+.editor .writely-comment {
+  font-size: 9pt; 
+  line-height: 1.4; 
+  padding: 1px; 
+  border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+</style>
+
+
+<base target="_top">
+
+</head>
+
+<body
+    
+    revision="ccp846z8_200mmdxcvdw:313">
+
+    
+    
+<a id=top name=top></a>
+<div id=header>
+  <div id=logo>
+    <span class=Apple-style-span id=knu50 style=FONT-SIZE:21px><b id=no500>Google
+    Calendar Connector Sync Service Installation and Configuration
+    Guide</b></span>
+  </div>
+</div>
+<div id=wrapper>
+  <div id=pagecontent>
+    <p id=lwjp2>
+      <br id=ioz60>
+    </p>
+    <p id=lwjp2>
+      The Google Calendar Connector Sync Service provides data flow from Google
+      Calendar. The Sync Service periodically polls Google Calendar for
+      free/busy data and appointment data<span id=writely-comment-id-chp25x7>,
+      which includes the name, place, and attendees</span> of events.<br id=nma40>
+    </p>
+    <p id=lwjp2>
+      <br id=nma41>
+    </p>
+    <p id=lwjp3>
+      This document provides detailed instructions for installing and
+      configuring the Google Calendar Connector Sync Service.
+    </p>
+    <h2 id=lwjp4>
+      Contents
+    </h2>
+    <ol class=toc id=lwjp5>
+      <li id=lwjp6>
+        <a href=#intro id=lwjp7>About This Document </a>
+        <ol class=toc id=lwjp8>
+          <li id=lwjp9>
+            <a href=#audience id=lwjp10 title=Audience>Audience</a>
+          </li>
+          <li id=lwjp11>
+            <a href=#information id=lwjp12 title="For More Information">For More
+            Information </a>
+          </li>
+        </ol>
+      </li>
+      <li id=lwjp13>
+        <a href=#before id=lwjp14>Before You Install </a>
+        <ol class=toc id=lwjp15>
+          <li id=lwjp16>
+            <a href=#prereq id=lwjp17>Prerequisites</a>
+          </li>
+          <li id=lwjp18>
+            <a href=#googleaccount id=lwjp19 title="Google Calendar Account Setup">Google
+            Calendar Account Setup</a>
+          </li>
+          <li id=lwjp20>
+            <a href=#usermap id=lwjp21>Exchange User Mapping</a>
+          </li>
+          <li id=lwjp22>
+            <a href=#accounts id=lwjp23>Dedicated Windows Service Accounts</a>
+          </li>
+          <li id=lwjp24>
+            <a href=#preinstallation id=lwjp25>Preinstallation Checklist</a>
+          </li>
+        </ol>
+      </li>
+      <li id=lwjp26>
+        <a href=#install id=lwjp27>Installing the Google Calendar Connector Sync
+        Service</a>
+      </li>
+      <ol class=toc id=lwjp5>
+        <li id=w0vk0>
+          <a href=#msiinstall id=gx5r title="MSI Installation">MSI
+          Installation</a>
+        </li>
+      </ol>
+      <li id=lwjp28>
+        <a href=#config id=lwjp29>Configuring the Google Calendar Connector Sync
+        Service </a>
+        <ol class=toc id=lwjp30>
+          <li id=lwjp31>
+            <a href=#editing id=lwjp32>Editing the Configuration File
+            </a><a href=# id=lwjp33></a>
+          </li>
+          <li id=lwjp34>
+            <a href=#encrypting id=lwjp35>Encrypting the Configuration
+            File</a><a href=#proxy id=lwjp40></a>
+          </li>
+          <li id=lwjp34>
+            <a href=#proxy id=lwjp40>HTTP Proxy Configuration (optional)</a>
+          </li>
+        </ol>
+      </li>
+      <li id=zerz0>
+        <a href=#success id=tqkp title="Installation Success">Installation
+        Success</a> <a href=#trouble id=lwjp42></a>
+      </li>
+      <ol class=toc id=lwjp5>
+        <li id=molp0>
+          <a href=#startservice id=w0cg title="Starting the Google Calendar Connector Sync Service">Starting
+          the Google Calendar Connector Sync Service</a>
+        </li>
+      </ol>
+      <li id=zerz1>
+        <a href=#trouble id=lwjp42>Testing and
+        Troubleshooting</a><a href=#diagnostics id=lwjp45></a>
+      </li>
+      <ol class=toc id=lwjp5>
+        <li id=zerz2>
+          <a href=#diagnostics id=lwjp45>Running Diagnostics
+          Test</a><a href=#logging id=lwjp47></a>
+        </li>
+        <li id=zerz3>
+          <a href=#logging id=lwjp47>Logging
+          Configuration</a><a href=#issues id=lwjp49></a>
+        </li>
+      </ol>
+      <li id=qp7i0>
+        <a href=#issues id=lwjp49>Known Issues</a><a href=#copy id=lwjp51></a>
+      </li>
+      <li id=qp7i1>
+        <a href=#copy id=lwjp51>Copyright Notices</a>
+      </li>
+    </ol>
+    <h1 id=lwjp55>
+      <a id=intro name=intro></a>1. About This Document
+    </h1>
+    <p id=lwjp56>
+      This section describes the audience for this document, the organization of
+      the material, and some additional sources of information.
+    </p>
+    <p id=lwjp56>
+      <br id=ljlv0>
+    </p>
+    <p id=iqt418>
+      The Google Calendar Connector Kit is a set of server-installed tools that
+      require knowledgeable&nbsp; installation and configuration, tailored to
+      the particulars of a customer's environment.&nbsp; These tools are only
+      the <b id=vfky0>technological</b> <b id=iwv.0>part</b> of the integration
+      experience.
+    </p>
+    <p id=iqt418>
+      <br id=k0wt0>
+    </p>
+    Before proceeding to install the Google Calendar Connector Sync Service,
+    please read and understand the important <b id=ljlv1>Security
+    Considerations</b> outlined in the <b id=ljlv2>Overview Guide</b>.
+    <h2 id=lwjp57>
+      <a id=audience name=audience></a>1.1 Audience
+    </h2>
+    <p id=lwjp58>
+      This document is for systems administrators tasked with setting up and
+      managing the Google Calendar Connector Sync Service. Users of this
+      documentation need to be familiar with Google Calendar administration,
+      Microsoft Exchange Server and Windows network administration.
+    </p>
+    <p id=lwjp58>
+      <br id=d0xh0>
+    </p>
+    It is important to note that this tool only represents part of a solution
+    for free/busy interoperability.<br id=gqld2>
+    <h2 id=lwjp59>
+      <a id=information name=information></a>1.2 For More Information
+    </h2>
+    <p id=lwjp60>
+      This document is part of the Google Calendar Connector document set, which
+      includes the following related documents:
+    </p>
+    <p id=lwjp60>
+      <br id=irmf0>
+    </p>
+    <ul id=lwjp61>
+      <li id=lwjp62>
+        <b id=lwjp63>Overview Guide</b>. Describes the components, process flow,
+        and security considerations for the connector.
+      </li>
+    </ul>
+    <br id=afl30>
+    <ul id=lwjp61>
+      <li id=lwjp64>
+        <b id=lwjp65>Web Service Installation and Configuration Guide</b>.
+        Provides instructions for installing and configuring the Web Service,
+        which provides Exchange free/busy data flow to Google Calendar.
+      </li>
+    </ul>
+    <br id=afl31>
+    <ul id=lwjp61>
+      <li id=lwjp66>
+        <b id=lwjp67>Plug-In Installation and Configuration Guide</b>. Provides
+        instructions for installing and configuring the Plug-In to provide
+        real-time free/busy data flow from Google Calendar to Exchange.
+      </li>
+    </ul>
+    <br id=afl32>
+    <p id=lwjp68>
+      For background or general information on Google Apps, see the
+      <a href=http://www.google.com/support/a/ id=lwjp69>Google Apps for
+      Administrators Help Center</a>.<br id=h67.0>
+    </p>
+    <p id=lwjp68>
+      <br id=h67.1>
+    </p>
+    <p id=lwjp70>
+      For background or general information on Windows administration, see
+      <a href=http://technet.microsoft.com id=lwjp71>Microsoft TechNet</a>.
+    </p>
+    <div id=tl_before>
+      <h1 id=lwjp72>
+        <a id=before name=before></a>2. Before You Install
+      </h1>
+      <p id=lwjp73>
+        Before you install and configure the connector, make sure your Windows
+        environment meets the prerequisites, and that your Google Calendar and
+        Exchange accounts are prepared for sharing data.
+      </p>
+      <div id=prereq>
+        <h2 id=lwjp74>
+          <a id=prereq name=prereq></a>2.1 Prerequisites
+        </h2>
+        <ul id=true>
+          <li id=f8og0>
+            A Google Apps Premier Edition domain
+          </li>
+        </ul>
+        <br id=ax7:2>
+        <p id=lwjp75>
+          To support the Sync Service, your Windows environment must meet these
+          prerequisites:
+        </p>
+        <ul id=lwjp76>
+          <li id=lwjp77>
+            Microsoft Advanced Server 2003
+          </li>
+          <li id=lwjp78>
+            Internet Information Services (IIS) 6.0
+          </li>
+          <li id=lwjp79>
+            Microsoft Exchange Server 2003 SP2
+          </li>
+          <li id=lwjp80>
+            ASP.NET 2.0 runtime
+          </li>
+        </ul>
+      </div>
+      <div id=gcal_setup>
+        <a id=t4-3 name=googleaccount></a>
+        <h2 id=lwjp82>
+          2.2 Google Calendar Account Setup
+        </h2>
+        <p id=lwjp83>
+          Create a dedicated Google Apps Administrator account and perform an
+          initial login. The user name and password are required later when you
+          populate the <code id=lwjp84>GoogleApps.AdminUser.Login</code> and <code id=lwjp85>Password </code>parameters in the configuration
+          process.&nbsp;<span class=Apple-style-span id=b8x40><i>NOTE: Before
+          this account can be used with the Sync service you must login to
+          Google Apps account and accept the standard terms of service agreement
+          for the user account.</i></span>
+        </p>
+      </div>
+      <div id=ex_usr_mapping>
+        <h2 id=lwjp86>
+          <a id=usermap name=usermap></a>2.3 Exchange User Mapping
+        </h2>
+        <p id=lwjp87>
+          Each Google Calendar user must have a corresponding mail-enabled
+          Active Directory user, contact object or mailbox-enabled user object.
+          Whether you choose to map Google Apps users to contact objects or user
+          objects depends upon whether you have chosen the AppointmentWriter or
+          SchedulePlus writer for synchronizing user data.<br id=svzc0>
+        </p>
+        <p id=lwjp87>
+          <br id=svzc1>
+        </p>
+        <p id=lwjp87>
+          See the <i id=svzc2>Overview Guide</i> for more information.<br id=x0rd0>
+        </p>
+        <p id=lwjp87>
+          <br id=x0rd1>
+        </p>
+        <p id=lwjp89>
+          For instructions on how to create a mail-enabled users, see the
+          Microsoft TechNet article,
+          <a href=http://technet.microsoft.com/en-us/library/bb125258.aspx id=lwjp90>
+          How to Create a New Mail-Enabled User</a>.<br id=x0rd2>
+        </p>
+        <p id=lwjp89>
+          <br id=x0rd3>
+        </p>
+        <p id=lwjp91>
+          For instructions on how to create an Active Directory contact, see the
+          Microsoft TechNet article,
+          <a href=http://technet.microsoft.com/en-us/library/aa995841.aspx id=lwjp92>
+          How to Create a Contact in Active Directory</a>.
+        </p>
+      </div>
+      <div id=ded_wusa>
+        <h2 id=lwjp93>
+          <a id=accounts name=accounts></a>
+        </h2>
+        <h2 id=ltsh88>
+          2.4 Dedicated Windows Service Accounts
+        </h2>
+        <p id=ltsh89>
+          The Sync Service requires dedicated Active Directory role accounts for
+          performing LDAP queries against Active Directory and performing
+          free/busy reads and writes against Exchange.<br id=nci40>
+        </p>
+        <p id=ltsh89>
+          <br id=nci41>
+        </p>
+        <p id=ltsh89>
+          Create these service accounts as described in this section, and
+          reference the user names and passwords when configuring the Sync
+          Service.
+        </p>
+        <p id=ltsh89>
+          <br id=k8fi0>
+        </p>
+        <p id=ltsh89>
+          The required service accounts are itemized below:<br id=c:2v0>
+        </p>
+        <h3 id=ltsh90>
+          Active Directory LDAP Query User
+        </h3>
+        <p id=ltsh91>
+          Create a dedicated user for performing Active Directory LDAP queries.
+          The user name and password are required later when you populate the
+          <code id=ltsh92>ActiveDirectory.DomainUser.Login</code> and <code id=ltsh93>Password </code>parameters in the Sync Service configuration file.<br id=bk7a0>
+        </p>
+        <h3 id=ltsh98>
+          Exchange Query Admin User
+        </h3>
+        <p id=ltsh99>
+          Create a dedicated user for the Sync Service to read and write
+          free/busy or appointments against Exchange. The user name and password
+          are required later when you populate <code id=ltsh100>Exchange.GCalQueryAdmin.Login</code> and <code id=ltsh101>Password</code> parameters in the
+          Sync Service configuration file.<br id=eoif0>
+        </p>
+        <p id=ltsh99>
+          <br id=eoif1>
+        </p>
+        <p id=ltsh102>
+          The <b id=ltsh103>Exchange Query Admin</b> user needs the
+          extended<b id=ltsh104> "Receive As" </b>permissions to be able to read
+          and write both free/busy and appointments in Exchange.
+        </p>
+        <p id=ltsh105>
+          <br id=polb0>
+        </p>
+        <p id=ltsh105>
+          To configure the permissions for the query admin user:
+        </p>
+        <p id=ltsh105>
+          <br id=polb1>
+        </p>
+        <ol id=ltsh106>
+          <li id=nv2h0>
+            <p id=nv2h1>
+              Start Registry Editor (regedit).
+            </p>
+            <p id=nv2h2>
+              Navigate to the following key: <tt id=nv2h3>HKEY_CURRENT_USER\Software\Microsoft\Exchange\ExAdmin</tt>
+            </p>
+          </li>
+          <li id=nv2h4>
+            <p id=nv2h5>
+              On the <b id=nv2h6>Edit</b> menu, click <b id=nv2h7>Add Value</b>,
+              and then add the following registry value:
+            </p>
+            <p id=nv2h8>
+              Value Name : <b id=nv2h9>ShowSecurityPage</b>
+            </p>
+            <p id=nv2h10>
+              Data Type : <b id=nv2h11>REG_DWORD</b>
+            </p>
+            <p id=nv2h12>
+              Value : <b id=nv2h13>1</b>
+            </p>
+          </li>
+          <li id=nv2h14>
+            <p id=nv2h15>
+              Close Registry Editor.
+            </p>
+          </li>
+          <li id=ltsh107>
+            Start the<span id=rop10><b id=nen71> Exchange System
+            Manager</b></span>.
+          </li>
+          <li id=ltsh107>
+            Right Click on your <span id=c-lq0><b id=nen72>Exchange Organization
+            Name</b></span> and select <span id=nv2h16><b id=nen73>Properties
+            </b></span>
+          </li>
+          <li id=ltsh108>
+            Select the <b id=vcei0>Security Tab</b><br id=myoa0>
+          </li>
+          <li id=ltsh108>
+            Click the <b id=km:70>Advanced</b> button
+          </li>
+          <li id=ltsh108>
+            Click <b id=km:71>Add</b><br id=gsjd0>
+          </li>
+          <li id=ltsh108>
+            In the <b id=gsjd1>Select Users, Computers, or Groups</b> dialog
+            enter the user name of the query admin user and click
+            <b id=ya7:0>OK</b><br id=ya7:1>
+          </li>
+          <li id=ltsh108>
+            Check the <b id=lkml0>Allow </b>box for the permission
+            <b id=lkml1>"Receive As"</b> and click <b id=f4:o0>OK</b>
+          </li>
+        </ol>
+        <h3 id=ltsh366>
+          Remounting the Exchange Information Stores<br id=gjur0>
+        </h3>
+        <p id=ltsh367>
+          The Exchange Information store caches permissions data. To flush the
+          cache immediately after setting new permissions, dismount and remount
+          the appropriate information store or restart the Information Store
+          service. Otherwise the changes will not take effect until Exchange
+          rebuilds the permissions cache.
+        </p>
+        <p id=ltsh368>
+          <br id=h8cs0>
+        </p>
+        <p id=ltsh368>
+          To dismount and remount the public folder store:
+        </p>
+        <ol id=ltsh369>
+          <li id=ltsh370>
+            Open Exchange System Manager<br id=mvmz0>
+          </li>
+          <li id=ltsh371>
+            In tree view, expand <b id=ltsh372>Administrative Groups</b>,
+            <i id=ltsh373>{Your Administrative Group}</i>,
+            <b id=ltsh374>Servers</b>,<i id=ltsh375>{Your local Exchange
+            server}</i>, and <i id=ltsh376>{Your Storage Group}</i>.
+          </li>
+          <li id=ltsh377>
+            Right click on the <b id=ltsh378>Public Folder Store</b>, select
+            <b id=ltsh379>Dismount Store</b> and click <b id=ltsh380>Yes</b> to
+            continue.
+          </li>
+          <li id=ltsh381>
+            Right click on the <b id=ltsh382>Public Folder Store</b>, select
+            <b id=ltsh383>Mount Store</b> and click <b id=ltsh384>Yes</b> at the
+            success message dialog.
+          </li>
+        </ol>
+        <p id=ltsh368>
+          <br id=l:s71>
+        </p>
+        <p id=ltsh368>
+          To restart the service Microsoft Exchange Information Store:
+        </p>
+        <ol id=ltsh369>
+          <li id=ltsh370>
+            Open the services.msc
+          </li>
+          <li id=ltsh371>
+            In right pane view, locate <span id=b3q40><b id=m4ji0>Microsoft
+            Exchange Information Store</b></span>, right click and select
+            <span id=b3q41><b id=m4ji1>Restart</b></span>
+          </li>
+        </ol>
+      </div>
+      <div id=preinstall_checklist>
+        <h2 id=lwjp130>
+          <a id=preinstallation name=preinstallation></a>2.5 Pre-Installation
+          Checklist
+        </h2>
+        <table border=1 cellpadding=3 cellspacing=1 id=lwjp131 width=700>
+          <tbody id=lwjp132>
+          <tr id=lwjp133>
+            <th id=lwjp134 scope=col>
+              Task
+            </th>
+            <th id=lwjp135 scope=col width=10%>
+              Completed?
+            </th>
+            <th id=lwjp136 scope=col>
+              Notes
+            </th>
+          </tr>
+          <tr id=lwjp137>
+            <td id=lwjp138>
+              Verify that Windows environment prerequisites are met
+            </td>
+            <td id=lwjp139>
+              &nbsp;
+            </td>
+            <td id=lwjp140>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp141>
+            <td id=lwjp142>
+              Create user mailboxes (Appointment writer) or contact objects
+              (SchedulePlus writer) for Google Apps users in Exchange.
+            </td>
+            <td id=lwjp143>
+              &nbsp;
+            </td>
+            <td id=lwjp144>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp145>
+            <td id=lwjp146>
+              Create dedicated Google Apps Sync Service user
+            </td>
+            <td id=lwjp147>
+              &nbsp;
+            </td>
+            <td id=lwjp148>
+              User name and password:
+            </td>
+          </tr>
+          <tr id=lwjp149>
+            <td id=lwjp150>
+              Create dedicated Active Directory user
+            </td>
+            <td id=lwjp151>
+              &nbsp;
+            </td>
+            <td id=lwjp152>
+              User name and password:
+            </td>
+          </tr>
+          <tr id=lwjp153>
+            <td id=lwjp154>
+              Create dedicated Exchange Query user
+            </td>
+            <td id=lwjp155>
+              &nbsp;
+            </td>
+            <td id=lwjp156>
+              User name and password:
+            </td>
+          </tr>
+          <tr id=lwjp157>
+            <td id=lwjp158>
+              Create dedicated Exchange Admin user
+            </td>
+            <td id=lwjp159>
+              &nbsp;
+            </td>
+            <td id=lwjp160>
+              User name and password:
+            </td>
+          </tr>
+          <tr id=lwjp161>
+            <td id=lwjp162>
+              Set Exchange permissions for Query and Admin users
+            </td>
+            <td id=lwjp163>
+              &nbsp;
+            </td>
+            <td id=lwjp164>
+              &nbsp;
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id=tl_install_gcc>
+      <h1 id=lwjp165>
+        <a id=install name=install></a>3. Installing the Google Calendar
+        Connector Sync Service
+      </h1>
+      <a id=gcq8 name=msiinstall></a>
+      <p id=lwjp166>
+        <span class=Apple-style-span id=q70.0 style=FONT-SIZE:19px><b id=y-1t0>3.1
+        MSI Installation</b></span>
+      </p>
+      <p id=lwjp166>
+        The installer for the Sync Service is provided in the installation
+        package file <i id=lwjp167>GoogleCalendarConnectorSyncService.msi</i>.<br id=xtjt0>
+      </p>
+      <p id=lwjp166>
+        <br id=xtjt1>
+      </p>
+      <p id=lwjp168>
+        To install the Sync Service:
+      </p>
+      <p id=lwjp168>
+        <br id=xtjt2>
+      </p>
+      <ol id=lwjp169>
+        <li id=lwjp170>
+          Locate and open the file
+          <i id=lwjp171>GoogleCalendarConnectorSyncService.msi</i>.
+        </li>
+        <li id=lwjp172>
+          In the welcome dialog, click <b id=lwjp173>Next</b>.
+        </li>
+        <li id=lwjp174>
+          In the <b id=lwjp175>Select Installation Folder</b> dialog, select the
+          desired folder or accept the default value.
+        </li>
+        <li id=lwjp176>
+          In the <b id=lwjp177>Select Installation Folder</b> dialog use the
+          radio buttons at the bottom of the dialog to determine whether to
+          install the service only for yourself, or for all users, and click
+          <b id=lwjp178>Next</b>.
+        </li>
+        <li id=lwjp179>
+          Click <b id=lwjp180>Next</b> to begin the installation, and then
+          <b id=lwjp181>Close</b> when the dialog displays the message
+          "Installation Complete".
+        </li>
+      </ol>
+    </div>
+    <div id=tl_config_gcc>
+      <h1 id=lwjp182>
+        <a id=config name=config></a>4. Configuring the Google Calendar Sync
+        Service
+      </h1>
+      <p id=lwjp183>
+        Configuration settings for the Sync Service are stored in the
+        configuration file
+        <i id=lwjp184>GoogleGCalExhangeSync.Service.exe.config</i>. You must
+        edit this file and enter values appropriate to your setup.
+      </p>
+      <div id=edit_config>
+        <h2 id=lwjp186>
+          <a id=editing name=editing></a>4.1 Editing the Configuration File
+        </h2>
+        <p id=lwjp187>
+          The configuration file
+          <i id=lwjp188>GoogleGCalExhangeSync.Service.exe.config</i> is located
+          in the installation directory for the sync service, by default
+          <i id=lwjp189>"C:\Program Files\Google\Google Calendar Connector Sync
+          Service"</i>. The "appSettings" section of
+          <i id=lwjp190>GoogleGCalExhangeSync.Service.exe.config</i> contains
+          configuration keys for setting up the Sync Service.
+        </p>
+        <p id=lwjp187>
+          <br id=n17j0>
+        </p>
+        <p id=lwjp191>
+          <b id=lwjp192>Note:</b> If you have already set up the Google Calendar
+          Connector Web Service in your environment, the Sync Service should use
+          most the same settings for the following subsections of appSettings:<br id=ruui0>
+        </p>
+        <p id=lwjp191>
+          <br id=ruui1>
+        </p>
+        <ul id=lwjp193>
+          <li id=lwjp194>
+            Active Directory
+          </li>
+          <li id=lwjp195>
+            Exchange
+          </li>
+          <li id=lwjp196>
+            Google Apps
+          </li>
+        </ul>
+        <br id=labf0>
+        <ul id=lwjp193>
+          <br id=jwdi0>
+        </ul>
+        <table border=1 bordercolor=#000000 cellpadding=1 cellspacing=0 id=lwjp197 width=700>
+          <tbody id=lwjp198>
+          <tr id=lwjp199 valign=top>
+            <th id=lwjp200>
+              Configuration Key
+            </th>
+            <th id=lwjp201>
+              Description
+            </th>
+            <th id=lwjp202>
+              Default Value
+            </th>
+          </tr>
+          <tr id=lwjp203 valign=top>
+            <td id=lwjp204>
+              Configuration.<br id=a94q0>
+              EncryptOnNextRun
+            </td>
+            <td id=lwjp205>
+              If set to “true”, the configuration file is automatically
+              encrypted the next time the application runs. See
+              <a href=#encrypting id=lwjp206>Encrypting the Configuration
+              File</a> for more information.<br id=lwjp207>
+              <br id=lwjp208>
+            </td>
+            <td id=lwjp209>
+              <code id=lwjp210>false</code>
+            </td>
+          </tr>
+          <tr id=lwjp211 valign=top>
+            <td id=lwjp212>
+              ActiveDirectory.<br id=a94q1>
+              DomainController
+            </td>
+            <td id=lwjp213>
+              Specify the fully qualified domain name of a domain controller for
+              your Windows Active Directory domain. This server is used for LDAP
+              queries to retrieve user login and Exchange user attributes. For
+              queries directly against a domain controller, prefix the machine
+              name with LDAP://. For queries against the Global Catalog, prefix
+              the machine name with GC://. For example:<br id=pyil0>
+              <br id=c12l0>
+              <br id=c12l1>
+              <code id=iw9i2>&lt;add key="ActiveDirectory.DomainController" value="HQAD1.corp.acme.co,"/&gt;</code><br id=lwjp218>
+            </td>
+            <td id=lwjp219>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=udk70>
+            <td id=udk71>
+              Exchange.ServerName
+            </td>
+            <td id=udk72>
+              The full qualified domain name of the Exchange server that hosts a
+              copy of the Public Free/Busy Information Store. For example:<br id=gudw0>
+              <br id=gudw1>
+              &lt;add key="Exchange.ServerName"
+              value="HQEXCH1.corp.acme.com"/&gt;
+            </td>
+            <td id=udk73>
+              <br id=udk74>
+            </td>
+          </tr>
+          <tr id=lwjp220 valign=top>
+            <td id=lwjp221>
+              ActiveDirectory.<br id=a94q2>
+              DomainUser.Login
+            </td>
+            <td id=lwjp222>
+              The userPrincipalName for the user account used by the sync
+              service to perform Active Directory lookups. See
+              <a href=#accounts id=ltsh282 title="Dedicated Windows Service Accounts">Dedicated
+              Windows Service Accounts</a> for more information on this user
+              account. For example:<br id=ub0_0>
+              <br id=ltsh249>
+              <code id=ltsh250>&lt;add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@</code><code id=ltsh330>corp.acme.com</code><code id=ltsh250>"/&gt;</code>
+            </td>
+            <td id=lwjp228>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp229 valign=top>
+            <td id=lwjp230>
+              ActiveDirectory.<br id=dulb0>
+              DomainUser.Password
+            </td>
+            <td id=lwjp231>
+              The password for the user account used by the sync service to
+              perform Active Directory lookups.
+            </td>
+            <td id=lwjp232>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp233 valign=top>
+            <td id=lwjp234>
+              Exchange.ServerName
+            </td>
+            <td id=lwjp235>
+              <code id=iw9i2><span id=wp-v0 style=FONT-FAMILY:Verdana>The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example:</span><br id=iw9i3>
+<br id=iw9i4>
+&lt;add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/&gt;</code>
+            </td>
+            <td disabled="" id=g7jb0>
+              <br id=g7jb1>
+            </td>
+          </tr>
+          <tr id=lwjp240 valign=top>
+            <td id=lwjp241>
+              Exchange.<br id=ody_0>
+              FreeBusyServerName<br id=sb2b0>
+            </td>
+            <td id=lwjp242>
+              This setting allows the definition of a specific Exchange server
+              to use when reading and writing free/busy data. By default the
+              value Exchange.ServerName is used. Use this value if the default
+              Exchange server does not host a replica of the SchedulePlus
+              Free/Busy Information Store. To enable this setting remove
+              comments and define the fully qualified domain name of the server
+              to use. For Example:<br id=r56-0>
+              <br id=r56-1>
+              &lt;add key="Exchange.FreeBusyServerName"
+              value="http://HQEXCH2.corp.acme.com"/&gt;<br id=sb2b1>
+            </td>
+            <td id=lwjp249>
+              DISABLED<br id=sb2b2>
+            </td>
+          </tr>
+          <tr id=lwjp250 valign=top>
+            <td height=52 id=lwjp251 style=COLOR:#ff0000>
+              <span id=viaq0 style=COLOR:#000000>GoogleApps.GCal.<br id=ody_1>
+              LogDirectory</span><br id=sb2b3>
+            </td>
+            <td id=lwjp252 style=COLOR:#000000>
+              <div id=na910>
+                This setting defines the directory to write debug output for the
+                GDATA API feed for each user account queried from Google Apps.
+                An individual file is written out per user request. The output
+                contains the calendar feed data for the specific user. If no
+                value is defined no output is written. For Example:
+              </div>
+              <div id=na911>
+                <br class=webkit-block-placeholder id=na912>
+              </div>
+              <div id=na913>
+                &lt;add key="GoogleApps.GCal.LogDirectory"
+                value="C:\Google\logs"/&gt;
+              </div>
+            </td>
+            <td id=lwjp253 style=COLOR:#000000>
+              DISABLED<br id=sb2b5>
+            </td>
+          </tr>
+          <tr id=lwjp254 valign=top>
+            <td id=lwjp255 style=COLOR:#ff0000>
+              <font color=#000000 id=yh2h0> Exchange.<br id=v:k:0>
+              GCalQueryAdmin.Login</font>
+            </td>
+            <td id=lwjp256 style=COLOR:#ff0000>
+              <font color=#000000 id=v3yz0>The
+              </font><font color=#000000 id=v3yz0>userPrincipalName</font><font color=#000000 id=v3yz0>
+              of the user account used in running diagnostic tests for the web
+              service. This must be an Active Directory user with rights to
+              create appointments on other users’ calendars. See Dedicated
+              Windows User Service Accounts for more information on this user
+              account. For example:<br id=iw9i7>
+              <br id=nmc71>
+              <code id=iw9i2>&lt;add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/&gt;</code><br id=nmc72>
+              <br id=iw9i10>
+              This account is also used to write appointments to calendars in
+              Exchange when using the <code id=lwjp324>SyncService.FreeBusy.Writer </code>in <code id=lwjp324>Appointment </code>mode.</font>
+            </td>
+            <td id=lwjp263 style=COLOR:#ff0000>
+              <br id=m3oc1>
+            </td>
+          </tr>
+          <tr id=lwjp264 valign=top>
+            <td id=lwjp265>
+              Exchange.GCalQueryAdmin.<br id=kcii0>
+              Password
+            </td>
+            <td id=lwjp266>
+              The password for the user account used to create appointments.
+            </td>
+            <td id=lwjp267>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp268 valign=top>
+            <td id=lwjp269>
+              GoogleApps.DomainName
+            </td>
+            <td id=lwjp270>
+              The domain name used by Google Apps. For example:<br id=iw9i11>
+              <br id=iw9i12>
+              &lt;add key="GoogleApps.DomainName" value="acme.com" /&gt;<br id=iw9i13>
+            </td>
+            <td id=lwjp271>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=udk75>
+            <td id=udk76>
+              GoogleApps.AdminUser<br id=q3pt0>
+              .Login
+            </td>
+            <td id=udk78>
+              The Google Apps user account name used for querying Google
+              Calendar. This account must be a dedicated account in Google Apps
+              setup for use with the Google Calendar Connector. For example:<br id=w0e40>
+              <br id=c12l2>
+              <code id=iw9i2>&lt;add key="GoogleApps.AdminUser.Login" value="gcc_syncsvc"/&gt;</code>
+            </td>
+            <td id=udk710>
+              <br id=udk711>
+            </td>
+          </tr>
+          <tr id=lwjp276 valign=top>
+            <td id=lwjp277>
+              GoogleApps.<br id=a94q3>
+              AdminUser.Password
+            </td>
+            <td id=lwjp278>
+              The password for the Google user account used for querying Google
+              Apps and Google Calendar.
+            </td>
+            <td id=lwjp279>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp280 valign=top>
+            <td id=lwjp281>
+              <font color=#000000 id=osrc0> GoogleApps.GCal.<br id=ody_2>
+              EnableHttpCompression</font>
+            </td>
+            <td id=lwjp282>
+              <font color=#000000 id=osrc1> This setting determines whether or
+              not to enable GZip compression with the GDATA API calls to Google
+              Apps. The default setting is <code id=lwjp283>true</code> for optimum performance.<br id=qmo_0>
+              <br id=ec9t1>
+              </font><code id=iw9i2>&lt;add key="GoogleApps.GCal.EnableHttpCompression" value="true"/&gt;</code><font color=#000000 id=osrc1><br id=qmo_3>
+              </font>
+            </td>
+            <td id=lwjp284>
+              <font color=#000000 id=osrc2><code id=lwjp285>true</code></font>
+            </td>
+          </tr>
+          <tr id=lwjp286 valign=top>
+            <td id=lwjp287>
+              SyncService.<br id=kcii1>
+              RefreshTimeInMinutes
+            </td>
+            <td id=lwjp288>
+              This setting specifies the interval in minutes to sleep between
+              each completed synchronization before starting again.<br id=u-1m0>
+              <br id=u-1m1>
+              <code id=iw9i2>&lt;add key="SyncService.RefreshTimeInMinutes" value="15"/&gt;</code><font color=#000000 id=osrc1><br id=qmo_3>
+              </font><br id=u-1m2>
+            </td>
+            <td id=lwjp289>
+              <code id=lwjp290>15</code><br id=u-1m3>
+            </td>
+          </tr>
+          <tr id=lwjp291 valign=top>
+            <td id=lwjp292>
+              SyncService.<br id=a94q4>
+              ErrorCountThreshold
+            </td>
+            <td id=lwjp293>
+              This setting specifies how many errors the service allows before
+              aborting the current synchronization run. If the value is reached
+              during a synchronization run it halts. Once the <code id=iw9i2>SyncService.RefreshTimeInMinutes</code> has expired
+              the counter is reset to 0 and a synchronization starts again.<br id=u-1m4>
+              <br id=u-1m5>
+              <code id=iw9i2>&lt;add key="SyncService.ErrorCountThreshold" value="20"/&gt;</code><font color=#000000 id=osrc1><br id=qmo_3>
+              </font><br id=lwjp294>
+            </td>
+            <td id=lwjp295>
+              <code id=lwjp296>20</code>
+            </td>
+          </tr>
+          <tr id=lwjp297 valign=top>
+            <td id=lwjp298>
+              SyncService.<br id=kcii2>
+              XmlStorageDirectory
+            </td>
+            <td id=lwjp299>
+              This setting specifies where the service stores data cached as XML
+              documents. NOTE: The service needs write access to this directory.<br id=x27f0>
+              <br id=x27f1>
+              <code id=iw9i2>&lt;add key="SyncService.XmlStorageDirectory" <br id=i5cg0>
+value="C:\Google\data"/&gt;</code><br id=x27f2>
+            </td>
+            <td id=lwjp300>
+              <code id=lwjp301>C:\Google\<br id=qbh30>
+data\</code>
+            </td>
+          </tr>
+          <tr id=lwjp302 valign=top>
+            <td id=lwjp303>
+              SyncService.ThreadCount
+            </td>
+            <td id=lwjp304>
+              This setting specifies the number of threads to create when
+              performing a synchronization from Google Calendar in to Exchange.
+              The more threads the fast the sync will complete.
+              <span id=rhbq0><i id=mhhl0>NOTE: The more threads the more system
+              and network resources the sync service will
+              utilize.</i></span><br id=se:b0>
+              <br id=se:b1>
+              <code id=iw9i2>&lt;add key="SyncService.ThreadCount" value="10"/&gt;</code><br id=se:b2>
+            </td>
+            <td id=lwjp305>
+              <code id=lwjp306>1</code>
+            </td>
+          </tr>
+          <tr id=lwjp307 valign=top>
+            <td id=lwjp308>
+              SyncService.LDAPUserFilter
+            </td>
+            <td id=lwjp309>
+              This setting allows the option to define an LDAP filer which
+              determines which users or contacts are included in the
+              synchronizing of data&nbsp; from Google Calendar to Exchange. For
+              example to include all members of an Active Directory Group:<br id=b6_b0>
+              &nbsp;<br id=a9d:0>
+              <code id=lwjp324>&lt;add key="SyncService.LDAPUserFilter" value="(memberof=CN=GCAL_Users,<br id=pkfv0>
+CN=Users,DC=corp,DC=acme,DC=com)"</code><code id=lwjp324>/&gt;<br id=y2om0>
+</code><br id=dc6a0>
+              <span id=gkx00><i id=ju7t0>NOTE: If left blank, all users in
+              Active Directory are included in the sync process. </i></span>
+            </td>
+            <td id=lwjp311>
+              <br id=mvtq1>
+            </td>
+          </tr>
+          <tr id=lwjp312 valign=top>
+            <td id=lwjp313>
+              SyncService.FreeBusy.Writer
+            </td>
+            <td id=lwjp314>
+              This setting determines the write mode for how free/busy
+              information is populated in Exchange. Valid values are <code id=lwjp315>SchedulePlus</code> or
+              <code id=lwjp316>Appointment</code>. <span
+			 style="font-style: italic; color: rgb(255, 0, 0);">The
+			Appointment option is experimental as it supports a
+			very limited set of functionality. The Appointment writer is a one-way
+			sync of free/busy data into Exchange mailboxes that creates empty
+			meeting placeholders based on free/busy data from Google Calendar. It
+			is NOT designed to perform full
+			appointment/data synchronization.</span> For Example:<br id=lc8y0>
+              <br id=m0v_0>
+              <code id=iw9i2>&lt;add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/&gt;</code><br id=m0v_1>
+              <br id=lc8y1>
+              If set to <code id=lwjp315>SchedulePlus</code> the service will only write free/busy data to
+              the&nbsp; SchedulePlus Free/Busy Information Store. This mode only
+              works for contact or mail enabled objects that do not have
+              Exchange an&nbsp; mailbox.<br id=aoxj0>
+              <br id=aoxj1>
+              If set to <code id=lwjp316>Appointment</code> the service will create a calendar placeholder
+              appointment for each Google Calendar event in the calendar of the
+              user's Exchange mailbox. This mode only works if the user has a
+              Exchange mailbox.<br id=lc8y2>
+              <br id=xdq90>
+              <span id=k4y00><i id=ju7t1>NOTE: The service can only be
+              configured in a single mode. If you wish to run the sync for both
+              contacts and mailbox enabled users you will need to install the
+              sync service on two separate servers.</i></span><br id=lc8y3>
+            </td>
+            <td id=lwjp317>
+              <code id=lwjp318>SchedulePlus</code><br id=nh4h0>
+            </td>
+          </tr>
+          <tr id=lwjp319 valign=top>
+            <td id=lwjp320>
+              SyncService.FreeBusy.<br id=q3pt1>
+              AdminGroup
+            </td>
+            <td id=lwjp321>
+              The Exchange organization and path to the admin group where the
+              free/busy template message is stored. This is based on the
+              legacyExchangeDN for the template user. For example<br id=hxv10>
+              <br id=hxv11>
+              <code id=iw9i2>&lt;add key="SyncService.FreeBusy.AdminGroup"&nbsp;<br id=cl:80>
+value="o/=Acme/ou=First Administrative Group"/&gt;</code><br id=hxv12>
+            </td>
+            <td id=lwjp325>
+              &nbsp;
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              SyncService.FreeBusy.<br id=pkfv1>
+              TemplateUserName
+            </td>
+            <td id=lwjp328>
+              The cn attribute of the user account to be used as the template
+              for the free/busy message. The TemplateUserName is used for
+              creating the the Exchange Public folder free/busy messages.<br id=px0o0>
+              <br id=px0o1>
+              This template is only required if <code id=lwjp315>SyncServuce.FreeBusy.Writer</code> is configured for <code id=lwjp315>SchedulePlus.</code>
+              For example:<br id=r.vb0>
+              <br id=r.vb1>
+              <code id=iw9i2>&lt;add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/&gt;</code><br id=px0o2>
+              <br id=px0o3>
+              To create the Free/Busy template user, create a normal mailbox
+              enabled Exchange user account. Login into the user account via
+              Outlook Web Access and create a single appointment on the
+              calendar. This will generate an entry in the Exchange Public
+              Folder Free/Busy store which creates the free/busy template
+              message.<br id=lwjp329>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>GCalExchange<br id=qbh31>
+Template</code>
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              Exchange.<br id=ody_3>
+              FreeBusyServerName<br id=o73l0>
+            </td>
+            <td id=lwjp328>
+              This setting allows the definition of a specific Exchange server
+              to use when reading and writing free/busy data. By default the
+              value Exchange.ServerName is used. Use this value if the default
+              Exchange server does not host a replica of the SchedulePlus&nbsp;
+              Free/Busy Information Store. To enable this setting remove
+              comments and define the fully qualified domain name of the server
+              to use. For Example:<br id=livv0>
+              <br id=livv1>
+              &lt;add key="Exchange.FreeBusyServerName"
+              value="http://HQEXCH2.corp.acme.com"/&gt;<br id=lwjp329>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>DISABLED<br id=o73l1>
+</code>
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              GoogleApps.GCal.<br id=s7xo0>
+              DomainMapping<br id=utos0>
+            </td>
+            <td id=lwjp328>
+              This setting allows the definition of SMTP domain name mappings.
+              Use this setting if your Exchange Primary SMTP address is
+              different from the Google Apps SMTP domain name. When enabled the
+              connector will properly map the external Google Apps SMTP domain
+              name to the internal Exchange SMTP domain name. This setting by
+              default is commented out in the config file. To enable this
+              setting remove comments and define the External and Internal SMTP
+              domain names. For example:<br id=n3hp0>
+              <br id=n3hp1>
+              &lt;add key="GoogleApps.GCal.DomainMapping"
+              value="acme.com,exchange.acme.com"/&gt;<br id=l18:0>
+              <br id=l18:1>
+              To configure multiple domain mappings use ";" as the delimiter
+              between the domain mapping values. For Example:<br id=xp7:0>
+              <br id=pgii0>
+              &lt;add key="GoogleApps.GCal.DomainMapping
+              value="acme.com,exchange.acme.com;<br id=cl:81>
+              company.com,exchange.company.com"/&gt;<br id=l18:2>
+              <br id=lwjp329>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>DISABLED<br id=bw6l0>
+</code>
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              <span id=1i5y>SyncService.<br id=a94q5>
+              PlaceHolderMessage</span>
+            </td>
+            <td id=lwjp328>
+              This setting allows for customization of the subject text placed
+              in each calendar placeholder appointment when running the Sync
+              service SyncService.FreeBusy.Writer in Appointment mode. For
+              example:<br id=n3hp0>
+              <br id=n3hp1>
+              &lt;add
+              key="<span id=1i5y>SyncService.Pla<wbr id=fc-30>ceHolderMessage</span>"
+              value="GCal Free/Busy Placeholder"/&gt;<br id=lwjp329>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>GCal Free/Busy Placeholder<br id=bw6l0>
+</code>
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              Exchange.DefaultDomain<br id=utos0>
+            </td>
+            <td id=lwjp328>
+              This setting prevents Exchange WebDav redirects to servers outside
+              of the DNS domain defined. Enable this feature if the connector
+              should not redirect Exchange server outside of this DNS domain.
+              For example:<br id=vw410>
+              <br id=vw411>
+              &lt;add key="Exchange.DefaultDomain" value=".corp.acme.com"/&gt;<br id=lwjp329>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>DISABLED<br id=bw6l0>
+</code>
+            </td>
+          </tr>
+          <tr id=lwjp326 valign=top>
+            <td id=lwjp327>
+              GoogleApps.<br id=ody_4>
+              GCal.LogDirectory
+            </td>
+            <td id=lwjp328>
+              <div id=na910>
+                This setting defines the directory to write debug output for the
+                GDATA API feed for each user account queried from Google Apps.
+                An individual file is written out per user request. The output
+                contains the calendar feed data for the specific user. If no
+                value is defined no output is written. For Example:
+              </div>
+              <div id=na911>
+                <br class=webkit-block-placeholder id=na912>
+              </div>
+              <div id=na913>
+                &lt;add key="GoogleApps.GCal.LogDirectory"
+                value="C:\Google\logs"/&gt;
+              </div>
+            </td>
+            <td id=lwjp330>
+              <code id=lwjp331>DISABLED<br id=bw6l0>
+</code>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <p id=lwjp332>
+          <br id=heg20>
+        </p>
+        <p id=lwjp332>
+          To edit the configuration file:
+        </p>
+        <ol id=lwjp333>
+          <li id=lwjp334>
+            Using your preferred XML or text editor, open
+            GoogleGCalExhangeSync.Service.exe.config. The default location is
+            <i id=lwjp189>C:\Program Files\Google\Google Calendar Connector Sync
+            Service\</i>.
+          </li>
+          <li id=lwjp336>
+            Scroll to the appSettings section and enter appropriate values for
+            each of the required values shown in the table above. For example,
+            if you are using the SchedulePlus writer &nbsp;option instead of the
+            Appointment writer, specify it in the <code id=lwjp337>SyncService.FreeBusy.Writer</code> key:
+            <p id=lwjp338>
+              <code id=lwjp339>&lt;add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/&gt;</code>
+            </p>
+          </li>
+          <li id=lwjp340>
+            Save the file.
+          </li>
+          <li id=lwjp341>
+            Save or copy a backup copy of the file to a secure location.
+          </li>
+        </ol>
+      </div>
+      <div id=encrypting>
+        <h2 id=lwjp342>
+          <a id=encrypting name=encrypting></a>4.2 Encrypting the Configuration
+          File
+        </h2>
+        <p id=lwjp343>
+          Because some configuration keys contain user names and passwords in
+          plain text, it is recommended that you encrypt these configuration
+          parameters. To enable encryption, set the value of the <code id=lwjp344>Config.EncryptOnNextRun</code> key to
+          <code id=lwjp345>true</code>. The next time the sync service starts, the
+          <i id=lwjp346>appSettings</i> keys will be automatically encrypted.
+        </p>
+        <p id=lwjp347>
+          This encryption method will encrypt the entire appSettings node of the
+          configuration file, rendering it unreadable. The process is
+          irreversible, so once the file is encrypted you can no longer change
+          any of the application settings. For this reason, it is recommended
+          that you create a backup copy of the configuration file.<br id=g5ws0>
+        </p>
+      </div>
+      <h2 id=lwjp427>
+        <a id=proxy></a>4.3 HTTP Proxy Configuration (Optional)
+      </h2>
+      <p id=lwjp428>
+        The Sync Service can optionally be configured to work with an HTTP
+        proxy. This configuration may be required if all out-bound communication
+        is routed through a proxy. Configuring the HTTP proxy parameters in
+        <i id=lwjp429>GoogleGCalExhangeSync.Service.exe.config</i> would
+        instruct the Sync Service to properly forward its communication through
+        such a proxy.
+      </p>
+      <p id=lwjp430>
+        <br id=heg21>
+      </p>
+      <p id=lwjp430>
+        Microsoft Support includes an overview of the same process and
+        configuration in the following Knowledge Base article:
+        <a href=http://support.microsoft.com/kb/307220 id=lwjp431>http://support.microsoft.com/kb/307220</a>.
+      </p>
+      <p id=lwjp432>
+        <br id=heg22>
+      </p>
+      <p id=lwjp432>
+        The table below outlines the configuration parameters located under the
+        <i id=lwjp433>&lt;system.net.defaultProxy&gt;</i> node of
+        <i id=lwjp434>GoogleGCalExhangeSync.Service.exe.config</i>:
+      </p>
+      <table border=1 cellpadding=0 cellspacing=0 id=lwjp435 width=700>
+        <tbody id=lwjp436>
+        <tr id=lwjp437 valign=top>
+          <th id=lwjp438>
+            Configuration Key
+          </th>
+          <th id=lwjp439>
+            Description
+          </th>
+          <th id=lwjp440>
+            Default Value
+          </th>
+        </tr>
+        <tr id=lwjp441 valign=top>
+          <td id=lwjp442>
+            bypasslist.address
+          </td>
+          <td id=lwjp443>
+            Allows the Sync Service to bypass the proxy for additional,
+            non-local addresses. As per Microsoft's instructions, this field can
+            contain a host name, or a regular expression.
+          </td>
+          <td id=lwjp444>
+            &nbsp;
+          </td>
+        </tr>
+        <tr id=lwjp445 valign=top>
+          <td id=lwjp446>
+            proxy.usesystemdefault
+          </td>
+          <td id=lwjp447>
+            Instructs the .NET client to either use the default system profile
+            for access, or to use a custom proxy defined in
+            <b id=lwjp448>proxy.proxyaddress</b>.<br id=lwjp449>
+            <br id=lwjp450>
+            To override the system default and configure a custom web proxy for
+            the Sync Service, this variable should be <code id=lwjp451><b id=lwjp452>FALSE</b></code>
+          </td>
+          <td id=lwjp453>
+            True
+          </td>
+        </tr>
+        <tr id=lwjp454 valign=top>
+          <td id=lwjp455>
+            proxy.proxyaddress
+          </td>
+          <td id=lwjp456>
+            The URL:PORT pair for your proxy server. For example: <code id=lwjp457>http://proxyserver.internal.yourdomain.com:3128</code>
+          </td>
+          <td id=lwjp458>
+            &nbsp;
+          </td>
+        </tr>
+        <tr id=lwjp459 valign=top>
+          <td id=lwjp460>
+            proxy.bypassonlocal
+          </td>
+          <td id=lwjp461>
+            Allows the Sync Service to bypass the proxy for local addresses
+            containing a ".".
+          </td>
+          <td id=lwjp462>
+            True
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p id=lwjp463 style=COLOR:red>
+        <b id=lwjp464><br id=ozyo0>
+        </b>
+      </p>
+      <p id=lwjp463 style=COLOR:red>
+        <b id=lwjp464>Important Note:</b> Please carefully consider whether your
+        Microsoft Exchange server communication should be sent through a custom
+        proxy. Including Microsoft Exchange servers in a custom proxy scheme
+        could result in decreased performance and certain types of Windows
+        authentication may fail.
+      </p>
+    </div>
+    <div id=tl_test>
+      <a id=n9lu name=success></a>
+      <h1 id=lwjp465>
+        5. Installation Success
+      </h1>
+      <a id=o3rc name=startservice></a>
+      <h1 id=lwjp465>
+        <span class=Apple-style-span id=zysm0 style=FONT-SIZE:19px>5.1 Start the
+        Google Calendar Connector Sync Service</span>
+      </h1>
+      <ol id=lwjp333 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+        <li id=lwjp334 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+          <span class=Apple-style-span id=rgpc0><span class=Apple-style-span id=rgpc1>Open
+          the Windows Services Management console.</span></span>
+        </li>
+        <li id=lwjp334 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+          Select the "Microsoft Exchange connector for Novell GroupWise" and
+          right-click for properties.
+        </li>
+        <li id=lwjp334 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+          Click "Start" if the service is not already started.
+        </li>
+        <li id=lwjp334 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+          Browse to log file path as defined by&nbsp;GoogleApps.<br id=ody_4>
+          GCal.LogDirectory (i.e.&nbsp;C:\google\logs)
+        </li>
+        <li id=lwjp334 style="MARGIN-TOP:0px; MARGIN-BOTTOM:0px">
+          Review the log file&nbsp;SyncService.log and verify success messages
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=tl_test>
+      <h1 id=lwjp465>
+        <a id=trouble name=trouble></a>6. Testing and Troubleshooting
+      </h1>
+      <p id=lwjp466>
+        The Sync Service logs debugging information to a text log file, which is
+        configurable through the <i id=lwjp467>log4net.config</i> node in
+        <i id=lwjp468>GoogleGCalExhangeSync.Service.exe.config</i>. For more
+        information,
+        see&nbsp;<a href=#logging id=c0ra title="Logging Configuration">Logging
+        Configuration</a>.
+      </p>
+      <p id=lwjp469>
+        <br id=p98l0>
+      </p>
+      <p id=lwjp469>
+        Monitoring the debug output in the log files is the best way to
+        troubleshoot issues with the sync service. It is recommended to use the
+        freeware log file utility Baretail to monitor the file in real time.
+      </p>
+      <p id=lwjp470>
+        <b id=lwjp471 style=COLOR:red><br id=p98l1>
+        </b>
+      </p>
+      <p id=lwjp470>
+        <b id=lwjp471 style=COLOR:red>Important Note:</b> Please review
+        <a href=#logging id=lwjp472>Logging Configuration</a> before beginning
+        to test any of the functionality of the service.
+      </p>
+      <div id=diagnostics>
+        <h2 id=lwjp473>
+          <a id=diagnostics name=diagnostics></a>6.1 Running Diagnostics Tests
+        </h2>
+        <p id=lwjp474>
+          The Google Calendar Connector Web Service contains a diagnostics page
+          that can help diagnose issues. <b id=lwjp475>Diagnostics.aspx</b>,
+          located in the root of the Web Service virtual directory, contains the
+          following diagnostic tests relevant to the Sync Service:
+        </p>
+        <p id=lwjp474>
+          <br id=igbs0>
+        </p>
+        <ul id=lwjp476>
+          <li id=lwjp477>
+            <b id=lwjp478>Verify free/busy data can be found in Google
+            Calendar</b><br id=lwjp479>
+            This test attempts to retrieve free/busy information for a specific
+            Google Calendar user. If the Sync Service and Google Apps are
+            configured correctly, free/busy data should be returned.
+          </li>
+        </ul>
+        <br id=igbs1>
+        <ul id=lwjp476>
+          <li id=lwjp480>
+            <b id=lwjp481>Verify Appointments can be written to
+            Exchange</b><br id=lwjp482>
+            The Sync Service can be configured to store Google free/busy data in
+            Exchange using an appointment writer. The appointment writer creates
+            new events on a particular user's calendar and lets Exchange handle
+            the generation of free/busy messages. This test attempts to create
+            such an appointment for the specified user.
+          </li>
+        </ul>
+        <br id=igbs2>
+        <ul id=lwjp476>
+          <li id=lwjp483>
+            <b id=lwjp484>Verify free/busy can be written to
+            Exchange</b><br id=lwjp485>
+            The Sync Service is by default configured to write free/busy data
+            directly into the Exchange public free/busy store. This test
+            attempts to perform a free/busy write to the Exchange public store
+            for the specified user.
+          </li>
+        </ul>
+        <br id=q:j60>
+        <p id=lwjp486>
+          To run diagnostic tests:
+        </p>
+        <p id=lwjp486>
+          <br id=q:j61>
+        </p>
+        <ol id=lwjp487>
+          <li id=lwjp488>
+            Use a web browser to navigate to <code id=lwjp489>/Diagnostics.aspx</code> in the root folder of the Web
+            Service's virtual directory.
+          </li>
+          <li id=lwjp490>
+            Select a test and enter any optional details in its text area.
+          </li>
+          <li id=lwjp491>
+            Click <b id=lwjp492>"Verify"</b> to run the diagnostic and view its
+            results.
+          </li>
+        </ol>
+        <br id=q:j62>
+      </div>
+      <div id=logging>
+        <h2 id=lwjp493>
+          <a id=logging name=logging></a>6.2 Logging Configuration
+        </h2>
+        <p id=lwjp494>
+          The Google Calendar Connector Sync Service includes a configuration
+          node named <i id=lwjp495>&lt;log4net&gt;</i> in
+          <i id=lwjp496>GoogleGCalExchangeSync.Service.exe.config</i> which
+          controls the logging behavior of the Sync Service.
+        </p>
+        <p id=lwjp494>
+          <br id=d9:i0>
+        </p>
+        <p id=lwjp497>
+          To use logging to troubleshoot Sync Service issues:
+        </p>
+        <p id=lwjp497>
+          <br id=lwjp498>
+        </p>
+        <ul id=lwjp499>
+          <li id=lwjp500>
+            Verify an appropriate log path
+          </li>
+          <li id=lwjp501>
+            Increase the logging level for more information
+          </li>
+          <li id=lwjp502>
+            Verify log file system permissions if the file is not created.
+          </li>
+        </ul>
+        <h3 id=lwjp503>
+          Verify Log Path
+        </h3>
+        <p id=lwjp504>
+          To change where the log file is stored, edit the node path <code id=lwjp505>configuration/log4net/appender/file</code> and
+          change the value attribute of the file node to the new location.
+          Include the file name in the value attribute.
+          <span id=amtc0><i id=mhhl1>NOTE: The </i></span><code id=ltsh492><i id=mhhl2>SYSTEM</i></code><span id=amtc1><i id=mhhl3>
+          account needs
+          </i></span><span id=vft40><b id=mhhl4><i id=mhhl5>"Modify"</i></b></span><span id=amtc2><i id=mhhl6>
+          access to the file system path.</i></span>
+        </p>
+        <h3 id=lwjp506>
+          Increase the logging level
+        </h3>
+        <p id=lwjp507>
+          There are four logging levels, with <code id=lwjp508>DEBUG</code> providing the most output
+          and <code id=lwjp509>ERROR</code> only logging severe events:
+        </p>
+        <ul id=lwjp510>
+          <li id=lwjp512>
+            DEBUG
+          </li>
+          <li id=lwjp513>
+            INFO
+          </li>
+          <li id=lwjp514>
+            WARN
+          </li>
+          <li id=lwjp515>
+            ERROR
+          </li>
+        </ul>
+        <br id=fylj0>
+        <p id=lwjp516>
+          The Sync Service has many potential logging points for the <code id=lwjp517>DEBUG</code> and
+          <code id=lwjp518>ERROR</code> levels. When logging is set to these levels, the size of the log
+          file may grow very rapidly.<br id=v22n0>
+        </p>
+        <p id=lwjp516>
+          <br id=v22n1>
+        </p>
+        <p id=lwjp519>
+          To set the Sync Service logging to a certain level, edit the node path
+          <code id=lwjp520>configuration/log4net/root/level</code> and change the value attribute to one of the four levels listed.
+          Lower severity levels are inclusive of higher levels. For example if
+          the Sync Service is set to <code id=lwjp521>INFO</code>, it also logs <code id=lwjp522>WARN</code> and <code id=lwjp523>ERROR</code> but not
+          <code id=lwjp524>DEBUG</code> messages.
+        </p>
+        <h3 id=lwjp525>
+          Verify log file permissions
+        </h3>
+        <p id=lwjp526>
+          Verify that the following log file permissions have been set up
+          properly:
+        </p>
+        <p id=lwjp526>
+          <br id=xpoc0>
+        </p>
+        <p id=lwjp527>
+          In
+          <i id=lwjp528>GoogleGCalExchangeSync.Service.exe.config\appSettings\</i>:
+        </p>
+        <p id=lwjp527>
+          <br id=o6cv0>
+        </p>
+        <ul id=lwjp529>
+          <li id=lwjp530>
+            <code id=lwjp531><b id=lwjp532>SYSTEM</b></code> should have <b id=lwjp533>"MODIFY"</b> privileges to the <code id=lwjp534>GoogleApps.GCal.LogDirectory</code>
+            directory.
+          </li>
+          <li id=lwjp530>
+            <code id=lwjp531><b id=lwjp532>SYSTEM</b></code> should have <b id=ltsh520>"MODIFY"</b> privileges to the
+            SyncService.XmlStorageDirectory directory.
+          </li>
+          <li id=lwjp535>
+            <code id=lwjp536><b id=lwjp537>SYSTEM</b></code> should have <b id=lwjp538>"MODIFY"</b> privileges to
+            <i id=lwjp539>the install directory or the file
+            GoogleGCalExchangeSync.Service.exe.config</i>.
+          </li>
+        </ul>
+        <p id=lwjp540>
+          <br id=xpoc1>
+        </p>
+        <p id=lwjp540>
+          In
+          <i id=lwjp541>GoogleGCalExchangeSync.Service.exe.config\configuration\log4net\appender\</i>:
+        </p>
+        <p id=lwjp540>
+          <br id=o6cv1>
+        </p>
+        <ul id=lwjp542>
+          <li id=lwjp543>
+            <code id=lwjp544><b id=lwjp545>SYSTEM</b></code> should have <b id=lwjp546>"MODIFY"</b> privileges to path
+            defined <code id=lwjp547>configuration\log4net\appender\file</code>.
+          </li>
+        </ul>
+        <br id=ifxc0>
+        <p id=ltsh351>
+          To grant "Modify" access to a directory do the following:
+        </p>
+        <ol id=ltsh352>
+          <li id=ltsh353>
+            Open Windows Explorer.
+          </li>
+          <li id=ltsh354>
+            Navigate to the directory root folder (i.e.
+            <i id=ltsh355>C:\Google\Data</i>).
+          </li>
+          <li id=ltsh356>
+            Right click on the folder and select <b id=ltsh357>Properties</b>.
+          </li>
+          <li id=ltsh358>
+            Select the <b id=ltsh359>Security</b> tab and click
+            <span id=rz1y0><b id=ip_.0>Add</b></span>, type <b id=ltsh360><code id=ltsh361>SYSTEM</code></b>
+            and click <span id=rkfs0><b id=ip_.1>OK.</b></span>
+          </li>
+          <li id=ltsh362>
+            With the <b id=ltsh363><code id=ltsh364>SYSTEM</code></b> user highlighted, check
+            <b id=ltsh365>Allow</b> for
+            <span id=hnq30><b id=ip_.2>Modify</b></span> privileges.
+          </li>
+        </ol>
+      </div>
+      <div id=known_issues>
+        <h2 id=lwjp548>
+          <a id=issues name=issues></a><span class=Apple-style-span id=aj_.0 style=FONT-SIZE:21px>7.
+          Known Issues</span>
+        </h2>
+        <ul id=o6cv2>
+          <li id=o6cv3>
+            See Google Code Project for any known issues.<br id=o6cv4>
+          </li>
+        </ul>
+        <br id=cj857>
+        <p class=backtotop id=lwjp549>
+          <a href=#top id=lwjp550>Back to top</a>
+        </p>
+      </div>
+    </div>
+    <h1 id=lwjp551>
+      <a id=copy name=copy></a>8. Copyright Notices
+    </h1>
+    <p id=lwjp552>
+      Library and license attributions are provided to conform with the Apache
+      License, Version 2.0. A copy of the Apache License, Version 2.0 can be
+      found
+      <a href=http://www.apache.org/licenses/LICENSE-2.0.html id=lwjp553>here</a>.
+      The following licenses and libraries are used in the Google Calendar
+      Connector Sync Service:&nbsp;
+    </p>
+    <p id=lwjp552>
+      <br id=lwjp554>
+    </p>
+    <ul id=lwjp555>
+      <li id=lwjp556>
+        Google Data (GData) API .NET Client Library and its dependencies
+        licensed under the <b id=lwjp557>Apache License, Version 2.0.</b>
+        (<a href=http://code.google.com/p/google-gdata/ id=lwjp558>project</a>,
+        <a href=http://www.apache.org/licenses/LICENSE-2.0 id=lwjp559>license</a>)
+      </li>
+      <li id=lwjp560>
+        Apache log4net licensed under the <b id=lwjp561>Apache License, Version
+        2.0.</b>
+        (<a href=http://logging.apache.org/log4net/index.html id=lwjp562>project</a>,
+        <a href=http://logging.apache.org/log4net/license.html id=lwjp563>license</a>)
+      </li>
+      <li id=lwjp564>
+        tz4net v3.0.2.0 licensed under the <b id=lwjp565>GNU LGPL V2</b>.
+        (<a href=http://www.babiej.demon.nl/Tz4Net/main.htm id=lwjp566>project</a>,
+        <a href=http://www.gnu.org/copyleft/lgpl.html id=lwjp567>license</a>)
+      </li>
+    </ul>
+    <br id=zwdl0>
+    Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei<br id=l-jf0>
+    A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig<br id=hw:h0>
+    <br id=zwdl1>
+    <hr id=lwjp568>
+    <p id=lwjp569>
+      <i id=lwjp570>Google, Google Calendar, Google Calendar Connector, Google
+      Calendar Connector Web Service, Google Calendar Connector Sync Service are
+      trademarks of Google, Inc.</i>
+    </p>
+    <p id=lwjp569>
+      <span class=Apple-style-span id=gr_d0><span class=Apple-style-span id=gr_d1 style=border-collapse:collapse><i id=no501>All
+      other company and product names may be trademarks of the respective
+      companies with which they are associated.</i></span></span>
+    </p>
+    <p id=lwjp571>
+      <span class=Apple-style-span id=o-nz0><br id=o-nz1>
+      </span>
+    </p>
+  </div>
+</div></body>
+</html>
