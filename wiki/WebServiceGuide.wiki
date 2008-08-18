@@ -247,8 +247,7 @@ The "appSettings" section of _web.config_, located in the Web Service virtual di
 Because some configuration keys contain user names and passwords in plain text, it is recommended that you encrypt these configuration parameters. To enable encryption, Load the Diagnostics.aspx page. Click the "Encrypt Config Settings" button. This will rewrite the web.config with the configuration values encrypted. _NOTE: "Network Service" must have modify privileges to the directory to rewrite the encrypted file._
 
 
-This encryption method will encrypt the entire appSettings node of the configuration file, rendering it unreadable. The process is irreversible, so once the file is encrypted you can no longer change any of the application settings. For this reason, it is recommended that you create a backup copy of the configuration file. 
-
+This encryption method will encrypt the entire appSettings node of the configuration file, rendering it unreadable. Once encrypted, the settings are no longer in plain text on the file system. However, settings can still be changed through the IIS Manager.
 
 === HTTP Proxy Configuration Optional ====
 
