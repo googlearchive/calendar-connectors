@@ -54,11 +54,10 @@
 
       var encryptionWarning =
           "This will encrypt the entire appSettings node of the XML\n" +
-          "configuration file, rendering it unreadable. The process is\n" +
-          "irreversible, so once the file is encrypted you can no longer\n" +
-          "change any of the application settings. For this reason, it is\n" +
-          "recommended that you create a backup copy of the\n" +
-          "configuration file.\n" +
+          "configuration file, rendering it unreadable. Once encrypted,\n" +
+          "the settings are no longer in plain text on the file system.\n" +
+          "However, settings can still be changed through the Internet\n" +
+          "Information Services (IIS) Manager.\n" +
           "\n" +
           "Are you sure you want to encrypt your config settings now?";
 
