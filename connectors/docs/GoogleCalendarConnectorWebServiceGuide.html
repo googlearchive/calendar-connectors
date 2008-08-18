@@ -1,0 +1,1843 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+
+div, address, ol, ul, li, option, select { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+
+
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+  }
+
+  
+  *:first-child+html body {
+    min-height: 600px;
+  }
+
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    min-height: 1100px;
+    margin: 15px auto 25px !important;
+    padding: 40px 50px; 
+  }
+  /* IE6 */
+  * html.pageview body {
+    height: 1100px;
+    overflow-x: auto;
+  }
+  
+  
+}
+
+
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+a img {border: 0}
+
+.pb {height: 1px}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* end default css */
+
+
+  /* default print css */
+  
+  @media print {
+    body { 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+  }
+  /* end default print css */
+ 
+
+/* custom css */
+
+
+/* end custom css */
+
+
+
+  /* ui edited css */
+  
+  body {
+    font-family: Verdana;
+    
+    font-size: 10.0pt;
+    line-height: normal;
+    background-color: #ffffff;
+  }
+  /* end ui edited css */
+
+
+
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+
+
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+
+.editor .misspell {background-color: yellow}
+
+
+.editor .pb {
+  border-top: 1px dashed #C0C0C0; 
+  border-bottom: 1px dashed #C0C0C0
+}
+.editor .writely-comment {
+  font-size: 9pt; 
+  line-height: 1.4; 
+  padding: 1px; 
+  border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+</style>
+
+
+<base target="_top">
+
+</head>
+
+<body
+    
+    revision="ccp846z8_199g23sccxs:446">
+
+    
+    
+<a id=top name=top></a>
+<div id=wrapper>
+  <div id=pagecontent>
+    <h1 id=page_title>
+      Google Calendar Connector Web Service Installation and Configuration Guide
+    </h1>
+    <p id=ltsh2>
+      In the Google Calendar Connector framework, data flow from Exchange is
+      provided by the Google Calendar Connector Web Service. Google Calendar
+      connects to the Web Service to query Exchange servers for free/busy data
+      and <span id=writely-comment-id-chp25x7>appointment data, which includes
+      the name, place, and attendees</span> of events. &nbsp;This document
+      provides instructions for installing and configuring the Google Calendar
+      Connector Web Service.<br id=hezb0>
+    </p>
+    <h2 id=ltsh4>
+      Contents
+    </h2>
+    <ol class=toc id=ltsh5>
+      <li id=ltsh6>
+        <a href=#intro id=ltsh7>About This Document </a>
+        <ol class=toc id=ltsh8>
+          <li id=ltsh9>
+            <a href=#audience id=ltsh10>Audience</a>
+          </li>
+          <li id=ltsh11>
+            <a href=#information id=ltsh12>For More Information </a>
+          </li>
+        </ol>
+      </li>
+      <li id=ltsh13>
+        <a href=#before id=ltsh14>Before You Install </a>
+        <ol class=toc id=ltsh15>
+          <li id=ltsh16>
+            <a href=#prereq id=ltsh17>Prerequisites</a>
+          </li>
+          <li id=ltsh18>
+            <a href=#gcal id=ltsh19>Google Calendar Account Setup</a>
+          </li>
+          <li id=ltsh20>
+            <a href=#accounts id=ltsh21>Dedicated Windows Service Accounts</a>
+          </li>
+          <li id=ltsh22>
+            <a href=#preinstallation id=ltsh23>Preinstallation Checklist</a>
+          </li>
+        </ol>
+      </li>
+      <li id=ltsh24>
+        <a href=#installing id=ltsh25 title="Installing the Google Calendar Connector Web Service">Installing
+        the Google Calendar Connector Web Service</a>
+      </li>
+      <ol class=toc id=ltsh5>
+        <li id=oac.0>
+          <a href=#installation id=mw8c title="MSI Installation">MSI
+          Installation</a>
+        </li>
+        <li id=oac.1>
+          <a href=#fileperms id=f67_ title="File Permissions">File
+          Permissions</a>
+        </li>
+      </ol>
+      <li id=ltsh26>
+        <a href=#config id=ltsh27 title="Configuring the Google Calendar Connector Web Service">Configuring
+        the Google Calendar Connector Web Service </a>
+        <ol class=toc id=ltsh28>
+          <li id=ltsh29>
+            <a href=#editing id=ltsh30>Editing the Configuration File </a>
+          </li>
+          <li id=ltsh31>
+            <a href=#encrypting id=ltsh32>Encrypting the Configuration File</a>
+          </li>
+          <li id=ltsh35>
+            <a href=#proxy id=ltsh36>HTTP Proxy Configuration (optional)</a>
+          </li>
+        </ol>
+      </li>
+      <li id=ltsh37>
+        <a href=#success id=ocw4 title="Installation Success">Installation
+        Success</a><br id=ey.w0>
+      </li>
+      <ol class=toc id=ltsh5>
+        <li id=fnh-0>
+          <a href=#verify id=m82t title="Verifying Communication">Verifying
+          Communication</a>
+        </li>
+      </ol>
+      <li id=ltsh37>
+        <a href=#trouble id=ltsh38>Testing and Troubleshooting</a>
+        <ol class=toc id=ltsh39>
+          <li id=ltsh42>
+            <a href=#diagnostics id=ltsh43 title="Running Diagnostics Tests">Running
+            Diagnostics Tests</a>
+          </li>
+          <li id=ltsh42>
+            <a href=#logging id=ltsh47 title="Logging Configuration">Logging
+            Configuration</a>
+          </li>
+          <li id=ltsh44>
+            <a href=#httpchecking id=ltsh45 title="HTTP Checking">HTTP
+            Checking</a><a href=#issues id=ltsh49></a>
+          </li>
+        </ol>
+      </li>
+      <li id=sc9b0>
+        <a href=#issues id=ltsh49>Known Issues</a><a href=#copy id=ltsh51></a>
+      </li>
+      <li id=sc9b1>
+        <a href=#copy id=ltsh51>Copyright Notices</a>
+      </li>
+    </ol>
+    <div id=gem:0>
+      <br id=gem:1>
+    </div>
+    <div id=gem:0>
+    </div>
+    <h1 id=ltsh52>
+      <a id=intro name=intro></a>1. About This Document
+    </h1>
+    <p id=ltsh53>
+      This section describes the audience for this document, the organization of
+      the material, and some additional sources of information.<br id=x2mu0>
+    </p>
+    <p id=ltsh53>
+      <br id=x2mu1>
+    </p>
+    <p id=iqt418>
+      The Google Calendar Connector Kit is a set of server-installed tools that
+      require knowledgeable&nbsp; installation and configuration, tailored to
+      the particulars of a customer's environment.&nbsp; These tools are only
+      the <b id=vfky0>technological</b> <b id=iwv.0>part</b> of the integration
+      experience.
+    </p>
+    <p id=iqt418>
+      <br id=k0wt0>
+    </p>
+    Before proceeding to install the Google Calendar Connector Web Service,
+    please read and understand the important <b id=ljlv1>Security
+    Considerations</b> outlined in the <b id=ljlv2>Overview Guide</b>.
+    <h2 id=ltsh54>
+      <a id=audience name=audience></a><span class=Apple-style-span id=dxkz0><font id=jxt40><span class=Apple-style-span id=ynhj0><font id=pn260 size=4>1.1
+      Audience </font></span></font></span>
+    </h2>
+    <p id=ltsh55>
+      This documentation is for systems administrators tasked with setting up
+      and managing the Google Calendar Connector Web Service. Users of this
+      documentation need to be familiar with the administration of Google
+      Calendar, Microsoft Exchange Server, Active Directory, and Internet
+      Information Services (IIS).<br id=mtwg0>
+    </p>
+    <p id=ltsh55>
+      <br id=mtwg1>
+    </p>
+    <p id=ltsh55>
+      It is important to note that this tool only represents part of a solution
+      for free/busy interoperability.&nbsp;<br id=mtwg2>
+    </p>
+    <h2 id=ltsh56>
+      <a id=information name=information></a><span class=Apple-style-span id=dxkz1><font id=jxt41><span class=Apple-style-span id=ynhj1><font id=pn261 size=4>1.2
+      For More Information</font></span></font></span>
+    </h2>
+    <p id=ltsh57>
+      This document is part of the Google Calendar Connector document set, which
+      includes the following related documents:<br id=vt-x0>
+    </p>
+    <p id=ltsh57>
+      <br id=vt-x1>
+    </p>
+    <ul id=ltsh58>
+      <li id=ltsh59>
+        <b id=ltsh60>Overview Guide</b>. Describes the components, process flow,
+        and security considerations for the Google Calendar Connector Kit.
+      </li>
+    </ul>
+    <br id=wv6q0>
+    <ul id=ltsh58>
+      <li id=ltsh61>
+        <b id=ltsh62>Web Service Installation and Configuration Guide</b>.
+        Provides instructions for installing and configuring the Web Service,
+        which provides Exchange free/busy data flow to Google Calendar.
+      </li>
+    </ul>
+    <br id=wv6q1>
+    <ul id=ltsh58>
+      <li id=ltsh63>
+        <b id=ltsh64>Sync Service Installation and Configuration Guide</b>.
+        Provides instructions for installing and configuring the Sync Service to
+        provide free/busy data flow from Google Calendar to Exchange.
+      </li>
+    </ul>
+    <br id=yqke0>
+    <ul id=ltsh58>
+      <li id=ltsh63>
+        <b id=gnwb0>Plug-In Installation and Configuration Guide</b>. Provides
+        instructions for installing and configuring the Plug-In to provide
+        real-time free/busy data flow from Google Calendar to Exchange.<br id=msw.0>
+      </li>
+    </ul>
+    <p id=ltsh65>
+      <br id=xqf20>
+    </p>
+    <p id=ltsh65>
+      For background or general information on Google Apps, see the
+      <a href=http://www.google.com/support/a/ id=ltsh66>Google Apps for
+      Administrators Help Center</a>.<br id=wv6q2>
+    </p>
+    <p id=ltsh65>
+      <br id=wv6q3>
+    </p>
+    <p id=ltsh67>
+      For background or general information on Windows administration, see
+      <a href=http://technet.microsoft.com id=ltsh68>Microsoft TechNet</a>.
+    </p>
+    <p id=ltsh67>
+      <br id=ndtk0>
+    </p>
+    <p id=ltsh67>
+    </p>
+    <p id=jxt42>
+    </p>
+    <h1 id=ltsh69>
+      <a id=before name=before></a>2. Before You Install
+    </h1>
+    <p id=ltsh70>
+      Before you install and configure the Google Calendar Connector Web
+      Service, make sure your Windows environment meets the following
+      prerequisites, and that Google Calendar and Exchange are prepared for
+      sharing data.
+    </p>
+    <h2 id=ltsh71>
+      <a id=prereq name=prereq></a><span class=Apple-style-span id=ndtk2><font id=jxt43><span class=Apple-style-span id=mnuc0><font id=pn262 size=4>2.1
+      Prerequisites<br id=ogvf0>
+      </font></span></font></span>
+    </h2>
+    <ul id=true>
+      <li id=an4l0>
+        Google Apps Premier Edition domain
+      </li>
+    </ul>
+    <br id=rola2>
+    <p id=ltsh72>
+      To support the Web Service, your Windows environment must meet these
+      prerequisites:<br id=u9yk0>
+    </p>
+    <p id=ltsh72>
+      <br id=u9yk1>
+    </p>
+    <ul id=ltsh73>
+      <li id=ltsh74>
+        Microsoft Windows Server 2003
+      </li>
+      <li id=ltsh75>
+        Internet Information Services (IIS) 6.0
+      </li>
+      <li id=ltsh76>
+        Microsoft Exchange Server 2003 SP2
+      </li>
+      <li id=ltsh77>
+        ASP.NET 2.
+      </li>
+    </ul>
+    <h2 id=ltsh79>
+      <a id=gcal name=gcal></a><span class=Apple-style-span id=t-8x0><font id=jxt44><span class=Apple-style-span id=itsb1><font id=pn263 size=4>2.2
+      Google Calendar Account Setup</font></span></font></span>
+    </h2>
+    <p id=ltsh80>
+      To prepare Google Calendar for sharing free/busy data, you must perform
+      these tasks:<br id=u9yk2>
+    </p>
+    <p id=ltsh80>
+      <br id=u9yk3>
+    </p>
+    <ul id=ltsh81>
+      <li id=ltsh82>
+        Specify the Google Calendar Connector Web Service URL.
+        <p id=ltsh83>
+          As part of your pre-installation planning, determine where to install
+          and run the Web Service in IIS. You must provide the web service URL
+          to the Google Enterprise Support Organization (ESO). ESO will ensure
+          your Google Apps domain is configured for the Google Calendar
+          Connector interoperability and that the URL is properly entered in
+          your domain settings on the Google Calendar server.&nbsp; It is
+          important to understand the implications of using a private or
+          publicly accessible Web Service URL.&nbsp; Using a publicly accessible
+          URL would potentially allow other domains to perform free/busy lookups
+          against your users.&nbsp; For this reason, providing a private URL
+          which is only accessible to users of your domain may be preferred.
+        </p>
+      </li>
+    </ul>
+    <br id=grkr0>
+    <ul id=ltsh81>
+      <li id=ltsh84>
+        Create dedicated Google Apps service account and perform an initial
+        login.
+        <p id=ltsh85>
+          The user name and password are required when you populate the <code id=ltsh86>GoogleApps.AdminUser.Login</code>
+          and <code id=ltsh87>Password </code>parameters in the configuration process.
+          <span id=jdnf0><i id=dfef0>NOTE: Before this account can be used with
+          the connector you must login to Google Apps account and accept the
+          standard terms of service agreement for the user account. </i></span>
+        </p>
+      </li>
+    </ul>
+    <h2 id=ltsh88>
+      <a id=accounts name=accounts></a><span class=Apple-style-span id=t-8x1><font id=jxt45><span class=Apple-style-span id=itsb2><font id=pn264 size=4>2.3
+      Dedicated Windows Service Accounts </font></span></font></span>
+    </h2>
+  </div>
+</div>
+<blockquote class=webkit-indent-blockquote id=h7.o0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  The Web Service requires dedicated Active Directory user accounts for
+  performing LDAP queries and diagnostic tests with Exchange. Create these users
+  as described in this section, and note the user names and passwords to provide
+  when configuring the web service.
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=wzt51 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=x9b50 style=FONT-SIZE:16px><br id=x9b51>
+  </span>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=wzt51 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=wzt52 style=FONT-SIZE:16px><b id=pn265>Active
+  Directory LDAP Query User</b></span><br id=wzt53>
+  <br id=x9b52>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=wzt51 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  Create a dedicated user for performing Active Directory LDAP queries. The user
+  name and password are required later when you populate the <code id=ltsh92>ActiveDirectory.DomainUser.Login</code> and <code id=ltsh93>Password </code>parameters
+  in the configuration process. This account is also used by the Google Calendar
+  Connector Sync Service if it is installed in the same environment.<br id=wzt54>
+  <span class=Apple-style-span id=wzt55 style=FONT-SIZE:18px><br id=x9b53>
+  </span>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=wzt51 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=wzt55 style=FONT-SIZE:18px><b id=pn266>Exchange
+  Query User</b></span><br id=wzt56>
+  Create a dedicated user for the connector web service to use for retrieving
+  free/busy data. The user name and password are required later when you
+  populate the<code id=ltsh96> Exchange.GCalQueryUser.Login</code> and <code id=ltsh97>Password </code>parameters in the configuration process.<br id=wzt57>
+  <br id=wzt58>
+  <i id=p8nc2>NOTE: If you want to include appointment detail along with
+  free/busy data, the Exchange Query User will need to be granted "Receive As"
+  permission for all mailboxes.</i><span id=u9bl0><i id=nen70> Refer to the
+  Exchange Query Admin User for details on how to delegate this
+  permission.&nbsp;</i></span><br id=wzt59>
+  <span class=Apple-style-span id=wzt510 style=FONT-SIZE:18px><br id=x9b54>
+  </span>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=wzt51 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=wzt510 style=FONT-SIZE:18px><b id=pn267>Exchange
+  Query Admin User</b></span><br id=wzt511>
+  Create a dedicated user for the connector web service to use for running
+  diagnostic tests. The user name and password are required later when you
+  populate <code id=ltsh100>Exchange.GCalQueryAdmin.Login</code> and <code id=ltsh101>Password</code> parameters in the configuration process. This account
+  is also used by the Google Calendar Connector Sync Service if it is installed
+  in the same environment.&nbsp;<br id=wzt512>
+  <br id=wzt513>
+  The <b id=ltsh103>Exchange Query Admin</b> user needs the
+  extended<b id=ltsh104> "Receive As" </b>permissions to be able to read and
+  write both free/busy or appointments in Exchange.<br id=wzt514>
+  To configure the permissions for the query admin user:
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <ol id=ltsh106>
+      <ol id=ltsh106>
+        <li id=wzt515>
+          Start Registry Editor (regedit).
+        </li>
+        <li id=wzt516>
+          Navigate to the following key: <tt id=nv2h3>HKEY_CURRENT_USER\Software\Microsoft\Exchange\ExAdmin</tt>
+        </li>
+        <li id=wzt517>
+          On the <b id=nv2h6>Edit</b> menu, click <b id=nv2h7>Add Value</b>, and
+          then add the following registry value:
+        </li>
+        <li id=wzt518>
+          Value Name : <b id=nv2h9>ShowSecurityPage</b>
+        </li>
+        <li id=wzt519>
+          Data Type : <b id=nv2h11>REG_DWORD</b>
+        </li>
+        <li id=wzt520>
+          Value : <b id=nv2h13>1</b>
+        </li>
+        <li id=wzt521>
+          Close Registry Editor.
+        </li>
+        <li id=wzt522>
+          Start the<span id=rop10><b id=nen71> Exchange System
+          Manager</b></span>.
+        </li>
+        <li id=wzt523>
+          Right Click on your <span id=c-lq0><b id=nen72>Exchange Organization
+          Name</b></span> and select
+          <span id=nv2h16><b id=nen73>Properties</b></span>
+        </li>
+        <li id=wzt524>
+          Select the <b id=vcei0>Security Tab</b>
+        </li>
+        <li id=wzt525>
+          Click the <b id=km:70>Advanced</b> button
+        </li>
+        <li id=wzt526>
+          Click <b id=km:71>Add</b>
+        </li>
+        <li id=wzt527>
+          In the <b id=gsjd1>Select Users, Computers, or Groups</b> dialog enter
+          the user name of the query admin user and click <b id=ya7:0>OK</b>
+        </li>
+        <li id=wzt528>
+          Check the <b id=lkml0>Allow </b>box for the permission
+          <b id=lkml1>"Receive As"</b> and click <b id=f4:o0>OK</b>
+        </li>
+      </ol>
+    </ol>
+    <br id=co6g0>
+    <h3 id=ltsh366>
+      <span class=Apple-style-span id=p5610><font id=jxt49 size=4>Remounting the
+      Exchange Information Stores</font></span><br id=gjur0>
+    </h3>
+    <p id=ltsh367>
+      The Exchange Information store caches permissions data. To flush the cache
+      immediately after setting new permissions, dismount and remount the
+      appropriate public folder store or restart the Information Store service.
+      Otherwise the changes will not take effect until Exchange rebuilds the
+      permissions cache.
+    </p>
+    <p id=ltsh368>
+      <br id=h8cs0>
+    </p>
+    <p id=ltsh368>
+      To dismount and remount the public folder store:
+    </p>
+    <ol id=ltsh369>
+      <li id=ltsh370>
+        Open Exchange System Manager<br id=mvmz0>
+      </li>
+      <li id=ltsh371>
+        In tree view, expand <b id=ltsh372>Administrative Groups</b>,
+        <i id=ltsh373>{Your Administrative Group}</i>,
+        <b id=ltsh374>Servers</b>,<i id=ltsh375>{Your local Exchange
+        server}</i>, and <i id=ltsh376>{Your Storage Group}</i>.
+      </li>
+      <li id=ltsh377>
+        Right click on the <b id=ltsh378>Public Folder Store</b>, select
+        <b id=ltsh379>Dismount Store</b> and click <b id=ltsh380>Yes</b> to
+        continue.
+      </li>
+      <li id=ltsh381>
+        Right click on the <b id=ltsh382>Public Folder Store</b>, select
+        <b id=ltsh383>Mount Store</b> and click <b id=ltsh384>Yes</b> at the
+        success message dialog.
+      </li>
+    </ol>
+    <p id=ltsh368>
+      <br id=l:s71>
+    </p>
+    <p id=ltsh368>
+      To restart the service Microsoft Exchange Information Store:
+    </p>
+    <ol id=ltsh369>
+      <li id=ltsh370>
+        Open the services.msc
+      </li>
+      <li id=ltsh371>
+        In right pane view, locate <span id=b3q40><b id=m4ji0>Microsoft Exchange
+        Information Store</b></span>, right click and select
+        <span id=b3q41><b id=m4ji1>Restart</b></span>
+      </li>
+    </ol>
+    <h2 id=ltsh141>
+      <a id=preinstallation name=preinstallation></a><span class=Apple-style-span id=p5611><font id=jxt410 size=4>2.4
+      Pre-Installation Checklist</font></span>
+    </h2>
+    <table border=1 cellpadding=3 cellspacing=1 id=ltsh142 width=640>
+      <tbody id=ltsh143>
+      <tr id=ltsh144>
+        <th id=ltsh145 scope=col>
+          Task
+        </th>
+        <th id=ltsh146 scope=col width=10%>
+          Completed?
+        </th>
+        <th id=ltsh147 scope=col>
+          Notes
+        </th>
+      </tr>
+      <tr id=ltsh148>
+        <td id=ltsh149>
+          Verify that Windows environment prerequisites are met
+        </td>
+        <td id=ltsh150>
+          &nbsp;
+        </td>
+        <td id=ltsh151>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh152>
+        <td id=ltsh153>
+          Provide Web Service URL to Google Apps Support
+        </td>
+        <td id=ltsh154>
+          &nbsp;
+        </td>
+        <td id=ltsh155>
+          URL:
+        </td>
+      </tr>
+      <tr id=ltsh156>
+        <td id=ltsh157>
+          Create dedicated Google Apps Web Service user
+        </td>
+        <td id=ltsh158>
+          &nbsp;
+        </td>
+        <td id=ltsh159>
+          User name and password:
+        </td>
+      </tr>
+      <tr id=ltsh160>
+        <td id=ltsh161>
+          Create dedicated Active Directory user
+        </td>
+        <td id=ltsh162>
+          &nbsp;
+        </td>
+        <td id=ltsh163>
+          User name and password:
+        </td>
+      </tr>
+      <tr id=ltsh164>
+        <td id=ltsh165>
+          Create dedicated Exchange Query user
+        </td>
+        <td id=ltsh166>
+          &nbsp;
+        </td>
+        <td id=ltsh167>
+          User name and password:
+        </td>
+      </tr>
+      <tr id=ltsh168>
+        <td id=ltsh169>
+          Create dedicated Exchange Admin user
+        </td>
+        <td id=ltsh170>
+          &nbsp;
+        </td>
+        <td id=ltsh171>
+          User name and password:
+        </td>
+      </tr>
+      <tr id=ltsh172>
+        <td id=ltsh173>
+          Set Exchange permissions for Query and Admin users
+        </td>
+        <td id=ltsh174>
+          &nbsp;
+        </td>
+        <td id=ltsh175>
+          <br id=p5612>
+          &nbsp;
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h1 id=ltsh176>
+    </h1>
+    <h1 id=ltsh176>
+      <br id=tmcn0>
+    </h1>
+    <a id=xuj- name=installing></a>
+    <h1 id=ltsh176>
+      3. Installing the Google Calendar Connector Web Service
+    </h1>
+    <a id=j0h5 name=installation></a>
+    <h1 id=ltsh176>
+      <span class=Apple-style-span id=nafs0 style=FONT-SIZE:18px>3.1 MSI
+      Installation</span>
+    </h1>
+    <p id=ltsh177>
+      The installer for the Web Service is provided as the file<i id=ltsh178>
+      GoogleCalendarConnectorWebService.msi</i>.
+    </p>
+    <p id=ltsh179>
+      To install the Web Service:
+    </p>
+    <ol id=ltsh180>
+      <li id=ltsh181>
+        Locate and open the file
+        <i id=ltsh182>GoogleCalendarConnectorWebService.msi</i>.
+      </li>
+      <li id=ltsh183>
+        In the welcome dialog, click <b id=ltsh184>Next</b>.
+      </li>
+      <li id=ltsh185>
+        Specify the desired virtual directory location, or accept the default
+        value <i id=ltsh186>GCalExchangeLookup</i> on the Default Web Site, and
+        click <b id=ltsh187>Next</b>.
+      </li>
+      <li id=ltsh188>
+        Click <b id=ltsh189>Next</b> to begin the installation, and then
+        <b id=ltsh190>Close</b> when the dialog displays the message
+        "Installation Complete".
+      </li>
+      <li id=ltsh191>
+        Open Internet Information Services (IIS) Manager and verify that the
+        ASP.NET 2.0 Web Service Extension is "Allowed".
+        <ul id=ltsh192>
+          <li id=ltsh193>
+            In the IIS Manager tree view, expand the local server.
+          </li>
+          <li id=ltsh194>
+            Select <b id=ltsh195>Web Service Extensions</b>.
+          </li>
+          <li id=ltsh196>
+            From the list of web service extensions, select ASP.NET v2.0 and
+            click <b id=ltsh197>Allowed</b>.
+          </li>
+        </ul>
+      </li>
+      <li id=ltsh198>
+        Using the IIS Management Console, update the Web Site to use v2.0 of the
+        ASP.NET runtime.
+        <ul id=ltsh199>
+          <li id=ltsh200>
+            In the IIS Manager tree view, select the <b id=ltsh201>Web Site
+            </b>where the GCALExchangeLookup virtual web directory was created.
+            .
+          </li>
+          <li id=ltsh202>
+            Right click on the Web Site and select <b id=ltsh203>Properties</b>.
+          </li>
+          <li id=ltsh204>
+            Select the <b id=ltsh205>ASP.NET</b> tab and set the ASP.NET version
+            to 2.0.
+          </li>
+          <li id=ltsh206>
+            Click <b id=ltsh207>OK</b> to close the <b id=ltsh208>Properties</b>
+            dialog.
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <h1 id=ltsh210>
+    </h1>
+    <a id=la.o name=fileperms></a>
+    <h1 id=ltsh176>
+      <span class=Apple-style-span id=x7n20 style=FONT-SIZE:18px>3.2 File
+      Permissions</span>
+    </h1>
+    <p id=ltsh339>
+      Special file system permissions must be set to allow the encryption of the
+      web.config and the ability for the Web service to write files to the file
+      system.<br id=f-fx1>
+    </p>
+    <h3 id=ltsh347>
+      <code id=ltsh348>NETWORK SERVICE</code> "Modify" Access for the Web Service virtual directory and logging
+      directories.<br id=hmgu0>
+    </h3>
+    <p id=ltsh349>
+      The local <code id=ltsh350>NETWORK SERVICE</code> account requires modify access to the Web Service's
+      virtual directory folder to perform encryption of the configuration file
+      as well as modify access to the logging and data folders configured in the
+      web.config file.
+    </p>
+    <p id=ltsh349>
+      <br id=dl5w0>
+    </p>
+    <p id=ltsh514>
+      In <i id=ltsh515>Web.config\appSettings\</i>:
+    </p>
+    <ul id=ltsh516>
+      <li id=ltsh517>
+        <code id=ltsh518><b id=ltsh519>NETWORK SERVICE</b></code> must have <b id=ltsh520>"MODIFY"</b> privileges to the <code id=ltsh521>GoogleApps.GCal.LogDirectory</code>
+        directory.
+      </li>
+      <li id=ltsh522>
+        <code id=ltsh523><b id=ltsh524>NETWORK SERVICE</b></code> must have <b id=ltsh525>"MODIFY"</b> privileges to
+        <i id=ltsh526>Web.config file</i>.
+      </li>
+    </ul>
+    <p id=ltsh527>
+      In <i id=ltsh528>Web.config\configuration\log4net\appender\</i>:
+    </p>
+    <ul id=ltsh529>
+      <li id=ltsh530>
+        <code id=ltsh531><b id=ltsh532>NETWORK SERVICE</b></code> must have <b id=ltsh533>"MODIFY"</b> privileges to <code id=ltsh534>configuration\log4net\appender\file</code>.
+      </li>
+    </ul>
+    <p id=ltsh349>
+      <br id=hmgu1>
+    </p>
+    <p id=ltsh351>
+      To grant "Modify" access to a directory do the following:
+    </p>
+    <ol id=ltsh352>
+      <li id=ltsh353>
+        Open Windows Explorer.
+      </li>
+      <li id=ltsh354>
+        Navigate to the directory root folder (i.e.
+        <i id=ltsh355>C:\Inetpub\wwwroot\GCalExchangeLookup</i>).
+      </li>
+      <li id=ltsh356>
+        Right click on the folder and select <b id=ltsh357>Properties</b>.
+      </li>
+      <li id=ltsh358>
+        Select the <b id=ltsh359>Security</b> tab and click
+        <span id=rz1y0><b id=ip_.0>Add</b></span>, type <b id=ltsh360><code id=ltsh361>NETWORK SERVICE</code></b>
+        and click <span id=rkfs0><b id=ip_.1>OK.</b></span>
+      </li>
+      <li id=ltsh362>
+        With the <b id=ltsh363><code id=ltsh364>NETWORK SERVICE</code></b> user highlighted, check
+        <b id=ltsh365>Allow</b> for <span id=hnq30><b id=ip_.2>Modify</b></span>
+        privileges.
+      </li>
+    </ol>
+    <div id=i5ty0>
+      <br id=i5ty1>
+    </div>
+    <div id=i5ty0>
+    </div>
+    <a id=lvo6 name=config></a>
+    <h1 id=ltsh210>
+      4. Configuring the Google Calendar Connector Web Service
+    </h1>
+    <p id=ltsh211>
+      Configuration settings for the Web Service are stored in
+      <i id=ltsh212>Web.config</i>. You must edit this file to enter appropriate
+      values for your setup. Additional configuration options for advanced users
+      are available with in-line comments in <i id=ltsh213>Web.config</i>. It is
+      recommended you enable <code id=ltsh214>Configuration.EncryptOnNextRun</code> when you have finished editing
+      <i id=ltsh215>and tested the Web.config</i>.
+    </p>
+    <h2 id=ltsh217>
+      <a id=editing name=editing></a>4.1 Editing the Configuration File
+      <span class=Apple-style-span id=if4w0 style=FONT-SIZE:13px>&nbsp;</span>
+    </h2>
+    <p id=ltsh218>
+      The "appSettings" section of <i id=ltsh219>web.config</i>, located in the
+      Web Service virtual directory, contains the following important
+      configuration keys:
+    </p>
+    <table border=1 cellpadding=0 cellspacing=0 id=ltsh220 width=640>
+      <tbody id=ltsh221>
+      <tr id=ltsh222 valign=top>
+        <th id=ltsh223>
+          Configuration Key
+        </th>
+        <th id=ltsh224>
+          Description
+        </th>
+        <th id=ltsh225>
+          Default Value
+        </th>
+      </tr>
+      <tr id=ltsh226 valign=top>
+        <td id=ltsh227>
+          <br id=rcc:0>
+        </td>
+        <td id=ltsh228>
+          <br id=ltsh232>
+          <br id=ltsh233>
+        </td>
+        <td id=ltsh234>
+          <br id=sdgg0>
+        </td>
+      </tr>
+      <tr id=ltsh236 valign=top>
+        <td id=ltsh237>
+          ActiveDirectory.<br id=t5vp0>
+          DomainController
+        </td>
+        <td id=ltsh238>
+          Specify the fully qualified domain name of a domain controller for
+          your Windows Active Directory domain. This server is used for LDAP
+          queries to retrieve user login and Exchange user attributes. For
+          queries directly against a domain controller, prefix the machine name
+          with LDAP://. For queries against the Global Catalog, prefix the
+          machine name with GC://. For example:<br id=ltsh239>
+          <br id=ltsh240>
+          <code id=ltsh241>&lt;add key="ActiveDirectory.DomainController" value="LDAP://HQAD1.</code><code id=ltsh330>corp.acme.com</code><code id=ltsh241>"/&gt;</code><br id=ltsh242>
+          <br id=ltsh243>
+        </td>
+        <td id=ltsh244>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh245 valign=top>
+        <td id=ltsh246>
+          ActiveDirectory.<br id=t5vp1>
+          DomainUser.Login
+        </td>
+        <td id=ltsh247>
+          The userPrincipalName for the user account used by the web service to
+          perform Active Directory lookups. See
+          <a href=#accounts id=ltsh282 title="Dedicated Windows Service Accounts">Dedicated
+          Windows Service Accounts</a> for more information on this user
+          account. For example:<br id=ub0_0>
+          <br id=ltsh249>
+          <code id=ltsh250>&lt;add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@</code><code id=ltsh330>corp.acme.com</code><code id=ltsh250>"/&gt;</code><br id=ltsh251>
+          <br id=ltsh252>
+        </td>
+        <td id=ltsh253>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh254 valign=top>
+        <td id=ltsh255>
+          ActiveDirectory.<br id=a_eh0>
+          DomainUser.<br id=a_eh1>
+          Password
+        </td>
+        <td id=ltsh256>
+          The password for the user account used by the web service to perform
+          Active Directory lookups.
+        </td>
+        <td id=ltsh257>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh258 valign=top>
+        <td id=ltsh259>
+          Exchange.ServerName
+        </td>
+        <td id=ltsh260>
+          The full qualified domain name of the target Exchange for the web
+          service to communicate with. If this server does not host a copy of
+          the Free/Busy Public Information store you must specify the setting:
+          <code id=ltsh263>Exchange.FreeBusyServerName</code>. For example:<br id=ltsh261>
+          <br id=ltsh262>
+          <code id=ltsh263>&lt;add key="Exchange.ServerName" value="HQEXCH1.</code><code id=ltsh330>corp.acme.com</code><code id=ltsh263>"/&gt;</code>
+        </td>
+        <td id=ltsh264>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh265 valign=top>
+        <td id=ltsh266>
+          Exchange.<br id=t5vp2>
+          GCalQueryUser.Login
+        </td>
+        <td id=ltsh267>
+          The userPrincipalName of the user account used to query Exchange for
+          free/busy data. See
+          <a href=#accounts id=ltsh268 title="Dedicated Windows Service Accounts">Dedicated
+          Windows Service Accounts</a> for more information on this user
+          account. For example:<br id=ltsh269>
+          <code id=ltsh270><br id=ltsh271>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			&lt;add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@</code><code id=ltsh330>corp.acme.com</code><code id=ltsh270>"/&gt;</code><br id=ltsh272>
+          <br id=ltsh273>
+        </td>
+        <td id=ltsh274>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh275 valign=top>
+        <td height=52 id=ltsh276>
+          Exchange.<br id=m4y.0>
+          GCalQueryUser.<br id=t5vp3>
+          Password
+        </td>
+        <td id=ltsh277>
+          The password for the Active Directory user account used to query
+          Exchange for free/busy data.
+        </td>
+        <td id=ltsh278>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh279 valign=top>
+        <td id=ltsh280>
+          Exchange.<br id=t5vp4>
+          GCalQueryAdmin.Login
+        </td>
+        <td id=ltsh281>
+          The userPrincipalName of the user account used in running diagnostic
+          tests for the web service. This must be an Active Directory user with
+          rights to create appointments on other users’ calendars. See
+          <a href=#accounts id=ltsh282 title="Dedicated Windows Service Accounts">Dedicated
+          Windows Service Accounts</a> for more information on this user
+          account. For example:<br id=ltsh283>
+          <br id=ltsh284>
+          <code id=ltsh285>&lt;add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@</code><code id=ltsh330>corp.acme.com</code><code id=ltsh285>"/&gt;</code><br id=ltsh286>
+          <br id=ltsh287>
+          This account is also used to write appointments to calendars in
+          Exchange when using the appointment writer.
+        </td>
+        <td id=ltsh288>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh289 valign=top>
+        <td id=ltsh290>
+          Exchange.<br id=a_eh2>
+          GCalQueryAdmin.<br id=a_eh3>
+          Password
+        </td>
+        <td id=ltsh291>
+          The password for the user account used in running diagnostic tests for
+          the web service.
+        </td>
+        <td id=ltsh292>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh293 valign=top>
+        <td id=ltsh294>
+          GoogleApps.<br id=m4y.1>
+          DomainName
+        </td>
+        <td id=ltsh295>
+          The domain name used by Google Apps. For example:<br id=m1cg0>
+          <br id=m1cg1>
+          &lt;add key="GoogleApps.DomainName" value="<code id=ltsh330>acme.com</code>" /&gt;<br id=m1cg2>
+        </td>
+        <td id=ltsh296>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh297 valign=top>
+        <td id=ltsh298>
+          GoogleApps.<br id=i_210>
+          AdminUser.<br id=t5vp5>
+          Login
+        </td>
+        <td id=ltsh299>
+          The Google Apps user account name used for querying Google Calendar.
+          This account must be a dedicated account in Google Apps setup for use
+          with the Google Calendar Connector. For example:<br id=b69q0>
+          <br id=b69q1>
+          &lt;add key="GoogleApps.AdminUser.Login" value="gcc_websvc" /&gt;<br id=b69q2>
+        </td>
+        <td id=ltsh300>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh301 valign=top>
+        <td id=ltsh302>
+          GoogleApps.<br id=cocz0>
+          AdminUser.<br id=t5vp6>
+          Password
+        </td>
+        <td id=ltsh303>
+          The password for the Google Apps user account used for querying Google
+          Calendar.
+        </td>
+        <td id=ltsh304>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh305 valign=top>
+        <td id=ltsh306>
+          SyncService.FreeBusy.<br id=zavc0>
+          AdminGroup
+        </td>
+        <td id=ltsh307>
+          The Exchange organization and path to the administrative group where
+          the free/busy template message is stored. This is based on the
+          legacyExchangeDN for the template user. For example<br id=ltsh308>
+          <br id=ltsh309>
+          <code id=ltsh310>&lt;add key="SyncService.FreeBusy.AdminGroup" value="/o=Acme/ou=First Administrative Group"/&gt;</code><br id=ltsh311>
+          <br id=ltsh312>
+          For the web service, this is used only by the diagnostics page.
+        </td>
+        <td id=ltsh313>
+          /o=Your Organization/u=Any Administrative Group<br id=t3-q0>
+        </td>
+      </tr>
+      <tr id=raxq0>
+        <td id=raxq1>
+          SyncService.FreeBusy.<br id=pkfv1>
+          TemplateUserName
+        </td>
+        <td id=raxq3>
+          The cn attribute of the user account to be used as the template for
+          the free/busy message. The TemplateUserName is used for creating the
+          the Exchange Public folder free/busy messages.<br id=px0o0>
+          <br id=px0o1>
+          This template is only required if<code id=lwjp315>SyncServuce.FreeBusy.Writer</code>&nbsp;is configured for<code id=lwjp315>SchedulePlus.</code>&nbsp;For
+          example:<br id=r.vb0>
+          <br id=r.vb1>
+          <code id=iw9i2>&lt;add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate"/&gt;</code><br id=px0o2>
+          <br id=px0o3>
+          To create the Free/Busy template user, create a normal mailbox enabled
+          Exchange user account. Login into the user account via Outlook Web
+          Access and create a single appointment on the calendar. This will
+          generate an entry in the Exchange Public Folder Free/Busy store which
+          creates the free/busy template message.
+        </td>
+        <td id=raxq4>
+          <span class=Apple-style-span id=uf9t0 style=FONT-FAMILY:-webkit-monospace>GCalExchange<br id=qbh31>
+          Template</span>
+        </td>
+      </tr>
+      <tr id=ltsh319 valign=top>
+        <td id=ltsh320>
+          Exchange.<br id=tc7j3>
+          EnableAppointment<br id=pqhb0>
+          Lookup<br id=an2b0>
+        </td>
+        <td id=ltsh321>
+          This setting controls if the free/busy lookup should also retrieve and
+          return appointment details. To disable appointment details from being
+          returned set the value to False. For Example:<br id=qh8z0>
+          <br id=qh8z1>
+          &lt;add key="Exchange.EnableAppointmentLookup" value="True"/&gt;<br id=uyc10>
+          <br id=uyc11 style=FONT-STYLE:italic>
+          <i id=uyc12>NOTE: </i><span id=uyc13><i id=pk9v0> See
+          </i></span><a href=#accounts id=ltsh268 title="Dedicated Windows Service Accounts"><i id=pk9v1>Dedicated
+          Windows Service Accounts</i></a><span id=uyc14><i id=pk9v2> for more
+          information on how to grant access to read appointment data for the
+          service accounts.</i></span><br id=uyc15>
+        </td>
+        <td id=ltsh322>
+          &nbsp;True
+        </td>
+      </tr>
+      <tr id=ltsh323 valign=top>
+        <td id=ltsh324>
+          GoogleApps.GCal.<br id=gksu0>
+          DomainMapping
+        </td>
+        <td id=ltsh325>
+          This setting allows the definition of SMTP domain name mappings. Use
+          this setting if your Exchange Primary SMTP address is different from
+          the Google Apps SMTP domain name. When enabled the connector maps the
+          external Google Apps SMTP domain name to the internal Exchange SMTP
+          domain name. This setting by default is commented out in the config
+          file. To enable this setting remove comments and define the External
+          and Internal SMTP domain names. For example:<br id=aid-0>
+          <br id=aid-1>
+          &lt;add key="GoogleApps.GCal.DomainMapping"
+          value="acme.com,exchange.acme.com"/&gt;<br id=s.9:0>
+        </td>
+        <td id=ltsh326>
+          DISABLED<br id=s.9:1>
+        </td>
+      </tr>
+      <tr id=ltsh323 valign=top>
+        <td id=ltsh324>
+          Exchange.<br id=y-210>
+          FreeBusyServerName<br id=r23q0>
+        </td>
+        <td id=ltsh325>
+          This setting allows the definition of a specific Exchange server to
+          use when reading and writing free/busy data. By default the value
+          <code id=ltsh263>Exchange.ServerName</code> is used. Use this value if the default Exchange server does not
+          host a replica of the SchedulePlus&nbsp; Free/Busy Information Store.
+          To enable this setting remove comments and define the fully qualified
+          domain name of the server to use. For Example:<br id=tzmr0>
+          <br id=tzmr1>
+          &lt;add key="Exchange.FreeBusyServerName" value="http://<code id=ltsh263>HQEXCH2.</code><code id=ltsh330>corp.acme.com</code>"/&gt;<br id=tzmr2>
+        </td>
+        <td id=ltsh326>
+          DISABLED<br id=s.9:1>
+        </td>
+      </tr>
+      <tr id=ltsh323 valign=top>
+        <td id=ltsh324>
+          GoogleApps.GCal.<br id=tm.o1>
+          LogDirectory
+        </td>
+        <td id=ltsh325>
+          <div id=na910>
+            This setting defines the directory to write debug output for the
+            GDATA API feed for each user account queried from Google Apps. An
+            individual file is written out per user request. The output contains
+            the calendar feed data for the specific user. If no value is defined
+            no output is written. For Example:
+          </div>
+          <div id=na911>
+            <br class=webkit-block-placeholder id=na912>
+          </div>
+          <div id=na913>
+            &lt;add key="GoogleApps.GCal.LogDirectory"
+            value="C:\Google\logs"/&gt;
+          </div>
+        </td>
+        <td id=ltsh326>
+          DISABLED<br id=s.9:1>
+        </td>
+      </tr>
+      <tr id=ltsh323 valign=top>
+        <td id=ltsh324>
+          Exchange.<br id=m4y.2>
+          MaxConnections<br id=r23q1>
+        </td>
+        <td id=ltsh325>
+          This setting defines the maximum number of&nbsp; concurrent
+          connections that can be made to configured Exchange server. To enable
+          this setting remove comments and and define the max number of
+          connections. For Example:<br id=ivzb0>
+          <br id=ivzb1>
+          &lt;add key="Exchange.MaxConnections" value="50"/&gt;<br id=s.9:0>
+        </td>
+        <td id=ltsh326>
+          <br id=s.9:1>
+        </td>
+      </tr>
+      <tr id=ltsh323 valign=top>
+        <td id=ltsh324>
+          Exchange.<br id=i_211>
+          DefaultDomain<br id=r23q2>
+        </td>
+        <td id=ltsh325>
+          This setting prevents Exchange WebDav redirects to servers outside of
+          the DNS domain defined. Enable this feature if the connector should
+          not redirect Exchange server outside of this DNS domain. For example:<br id=a5u30>
+          <br id=a5u31>
+          &lt;add key="Exchange.DefaultDomain" value=".corp.acme.com"/&gt;<br id=s.9:0>
+        </td>
+        <td id=ltsh326>
+          DISABLED<br id=s.9:1>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <br id=x:cg0>
+    <h2 id=ltsh334>
+      <a id=encrypting name=encrypting></a>4.2 Encrypting the Configuration File
+    </h2>
+    <p id=ltsh335>
+      Because some configuration keys contain user names and passwords in plain
+      text, it is recommended that you encrypt these configuration parameters.
+      To enable encryption, Load the Diagnostics.aspx page. Click the "Encrypt
+      Config Settings" button. This will rewrite the web.config with the
+      configuration values encrypted. <span id=klpw0><i id=a-j:0>NOTE: "Network
+      Service" must have modify privileges to the directory to rewrite the
+      encrypted file. </i></span><br id=eo:y0>
+    </p>
+    <p id=ltsh335>
+      <br id=eo:y1>
+    </p>
+    <p id=ltsh339>
+      This encryption method will encrypt the entire appSettings node of the
+      configuration file, rendering it unreadable. The process is irreversible,
+      so once the file is encrypted you can no longer change any of the
+      application settings. For this reason, it is recommended that you create a
+      backup copy of the configuration file.&nbsp;
+    </p>
+    <h2 id=ltsh385>
+      <a id=proxy></a>4.3 HTTP Proxy Configuration (Optional)
+    </h2>
+    <p id=ltsh386>
+      The Web Service can optionally be configured to work with an HTTP proxy.
+      This configuration may be required if all out-bound communication needs to
+      be routed through a proxy. Configuring the HTTP proxy parameters in
+      <i id=ltsh387>Web.config</i> will instruct the Web Service to forward its
+      communication through such a proxy.
+    </p>
+    <p id=ltsh388>
+      Microsoft Support includes an overview of the same process and
+      configuration in the following Knowledge Base article:
+      <a href=http://support.microsoft.com/kb/307220 id=ltsh389>http://support.microsoft.com/kb/307220</a>.
+    </p>
+    <p id=ltsh390>
+      The table below outlines the configuration parameters located under the
+      <i id=ltsh391>&lt;system.net.defaultProxy&gt;<i id=ltsh392> node of
+      </i>Web.config</i>:
+    </p>
+    <p id=ltsh390>
+      <br id=mbfx0>
+    </p>
+    <table border=1 cellpadding=0 cellspacing=0 id=ltsh393 width=640>
+      <tbody id=ltsh394>
+      <tr id=ltsh395 valign=top>
+        <th id=ltsh396>
+          Configuration Key
+        </th>
+        <th id=ltsh397>
+          Description
+        </th>
+        <th id=ltsh398>
+          Default Value
+        </th>
+      </tr>
+      <tr id=ltsh399 valign=top>
+        <td id=ltsh400>
+          bypasslist.address
+        </td>
+        <td id=ltsh401>
+          Allows the Web Service to bypass the proxy for additional, non-local
+          addresses. As per Microsoft's instructions, this field can contain a
+          host name, or a regular expression.
+        </td>
+        <td id=ltsh402>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh403 valign=top>
+        <td id=ltsh404>
+          proxy.usesystemdefault
+        </td>
+        <td id=ltsh405>
+          Instructs the .NET client to either use the default system profile for
+          access, or to use a custom proxy defined in
+          <b id=ltsh406>proxy.proxyaddress</b>.<br id=ltsh407>
+          <br id=ltsh408>
+          To override the system default and configure a custom web proxy for
+          the Web Service, this variable should be <code id=ltsh409><b id=ltsh410>FALSE</b></code>
+        </td>
+        <td id=ltsh411>
+          True
+        </td>
+      </tr>
+      <tr id=ltsh412 valign=top>
+        <td id=ltsh413>
+          proxy.proxyaddress
+        </td>
+        <td id=ltsh414>
+          The URL:PORT pair for your proxy server. For example: <code id=ltsh415>http://proxyserver.corp.acme.com:3128</code>
+        </td>
+        <td id=ltsh416>
+          &nbsp;
+        </td>
+      </tr>
+      <tr id=ltsh417 valign=top>
+        <td id=ltsh418>
+          proxy.bypassonlocal
+        </td>
+        <td id=ltsh419>
+          Allows the Web Service to bypass the proxy for local addresses
+          containing a ".".
+        </td>
+        <td id=ltsh420>
+          True
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <p id=ltsh421 style=COLOR:red>
+      <span class=Apple-style-span id=o5rc0><br id=o5rc1>
+      </span>
+    </p>
+    <p id=ltsh421 style=COLOR:red>
+      <b id=ltsh422>Important Note:</b> Please carefully consider whether your
+      Microsoft Exchange server communication should be sent through a custom
+      proxy. Including Microsoft Exchange servers in a custom proxy scheme could
+      result in decreased performance and certain types of Windows
+      authentication may fail.
+    </p>
+    <h1 id=ltsh423>
+      <a id=trouble name=trouble></a>
+    </h1>
+    <h1 id=ltsh423>
+      5. <a id=m8_g name=success></a>Installation Success<br id=d:ty0>
+    </h1>
+    <h2 id=ltsh428>
+      <span class=Apple-style-span id=ptcg0 style=FONT-SIZE:18px>5.1 Verifying
+      communication between Google Calendar and the Web Service</span>
+    </h2>
+    <p id=ltsh429>
+      After completing the installation and configuration tasks, perform the
+      following to verify that the Google Calendar can query free/busy data from
+      Exchange.<br id=i4oa0>
+    </p>
+    <p id=ltsh429>
+      <br id=i4oa1>
+    </p>
+    <p id=ltsh430>
+      To look up an Exchange user's free/busy information from Google Calendar:<br id=i4oa2>
+    </p>
+    <p id=ltsh430>
+      <br id=i4oa3>
+    </p>
+    <ol id=ltsh431>
+      <li id=ltsh432>
+        Choose an Exchange user with known free/busy times.
+      </li>
+      <li id=ltsh433>
+        Log on to Google Calendar.
+      </li>
+      <li id=ltsh434>
+        Click <b id=ltsh435>Create Event</b> to open an event page.
+      </li>
+      <li id=ltsh436>
+        Click <b id=ltsh437>Check guest and resource availability</b> to open
+        the resource scheduler.
+      </li>
+      <li id=ltsh438>
+        Enter the e-mail address of the chosen Exchange user and
+        click<b id=ltsh439> "Add"</b>.
+      </li>
+      <li id=ltsh440>
+        <b id=ltsh441>Verify</b> that the free/busy information displayed in the
+        resource scheduler matches the known information.
+      </li>
+    </ol>
+    <br id=flhk0>
+    If the Web Service does not work as expected, diagnostics should be run to
+    identify any issues.<br id=y:030>
+    If no data is return to Google Calendar, enable DEBUG logging to verify the
+    web service is receiving the Google Calendar free/busy request. Refer to the
+    "Logging" section for details. If unexpected issues persist, please refer to
+    the sections entitled "Logging" and "HTTP Checking".
+    <h1 id=ltsh423>
+      6. Testing and Troubleshooting
+    </h1>
+    <p id=ltsh424>
+      This section describes simple verification tests for the Web Service and
+      provides some resources for troubleshooting common test failures. If the
+      Web Service does not return free/busy data, use the following diagnostics
+      tests, logging information, and troubleshooting checklist to identify and
+      correct any issues.
+    </p>
+    <p id=ltsh425>
+      <span class=Apple-style-span id=o5rc2 style=COLOR:#ff0000><br id=o5rc3>
+      </span>
+    </p>
+    <p id=ltsh425>
+      <b id=ltsh426 style=COLOR:red>Important Note:</b> Please review
+      <a href=#logging id=ltsh427 title="Logging Configuration">Logging
+      Configuration</a> before beginning to test any of the functionality of the
+      service.
+    </p>
+    <a id=pfdz name=diagnostics></a>
+    <h2 id=ltsh443>
+      <span class=Apple-style-span id=bvfa0 style=FONT-SIZE:18px>6.1&nbsp;</span>Running
+      Diagnostics Tests
+    </h2>
+    <p id=ltsh444>
+      The Web Service contains a diagnostics page that can help diagnose issues.
+      <span class=Apple-style-span id=im590><b>Diagnostics.aspx</b></span>,
+      located in the root of the Web Service virtual directory, contains the
+      following diagnostic tests for the web service:<br id=wbst0>
+    </p>
+    <p id=ltsh444>
+      <br id=wbst1>
+    </p>
+    <ul id=ltsh446>
+      <li id=ltsh447>
+        <b id=ltsh448>Verify users can be found in Active
+        Directory</b><br id=ltsh449>
+        <br id=ltsh450>
+        This test queries the Active Directory domain controller specified in
+        <code id=ltsh451>ActiveDirectory.DomainController</code> and returns all objects found in the result set. Specific LDAP
+        queries can be tested using the text-area (cn=* is the default). This
+        test verifies that the Web Service can properly connect to an Active
+        Directory server and retrieve user/contact information.
+      </li>
+    </ul>
+    <br id=wbst2>
+    <ul id=ltsh446>
+      <li id=ltsh452>
+        <b id=ltsh453>Verify free / busy information can be found in Exchange
+        (+/- 7 days)</b><br id=ltsh454>
+        <br id=ltsh455>
+        This test verifies that the Web Service is correctly configured to talk
+        to the Exchange server, and retrieve&nbsp; free/busy information for a
+        user or contact. Please be aware that this test only returns free/busy
+        information within 7 days of the current date.
+      </li>
+    </ul>
+    <br id=mj8a0>
+    <ul id=ltsh446>
+      <li id=ltsh456>
+        Diagnostics.aspx also contains other tests which are intended for test
+        and troubleshooting the Sync Service.
+      </li>
+    </ul>
+    <br id=qv4d5>
+    <h2 id=ltsh428>
+      <a id=verify name=verify></a>
+    </h2>
+    <h2 id=ltsh443>
+    </h2>
+    <a id=abi2 name=logging></a>
+    <h2 id=ltsh479>
+      6.2 Logging Configuration
+    </h2>
+    <p id=ltsh480>
+      The Google Calendar Connector includes a configuration node named
+      <i id=ltsh481>&lt;log4net&gt;</i> in <i id=ltsh482>Web.config</i> which
+      controls the logging behavior of the Web Service.
+    </p>
+    <p id=ltsh483>
+      To use logging to troubleshoot Web Service issues:<br id=ltsh484>
+    </p>
+    <ul id=ltsh485>
+      <li id=ltsh486>
+        Verify Log Path: &lt;file value="C:\Google\logs\WebService.log" /&gt;<br id=crvt0>
+      </li>
+      <li id=ltsh487>
+        Increase the logging level: &lt;level value="DEBUG" /&gt;<br id=nz9d0>
+      </li>
+      <li id=ltsh488>
+        Verify log file system permissions if the file is not created.<br id=btd40>
+      </li>
+    </ul>
+    <h3 id=ltsh489>
+      Verify Log Path
+    </h3>
+    <p id=ltsh490>
+      To change where the log file is stored, edit the node path <code id=ltsh491>configuration/log4net/appender/file</code> and
+      change the value attribute of the file node to the new location. Include
+      the file name in the value attribute. <span id=vqck0><i id=kt8y0>NOTE: the
+      </i></span><code id=ltsh492><i id=kt8y1>NETWORK SERVICE</i></code><span id=vqck1><i id=kt8y2> account needs
+      </i></span><span id=vft40><b id=kt8y3><i id=kt8y4>"Modify"&nbsp;</i></b></span><span id=amtc2><i id=kt8y5>access
+      to the file system path.</i></span>
+    </p>
+    <h3 id=ltsh493>
+      Increase the logging level
+    </h3>
+    <p id=ltsh494>
+      There are four logging levels, with <code id=ltsh495>DEBUG</code> providing the most output and
+      <code id=ltsh496>ERROR</code> only logging severe events:
+    </p>
+    <ul id=ltsh497>
+      <li id=ltsh499>
+        DEBUG
+      </li>
+      <li id=ltsh500>
+        INFO
+      </li>
+      <li id=ltsh501>
+        WARN
+      </li>
+      <li id=ltsh502>
+        ERROR
+      </li>
+    </ul>
+    <br id=jsyt0>
+    <p id=ltsh503>
+      The Web Service has many potential logging points for the <code id=ltsh504>DEBUG</code> and <code id=ltsh505>ERROR</code>
+      levels. When logging is set to these levels, the size of the log file may
+      grow very rapidly.
+    </p>
+    <p id=ltsh506>
+      To set the Web Service logging to a certain level, edit the node path
+      <code id=ltsh507>configuration/log4net/root/level</code> and change the value attribute to one of the four levels listed.
+      Lower severity levels are inclusive of higher levels. For example if the
+      Web Service is set to <code id=ltsh508>INFO</code>, it also logs <code id=ltsh509>WARN</code> and <code id=ltsh510>ERROR</code> but not <code id=ltsh511>DEBUG</code>
+      messages.
+    </p>
+    <h3 id=ltsh512>
+      Verify log file permissions
+    </h3>
+    <p id=ltsh513>
+      If log files are not being written verify that the following file
+      permissions have been set up properly:<br id=j_gr0>
+    </p>
+    <p id=ltsh513>
+      <br id=j_gr1>
+    </p>
+    <p id=ltsh514>
+      In <i id=ltsh515>Web.config\appSettings\</i>:
+    </p>
+    <ul id=ltsh516>
+      <li id=ltsh517>
+        <code id=ltsh518><b id=ltsh519>NETWORK SERVICE</b></code> must have <b id=ltsh520>"MODIFY"</b> privileges to the <code id=ltsh521>GoogleApps.GCal.LogDirectory</code>
+        directory.
+      </li>
+      <li id=ltsh522>
+        <code id=ltsh523><b id=ltsh524>NETWORK SERVICE</b></code> must have <b id=ltsh525>"MODIFY"</b> privileges to
+        <i id=ltsh526>Web.config</i>.
+      </li>
+      <br id=jlt-0>
+    </ul>
+    <p id=ltsh527>
+      In <i id=ltsh528>Web.config\configuration\log4net\appender\</i>:
+    </p>
+    <ul id=ltsh529>
+      <li id=ltsh530>
+        <code id=ltsh531><b id=ltsh532>NETWORK SERVICE</b></code> must have <b id=ltsh533>"MODIFY"</b> privileges to <code id=ltsh534>configuration\log4net\appender\file</code>.
+      </li>
+    </ul>
+    <br id=oy730>
+    <p id=ltsh351>
+      To grant <span id=ufnn0><b id=kt8y6>"Modify"</b></span> access to a
+      directory do the following:
+    </p>
+    <ol id=ltsh352>
+      <li id=ltsh353>
+        Open Windows Explorer.
+      </li>
+      <li id=ltsh354>
+        Navigate to the directory root folder (i.e.
+        <i id=ltsh355>C:\Inetpub\wwwroot\GCalExchangeLookup</i>).
+      </li>
+      <li id=ltsh356>
+        Right click on the folder and select <b id=ltsh357>Properties</b>.
+      </li>
+      <li id=ltsh358>
+        Select the <b id=ltsh359>Security</b> tab and click
+        <span id=rz1y0><b id=ip_.0>Add</b></span>, type <b id=ltsh360><code id=ltsh361>NETWORK SERVICE</code></b>
+        and click <span id=rkfs0><b id=ip_.1>OK.</b></span>
+      </li>
+      <li id=ltsh362>
+        With the <b id=ltsh363><code id=ltsh364>NETWORK SERVICE</code></b> user highlighted, check
+        <b id=ltsh365>Allow</b> for <span id=hnq30><b id=ip_.2>Modify</b></span>
+        privileges.
+      </li>
+    </ol>
+    <br id=r10j0>
+    <a id=xkua name=httpchecking></a>
+    <h2 id=ltsh464>
+      6.3 HTTP Checking
+    </h2>
+    <p id=ltsh465>
+      In addition to diagnostic tests, HTTP analysis tools can be used to view
+      the actual data that is being passed between Google Calendar and the Web
+      Service. <i id=ltsh466>HTTP Analyzer</i> (for Microsoft Internet Explorer)
+      or <i id=ltsh467>Live HTTP Headers</i> (for Firefox) are examples of HTTP
+      analysis tools.
+    </p>
+    <p id=ltsh468>
+      To troubleshoot the Web Service with an HTTP utility:<br id=gyow0>
+    </p>
+    <p id=ltsh468>
+      <br id=gyow1>
+    </p>
+    <ol id=ltsh469>
+      <li id=ltsh470>
+        Check whether a lookup request is sent from Google Calendar to the Web
+        Service. The link for the request should match the Web Service URL
+        provided to Google Apps.
+      </li>
+      <li id=ltsh471>
+        If Google Calendar is not making any requests, please contact Google
+        Apps support to verify that the Google Calendar Connector
+        interoperability is enabled for your domain and properly configured.
+      </li>
+      <li id=ltsh472>
+        Check the IIS log files for requests for the Web Service URL which was
+        provided to Google Apps (ending in ExchangeQuerier.aspx) and verify that
+        the result code is 200.
+      </li>
+      <li id=ltsh473>
+        Check the IIS log files on your Exchange server to verify the WebDAV
+        requests the Web Service is making into Exchange.
+      </li>
+      <li id=ltsh474>
+        If a Google Calendar request is being made and the Web Service is
+        responding, verify that the Web Service response is an HTML snippet with
+        a <code id=ltsh475>POST</code> action to the Google Calendar servers. If it is not, please send
+        a copy of the response to Google Apps Support.
+      </li>
+      <li id=ltsh478>
+        If Google Calendar fails to add free/busy information from a valid Web
+        Service response, there may be browser issues. Please contact Google
+        Apps Support with your browser version and error information.
+      </li>
+    </ol>
+    <h2 id=ltsh535>
+      <a id=issues name=issues></a><span class=Apple-style-span id=hckv0 style=FONT-SIZE:21px>7.
+      Known Issues&nbsp;</span>
+    </h2>
+    <ul id=s8pd0>
+      <li id=s8pd1>
+        Some versions of Firefox 3 Beta do not pass the referrer header to the
+        Google Calendar Connector Web Service. When using SSL, this can result
+        in the Google Calendar free-busy lookup requests causing a redirect to
+        the login page. The referrer header is used to determine if the mailslot
+        post url should be HTTP or HTTPS. To force SSL if the header is not
+        being passed you can set the config setting:
+        WebService.DefaultGoogleCalendarSSL=True
+      </li>
+    </ul>
+    <br id=etni2>
+    <p class=backtotop id=ltsh536>
+      <a href=#top id=ltsh537>Back to top</a>
+    </p>
+    <h1 id=ltsh538>
+      <a id=copy name=copy></a>8. Copyright Notices
+    </h1>
+    <p id=ltsh539>
+      Library and license attributions are provided to conform with the Apache
+      License, Version 2.0. A copy of the Apache License, Version 2.0 can be
+      found
+      <a href=http://www.apache.org/licenses/LICENSE-2.0.html id=ltsh540>here</a>.
+      The following licenses and libraries are used in the Google Calendar
+      Connector Web Service:
+    </p>
+    <p id=ltsh539>
+      <br id=ltsh541>
+    </p>
+    <ul id=ltsh542>
+      <li id=ltsh543>
+        Google Data (GData) API .NET Client Library and its dependencies
+        licensed under the <b id=ltsh544>Apache License, Version 2.0.</b>
+        (<a href=http://code.google.com/p/google-gdata/ id=ltsh545>project</a>,
+        <a href=http://www.apache.org/licenses/LICENSE-2.0 id=ltsh546>license</a>)
+      </li>
+      <li id=ltsh547>
+        Apache log4net licensed under the <b id=ltsh548>Apache License, Version
+        2.0.</b>
+        (<a href=http://logging.apache.org/log4net/index.html id=ltsh549>project</a>,
+        <a href=http://logging.apache.org/log4net/license.html id=ltsh550>license</a>)
+      </li>
+      <li id=ltsh551>
+        tz4net v3.0.2.0 licensed under the <b id=ltsh552>GNU LGPL V2</b>.
+        (<a href=http://www.babiej.demon.nl/Tz4Net/main.htm id=ltsh553>project</a>,
+        <a href=http://www.gnu.org/copyleft/lgpl.html id=ltsh554>license</a>)
+      </li>
+    </ul>
+    <br id=qqeo0>
+    Portions Copyright (c) 2002 James W. Newkirk, Michael C. Two, Alexei<br id=l-jf0>
+    A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig<br id=l-jf1>
+    <br id=fkwa0>
+    <hr id=ltsh555>
+    <p id=ltsh556>
+      <font id=l6dk0 size=2><i id=ltsh557><span class=Apple-style-span id=sk7o0><font id=pn268><span class=Apple-style-span id=edia0><font id=rsdi0>Google,
+      Google Calendar, Google Calendar Connector, Google Calendar Connector Web
+      Service, Google Calendar Connector Sync Service are trademarks of Google,
+      Inc.</font></span></font></span></i></font>
+    </p>
+    <p id=ltsh556>
+      <font id=l6dk1 size=2><span class=Apple-style-span id=ga1.0 style=border-collapse:collapse><span class=Apple-style-span id=edia1><i id=rsdi1><font id=rsdi2>All
+      other company and product names may be trademarks of the respective
+      companies with which they are associated.</font></i></span></span></font>
+    </p>
+  </div>
+</div></body>
+</html>

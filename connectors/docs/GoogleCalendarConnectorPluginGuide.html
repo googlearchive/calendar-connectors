@@ -1,0 +1,2738 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+
+div, address, ol, ul, li, option, select { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+
+
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+  }
+
+  
+  *:first-child+html body {
+    min-height: 600px;
+  }
+
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    min-height: 1100px;
+    margin: 15px auto 25px !important;
+    padding: 40px 50px; 
+  }
+  /* IE6 */
+  * html.pageview body {
+    height: 1100px;
+    overflow-x: auto;
+  }
+  
+  
+}
+
+
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+a img {border: 0}
+
+.pb {height: 1px}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* end default css */
+
+
+  /* default print css */
+  
+  @media print {
+    body { 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+  }
+  /* end default print css */
+ 
+
+/* custom css */
+
+
+/* end custom css */
+
+
+
+  /* ui edited css */
+  
+  body {
+    font-family: Verdana;
+    
+    font-size: 10.0pt;
+    line-height: normal;
+    background-color: #ffffff;
+  }
+  /* end ui edited css */
+
+
+
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+
+
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+
+.editor .misspell {background-color: yellow}
+
+
+.editor .pb {
+  border-top: 1px dashed #C0C0C0; 
+  border-bottom: 1px dashed #C0C0C0
+}
+.editor .writely-comment {
+  font-size: 9pt; 
+  line-height: 1.4; 
+  padding: 1px; 
+  border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+</style>
+
+
+<base target="_top">
+
+</head>
+
+<body
+    
+    revision="chp25x7_1341fnwfgng3:707">
+
+    
+    
+<a id=top name=top></a>
+<div id=header>
+  <div id=logo>
+    <span class=Apple-style-span id=bi:_0 style=FONT-SIZE:21px><b id=lyrp0>Google
+    Calendar Connector Plug-in Installation and Configuration Guide</b></span>
+  </div>
+</div>
+<div id=wrapper>
+  <div id=pagecontent>
+    <p id=gdx52>
+      <br id=f01b0>
+    </p>
+    <p id=gdx52>
+      The Google Calendar Connector Plug-in utilizes the Novell GroupWise
+      Connector for Microsoft Exchange and retrieves Google Calendar free/busy
+      data in real-time.
+    </p>
+    <p id=gdx53>
+      This document gives instructions for installing and configuring the Google
+      Calendar Connector Plug-in.
+    </p>
+    <h2 id=gdx54>
+      Contents
+    </h2>
+    <ol class=toc id=gdx55>
+      <li id=gdx56>
+        <a href=#background id=gdx57 title=Background>Background</a>
+      </li>
+      <li id=gdx58>
+        <a href=#prerequisites id=gdx59 title=Prerequisites>Prerequisites</a>
+      </li>
+      <li id=gdx510>
+        <a href=#installation id=gdx511 title="Installation of Novell GroupWise connector for Microsoft Exchange">Installation
+        of Novell GroupWise connector for Microsoft Exchange</a>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=jxua0>
+          <a href=#exchangesetup id=sdjn title="Run Microsoft Exchange setup">Run
+          Microsoft Exchange setup</a>
+        </li>
+        <li id=jxua0>
+          <a href=#exchangemodify id=wmp_ title="Modify Microsoft Exchange by installing connectors for GroupWise and Calendar">Modify
+          Microsoft Exchange by installing connectors for GroupWise and
+          Calendar</a>
+        </li>
+        <li id=jxua0>
+          <a href=#exchangereinstall id=rrp6 title="Re-Install any service pack and hot-fix you have already applied to Microsoft Exchange 2003 (such as Service Pack 2)">Re-Install
+          any service pack and hot-fix you have already applied to Microsoft
+          Exchange 2003 (such as Service Pack 2)</a>
+        </li>
+      </ol>
+      <li id=gdx512>
+        <a href=#configuration id=gdx513 title="Configuration of Novell GroupWise connector for Microsoft Exchange">Configuration
+        of Novell GroupWise connector for Microsoft Exchange</a>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=ay010>
+          <a href=#createou id=ru4g title="Create an Active Directory Organizational Unit for Google Apps users">Create
+          an Active Directory Organizational Unit for Google Apps users</a>
+        </li>
+        <li id=ay012>
+          <a href=#createsharedfolder id=h06m title="Create a shared folder for communicating with the Google Calendar Connector Plug-In">Create
+          a shared folder for communicating with the Google Calendar Connector
+          Plug-In</a>
+        </li>
+        <li id=ay012>
+          <a href=#configuregwconnector id=jdxc title="Configure the Novell GroupWise connector options in Exchange System Manager">Configure
+          the Novell GroupWise connector options in Exchange System Manager</a>
+        </li>
+        <li id=ay012>
+          <a href=#configurecalconnector id=ywmy title="Configure the Calendar Connector in Exchange System Manager">Configure
+          the Calendar Connector in Exchange System Manager</a>
+        </li>
+      </ol>
+      <li id=gdx514>
+        <a href=#installplugin id=gdx515 title="Installation and Configuration of Google Calendar Connector Plug-In">Installation
+        and Configuration of Google Calendar Connector Plug-In</a>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=goiq4>
+          <span class=Apple-style-span id=w8-f0><a href=#installcreateshare id=vopk title="Install the Google Calendar Connector Plug-In into the folder shar">Install
+          the Google Calendar Connector Plug-In into the folder share</a></span>
+        </li>
+        <li id=goiq4>
+          <a href=#ldapfilter id=t.-g title="Use LDAP to filter users in scope of the Google Calendar Connector Plug-In (Optional)">Use
+          LDAP to filter users in scope of the Google Calendar Connector
+          Plug-In&nbsp;(Optional)</a>
+        </li>
+        <li id=goiq4>
+          <a href=#modifymailrouting id=fwte title="Modify mail routing for Google Apps contact objects in Active Directory">Modify
+          mail routing for Google Apps contact objects in Active Directory</a>
+        </li>
+        <li id=goiq4>
+          <a href=#installservice id=frfp title="Install the Google Calendar Connector Plug-In as a Windows Service">Install
+          the Google Calendar Connector Plug-In as a Windows Service</a>
+        </li>
+        <li id=goiq4>
+          <a href=#testconfig id=wsfb title="Test configuration with Exchange's gwrouter.exe">Test
+          configuration with Exchange's gwrouter.exe</a>
+        </li>
+        <li id=goiq4>
+          <a href=#startmsexchconnector id=uut9 title="Turn on the Microsoft Exchange Connector for Novell GroupWise">Turn
+          on the Microsoft Exchange Connector for Novell GroupWise</a>
+        </li>
+        <li id=goiq4>
+          <a href=#startexchrouter id=k486 title="Turn on the Microsoft Exchange Router for Novell GroupWise">Turn
+          on the Microsoft Exchange Router for Novell GroupWise</a>
+        </li>
+        <li id=goiq4>
+          <a href=#forcesync id=fo90 title="Force an initial, immediate synchronization">Force
+          an initial, immediate synchronization</a>
+        </li>
+        <li id=goiq4>
+          <a href=#startcalconnector id=ytmn title="Start the Microsoft Calendar Connector service">Start
+          the Microsoft Calendar Connector service</a>
+        </li>
+      </ol>
+      <li id=gdx516>
+        <span class=Apple-style-span id=xrdz0 style=COLOR:#0000ee><a href=#installsuccess id=gdx517 title="Installation Success"><u id=m8.t1>Installation
+        Success</u></a></span>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=jjat0>
+          <a href=#selftestexe id=vkj6 title="Execute SelfTest.exe">Execute
+          SelfTest.exe</a>
+        </li>
+        <li id=jjat1>
+          <a href=#reviewselftest id=nu8h title="Review the output of SelfTest.exe to determine whether your services are correctly configured">Review
+          the output of SelfTest.exe to determine whether your services are
+          correctly configured</a>
+        </li>
+        <li id=jjat1>
+          <a href=#verifycallookup id=y97u title="Verify Calendar Look up">Verify
+          Calendar Look up</a>
+        </li>
+      </ol>
+      <li id=gdx518>
+        <a href=#enableautoservices id=gdx519 title="Enabling automatic startup for services">Enabling
+        automatic startup for services</a>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=l6br0>
+          <a href=#enableservices id=vg-s title="Enable Services">Enable
+          Services</a>
+        </li>
+      </ol>
+      <li id=gdx518>
+        <a href=#configeencrypt id=k70g title="Config.txt Password Encryption">Config.txt
+        Password Encryption</a>
+      </li>
+      <ol class=toc id=gdx55>
+        <li id=qmcs0>
+          <a href=#enableencrypt id=q90q title="Enable Encryption for Config.txt Passwords">Enable
+          Encryption for Config.txt Passwords</a>
+        </li>
+        <li id=qmcs1>
+          <a href=#enablecertenroll id=yzfb title="Enabled Certificate Enrollment">Enabled
+          Certificate Enrollment</a>
+        </li>
+        <li id=qmcs1>
+          <a href=#grantadmin id=wl.f title="Grant Administrative Rights">Grant
+          Administrative Rights</a>
+        </li>
+        <li id=qmcs1>
+          <a href=#enrollcert id=rpdj title="Enroll in Certificate">Enroll in
+          Certificate</a>
+        </li>
+        <li id=qmcs1>
+          <a href=#configsvc id=f0ov title="Configure Service to Run As User Account and Encrypt Passwords">Configure
+          Service to Run As User Account and Encrypt Passwords</a>
+        </li>
+      </ol>
+      <li id=gdx518>
+        <a href=#troubleshooting id=o8tq title=Troubleshooting>Troubleshooting</a>
+      </li>
+      <li id=gdx518>
+        <a href=#copy id=lozp title="Copyright Notices">Copyright Notices</a>
+      </li>
+    </ol>
+    <div id=x6.l0>
+      <br id=x6.l1>
+    </div>
+    <a id=yzbg name=background></a>
+    <h1 id=gdx520>
+      <span class=Apple-style-span id=my080><font id=zl_c0 size=5>1.
+      Background</font></span>
+    </h1>
+    <p id=gdx522>
+      The Google Calendar Connector Plug-In service allows Microsoft Exchange
+      (i.e. Outlook) users to see free/busy information for their Google
+      Calendar colleagues from within the Exchange environment.&nbsp; As
+      Microsoft only provides two first-party connectors for its calendaring
+      system, Google has utilized one of these, the Novell GroupWise Calendar
+      Connector, to aid in sharing free/busy information.&nbsp;
+    </p>
+    <p id=gdx522>
+      <br id=wmpc0>
+    </p>
+    <p id=iqt418>
+      The Google Calendar Connector Kit is a set of server-installed tools that
+      require knowledgeable&nbsp; installation and configuration, tailored to
+      the particulars of a customer's environment.&nbsp; These tools are only
+      the <b id=vfky0>technological</b> <b id=iwv.0>part</b> of the integration
+      experience.
+    </p>
+    <p id=iqt418>
+      <br id=k0wt0>
+    </p>
+    Before proceeding to install the Google Calendar Connector Plug-In, please
+    read and understand the important <b id=ljlv1>Security Considerations</b>
+    outlined in the <b id=ljlv2>Overview Guide</b>.<br id=jfy50>
+    <br id=jfy51>
+    The Google Calendar Connector Plug-In, in particular, requires a
+    sophisticated knowledge of Exchange system administration.<br id=jfy52>
+    <p id=gdx522>
+    </p>
+    <a id=qj5. name=prerequisites></a>
+    <h1 id=gdx523>
+      <a id=prereq></a><span class=Apple-style-span id=esuu0><font id=zl_c1 size=5>2.
+      Prerequisites</font></span>
+    </h1>
+    <p id=gdx524>
+      In order for the Google Calendar Connector Plug-In to work, please make
+      sure your environment satisfies the following requirements:<br id=gdx525>
+      <br id=gdx526>
+    </p>
+    <ol id=gdx527>
+      <li id=gdx528>
+        Own a Google Apps Premier Edition domain.<br id=d5_t0>
+      </li>
+      <li id=gdx528>
+        The Java SE Development Kit (JDK) 6 Update 2 (or later) must be
+        installed. This is necessary because the Google Calendar Connector
+        Plug-In is written in Java. JDK 6 Update 2 can be downloaded from
+        <a href=http://java.sun.com/javase/downloads/index.jsp id=gdx529>http://java.sun.com/javase/downloads/index.jsp</a>.
+      </li>
+      <li id=gdx530>
+        The Microsoft .NET 2.0+ run-time environment must be installed.&nbsp;
+        The .NET run-time is required by the FreeBusyBuilder supplemental
+        process.
+      </li>
+      <li id=gdx531>
+        The Provisioning API must be enabled for your Google Apps domain (via
+        the Administrator control panel). The Provisioning API allows the Google
+        Calendar Connector Plug-In to programmatically access Google Apps
+        accounts on your domain. To learn more about the Provisioning API,
+        please visit
+        <a href=http://code.google.com/apis/apps/gdata_provisioning_api_v2.0_reference.html id=gdx532>http://code.google.com/apis/apps/gdata_provisioning_api_v2.0_reference.html</a>.
+        &nbsp;
+      </li>
+      <li id=gdx533>
+        Access to an administrator account on your Google Apps domain. The
+        Google Calendar Connector Plug-In will use this account to retrieve
+        account and calendar information for your domain. This account should be
+        dedicated for this purpose and not used concurrently by users or admins.
+        The Plug-in periodically accesses your Google Apps domain, and any user
+        sessions will be invalidated, logging the user out. Google recommends
+        creating a specific administrator account for free/busy look up
+        purposes.
+      </li>
+      <li id=gdx534>
+        Your server should be running Microsoft Exchange Server 2003 with SP2 or
+        later.
+      </li>
+      <li id=gdx534>
+        Your server should be running Windows Server 2003 with IIS 6.0.<br id=xdse0>
+      </li>
+      <li id=gdx543>
+        You need a local replica of the SCHEDULE+ FREE BUSY public folder on the
+        Exchange server running the Google Calendar Connector Plug-In. This
+        requirement is related to the Microsoft Calendar Connector.<br id=gdx537>
+      </li>
+    </ol>
+    <i id=gdx538><br id=irap0>
+    More information about implementing connectivity between the Google calendar
+    connector plug-in and Exchange is available at
+    <a href=http://technet.microsoft.com/en-us/library/bb124065.aspx id=gdx539>
+    http://technet.microsoft.com/en-us/library/bb124065.aspx</a>.</i><br id=jjfg0>
+    <i id=gdx541><br id=jjfg1>
+    More information about setting up a local replica of the SCHEDULE+ FREE BUSY
+    Public Folder is available at
+    <a href=http://technet.microsoft.com/en-us/library/bb124487.aspx id=gdx542>
+    http://technet.microsoft.com/en-us/library/bb124487.aspx
+    </a></i><br id=jjfg2>
+    <br id=jjfg3>
+    The Microsoft documentation above explains GroupWise is limited to
+    retrieving a maximum of 389 days of free/busy information. Trying to
+    retrieve more will result in no data being returned.&nbsp;
+    <div id=gdx546>
+      <a id=lir6 name=installation></a>
+      <h1 id=gdx547>
+        <span class=Apple-style-span id=my081><font id=zl_c2 size=5>3.
+        Installation of Novell GroupWise connector for Microsoft
+        Exchange</font></span>
+      </h1>
+      <h2 id=gdx548>
+        <font id=r9ea0>Overview</font>
+      </h2>
+      <p id=gdx549>
+        The first step consists of installing and configuring the first-party
+        Novell GroupWise Connector for Exchange developed by Microsoft. After
+        installing the connector, you may have to re-install any service packs
+        and&nbsp;hot-fixes&nbsp;you applied to the original Exchange install.
+        This is not a Google-specific requirement.
+      </p>
+      <p id=gdx549>
+        <br id=a8:q0>
+      </p>
+      <ul id=gdx550>
+        <li id=gdx551>
+          <a href=#exchangesetup id=gdx552 title="3.1 Run Microsoft Exchange setup">3.1
+          Run Microsoft Exchange setup</a>
+        </li>
+        <li id=gdx553>
+          <a href=#exchangemodify id=gdx554 title="3.2 Install Microsoft Exchange calendar connectors">3.2
+          Install Microsoft Exchange calendar connectors</a>
+        </li>
+        <li id=gdx555>
+          <a href=#exchangereinstall id=gdx556 title="3.3 Re-install Microsoft Exchange service packs">3.3
+          Re-install Microsoft Exchange service packs</a>
+        </li>
+      </ul>
+      <a id=kqj7 name=exchangesetup></a>
+      <h2 id=gdx557>
+        <font id=wzd50>3.1 Run Microsoft Exchange setup</font>
+      </h2>
+      <p id=gdx558>
+        Depending on your installation, you may want to run either
+        i386/setup.exe from your Exchange 2003 source installation folder or go
+        to Add/Remove Programs on the Windows Control Panel and select
+        "Change/Remove" Microsoft Exchange.
+      </p>
+      <a id=n6x6 name=exchangemodify></a>
+      <h2 id=gdx559>
+        <font id=tdbk0>3.2 Modify Microsoft Exchange by installing connectors
+        for GroupWise and Calendar </font>
+      </h2>
+      <p id=gdx560>
+        Installing the GroupWise and Calendar connectors creates an interface by
+        which the Google Calendar Connector Plug-In can interact with Exchange.
+        Make sure to install both the Microsoft Exchange Connector for Novell
+        GroupWise and the Microsoft Exchange Calendar Connector.
+      </p>
+      <p id=gdx560>
+        <br id=gdx561>
+      </p>
+      <ul id=gdx562>
+        <li id=gdx563>
+          3.2.0 Run Microsoft Exchange Setup<br id=w7ab0>
+        </li>
+        <li id=gdx563>
+          3.2.1 Highlight the Microsoft Exchange row and set the Action to
+          "Change"<br id=gdx564>
+        </li>
+        <li id=gdx565>
+          3.2.2 Select Install from the drop-down columns for Microsoft Exchange
+          Connect for Novell GroupWise and Microsoft Exchange Calendar
+          Connector.
+        </li>
+        <li id=gdx566>
+          3.2.3 Click Next.
+        </li>
+        <li id=gdx567>
+          3.2.4 Click Next to confirm the changes.<br id=gdx568>
+          <br id=gdx569>
+          Exchange will now install the new connectors. After setup is complete,
+          you may be prompted to re-install an Exchange Server service pack.
+        </li>
+      </ul>
+      <p id=gdx570>
+        &nbsp;
+      </p>
+      <a id=wd3s name=exchangereinstall></a>
+      <h2 id=gdx571>
+        <font color=#666666 id=tdbk1><font color=#000000 id=ft8o0>3.3 Re-Install
+        any service pack and hot-fix you have already applied to Microsoft
+        Exchange 2003 (such as Service Pack 2)</font> </font>
+      </h2>
+      <p id=gdx572>
+        Updating the components of Microsoft Exchange in the previous step may
+        have overwritten some changes made by service packs, you will need to
+        reinstall the latest Microsoft Exchange 2003 Service Pack.<br id=gdx573>
+        <br id=gdx574>
+        <span class=Apple-style-span id=wdxz0><i id=a:x-0>NOTE: For information
+        on applying hotfixes and patches to Exchange, refer to
+        </i></span><a href=http://support.microsoft.com/kb/328839 id=gdx576><span class=Apple-style-span id=wdxz1><i id=a:x-1>http://support.microsoft.com/kb/328839</i></span></a><span class=Apple-style-span id=wdxz2><i id=a:x-2>.</i></span>
+      </p>
+      <p id=gdx572>
+        <br id=gdx577>
+      </p>
+      <ul id=gdx578>
+        <li id=gdx579>
+          3.3.1. Download Exchange Server 2003 Service Pack 2 (or later) from
+          <a href=http://technet.microsoft.com/en-us/exchange/bb288486.aspx id=fane title=http://technet.microsoft.com/en-us/exchange/bb288486.aspx>http://technet.microsoft.com/en-us/exchange/bb288486.aspx</a>
+        </li>
+        <li id=gdx581>
+          3.3.2. Run the installer.
+        </li>
+        <li id=gdx582>
+          3.3.3. Pick a temporary directory to store the extracted setup files.
+        </li>
+        <li id=gdx583>
+          3.3.4. Run the Service Pack updater by executing update.exe in the
+          E3SP2ENG\setup\i386 directory.&nbsp;
+        </li>
+      </ul>
+      <ul id=gdx578>
+        <li id=gdx586>
+          3.3.5. Agree to the Terms of Service.<br id=gdx588>
+        </li>
+        <li id=gdx589>
+          3.3.6. Select components to update.
+        </li>
+      </ul>
+      <br id=wxpz0>
+      Service Pack 2 for Exchange Server 2003 will now be installed and it will
+      update the components marked with the "Update" Action.<br id=gdx592>
+      <br id=wxpz1>
+      <p id=gdx594>
+        &nbsp;
+      </p>
+    </div>
+    <div id=div_gwcfg>
+      <a id=r8aa name=configuration></a>
+      <h1 id=gdx595>
+        4. Configuration of Novell GroupWise connector for Microsoft Exchange
+      </h1>
+      <h2 id=gdx596>
+        Overview:
+      </h2>
+      <p id=gdx597>
+        This install stage involves relatively standard configuration of the
+        Novell GroupWise connector. This step is concerned with specifying where
+        the connector files are located on disk, how GroupWise (re: Google)
+        users are treated in Active Directory and how the Novell connector
+        should behave. Notice that this configuration is achieved entirely
+        through built-in Exchange and Active Directory tools.
+      </p>
+      <p id=gdx597>
+        <br id=vv0n0>
+      </p>
+      <p id=gdx598>
+      </p>
+      <ul id=gdx599>
+        <li id=gdx5100>
+          <a href=#createou id=gdx5101 title="4.1 Create an Active Directory Organizational Unit for Google Apps users">4.1
+          Create an Active Directory Organizational Unit for Google Apps
+          users</a>
+        </li>
+        <li id=gdx5102>
+          <a href=#createsharedfolder id=gdx5103 title="4.2 Create a shared folder for Google Calendar Connector Plug-In">4.2
+          Create a shared folder for Google Calendar Connector Plug-In</a>
+        </li>
+        <li id=gdx5104>
+          <a href=#configuregwconnector id=gdx5105 title="4.3 Configure Novell GroupWise connector options">4.3
+          Configure Novell GroupWise connector options</a>
+        </li>
+        <li id=gdx5106>
+          <a href=#configurecalconnector id=gdx5107 title="4.4 Configure Microsoft Exchange Calendar Connector">4.4
+          Configure Microsoft Exchange Calendar Connector</a>
+        </li>
+      </ul>
+      <p id=gdx5108>
+        &nbsp;
+      </p>
+      <a id=k1cp name=createou></a>
+      <h2 id=gdx5109>
+        <a id=3.1></a>4.1 Create an Active Directory Organizational Unit for
+        Google Apps users
+      </h2>
+      <p id=gdx5110>
+        Microsoft recommends allocating a special Active Directory
+        Organizational Unit for GroupWise (re: Google Apps) contacts
+        (<a href=http://technet.microsoft.com/en-us/library/aa998406.aspx id=gdx5111>http://technet.microsoft.com/en-us/library/aa998406.aspx</a>).
+        During the process of full directory synchronization, when the Google
+        Calendar Connector Plug-In returns contact information to Exchange, this
+        organizational unit will be populated with the relevant users. After
+        each directory synchronization initiated over the Novell API Gateway,
+        Active Directory will contain a full set of Google Apps contacts in the
+        special Organizational Unit. These contacts are used by Microsoft
+        Exchange. You can configure a whitelist and blacklist to control what
+        users are include or excluded from this import. Refer to section
+        <a href=#ldapfilter id=gdx5226 title="5.2 Use LDAP to filter users for the Google Calendar Connector Plug-In">5.2
+        Use LDAP to filter users for the Google Calendar Connector Plug-In</a>
+      </p>
+      <p id=gdx5110>
+        for details.
+      </p>
+      <p id=gdx5110>
+        <br id=cczz1>
+      </p>
+      <ul id=gdx5113>
+        <li id=gdx5114>
+          4.1.1. Open the Active Directory Users and Computers management
+          interface.<br id=gdx5116>
+        </li>
+        <li id=gdx5117>
+          4.1.2. Right-click on the root domain and select
+          New-&gt;Organizational Unit.
+        </li>
+        <li id=gdx5118>
+          4.1.3. Name the Organizational Unit "GoogleApps" and press OK.<br id=gdx5119>
+          <br id=gdx5120>
+        </li>
+      </ul>
+      <p id=gdx5121>
+        &nbsp;
+      </p>
+      <a id=kdy0 name=createsharedfolder></a>
+      <h2 id=gdx5122>
+        <a id=3.2></a>4.2 Create a shared folder for communicating with the
+        Google Calendar Connector Plug-In
+      </h2>
+      <p id=gdx5123>
+        &nbsp;Create a local shared folder that will serve as the API Gateway
+        Path for the Novell GroupWise connector. General Microsoft configuration
+        instructions for the GroupWise connector can be found here:
+        <a href=http://technet.microsoft.com/en-us/library/bb124483.aspx id=gdx5124>
+        http://technet.microsoft.com/en-us/library/bb124483.aspx </a>. Since the
+        Google Calendar Connector Plug-In is running locally instead of on a
+        remote Novell Gateway server, we need to create a local
+        Exchange-accessible shared folder to serve as the API Gateway Path.<br id=gdx5125>
+      </p>
+      <p id=gdx5123>
+        <br id=wrgi0>
+      </p>
+      <ul id=gdx5126>
+        <li id=gdx5127>
+          4.2.1. Open the Computer Management console.<br id=gdx5129>
+        </li>
+        <li id=gdx5130>
+          4.2.2. Expand the local computer management tree until folder shares
+          are visible.
+        </li>
+        <li id=gdx5131>
+          4.2.3. Right-click "Shares" and select "Create a New Share"<br id=gdx5133>
+        </li>
+        <li id=gdx5134>
+          4.2.4. Click "Next" and define a path to the folder you will use for
+          the Google API Gateway. It cannot be located on a network mapped
+          drive. A suggested path is: "C:\Program Files\Google\Google Calendar
+          Connector Plug-In\".&nbsp;<br id=gdx5136>
+        </li>
+        <li id=gdx5137>
+          4.2.5. Respond "Yes" when prompted to create the folder.<br id=gdx5139>
+        </li>
+        <li id=gdx5140>
+          4.2.6. Add a description of your choosing to the folder share. We
+          suggest: "Google Calendar Connector Plug-In UNC Working Share". Note
+          that the share path is \\{Exchange Server}\{Share Name}.<br id=gdx5142>
+        </li>
+        <li id=gdx5143>
+          4.2.7. Select the permissions option "Administrators have full access;
+          other users have read-only access."
+        </li>
+      </ul>
+      <a id=kcef name=configconnnector></a><a id=abk3 name=configuregwconnector></a>
+      <h2 id=gdx5147>
+        <a id=3.3></a>4.3 Configure the Novell GroupWise connector options in
+        Exchange System Manager
+      </h2>
+      <p id=gdx5148>
+        Next we configure the Exchange Connector for Novell GroupWise to utilize
+        the appropriate locally shared API Gateway folder, act on all Google
+        contacts, store imported contacts in the correct Active Directory
+        Organizational Unit and schedule directory synchronization. For details
+        on general configuration, refer to Microsoft's guide to configuring the
+        GroupWise connector
+        (<a href=http://technet.microsoft.com/en-us/library/bb124483.aspx id=gdx5149>http://technet.microsoft.com/en-us/library/bb124483.aspx</a>).<br id=gdx5150>
+      </p>
+      <p id=gdx5148>
+        <br id=xtix0>
+      </p>
+      <ul id=gdx5151>
+        <li id=gdx5152>
+          4.3.1. Open the Exchange System Manager console.<br id=gdx5153>
+        </li>
+        <li id=gdx5155>
+          4.3.2. Expand the Connectors tree to select the "Connector for Novell
+          GroupWise"<br id=gdx5156>
+        </li>
+        <li id=gdx5158>
+          4.3.3. Right-click on the connector and select "Properties".<br id=gdx5159>
+        </li>
+        <li id=gdx5161>
+          4.3.4. On the General tab, set the "API Gateway Path" to the share
+          path you specified in Step 4.2.4. For example, if your API Gateway
+          folder is C:\Program Files\Google\Google Calendar Connector Plug-In\
+          with a share path of \\{Exchange Server}\Google Calendar Connector
+          Plug-In, set the API Gateway Path to: \\localhost\Google Calendar
+          Connector Plug-In
+        </li>
+        <li id=gdx5162>
+          4.3.5. Click "Modify" next to the Netware Account field and enter the
+          account details for a user who has full access privileges to the local
+          share path. This is the account that the Novell GroupWise connector
+          will use to read and write to the directory.
+          <b id=gdx5163><span class=Apple-style-span id=x-xb0><i id=zl_c3>NOTE:
+          This account should be a local account on the server and be a member
+          of the local Administrators group. We recommend creating a new local
+          account for this specific purpose instead of using the existing local
+          Administrator account.</i></span></b><br id=gdx5164>
+        </li>
+        <li id=gdx5166>
+          4.3.6. Move to the Address Space tab, since you need to assign at
+          least one address space to the connector<br id=gdx5167>
+        </li>
+        <li id=gdx5169>
+          4.3.7. Choose "Add", select "GWISE" and press "OK".<br id=gdx5170>
+        </li>
+        <li id=gdx5172>
+          4.3.8. In the dialog that appears, put an asterisk (*) in the address
+          field and press "OK". This enables the GroupWise connector for all
+          users with a GWISE address. All free/busy requests for Google Apps
+          users will be routed through the Novell GroupWise connector and then
+          the Google Calendar Connector Plug-In service.<br id=gdx5173>
+        </li>
+        <li id=gdx5175>
+          4.3.9. On the Delivery Restrictions tab, ensure that "Accepted" is
+          selected.<br id=gdx5176>
+        </li>
+        <li id=gdx5178>
+          4.3.10. Move to the Dirsync Schedule tab and specify the Exchange
+          GroupWise directory update schedule to "Run Every Hour". This will
+          specify the frequency at which the Novell GroupWise connector will try
+          to synchronize directory information between Exchange and your Google
+          Apps domain.<br id=gdx5179>
+        </li>
+        <li id=gdx5181>
+          4.3.11. Move to the Import Container tab, and select "Modify" next to
+          the "Container" field<br id=gdx5182>
+        </li>
+        <li id=gdx5184>
+          4.3.12. Specify the Organizational Unit "GoogleApps", which you
+          created in Step 4.1.3. This path is where the GroupWise connector will
+          create contact objects for each Google Apps user accounts.
+          <span class=Apple-style-span id=gn3o0><i id=zl_c4>NOTE: If there is
+          an&nbsp;existing&nbsp;account in Exchange with the same SMTP address
+          as Google Apps user no contact will not be created in this
+          case.</i></span><br id=gdx5185>
+        </li>
+        <li id=gdx5187>
+          4.3.13. Acknowledge that the machine account running the GroupWise
+          connector must be able to modify user accounts by selecting "Yes" to
+          the popup. Notice that the Container now specifies GoogleApps.<br id=gdx5188>
+        </li>
+        <li id=gdx5190>
+          4.3.14. Move to the Export Containers tab and uncheck "Export groups".
+          Verify that "Export contacts" is already unchecked. You do not need to
+          export the Exchange users for this connector to work.<br id=gdx5191>
+        </li>
+        <li id=gdx5193>
+          4.3.15. Press "Apply" and "OK" to save changes.
+        </li>
+      </ul>
+      <p id=gdx5194>
+        &nbsp;
+      </p>
+      <a id=er0q name=configurecalconnector></a>
+      <h2 id=gdx5195>
+        <a id=3.4></a>4.4 Configure the Calendar Connector in Exchange System
+        Manager
+      </h2>
+      <p id=gdx5196>
+        Microsoft Exchange's Calendar Connector enables the sharing of free/busy
+        information between Exchange and the Google Calendar Connector Plug-In.
+        We will configure Calendar Connector's awareness of the Novell GroupWise
+        connector and its update schedule.
+      </p>
+      <p id=gdx5196>
+        <br id=gdx5197>
+      </p>
+      <ul id=gdx5198>
+        <li id=gdx5199>
+          4.4.1. Right-click on the "Calendar Connector" underneath the
+          "Connectors" heading and select "properties".<br id=gdx5200>
+        </li>
+        <li id=gdx5202>
+          4.4.2. Open the "Calendar Connections" tab.<br id=gdx5203>
+        </li>
+        <li id=gdx5205>
+          4.4.3. Click "New"
+        </li>
+        <li id=gdx5206>
+          4.4.4. Select "Novell GroupWise" as the type of connector you want to
+          connect to Exchange.<br id=gdx5207>
+        </li>
+        <li id=gdx5209>
+          4.4.5. Enter an arbitrary Groupwise API Gateway name. This has no
+          precise bearing on the rest of the install process. Make sure your
+          name follows the &lt;domain&gt;.&lt;gateway&gt; naming convention.<br id=gdx5210>
+        </li>
+        <li id=gdx5212>
+          4.4.6. Open the "Schedule" tab<br id=gdx5213>
+        </li>
+        <li id=gdx5215>
+          4.4.7. Select "Always".
+        </li>
+        <li id=gdx5215>
+          4.4.8 Select the General Tab and review and define the custom options
+          for how requests are handled.<br id=m6:i0>
+        </li>
+        <ul id=czk:1>
+          <li id=gdx5215>
+            Number of days of free/busy information to request from Google Apps
+          </li>
+          <li id=gdx5215>
+            Maximum age in minutes to used the existing data in free/busy cache
+            before querying Google Apps. NOTE: 0 means always query Google Apps
+            and ignore the data in the cache.
+          </li>
+          <li id=gdx5215>
+            Maximum number of seconds to wait for a response from Google Apps
+            for free/busy data.<br id=ccsy0>
+          </li>
+        </ul>
+      </ul>
+      <p id=gdx5216>
+        &nbsp;<br id=ccsy1>
+      </p>
+      <br id=ccsy2>
+    </div>
+    <div id=div_gccpi>
+      <a id=x7yg name=installplugin></a>
+      <h1 id=gdx5217>
+        5: Installation and Configuration of Google Calendar Connector Plug-In
+      </h1>
+      <h2 id=gdx5218>
+        Overview
+      </h2>
+      <p id=gdx5219>
+        This is the final stage of the installation process, which involves
+        bridging the Novell GroupWise API Gateway folder with the Google
+        Calendar Connector Plug-In. This stage will also cover the configuration
+        and installation of the Google Calendar Connector Plug-In as a Windows
+        service. Both the connector for Novell GroupWise and the Calendar
+        Connector will be enabled.<br id=gdx5220>
+        This process can be subdivided into the following areas:
+      </p>
+      <p id=gdx5219>
+        <br id=gdx5221>
+      </p>
+      <ul id=gdx5222>
+        <li id=gdx5223>
+          <a href=#installcreateshare id=gdx5224 title="5.1 Installing the Google Calendar Connector Plug-In code into the API Gateway Share Path">5.1
+          Installing the Google Calendar Connector Plug-In code into the API
+          Gateway Share Path</a>
+        </li>
+        <li id=gdx5225>
+          <a href=#ldapfilter id=gdx5226 title="5.2 Use LDAP to filter users for the Google Calendar Connector Plug-In">5.2
+          Use LDAP to filter users for the Google Calendar Connector Plug-In</a>
+        </li>
+        <li id=gdx5227>
+          <a href=#modifymailrouting id=gdx5228 title="5.3 Modify mail-routing for Google Apps contacts in Active Directory">5.3
+          Modify mail-routing for Google Apps contacts in Active Directory</a>
+        </li>
+        <li id=gdx5229>
+          <a href=#installservice id=gdx5230 title="5.4 Install the Google Calendar Connector Plug-In as a Windows server">5.4
+          Install the Google Calendar Connector Plug-In as a Windows server</a>
+        </li>
+        <li id=gdx5231>
+          <a href=#testconfig id=gdx5232 title="5.5 Test your configuration with Microsoft's gwrouter.exe">5.5
+          Test your configuration with Microsoft's gwrouter.exe</a>
+        </li>
+        <li id=gdx5233>
+          <a href=#startmsexchconnector id=gdx5234 title="5.6 Turn on the Microsoft Exchange connector for Novell GroupWise">5.6
+          Turn on the Microsoft Exchange connector for Novell GroupWise</a>
+        </li>
+        <li id=gdx5235>
+          <a href=#startexchrouter id=gdx5236 title="5.7 Make sure the Microsoft Exchange router for Novell GroupWise is running">5.7
+          Make sure the Microsoft Exchange router for Novell GroupWise is
+          running</a>
+        </li>
+        <li id=gdx5237>
+          <a href=#forcesync id=gdx5240 title="5.8 Force an initial, immediate synchronization">5.8
+          Force an initial, immediate synchronization</a>
+        </li>
+        <li id=gdx5241>
+          <a href=#startcalconnector id=gdx5242 title="5.10 Start the Microsoft Calendar Connector Service">5.9
+          Start the Microsoft Calendar Connector Service</a>
+        </li>
+      </ul>
+      <br id=gdx5243>
+      <span class=Apple-style-span id=stmk0><i id=zl_c5>NOTE: Backslashes in
+      config.txt must be escaped with another backslash. E.g., to set C:\Program
+      Files, you should enter C:\\Program Files in config.txt</i></span>
+      <p id=gdx5248>
+        &nbsp;
+      </p>
+      <a id=gdd- name=installcreateshare></a>
+      <h2 id=gdx5249>
+        <a id=4.1></a>5.1: Install the Google Calendar Connector Plug-In into
+        the folder share
+      </h2>
+      <p id=gdx5250>
+        This step copies the actual Google Calendar Connector Plug-In files into
+        their install locations.
+      </p>
+      <p id=gdx5250>
+        <br id=gdx5251>
+      </p>
+      <ul id=gdx5252>
+        <li id=gdx5253>
+          5.1.1. Create a "bin" subdirectory beneath the folder share path. For
+          example, C:\Program Files\Google\Google Calendar Connector
+          Plug-In\bin. NOTE: Make sure that only the administrator has
+          permission to read the config.txt file.
+        </li>
+        <li id=gdx5254>
+          5.1.2. Copy contents of the Google Calendar Connector
+          Plug-In&nbsp;distribution&nbsp;into the \bin subdirectory.<br id=gdx5255>
+        </li>
+        <li id=gdx5257>
+          5.1.3. Open config.txt with a text editor
+        </li>
+        <li id=gdx5258>
+          5.1.4. Edit general.baseDirectory to point to the <i id=gdx5259>Share
+          Folder Path</i> defined earlier in
+          <a href=#createsharedfolder id=gdx5260 title="Step 4.2.4">Step
+          4.2.4</a>. E.g., C:\Program Files\Google\Google Calendar Connector
+          Plug-In. <span class=Apple-style-span id=sjq80><i id=zl_c6>Note, this
+          service does not work with mapped drives. This tells the Google
+          Calendar Connector Plug-In where files should be read and written.
+          </i></span><br id=gdx5261>
+        </li>
+        <li id=gdx5263>
+          5.1.5. Verify general.verboseLogging = false.
+        </li>
+        <li id=gdx5264>
+          5.1.6. Verify general.logMessages = false.
+        </li>
+        <li id=gdx5265>
+          5.1.7. Verify general.logfile has been set to an appropriate path for
+          service logging (if logging is enabled).<br id=gdx5266>
+          <b id=gdx5267><span class=Apple-style-span id=x-xb1><i id=zl_c7>NOTE:
+          You must grant the account that runs Java run-time MODIFY access to
+          your log file. </i>If not using password encryption this is the
+          "SYSTEM" account. If using password encryption this is the user
+          service account defined to run the service.<br id=s6040>
+          </span></b>
+        </li>
+        <li id=gdx5268>
+          5.1.8. (Optional) Enable web request proxying for Google Apps data.
+          This configures Google Calendar Connector Plug-In to send its web
+          requests to Google Apps through your organization's proxy server.<br id=gdx5269>
+          Un-comment the general.httpProxy and/or general.httpsProxy lines,
+          depending upon whether your proxy server supports only regular HTTP or
+          HTTPS.<br id=gdx5270>
+          Enter the DNS or IP addresses and ports of your company's web
+          proxy(s).<br id=gdx5271>
+          For example, if your HTTP proxy is http-proxy.acme.com port 8000, you
+          would enter: general.httpProxy=http-proxy.acme.com:8000.<br id=gdx5273>
+        </li>
+        <li id=gdx5274>
+          5.1.9. Set gdata.username to an administrator account on your Google
+          Apps domain. For example: gccplugin@acme.com. This is the Google Apps
+          account that will be used to access Google Calendar free/busy
+          information. It is important that this account does not need to be
+          used on a regular basis by a user because the use of this service may
+          interfere with existing open sessions on the account.<br id=gdx5276>
+        </li>
+        <li id=gdx5277>
+          5.1.10. Set gdata.password to the corresponding password for the
+          administrator account.
+        </li>
+        <li id=gdx5278>
+          5.1.11. Set gdata.domain to your Google Apps domain. For example:
+          acme.com.
+        </li>
+        <li id=gdx5279>
+          5.1.12. Check your configuration against the following checklist:
+          <div id=zu.e0>
+            <table border=1 cellpadding=0 cellspacing=0 height=1237 id=gdx5281 width=600>
+              <tbody id=gdx5282>
+              <tr id=gdx5283 valign=top>
+                <th id=gdx5284>
+                  Configuration Key
+                </th>
+                <th id=gdx5285>
+                  Description
+                </th>
+                <th id=gdx5286>
+                  Default Value
+                </th>
+              </tr>
+              <tr id=gdx5287 valign=top>
+                <td id=gdx5288>
+                  general.baseDirectory
+                </td>
+                <td id=gdx5289>
+                  This setting defines the base directory where the Google
+                  Calendar Connector Plug-In is installed. This is also the API
+                  Share Path where the Exchange connector expects to find the
+                  API_IN and API_OUT folders. For example:<br id=a_xd0>
+                  <br id=a_xd1>
+                  general.baseDirectory=C:\\Program Files\\Google\\Google
+                  Calendar Connector Plug-In
+                </td>
+                <td id=gdx5290>
+                  <code id=gdx5291>C:\\Program Files\\Google\\Google Calendar Connector 
+        Plug-In</code>
+                </td>
+              </tr>
+              <tr id=gdx5292 valign=top>
+                <td id=gdx5293>
+                  general.logFile
+                </td>
+                <td id=gdx5294>
+                  This setting defines the path and file name for the Google
+                  Calendar Connector Plug-In log file. For example:<br id=a_xd2>
+                  <br id=a_xd3>
+                  general.logFile=c:\\Google\\logs\\Plugin.log
+                </td>
+                <td id=gdx5295>
+                  <code id=gdx5296>C:\\Google\\logs\\Google Calendar Connector 
+      Plug-In.log</code>
+                </td>
+              </tr>
+              <tr id=gdx5297 valign=top>
+                <td id=gdx5298>
+                  general.verboseLogging
+                </td>
+                <td id=gdx5299>
+                  Setting this value to "true" enables verbose output in the
+                  general.logfile for debugging purposes. For example:<br id=a_xd4>
+                  <br id=a_xd5>
+                  general.verboseLogging=true
+                </td>
+                <td id=gdx5300>
+                  <code id=gdx5301>false</code>
+                </td>
+              </tr>
+              <tr id=gdx5302 valign=top>
+                <td id=gdx5303>
+                  general.logMessages
+                </td>
+                <td id=gdx5304>
+                  Setting this value to "true" logs all incoming GroupWise API
+                  requests and the responses generated by the Google Calendar
+                  Connector Plugin. For example:<br id=p_xy0>
+                  <br id=p_xy1>
+                  general.logMessages=true<br id=z55x0>
+                  <br id=zvht1>
+                  <span class=Apple-style-span id=v1s:0><i id=zl_c8>NOTE: These
+                  log files are written to the WPCSIN folder defined by
+                  general.basedDirectory.</i></span><br id=p_xy2>
+                </td>
+                <td id=gdx5305>
+                  <code id=gdx5306>false</code>
+                </td>
+              </tr>
+              <tr id=gdx5307 valign=top>
+                <td id=gdx5308>
+                  general.httpProxy
+                </td>
+                <td id=gdx5309>
+                  This setting enables HTTP proxy support. The setting defines
+                  the proxy server address and port that all web requests will
+                  be forwarded through. For example:<br id=vjv50>
+                  <br id=vjv51>
+                  general.httpProxy=http-proxy.acme.com:8080
+                </td>
+                <td id=gdx5310>
+                  &nbsp;DISABLED
+                </td>
+              </tr>
+              <tr id=gdx5311 valign=top>
+                <td id=gdx5312>
+                  general.httpsProxy
+                </td>
+                <td id=gdx5313>
+                  This setting enables HTTPS proxy support. The setting defines
+                  the proxy server address and port that all web requests will
+                  be forwarded through. For example:<br id=vjv52>
+                  <br id=vjv53>
+                  general.httpsProxy=https-proxy.acme.com:8181
+                </td>
+                <td id=gdx5314>
+                  &nbsp;DISABLED
+                </td>
+              </tr>
+              <tr id=gdx5315 valign=top>
+                <td height=52 id=gdx5316>
+                  gdata.username
+                </td>
+                <td id=gdx5317>
+                  Admin user name used to login to the GData service for the
+                  Google Apps domain. For example:<br id=bnm.0>
+                  <br id=bnm.1>
+                  gdata.username=gccplugin@acme.com<br id=y6gg0>
+                  <br id=t8s20>
+                  <span class=Apple-style-span id=t8s21><i id=zl_c9>NOTE:This
+                  user account must be granted
+                  administrator&nbsp;privileges&nbsp;within your Google Apps
+                  domain.&nbsp;The provisioning API must be enabled for the
+                  Google Apps domain as well.</i></span>
+                </td>
+                <td id=gdx5318>
+                  &nbsp;
+                </td>
+              </tr>
+              <tr id=gdx5319 valign=top>
+                <td id=gdx5320>
+                  gdata.password
+                </td>
+                <td id=gdx5321>
+                  The password for the gdata.username login to the Google Apps
+                  domain.<br id=yhr00>
+                  <br id=yhr01>
+                  gdata.password=adminpassword01
+                </td>
+                <td id=gdx5322>
+                  &nbsp;
+                </td>
+              </tr>
+              <tr id=sihu32 valign=top>
+                <td id=sihu33>
+                  gdata.domain
+                </td>
+                <td id=sihu34>
+                  The Google Apps domain name. For example:<br id=p9-30>
+                  <br id=p9-31>
+                  gdata.domain=acme.com
+                </td>
+                <td id=sihu35>
+                  <br id=qf4l0>
+                </td>
+              </tr>
+              <tr id=do6q0>
+                <td id=do6q1>
+                  fbfix.command<br id=do6q2>
+                </td>
+                <td id=do6q3>
+                  The executable filename of a helper process for the Google
+                  Calendar Connector plug-in.&nbsp;<br id=g.370>
+                  <br id=g.371>
+                  This tool verifies that Google Apps users are correctly
+                  registered in the Exchange free/busy store so free/busy
+                  lookups are routed through the GroupWise/Google Calender
+                  Connector Plugin. For example:<br id=vx3v0>
+                  <br id=vx3v1>
+                  fbfix.command=freebusybuilder.exe
+                </td>
+                <td id=do6q5>
+                  freebusybuilder.exe<br id=do6q6>
+                </td>
+              </tr>
+              <tr id=do6q7>
+                <td id=do6q8>
+                  fbfix.timeout<br id=do6q9>
+                </td>
+                <td id=do6q10>
+                  Specifies the number of seconds before the fbfix.command is
+                  killed. For Example:<br id=vx3v2>
+                  <br id=vx3v3>
+                  fbfix.timeout=60
+                </td>
+                <td id=do6q12>
+                  60<br id=do6q13>
+                </td>
+              </tr>
+              <tr id=do6q14>
+                <td id=do6q15>
+                  fbfix.frequency<br id=do6q16>
+                </td>
+                <td id=do6q17>
+                  Specifies the interval in seconds at which the Google Calendar
+                  Connector Plug-in will execute the fbfix.command. For Example:<br id=vx3v4>
+                  <br id=vx3v5>
+                  fbfix.frequency=1080
+                </td>
+                <td id=do6q19>
+                  1080<br id=do6q20>
+                </td>
+              </tr>
+              <tr id=do6q14>
+                <td id=do6q15>
+                  win.certname
+                </td>
+                <td id=do6q17>
+                  This setting defines the name of the certificate in the user's
+                  Personal certificate store to be used for encryption of the
+                  passwords in the config.txt&nbsp; This setting is typically
+                  the "Issued To" value or CN of the user who requested the
+                  certificate. For example:<br id=rcfd0>
+                  <br id=rcfd1>
+                  win.certname=pluginsvc<br id=xagx3>
+                </td>
+                <td id=do6q19>
+                  DISABLED<br id=do6q20>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+      <p id=gdx5327>
+        &nbsp;
+      </p>
+      <p id=gdx5327>
+        <br id=hur30>
+      </p>
+      <a id=je:h name=ldapfilter></a>
+      <h2 id=gdx5328>
+        <a id=4.2></a>5.2 Use LDAP to filter users in scope of the Google
+        Calendar Connector Plug-In&nbsp;(Optional)&nbsp;
+      </h2>
+      <p id=gdx5329>
+        An optional step in setting up the Google Calendar Connector Plug-In is
+        specifying a whitelist or blacklist LDAP query in config.txt. This is
+        useful if your organization has users who exist in both Active Directory
+        and Google Apps. This feature allows you to control what accounts are
+        imported into Exchange to support Exchange lookup of a Google Apps
+        user's free/busy data.<br id=jg7a0>
+      </p>
+      <p id=gdx5329>
+        <br id=jg7a1>
+      </p>
+      <p id=gdx5329>
+        This LDAP query is either a:
+      </p>
+      <p id=gdx5329>
+        <br id=gdx5330>
+      </p>
+      <ul id=gdx5331>
+        <li id=gdx5332>
+          <span id=e1tf0><b id=tl2q0> whitelist</b></span>: includes a specific
+          subset of Active Directory users. A contact will be created for Google
+          Apps accounts that match for these users.
+        </li>
+      </ul>
+      <br id=e1tf1>
+      <ul id=gdx5331>
+        <li id=gdx5333>
+          <span id=e1tf2><b id=tl2q1> blacklist</b></span>: specifically
+          excludes a subset of Active Directory users. No contact will be
+          created for Google Apps accounts that match for these users.
+        </li>
+      </ul>
+      <br id=gdx5334>
+      This is an important feature for environments with users who exist in both
+      Active Directory and Google Apps, but who are to be excluded from the
+      Google Calendar Connector Plug-In.<br id=e1tf3>
+      <br id=gdx5335>
+      <ul id=gdx5336>
+        <li id=gdx5337>
+          5.2.1. Open config.txt and enter the LDAP server url ldap.url,
+          username ldap.user and password ldap.password. These are the login
+          credentials used to query your company's LDAP server for a list of
+          user names.
+        </li>
+      </ul>
+      <ul id=gdx5336>
+        <li id=gdx5341>
+          5.2.2. Set ldap.authMethod=simple. This is equivalent to
+          "unencrypted', but can still be used with LDAPS, if you can't support
+          DIGEST-MD5<br id=e_.-0>
+        </li>
+      </ul>
+      <ul id=gdx5336>
+        <li id=gdx5345>
+          5.2.3. Set ldap.base to the base LDAP query for your domain. This is
+          useful for generally specifying your users' domain and organizational
+          information.
+        </li>
+      </ul>
+      <ul id=gdx5336>
+        <li id=gdx5348>
+          5.2.4. Uncomment either ldap.whitelist or ldap.blacklist
+          and&nbsp;ldap.domainMap then&nbsp;enter your custom LDAP filter. This
+          filter specifies which users to explicitly include or exclude from the
+          Google Calendar Connector Plug-In service, respectively. An example
+          white-list is displayed below. You must also configure
+          the&nbsp;ldap.domainMap feature as well to map internal SMTP addresses
+          returned from the whitelist or blacklist query to the SMTP addresses
+          as defined in Google Apps.&nbsp;
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<blockquote class=webkit-indent-blockquote id=sc7f0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=sc7f1><b id=zl_c12>NOTE: If neither
+  ldap.whitelist or ldap.blacklist is uncommented, no LDAP filter will be
+  applied.&nbsp;If no ldap.domainMap is configured then SMTP address matching
+  will not take effect and the whitelist or blacklist filter is not applied.<br id=zp_u4>
+  </b></span>
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_gccpi>
+      <ul id=gdx5336>
+        <li id=gdx5352>
+          5.2.5. Verify ldap.blindFaith is set to "true". This enables the
+          Google Calendar Connector Plug-In to accept any TLS certificate when
+          connecting to a secure LDAP server regardless of whether the
+          certificate is trusted by a Certificate Authority listed in the
+          machine's Trust Root Certificates certificate store.
+        </li>
+      </ul>
+      <ul id=gdx5336>
+        <li id=gdx5353>
+          5.2.6. Verify your LDAP configuration against the following checklist:<br id=gdx5354>
+          <table border=1 cellpadding=0 cellspacing=0 height=1094 id=gdx5355 width=600>
+            <tbody id=gdx5356>
+            <tr id=gdx5357 valign=top>
+              <th id=gdx5358>
+                Configuration Key
+              </th>
+              <th id=gdx5359>
+                Description
+              </th>
+              <th id=gdx5360>
+                Default Value
+              </th>
+            </tr>
+            <tr id=gdx5361 valign=top>
+              <td id=gdx5362>
+                ldap.url
+              </td>
+              <td id=gdx5363>
+                This setting&nbsp;specifies&nbsp;the Active Directory LDAP
+                server to connect to. For example:<br id=uosu0>
+                <br id=uosu1>
+                ldap.url=LDAPS://ldap1.acme.com
+              </td>
+              <td id=gdx5364>
+                &nbsp;
+              </td>
+            </tr>
+            <tr id=gdx5365 valign=top>
+              <td id=gdx5366>
+                ldap.user
+              </td>
+              <td id=gdx5367>
+                The userPrincipalName for the user account used by the plugin to
+                perform Active Directory queries for ldap.whitelist and
+                ldap.blacklist values.
+              </td>
+              <td id=gdx5368>
+                &nbsp;
+              </td>
+            </tr>
+            <tr id=gdx5369 valign=top>
+              <td id=gdx5370>
+                ldap.password
+              </td>
+              <td id=gdx5371>
+                The password for the ldap.user account
+              </td>
+              <td id=gdx5372>
+                &nbsp;
+              </td>
+            </tr>
+            <tr id=gdx5373 valign=top>
+              <td id=gdx5374>
+                ldap.authMethod
+              </td>
+              <td id=gdx5375>
+                This setting defines the authentication method used to access
+                LDAP; supported modes are&nbsp;<code id=gdx5376>"simple"</code>and&nbsp;<code id=gdx5377>"DIGEST-MD5"</code>. Default
+                method is "DIGEST-MD5" if none is specified.<br id=rnwc0>
+                <br id=rnwc1>
+                <span class=Apple-style-span id=kfnx0><i id=zl_c13>NOTE: To use
+                DIGEST-MD5, the configured windows user account in Active
+                Directory must have enabled "Store password using reversible
+                encryption" set via Active Directory Users and Computers. Once
+                this value is enabled the password must be changed in order to
+                store the password in the reversible encryption
+                format.</i></span>
+              </td>
+              <td id=gdx5378>
+                simple
+              </td>
+            </tr>
+            <tr id=gdx5379 valign=top>
+              <td id=gdx5380>
+                ldap.base
+              </td>
+              <td id=gdx5381>
+                The search base DN for the ldap.blacklist and ldap.whitelist
+                queries.
+              </td>
+              <td id=gdx5382>
+                &nbsp;
+              </td>
+            </tr>
+            <tr id=gdx5383 valign=top>
+              <td id=gdx5384>
+                ldap.blacklist
+              </td>
+              <td id=gdx5385>
+                This setting defines an LDAP filter of users to exclude from the
+                Google Apps directory sync import.<br id=ew_.0>
+                <br id=th0m1>
+                ldap.blacklist=(&amp;(objectClass=user)(msExchHomeServerName=*))<br id=th0m2>
+                <br id=vtfh2>
+                This filter returns a list of all user objects that have an
+                Exchange mailbox.
+              </td>
+              <td id=gdx5386>
+                <code id=gdx5387>&nbsp;</code>
+              </td>
+            </tr>
+            <tr id=gdx5388 valign=top>
+              <td id=gdx5389>
+                ldap.whitelist
+              </td>
+              <td id=gdx5390>
+                This setting defines an LDAP filter of users to include in the
+                Google Apps directory sync import.<br id=cd:50>
+                <br id=vtfh0>
+                ldap.whitelist=(mail=*@exchange.acme)(objectcategory=person)<br id=vtfh1>
+                <br id=vtfh2>
+                This filter returns a list of all user and contact objects that
+                have an internal mail address of @exchange.acme.com. This
+                includes mailbox enabled users, mail enabled users &nbsp;and
+                contacts.
+              </td>
+              <td id=gdx5391>
+                <code id=gdx5392>&nbsp;</code>
+              </td>
+            </tr>
+            <tr id=gdx5393 valign=top>
+              <td id=gdx5394>
+                ldap.blindfaith
+              </td>
+              <td id=gdx5395>
+                Enables the Google Calendar Connector Plug-In to accept any TLS
+                certificate when connecting to a secure LDAP server regardless
+                of whether the certificate is trusted by a Certificate Authority
+                listed in the machine's Trust Root Certificates certificate
+                store.
+              </td>
+              <td id=gdx5396>
+                <code id=gdx5397>true</code>
+              </td>
+            </tr>
+            <tr id=sihu28 valign=top>
+              <td id=sihu29>
+                ldap.domainMap
+              </td>
+              <td id=sihu30>
+                This setting allows the definition of SMTP domain name mappings.
+                This value is used in conjunction with ldap.blacklist and/or
+                ldap.whitelist. The mapping is applied to the LDAP black/white
+                list response and is used to match against the Google Apps user
+                SMTP address returned from the GData API.<br id=x__.0>
+                <br id=x__.1>
+                This setting maps an internal SMTP address from Exchange to the
+                Google Apps SMTP address. For example:<br id=is8.0>
+                <br id=is8.1>
+                ldap.domainMap=exchange.acme.com,acme.com<br id=is8.2>
+                <br id=is8.3>
+                An Exchange user has the primary SMTP address of
+                user@exchange.acme.com would match with the Google Apps user
+                which has the SMTP address user@acme.com.<br id=ooju0>
+                <br id=ooju1>
+                To configure multiple domain mappings use ";" as the delimiter
+                between the domain mapping values. For Example:<br id=byyp0>
+                <br id=byyp1>
+                ldap.domainMap=acme.com,exchange.acme.com;company.com,exchange.company.com<br id=ooju2>
+                <br id=ooju3>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+      <p id=gdx5398>
+        &nbsp;
+      </p>
+      <p id=gdx5398>
+        <br id=o-7d0>
+      </p>
+      <a id=pf.3 name=modifymailrouting></a>
+      <h2 id=gdx5399>
+        <a id=4.3></a>5.3. Modify mail routing for Google Apps contact objects
+        in Active Directory
+      </h2>
+      <p id=gdx5400>
+        In order for mail to be correctly routed to Google Apps users, we tell
+        the directory sync to write the Google Apps users' SMTP mail addresses
+        as their contact objects' target email addresses. By default, the Novell
+        GroupWise connector will have mapped the namespaces in a safe but
+        incompatible format for Google Apps. We will re-configure the default
+        mapping from GroupWise to Active Directory so that the Google users'
+        Active Directory targetAddress attributes point to their Google Apps
+        email addresses.<br id=gdx5402>
+        <br id=gdx5403>
+        This allows the Google Apps users' free/busy information to be made
+        available to Exchange users via the Novell GroupWise connector, and
+        their mail to be delivered to their Google Apps accounts via the
+        standard SMTP routing from Exchange.<br id=gdx5404>
+        <br id=gdx5405>
+        This requires a two-step process:<br id=gdx5406>
+      </p>
+      <ol id=gdx5407>
+        <li id=gdx5408>
+          Properly define the mapping of Google Apps users mail attributes into
+          variables that the Novell GroupWise connector can understand.
+        </li>
+        <li id=gdx5409>
+          Map the Google Apps email address variable to Active Directory as an
+          SMTP e-mail address.
+        </li>
+      </ol>
+      <br id=gdx5410>
+      <b id=gdx5411>NOTE: Although the specific values described below may
+      differ across environments, the end goal of this step is always to set the
+      targetAddress Active Directory attribute to SMTP:user@acme.com.</b>
+    </div>
+    <div id=div_gccpi>
+      <br id=gdx5424>
+      <ul id=gdx5425>
+        <li id=gdx5426>
+          5.3.1. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mexamap.tbl.
+        </li>
+      </ul>
+      <ul id=gdx5425>
+        <li id=gdx5427>
+          5.3.2. Verify a line of the form:<br id=gdx5428>
+          <code id=gdx5429>TA {some number like 64, 256} 
+  targetAddress</code><br id=gdx5430>
+          exists. Do not make any changes to this line.<br id=gdx5431>
+          <b id=gdx5432>NOTE: Do not use TAB for spacing. Only use spaces for
+          whitespace</b><br id=gdx5434>
+        </li>
+        <li id=gdx5435>
+          5.3.3. Open C:\Program Files\Exchsrvr\conndata\dxagwise\mapgwise.tbl.
+        </li>
+      </ul>
+      <ul id=gdx5425>
+        <li id=gdx5436>
+          5.3.4. Modify the line <code id=gdx5437>TA = "GWISE:"  </code>to read <code id=gdx5438>TA = 
+  "SMTP:" OBJECT </code><br id=gdx5440>
+        </li>
+        <li id=gdx5441>
+          5.3.5. Save changes and close mapgwise.tbl.<br id=gdx5442>
+          <b id=gdx5443>Note: If you are concerned, for other reasons, about
+          overwriting an existing mapping by changing the value of the variable
+          TA, you can use the alternative method below:&nbsp;</b>
+        </li>
+      </ul>
+      <p id=gdx5446 style=MARGIN-LEFT:40px>
+        <b id=gdx5413>NOTE: An alternative method to the one described above is
+        to add the following new line to mapgwise.tbl:</b><br id=gdx5414>
+        <br id=gdx5415>
+        GAPPSALIAS = "SMTP:" OBJECT<br id=gdx5417>
+        and then to modify the targetAdress mapping in mexamap.tbl such that:<br id=gdx5419>
+        GAPPSALIAS 256 targetAddress&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+      </p>
+      <a id=nc65 name=installservice></a>
+      <h2 id=gdx5447>
+        <a id=4.4></a>5.4: Install the Google Calendar Connector Plug-In as a
+        Windows Service
+      </h2>
+      <p id=gdx5448>
+      </p>
+      <ul id=gdx5449>
+        <li id=gdx5450>
+          5.4.1. Open a command line in the API Gateway share directory
+          C:\Program Files\Google\Google Calendar Connector Plug-In\bin.
+        </li>
+        <li id=gdx5451>
+          4.4.2. Execute install.bat This verifies that the necessary files
+          exist, runs a self-test and installs the Google Calendar Connector
+          Plug-In as a Windows service on your machine.
+        </li>
+        <li id=gdx5452>
+          5.4.3. Open the Windows Services management console.
+        </li>
+        <li id=gdx5453>
+          5.4.4. Find the "Google Calendar Connector Plug-In" service and
+          right-click for properties.<br id=gdx5455>
+        </li>
+        <li id=gdx5456>
+          5.4.5. Click "Start" to start the Google service.
+        </li>
+      </ul>
+      <a id=wm7d name=testconfig></a>
+      <h2 id=gdx5459>
+        <a id=4.5></a>5.5: Test configuration with Exchange's gwrouter.exe
+      </h2>
+      <p id=gdx5460>
+        This is an optional step that can be used to verify the correct
+        functioning of the services activated to this point. Following this step
+        will allow Exchange to verify that it can reach out to the Novell
+        GroupWise API Gateway folders that the Google service created.
+      </p>
+      <p id=gdx5460>
+        <br id=gdx5461>
+      </p>
+      <ul id=gdx5462>
+        <li id=gdx5463>
+          5.5.1. To test and make sure the service was installed correctly, run
+          C:\Program Files\Exchsrvr\bin\gwrouter.exe.
+        </li>
+      </ul>
+      <br id=y2850>
+      <ul id=gdx5462>
+        <li id=gdx5464>
+          5.5.2. If the service is working correctly, you should see output
+          similar to that below:&nbsp;
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<blockquote class=webkit-indent-blockquote id=wguh5 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=wguh6><span class=Apple-style-span id=wguh7 style="FONT-FAMILY:'Courier New'">Service
+  Running<br id=wguh8>
+  [00000D48]: The Microsoft Exchange Router for Novell GroupWise v6.5 (Build
+  6944.<br id=wguh9>
+  0) has started<br id=wguh10>
+  [00000688]: API_IN directory is \\localhost\GCCPLUGIN\API_IN\.<br id=wguh11>
+  [00000688]: API_OUT directory is \\localhost\GCCPLUGIN\API_OUT\.<br id=wguh12>
+  [00000688]: ATT_IN directory is \\localhost\GCCPLUGIN\ATT_IN\.<br id=wguh13>
+  [00000688]: ATT_OUT directory is \\localhost\GCCPLUGIN\ATT_OUT\.<br id=wguh14>
+  [00000688]: Free Busy directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\freebusy\.<br id=wguh16>
+  [00000688]: Dir Sync directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\dirsync\.<br id=wguh18>
+  [00000688]: Inbound To Router directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\togwise\.<br id=wguh20>
+  [00000688]: Bad Files directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\badfiles\.<br id=wguh22>
+  [00000688]: GW2MEX directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\GW2M<br id=wguh23>
+  EX\.<br id=wguh24>
+  [00000688]: GW2MEXA directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\GW2<br id=wguh25>
+  MEXA\.<br id=wguh26>
+  [00000688]: MEX2GW directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\MEX2<br id=wguh27>
+  GW\.<br id=wguh28>
+  [00000688]: MEX2GWA directory is C:\Program
+  Files\Exchsrvr\conndata\gwrouter\MEX<br id=wguh29>
+  2GWA\.<br id=wguh30>
+  [00000688]: GroupWise Share Name is \\localhost\GCCPLUGIN.<br id=wguh31>
+  [00000688]: GroupWise UserID is gccplugin.<br id=wguh32>
+  [00000688]: GroupWise User Password has been retrieved.<br id=wguh33>
+  [00000688]: Logging on NetWare server with remote location
+  '\\localhost\GCCPLUGI<br id=wguh34>
+  N', userid
+  '</span></span><span class=Apple-style-span id=wguh6><span class=Apple-style-span id=wguh7 style="FONT-FAMILY:'Courier New'">gccplugin</span></span><span class=Apple-style-span id=wguh6><span class=Apple-style-span id=wguh7 style="FONT-FAMILY:'Courier New'">'<br id=wguh35>
+  [00000688]: Novell NetWare server is connected<br id=wguh36>
+  [00000688] (Debug): Checking mail from GroupWise API Gateway output queue...<br id=wguh37>
+  [00000688] (Debug): Checking mail from Mex2Gw Router queue...<br id=wguh38>
+  [00000688] (Debug): Checking mail from Inbound To Router queue...<br id=wguh39>
+  [00000688] (Debug): Checking mail from GroupWise API Gateway output queue...<br id=wguh40>
+  [00000688] (Debug): Checking mail from Mex2Gw Router queue...<br id=wguh41>
+  [00000688] (Debug): Checking mail from Inbound To Router queue...<br id=wguh42>
+  [00000688] (Debug): Checking mail from GroupWise API Gateway output queue...<br id=wguh43>
+  [00000688] (Debug): Checking mail from Mex2Gw Router queue...<br id=wguh44>
+  [00000688] (Debug): Checking mail from Inbound To Router queue...<br id=wguh45>
+  [00000688] (Debug): Checking mail from GroupWise API Gateway output queue...<br id=wguh46>
+  [00000688] (Debug): Checking mail from Mex2Gw Router queue...<br id=wguh47>
+  [00000688] (Debug): Checking mail from Inbound To Router
+  queue...</span></span>
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_gccpi>
+      <div id=tgdz0>
+        <br id=tgdz1>
+      </div>
+      <ul id=gdx5462>
+        <li id=gdx5467>
+          5.5.3 Once you are satisfied the services are activated correctly,
+          close the command line window.
+        </li>
+      </ul>
+      <p id=gdx5468>
+        &nbsp;
+      </p>
+      <a id=v2bp name=startmsexchconnector></a>
+      <h2 id=gdx5469>
+        <font id=rf-x0 size=4>5.6: Turn on
+        the&nbsp;<span class=Apple-style-span id=b.0.0><font id=zl_c14>Microsoft
+        Exchange Connector for Novell GroupWise</font></span></font>
+      </h2>
+      <p id=gdx5470>
+        After installing all of the connectors, they need to be activated.
+        First, we activate the Microsoft Exchange Connector for Novell
+        GroupWise.
+      </p>
+      <p id=gdx5470>
+        <br id=gdx5471>
+      </p>
+      <ul id=gdx5472>
+        <li id=gdx5473>
+          5.6.1. Open the Windows Services Management console.<br id=gdx5475>
+        </li>
+        <li id=gdx5473>
+          5.6.2. Select the "Microsoft Exchange connector for Novell GroupWise"
+          and right-click for properties.
+        </li>
+        <li id=gdx5479>
+          5.6.3. Click "Start" if the service is not already started.
+        </li>
+      </ul>
+      <p id=gdx5480>
+        &nbsp;
+      </p>
+      <a id=m3wh name=startexchrouter></a>
+      <h2 id=gdx5481>
+        <font id=rf-x1 size=4>5.7: Turn on
+        the&nbsp;<span class=Apple-style-span id=b.0.1><font id=zl_c15>Microsoft
+        Exchange Router for Novell GroupWise</font></span></font>
+      </h2>
+      <p id=gdx5482>
+        Next, activate the Microsoft Exchange Router for Novell GroupWise.
+      </p>
+      <p id=gdx5482>
+        <br id=oq_e0>
+      </p>
+      <ul id=gdx5484>
+        <li id=rxti0>
+          5.7.1. Open the Windows Services Management console.
+        </li>
+        <li id=xyg:1>
+          5.7.2. Select the "Microsoft Exchange Router for Novell GroupWise" and
+          right-click it for properties.
+        </li>
+      </ul>
+      <ul id=gdx5484>
+        <li id=gdx5488>
+          5.7.3. Click "Start" if the service is not already started
+        </li>
+      </ul>
+      <a id=m8se name=forcesync></a>
+      <h2 id=gdx5506>
+        5.8: Force an initial, immediate synchronization
+      </h2>
+      <p id=gdx5507>
+        Now that the basic connectors are connected and routing, we initiate an
+        immediate full reload for directory synchronization. This will populate
+        the GoogleApps Organizational Unit in Active Directory, which Microsoft
+        Exchange uses. Note that the Calendar Connector has not yet been
+        started.
+      </p>
+      <p id=gdx5507>
+        <br id=gdx5508>
+      </p>
+      <ul id=gdx5509>
+        <li id=gdx5510>
+          5.8.1. Navigate back to the Exchange System Manager.<br id=gdx5511>
+        </li>
+        <li id=gdx5513>
+          5.8.2. Select the "Connector for Novell GroupWise" and right-click to
+          display its properties.
+        </li>
+        <li id=gdx5514>
+          5.8.3. Open the "Dirsync Schedule" tab.<br id=gdx5515>
+        </li>
+        <li id=gdx5517>
+          5.8.4. In the "GroupWise to Exchange" directory synchronization box,
+          click "Immediate full reload".<br id=gdx5518>
+        </li>
+        <li id=gdx5520>
+          5.8.5. Acknowledge that the process has started by clicking "OK".<br id=gdx5521>
+        </li>
+        <li id=gdx5523>
+          5.8.6. After the directory synchronization has completed, contacts
+          from Google Apps should have been populated in the GoogleApps Active
+          Directory Organizational Unit.&nbsp;<br id=gdx5525>
+        </li>
+      </ul>
+      <p id=gdx5526>
+        &nbsp;
+      </p>
+      <a id=eqvp name=startcalconnector></a>
+      <h2 id=gdx5527>
+        5.9: Start the Microsoft Calendar Connector service
+      </h2>
+      <p id=gdx5528>
+        Finally, we enable the free/busy lookup service.<br id=gdx5529>
+      </p>
+      <p id=gdx5528>
+        <br id=pr8a0>
+      </p>
+      <ul id=gdx5530>
+        <li id=gdx5531>
+          5.9.1. Open the Windows Services management console.
+        </li>
+        <li id=gdx5532>
+          5.9.2. Find the "Microsoft Exchange Calendar Connector" service.<br id=gdx5534>
+        </li>
+        <li id=gdx5535>
+          5.9.3. Start the service by right-clicking and selecting "Start".
+        </li>
+      </ul>
+    </div>
+    <div id=div_selftest>
+      <a id=ua03 name=installsuccess></a>
+      <h1 id=gdx5537>
+        6. Installation Success
+      </h1>
+      <p id=gdx5538>
+        All necessary services should now be correctly installed and configured
+        for Exchange users to see free/busy information for Google Apps users.
+        This section is intended to verify the correct configuration and
+        functioning of your deployment.
+      </p>
+      <p id=gdx5538>
+        <br id=lwed0>
+      </p>
+      <p id=gdx5539>
+      </p>
+      <ul id=gdx5540>
+        <li id=gdx5541>
+          <a href=#selftestexe id=gdx5542 title="6.1 Execute SelfTest.exe">6.1
+          Execute SelfTest.exe</a>
+        </li>
+        <li id=gdx5543>
+          <a href=#reviewselftest id=gdx5544 title="6.2 Review SelfTest.exe output">6.2
+          Review SelfTest.exe output</a>
+        </li>
+        <li id=gdx5545>
+          <a href=#verifycallookup id=gdx5546 title="6.3 Verify Calendar Look up">6.3
+          Verify Calendar Look up</a>
+        </li>
+      </ul>
+      <br id=gdx5547>
+      First, we will independently run SelfTest.exe, an automated testing script
+      that verifies:<br id=yhqr0>
+      <br id=yhqr1>
+      <ul id=gdx5548>
+        <li id=gdx5549>
+          Java 6 Update 2 or later is installed correctly
+        </li>
+        <li id=gdx5550>
+          The API Gateway Share Path is accessible
+        </li>
+        <li id=gdx5551>
+          Your Google Apps domain is accessible via GData
+        </li>
+        <li id=gdx5552>
+          The Provisioning API is accessible for your Google Apps domain
+        </li>
+        <li id=gdx5553>
+          If defined, the LDAP query and filter complete successfully.
+        </li>
+        <li id=gdx5554>
+          config.txt contains the correct configuration information to complete
+          the above tests successfully.
+        </li>
+      </ul>
+      <br id=gdx5555>
+      <b id=gdx5556>Note: SelfTest.exe will not be able to confirm that you have
+      configured Microsoft Exchange and the GroupWise connector
+      correctly.&nbsp;</b>
+    </div>
+    <div id=div_selftest>
+      <span class=Apple-style-span id=so2l0><br id=so2l1>
+      </span>
+      <p id=gdx5557>
+        Next, we will use Microsoft Outlook to complete an end-to-end
+        verification test by creating a new appointment and inviting Google Apps
+        users to attend. Along the way, we will view their Google Apps free/busy
+        information from within Microsoft Outlook.
+      </p>
+      <a id=ht4h name=selftestexe></a>
+      <h2 id=gdx5558>
+        <a id=5.1></a>6.1 Execute SelfTest.exe
+      </h2>
+      <p id=gdx5559>
+      </p>
+      <ul id=gdx5560>
+        <li id=gdx5561>
+          6.1.1 Open a command line and navigate to the C:\Program
+          Files\Google\Google Calendar Connector Plug-In\bin directory with
+          SelfTest.exe
+        </li>
+        <li id=gdx5562>
+          6.1.2 Execute SelfTest.exe from within the command line.
+        </li>
+      </ul>
+      <p id=gdx5563>
+        &nbsp;
+      </p>
+      <a id=ffzo name=reviewselftest></a>
+      <h2 id=gdx5564>
+        <a id=5.2></a>6.2 Review the output of SelfTest.exe to determine whether
+        your services are correctly configured
+      </h2>
+      <p id=gdx5565>
+        If you see the final output line: "All tests passed you're good to go
+        :-)", SelfTest.exe has completed successfully. A sample execution of
+        SelfTest.exe has been included below for comparison.
+      </p>
+      <p id=gdx5565>
+        <br id=wr8e0>
+      </p>
+    </div>
+  </div>
+</div>
+<blockquote class=webkit-indent-blockquote id=qe1i0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <span class=Apple-style-span id=qe1i1 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">C:\Program
+  Files\Google\Google Calendar Connector
+  Plug-in\bin&gt;SelfTest.exe</span><br id=qe1i2>
+  <span class=Apple-style-span id=qe1i3 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">ResourceManager
+  resource configuration:</span><br id=qe1i4>
+  <span class=Apple-style-span id=qe1i5 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Resource category: JAVA</span><br id=qe1i6>
+  <span class=Apple-style-span id=qe1i7 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Current directory: C:\Program Files\Google\Google Calendar Connector
+  Plug-in\</span><br id=qe1i8>
+  <span class=Apple-style-span id=qe1i9 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">bin\</span><br id=qe1i10>
+  <span class=Apple-style-span id=qe1i11 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property count: 16</span><br id=qe1i12>
+  <span class=Apple-style-span id=qe1i13 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: &nbsp;=&lt;&gt;</span><br id=qe1i14>
+  <span class=Apple-style-span id=qe1i15 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: arguments=&lt;&gt;</span><br id=qe1i16>
+  <span class=Apple-style-span id=qe1i17 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: currentdir=&lt;${EXECUTABLEPATH}&gt;</span><br id=qe1i18>
+  <span class=Apple-style-span id=qe1i19 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: embedjar=&lt;true&gt;</span><br id=qe1i20>
+  <span class=Apple-style-span id=qe1i21 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: initialheap=&lt;67108864&gt;</span><br id=qe1i22>
+  <span class=Apple-style-span id=qe1i23 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: javapropertiescount=&lt;1&gt;</span><br id=qe1i24>
+  <span class=Apple-style-span id=qe1i25 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: javaproperty_name_0=&lt;config&gt;</span><br id=qe1i26>
+  <span class=Apple-style-span id=qe1i27 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: javaproperty_value_0=&lt;config.txt&gt;</span><br id=qe1i28>
+  <span class=Apple-style-span id=qe1i29 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property:
+  jvmsearch=&lt;registry;javahome;jrepath;jdkpath;exepath;jview&gt;</span><br id=qe1i30>
+  <span class=Apple-style-span id=qe1i31 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property:
+  mainclassname=&lt;com.google.calendar.interoperability.connectorplugin</span><span class=Apple-style-span id=qe1i33 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">.SelfTest&gt;</span><br id=qe1i34>
+  <span class=Apple-style-span id=qe1i35 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: maxheap=&lt;134217728&gt;</span><br id=qe1i36>
+  <span class=Apple-style-span id=qe1i37 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: maxversion=&lt;&gt;</span><br id=qe1i38>
+  <span class=Apple-style-span id=qe1i39 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: minversion=&lt;1.6&gt;</span><br id=qe1i40>
+  <span class=Apple-style-span id=qe1i41 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: skel_Debug=&lt;1&gt;</span><br id=qe1i42>
+  <span class=Apple-style-span id=qe1i43 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: skel_Message=&lt;This program needs Java to run. Please download it
+  at</span><br id=qe1i44>
+  <span class=Apple-style-span id=qe1i45 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;http://www.java.com/en/download&gt;</span><br id=qe1i46>
+  <span class=Apple-style-span id=qe1i47 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;-
+  Property: skel_PressKey=&lt;0&gt;</span><br id=qe1i48>
+  <span class=Apple-style-span id=qe1i49 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Now
+  searching the JVM installed on the system...</span><br id=qe1i50>
+  <span class=Apple-style-span id=qe1i51 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: found VM (V(1)(6)(0)) in registry.</span><br id=qe1i52>
+  <span class=Apple-style-span id=qe1i53 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: found VM (V(1)(6)(0)) in registry.</span><br id=qe1i54>
+  <span class=Apple-style-span id=qe1i55 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: found VM (V(1)(6)(0)) in registry.</span><br id=qe1i56>
+  <span class=Apple-style-span id=qe1i57 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: found VM (V(1)(6)(0)) in registry.</span><br id=qe1i58>
+  <span class=Apple-style-span id=qe1i59 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: Env-Var JAVA_HOME not defined on this system.</span><br id=qe1i60>
+  <span class=Apple-style-span id=qe1i61 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: Env-Var JRE_HOME not defined on this system.</span><br id=qe1i62>
+  <span class=Apple-style-span id=qe1i63 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JVM
+  Lookup: Env-Var JDK_HOME not defined on this system.</span><br id=qe1i64>
+  <span class=Apple-style-span id=qe1i65 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Current
+  directory is C:\Program Files\Google\Google Calendar Connector
+  Plug-in\b</span><span class=Apple-style-span id=qe1i67 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">in\</span><br id=qe1i68>
+  <span class=Apple-style-span id=qe1i69 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">JSmooth
+  will now try to use the VM in the following order:
+  registry;javahome;jre</span><br id=qe1i70>
+  <span class=Apple-style-span id=qe1i71 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">path;jdkpath;exepath;jview</span><br id=qe1i72>
+  <span class=Apple-style-span id=qe1i73 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">------------------------------</span><br id=qe1i74>
+  <span class=Apple-style-span id=qe1i75 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Trying
+  to use a JVM defined in the registry (4 available)</span><br id=qe1i76>
+  <span class=Apple-style-span id=qe1i77 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">VM
+  will be tried in the following order:
+  1.6.0;1.6.0;1.6.0;1.6.0;</span><br id=qe1i78>
+  <span class=Apple-style-span id=qe1i79 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">-
+  Trying registry: &lt;C:\Program Files\Java\jre1.6.0_05&gt;&lt;C:\Program
+  Files\Java\jre</span><span class=Apple-style-span id=qe1i81 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">1.6.0_05\bin\client\jvm.dll&gt;&lt;1.6.0&gt;</span><br id=qe1i82>
+  <span class=Apple-style-span id=qe1i83 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Created
+  temporary filename to hold the jar
+  (C:\DOCUME~1\ADMINI~1.1BO\LOCALS~1\Te</span><span class=Apple-style-span id=qe1i85 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">mp\2\temp3.jar)</span><br id=qe1i86>
+  <span class=Apple-style-span id=qe1i87 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">NO
+  JNI SMOOTH ID !!</span><br id=qe1i88>
+  <span class=Apple-style-span id=qe1i89 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">COMMAND:
+  &lt;"C:\Program Files\Java\jre1.6.0_05\bin\java.exe" -Xmx134217728
+  -Xms671</span><br id=qe1i90>
+  <span class=Apple-style-span id=qe1i91 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">08864
+  "-Dconfig"="config.txt" -classpath
+  "C:\DOCUME~1\ADMINI~1.1BO\LOCALS~1\Temp</span><span class=Apple-style-span id=qe1i93 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">\2\temp3.jar;"
+  com.google.calendar.interoperability.connectorplugin.SelfTest
+  &gt;</span><br id=qe1i94>
+  <span class=Apple-style-span id=qe1i95 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Started
+  successfully</span><br id=qe1i96>
+  <span class=Apple-style-span id=qe1i97 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Loading
+  configuration...</span><br id=qe1i98>
+  <span class=Apple-style-span id=qe1i99 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;&nbsp;
+  ... Done</span><br id=qe1i100>
+  <span class=Apple-style-span id=qe1i101 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Test
+  base configuration...</span><br id=qe1i102>
+  <span class=Apple-style-span id=qe1i103 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span>
+  <span class=Apple-style-span id=qe1i105 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">setProxy</span><br id=qe1i106>
+  <span class=Apple-style-span id=qe1i107 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  httpProxy not set, will not use proxy</span><br id=qe1i108>
+  <span class=Apple-style-span id=qe1i109 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main&nbsp;</span><span class=Apple-style-span id=qe1i111 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">setProxy</span><br id=qe1i112>
+  <span class=Apple-style-span id=qe1i113 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  httpsProxy not set, will not use proxy</span><br id=qe1i114>
+  <span class=Apple-style-span id=qe1i115 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main&nbsp;</span><span class=Apple-style-span id=qe1i117 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i118>
+  <span class=Apple-style-span id=qe1i119 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  base directory is C:\Program Files\Google\Google Calendar Connector
+  Plug-I</span><span class=Apple-style-span id=qe1i121 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">n</span><br id=qe1i122>
+  <span class=Apple-style-span id=qe1i123 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span><span class=Apple-style-span id=qe1i125 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i126>
+  <span class=Apple-style-span id=qe1i127 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Building scanner...<br id=d7-50>
+  </span><span class=Apple-style-span id=qe1i129 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span><span class=Apple-style-span id=qe1i131 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i132>
+  <span class=Apple-style-span id=qe1i133 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Building stage 1...</span><br id=qe1i134>
+  <span class=Apple-style-span id=qe1i135 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span><span class=Apple-style-span id=qe1i137 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i138>
+  <span class=Apple-style-span id=qe1i139 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Building stage 2...</span><br id=qe1i140>
+  <span class=Apple-style-span id=qe1i141 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span><span class=Apple-style-span id=qe1i143 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i144>
+  <span class=Apple-style-span id=qe1i145 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Building stage 3...</span><br id=qe1i146>
+  <span class=Apple-style-span id=qe1i147 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.Main</span><span class=Apple-style-span id=qe1i149 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">
+  setUp</span><br id=qe1i150>
+  <span class=Apple-style-span id=qe1i151 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Building stage 4...</span><br id=qe1i152>
+  <span class=Apple-style-span id=qe1i153 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;&nbsp;
+  ... Done</span><br id=qe1i154>
+  <span class=Apple-style-span id=qe1i155 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Evaluating
+  base directory...</span><br id=qe1i156>
+  <span class=Apple-style-span id=qe1i157 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">(Make
+  sure that the Exchange side also uses C:\Program Files\Google\Google
+  Calen</span><span class=Apple-style-span id=qe1i159 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">dar
+  Connector Plug-In)</span><br id=qe1i160>
+  <span class=Apple-style-span id=qe1i161 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;&nbsp;
+  ... Done</span><br id=qe1i162>
+  <span class=Apple-style-span id=qe1i163 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Evaluating
+  Connectivity to GData</span><br id=qe1i164>
+  <span class=Apple-style-span id=qe1i165 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Performing
+  a test user query for domain 1bot.info</span><br id=qe1i166>
+  <span class=Apple-style-span id=qe1i167 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">May
+  7, 2008 2:52:38 PM
+  com.google.calendar.interoperability.connectorplugin.impl</span><span class=Apple-style-span id=qe1i169 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">.google.GDataAccessObject
+  retrieveAllUsers</span><br id=qe1i170>
+  <span class=Apple-style-span id=qe1i171 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">INFO:
+  Retrieving all users.</span><br id=qe1i172>
+  <span class=Apple-style-span id=qe1i173 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;&nbsp;
+  ... Done</span><br id=qe1i174>
+  <span class=Apple-style-span id=qe1i175 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">Evaluating
+  LDAP filtering</span><br id=qe1i176>
+  <span class=Apple-style-span id=qe1i177 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">LDAP
+  filter not used</span><br id=qe1i178>
+  <span class=Apple-style-span id=qe1i179 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">&nbsp;&nbsp;
+  ... Done</span><br id=qe1i180>
+  <span class=Apple-style-span id=qe1i181 style="FONT-FAMILY:'Courier New'; FONT-SIZE:10px">All
+  tests passed -- you're good to go :-)</span>
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_selftest>
+      <p id=gdx5565>
+        <br id=u7iy0>
+      </p>
+      <a id=ghc6 name=verifycallookup></a>
+      <h2 id=gdx5567>
+        <a id=5.3></a>6.3 Verify Calendar Look up
+      </h2>
+      <p id=gdx5568>
+      </p>
+      <ul id=gdx5569>
+        <li id=gdx5570>
+          6.3.1 Create a new appointment in Microsoft Outlook
+        </li>
+        <li id=gdx5571>
+          6.3.2 Invite a Google Apps user<br id=gdx5573>
+        </li>
+        <li id=gdx5574>
+          6.3.3 Move to the Scheduling tab
+        </li>
+        <li id=gdx5575>
+          6.3.4 Click "Yes" on the security warning
+        </li>
+        <li id=gdx5576>
+          6.3.5 See free/busy Information for Google Apps!<br id=gdx5577>
+        </li>
+      </ul>
+      <p id=gdx5579>
+        <br id=u7iy1>
+      </p>
+    </div>
+    <div id=div_autostart>
+      <a id=ju6x name=enableautoservices></a>
+      <h1 id=gdx5580>
+        7. Enable Automatic Startup for Services
+      </h1>
+      <p id=gdx5581>
+        Once the Verify Calendar Look up test has been completed, you are ready
+        to enable the calendar services to startup automatically upon reboot.
+        The following services should be set to "Startup Type" "Automatic" in
+        the Windows Services Management Console:
+      </p>
+      <p id=gdx5581>
+        <br id=gdx5582>
+      </p>
+      <ul id=gdx5583>
+        <li id=gdx5584>
+          Google Calendar Connector Plug-In connector service
+        </li>
+        <li id=gdx5585>
+          Microsoft Exchange Calendar Connector
+        </li>
+        <li id=gdx5587>
+          Microsoft Exchange Connector for Novell GroupWise
+        </li>
+      </ul>
+      <p id=gdx5588>
+        &nbsp;
+      </p>
+      <a id=bvry name=enableservices></a>
+      <h2 id=gdx5589>
+        7.1 Enable Services
+      </h2>
+      <p id=gdx5590>
+      </p>
+      <ul id=gdx5591>
+        <li id=gdx5592>
+          7.1.1. Open the Windows Services Management Console.
+        </li>
+        <li id=gdx5593>
+          7.1.2. Highlight the service you wish to enable to start up
+          automatically.
+        </li>
+        <li id=gdx5594>
+          7.1.3. Right-click on the service and select "properties".<br id=gdx5596>
+        </li>
+        <li id=gdx5597>
+          7.1.4. Open the "Startup Type" drop-down menu and select "Automatic".
+          Click the "OK" button.&nbsp;
+        </li>
+      </ul>
+      <p id=gdx5600>
+        &nbsp;<br id=s9:r1>
+      </p>
+      <a id=n4pq name=configeencrypt></a>
+      <h1 id=gdx5537>
+        8. Config.txt Password Encryption<br id=mq:70>
+      </h1>
+      The config.txt contains passwords in plain text. To secure these passwords
+      obfuscation or encryption is used so they are not saved is clear text. If
+      win.certname is commented out obfuscation is used by default. The first
+      time the service is started the passwords will be replaced with for
+      example: _LDP_=-OB-fxtmpjZcmBgZHxhdyMh. The value _LDP_ indicates the
+      ldap.password password and _GDP_ indicates the gdata.password. The "-OB-"
+      after the equals denotes obfuscation was used and then is followed by the
+      mask password. If certificate based encryption is used the value "-MS-" is
+      used and is followed by the encrypted password.<br id=nr8o0>
+      <br id=nr8o2>
+      Encryption is accomplished by using a user account enrolled with a user
+      certificate. To accomplish this an Active Directory user account will need
+      to be setup and enrolled with a certificate. The steps below detail how to
+      accomplish this using a Microsoft Certificate Authority. The Google
+      Calendar Connector Plug-in service is then configured to run under the
+      security context of this user, which gives it access to the user's
+      certificate private key which is used to encrypt the passwords in the
+      config.txt file.&nbsp;
+    </div>
+    <div id=div_autostart>
+      <br id=b7.30>
+    </div>
+  </div>
+</div>
+<ul id=true>
+  <li id=hu9t2>
+    <span class=Apple-style-span id=regc0 style=COLOR:#0000ee><a href=#enableencrypt id=y-io title="8.1 Enable Encryption for Config.txt Passwords"><u id=a:x-3>8.1&nbsp;Enable
+    Encryption for Config.txt Passwords</u></a> </span>
+  </li>
+  <li id=hu9t3>
+    <span class=Apple-style-span id=pi2e0><a href=#enablecertenroll id=agnz title="8.2 Enabled Certificate Enrollment"><u id=a:x-4>8.2
+    Enabled Certificate Enrollment</u></a> </span>
+  </li>
+  <li id=hu9t4>
+    <span class=Apple-style-span id=ve4v0><a href=#grantadmin id=y7d7 title="8.3 Grant Administrative Rights"><u id=a:x-5>8.3
+    Grant Administrative Rights</u></a> </span>
+  </li>
+  <li id=hu9t4>
+    <span class=Apple-style-span id=pq1y0><a href=#enrollcert id=lbln title="8.4 Enroll in Certificate"><u id=a:x-6>8.4
+    Enroll in Certificate</u></a> </span>
+  </li>
+  <li id=hu9t4>
+    <span class=Apple-style-span id=ukd50><a href=#configsvc id=crdi title="8.5 Configure Service to Run As User Account and Encrypt Passwords"><u id=a:x-7>8.5
+    Configure Service to Run As User Account and Encrypt Passwords</u></a>
+    </span>
+  </li>
+</ul>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_autostart>
+      <br id=rd4j2>
+      <a id=swrq name=enableencrypt></a>
+      <h2 id=gdx5589>
+        8.1 Enable Encryption for Config.txt Passwords
+      </h2>
+      <ul id=y-hi0>
+        <li id=y-hi1>
+          8.1.1 Create an Active Directory user account which will run the
+          Google Calendar Connector Plug-in service.<br id=rd4j3>
+        </li>
+      </ul>
+      <br id=jsqc0>
+      <a id=g08r name=enablecertenroll></a>
+      <h2 id=gdx5589>
+        8.2 Enabled Certificate Enrollment<br id=fkvb0>
+      </h2>
+      <ul id=y-hi0>
+        <li id=y-hi1>
+          8.2.1 Run the Certificates Templates MMC with an administrative
+          account that can modify certificate templates for the Certificate
+          Authority.<br id=dsti0>
+        </li>
+        <li id=y-hi1>
+          8.2.2 Locate the "Users" certificate template and select Properties<br id=f9gx0>
+        </li>
+        <li id=y-hi1>
+          8.2.3 Select the Security Tab and add the user account.
+        </li>
+        <li id=y-hi1>
+          8.2.4 Grant the user or group "enroll" privileges&nbsp;<br id=f9gx1>
+        </li>
+      </ul>
+      <br id=y-hi3>
+      <a id=k5bx name=grantadmin></a>
+      <h2 id=gdx5589>
+        8.3 Grant Administrative Rights<br id=sbnd0>
+      </h2>
+      <ul id=siax0>
+        <li id=siax1>
+          8.3.1 Login as an Administrator to the server where the plug-in is
+          installed
+        </li>
+        <li id=siax1>
+          8.3.2 Run "compmgmt.msc"
+        </li>
+        <li id=siax1>
+          8.3.3 Expand Users and Groups
+        </li>
+        <li id=siax1>
+          8.3.4 Click on Groups
+        </li>
+        <li id=siax1>
+          8.3.5 Double Click on the Administrators group
+        </li>
+        <li id=siax1>
+          8.3.6 Click Add, type the name of the user account and press enter
+        </li>
+        <li id=siax1>
+          8.3.7 Click OK
+        </li>
+      </ul>
+      <br id=en9o1>
+      <a id=wzqr name=enrollcert></a>
+      <h2 id=gdx5589>
+        8.4 Enroll in Certificate<br id=d.2g1>
+      </h2>
+      <ul id=d.2g2>
+        <li id=d.2g3>
+          8.4.1 Login to the server as the user account that was granted
+          Administrative rights.
+        </li>
+        <li id=d.2g4>
+          8.4.2 Run "mmc.exe"
+        </li>
+        <li id=d.2g5>
+          8.4.3 Click File | Add/Remove Snap-In
+        </li>
+        <li id=d.2g6>
+          8.4.4 Click Add and select the "Certificates" snap-in then click ADD
+        </li>
+        <li id=d.2g6>
+          8.4.5 Select "My user account and click Finish<br id=d-od0>
+        </li>
+        <li id=d.2g6>
+          8.4.6 Click Close and Click OK
+        </li>
+        <li id=d.2g6>
+          8.4.7 Expand Certificates and right click on Personal
+        </li>
+        <li id=d.2g6>
+          8.4.8 Select All Tasks | Request New Certificate
+        </li>
+        <li id=d.2g6>
+          8.4.9 Click Next on the "Certificate Request Wizard"
+        </li>
+        <li id=d.2g6>
+          8.4.10 Select the template "User" from the list
+        </li>
+        <li id=d.2g6>
+          8.4.11 Click Next and Finish
+        </li>
+        <li id=d.2g6>
+          8.4.12 At this point the certificate request should have completed and
+          you should have a user certificate in the Personal store for the user.
+        </li>
+        <li id=d.2g6>
+          8.4.13 Note the name of the "Issued To" value which is typically the
+          CN of the user account.
+        </li>
+        <li id=d.2g6>
+          8.4.14 Edit the config.txt in the bin folder in the path defined by
+          general.baseDirectory<br id=ky_y0>
+        </li>
+        <li id=d.2g6>
+          8.4.15 Configure the option win.certname= to the value you obtained in
+          step 8.4.13
+        </li>
+      </ul>
+      <a id=vdcq name=configsvc></a>
+      <h2 id=gdx5589>
+        8.5 Configure Service to Run As User Account and Encrypt Passwords<br id=ptzl0>
+      </h2>
+      <ul id=t8c91>
+        <li id=t8c92>
+          8.5.1 Login to the server where the plug-in is installed
+        </li>
+        <li id=t8c92>
+          8.5.2 Run "services.msc"
+        </li>
+        <li id=t8c92>
+          8.5.3 Select "Google Calendar Connector Plug-in" service and right
+          click and select Properties
+        </li>
+        <li id=t8c92>
+          8.5.4 Click on the Log On Tab
+        </li>
+        <li id=t8c92>
+          8.5.5 Select the option "This account" to define the account to run
+          the service as.
+        </li>
+        <li id=t8c92>
+          8.5.6 Enter the Active Directory user account name or click browse to
+          locate it.
+        </li>
+        <li id=t8c92>
+          8.5.7 Enter and confirm the password for the user account
+        </li>
+        <li id=t8c92>
+          8.6.8 Click Apply
+        </li>
+        <li id=t8c92>
+          8.6.9 Select "Google Calendar Connector Plug-in" service and right
+          click and select Restart
+        </li>
+        <li id=t8c92>
+          8.6.10 Review the config.txt in the bin folder in the path defined by
+          general.baseDirectory option to verify the passwords are now displayed
+          as encrypted lines and contain =-MS- to signify password encryption,
+          not obfuscation.<br id=jzcg0>
+        </li>
+      </ul>
+      <br id=t8c93>
+      <br id=r9ek0>
+      <a id=t.cp name=troubleshooting></a>
+      <h1 id=gdx5537>
+        9. Troubleshooting<br id=l-n10>
+      </h1>
+      <p id=gdx5600>
+      </p>
+      <ul id=true>
+        <li id=wa5u0>
+          Run SelfTest.exe to verify the Google Calendar Connector Plug-In
+          settings are working.
+        </li>
+        <li id=wa5u0>
+          Run FreeBusyBuilder.exe from the command line and verify it is seeing
+          the Google Apps contacts properly and updating the free/busy store.
+        </li>
+      </ul>
+      <div id=br131 style=MARGIN-LEFT:40px>
+        <span id=br132><b id=uaer0>NOTE: If you are using password encryption
+        you must run the Selftest.exe as the user account which contains the
+        "User" certificate. </b></span><br id=tx8s1>
+      </div>
+      <div id=wa5u1>
+        <br id=wa5u2>
+      </div>
+      <ul id=true>
+        <li id=ah_w2>
+          Calendar lookups are not working
+        </li>
+      </ul>
+      <p id=tzrt0>
+      </p>
+    </div>
+  </div>
+</div>
+<blockquote class=webkit-indent-blockquote id=vbpj0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <br id=lfv30>
+  Ensure the windows services are running:<br id=lfv31>
+  <br id=lfv32>
+  <ul id=lfv33>
+    <li id=lfv34>
+      Google Calendar Connector Plug-In
+    </li>
+    <li id=lfv35>
+      Microsoft Exchange Calendar Connector
+    </li>
+    <li id=lfv36>
+      Microsoft Exchange Connectivity Controller
+    </li>
+    <li id=lfv37>
+      Microsoft Exchange Connector for Novell GroupWise
+    </li>
+    <li id=lfv38>
+      Microsoft Exchange Router for Novell GroupWise
+    </li>
+  </ul>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=kqko0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_autostart>
+      <p id=gdx5600>
+      </p>
+      <div id=vm7.1>
+        <br id=vm7.2>
+      </div>
+      <p id=tzrt1>
+      </p>
+      <p id=gdx5600>
+      </p>
+      <ul id=true>
+        <li id=dh101>
+          Enabled&nbsp;general.logMessage,&nbsp;general.logFile
+          and&nbsp;general.verboseLogging.
+        </li>
+      </ul>
+      <p id=tzrt2>
+      </p>
+    </div>
+  </div>
+</div>
+<br id=i2fl0>
+<blockquote class=webkit-indent-blockquote id=bwgp0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <blockquote class=webkit-indent-blockquote id=bwgp1 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  </blockquote>
+  <ul id=lkd70>
+    <li id=lkd71>
+      <font id=x-dq0 size=2 style=FONT-FAMILY:Verdana>Enabling
+      general.logMessage this will have the Google Calendar Connector Plug-In
+      write each API message and its response
+      in</font><font id=x-dq1 size=2 style=FONT-FAMILY:Verdana>to
+      "</font><span class=Apple-style-span id=cv9y0 style=FONT-FAMILY:-webkit-monospace><font id=x-dq2 size=2 style=FONT-FAMILY:Verdana>C:\Program
+      Files\Google\Google Calendar Connector Plug-In\WPCSIN". Run a directory
+      sync and a free/busy request from Outlook for a Google Apps contact.
+      Verify the API requests are being processed.</font><br id=lkd72>
+      </span>
+    </li>
+    <li id=lkd73>
+      Enabling&nbsp;<span class=Apple-style-span id=z6bt1 style=FONT-FAMILY:Verdana>general.logFile</span>&nbsp;and&nbsp;general.verboseLogging
+      will get you a very verbose log will indicate where the Google Calendar
+      Connector Plug-in is failing.<br id=y7gh0>
+    </li>
+  </ul>
+</blockquote>
+<blockquote class=webkit-indent-blockquote id=bwgp0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+  <blockquote class=webkit-indent-blockquote id=bwgp1 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+    <span class=Apple-style-span id=cv9y3 style=FONT-FAMILY:-webkit-monospace><span class=Apple-style-span id=cv9y4 style=FONT-FAMILY:Verdana><br id=y7gh1>
+    </span></span>
+  </blockquote>
+</blockquote>
+<ul id=y7gh2>
+  <li id=y7gh3>
+    Some users in my Google Apps Domain are not showing up in Active Directory
+  </li>
+</ul>
+<br id=x4jd0>
+<div id=l8850 style=MARGIN-LEFT:40px>
+  <ul id=g7z-0>
+    <li id=g7z-1>
+      Verify there is not a user or contact in Active Directory with the e-mail
+      address of the Google Apps user. No two AD objects can have the same
+      e-mail address.
+    </li>
+    <li id=g7z-2>
+      Enable general.logMessage and review the API response file for the
+      directory syncs to determine if the user is in the response being
+      processed by Exchange.<br id=hqbt1>
+    </li>
+  </ul>
+</div>
+<blockquote class=webkit-indent-blockquote id=bwgp0 style="BORDER:medium none ; MARGIN:0pt 0pt 0pt 40px; PADDING:0px">
+</blockquote>
+<div id=wrapper>
+  <div id=pagecontent>
+    <div id=div_autostart>
+      <p id=gdx5600>
+      </p>
+      <p id=gdx5600>
+        <br id=n-lk0>
+      </p>
+      <a id=ei_t name=copy></a>
+      <p id=gdx5600>
+        <span class=Apple-style-span id=f7h10 style=FONT-SIZE:21px><span class=Apple-style-span id=f7h11 style=FONT-SIZE:13px><a href=#top id=ltsh537 title="Back to top">Back
+        to top</a></span></span>
+      </p>
+      <p id=gdx5600>
+        <br id=f7h12>
+      </p>
+      <p id=gdx5600>
+        <span class=Apple-style-span id=r_t81 style=FONT-SIZE:21px><b id=lyrp1>10.
+        Copyright Notices</b></span>
+      </p>
+      <p id=gdx5600>
+        <br id=b.6t0>
+      </p>
+      <p id=ltsh539>
+        Library and license attributions are provided to conform with the Apache
+        License, Version 2.0. A copy of the Apache License, Version 2.0 can be
+        found
+        <a href=http://www.apache.org/licenses/LICENSE-2.0.html id=ltsh540>here</a>.<br id=nm_.0>
+      </p>
+      <p id=ltsh539>
+        <br id=nm_.1>
+      </p>
+      <p id=ltsh539>
+        The following licenses and libraries are used in the Google Calendar
+        Connector Plug-In:<br id=e1:w0>
+      </p>
+      <p id=ltsh539>
+        <br id=ltsh541>
+      </p>
+      <ul id=ltsh542>
+        <li id=ltsh543>
+          Google Data (GData) Java Client Library and its dependencies licensed
+          under the <b id=ltsh544>Apache License, Version 2.0.</b>
+          (<a href=http://code.google.com/p/gdata-java-client/ id=v:1: title=project>project</a>
+          ,
+          <a href=http://www.apache.org/licenses/LICENSE-2.0 id=ltsh546>license</a>)
+        </li>
+        <li id=ltsh547>
+          Google Collections Library and its dependencies licensed under the
+          <b id=v9r80>Apache License, Version 2.0</b>
+          (<a href=http://code.google.com/p/google-collections/ id=rp:k title=project>project</a>,
+          <a href=http://www.apache.org/licenses/LICENSE-2.0 id=dyg9 title=license>license</a>
+          )
+        </li>
+      </ul>
+      <br id=lrxn0>
+      The following licenses and libraries are used to build the Google Calendar
+      Connector Plug-In:<br id=lvdb0>
+      <br id=mq2e0>
+      <ul id=mq2e1>
+        <li id=mq2e2>
+          Apache Ant Project and its dependencies licensed under the
+          <b id=qtas0>Apache License, Version 2.0.</b>
+          (<a href=http://ant.apache.org/ id=tkwc title=project>project</a>,
+          <a href=http://ant.apache.org/license.html id=uezw title=license>license</a>)<br id=qtas1>
+        </li>
+      </ul>
+      <br id=mq2e3>
+      The following licenses and libraries are used for testing the Google
+      Calendar Connector Plug-In:<br id=mq2e4>
+      <br id=jni60>
+      <ul id=ltsh542>
+        <li id=ltsh547>
+          JUnit and its dependencies
+          (<a href=http://www.junit.org/ id=u2y0 title=project>project</a>)<br id=jni61>
+        </li>
+        <li id=ltsh547>
+          JMock and its dependencies
+          (<a href=http://jmock.codehaus.org/ id=rgnq title=project>project</a>,
+          <a href=http://jmock.codehaus.org/license.html id=zfei title=license>license</a>)<br id=qlrm0>
+        </li>
+      </ul>
+      <br id=kd0w0>
+      The Google Calendar Connector Plug-In optionally supports, but does not
+      require, building Windows executables using JSmooth.&nbsp; JSmooth is not
+      distributed with the Google Calendar Connector Plug-In open source release
+      and its use represents an optional step in the build process.&nbsp;
+      JSmooth may be obtained and used in accordance with its license, both of
+      which are provided below (for the sake of convenience):<br id=l-i70>
+      <br id=l-i71>
+      JSmooth project:
+      <a href=http://jsmooth.sourceforge.net id=ck_2 title=http://jsmooth.sourceforge.net>http://jsmooth.sourceforge.net</a><br id=j88:0>
+      JSmooth license:
+      <a href=http://jsmooth.sourceforge.net/license.php id=r7av title=http://jsmooth.sourceforge.net/license.php>http://jsmooth.sourceforge.net/license.php</a><br id=q1om0>
+      <br id=q1om1>
+      <hr id=q1om2 style="WIDTH:100%; HEIGHT:2px">
+      <p id=ltsh556 style=MARGIN:0px>
+        <i id=ltsh557>Google, Google Calendar, Google Calendar Connector, Google
+        Calendar Connector Plug-In, Google Calendar Connector Sync Service,
+        Google Calendar Connector Web Service are trademarks of Google, Inc.</i>
+      </p>
+      <p id=ltsh556 style=MARGIN:0px>
+        <i id=ltsh557><br id=xydx0>
+        </i>
+      </p>
+      <p id=ltsh556 style=MARGIN:0px>
+        <span class=Apple-style-span id=t3.i0 style=border-collapse:collapse><span class=Apple-style-span id=t3.i1><i id=lyrp2>All
+        other company and product names may be trademarks of the respective
+        companies with which they are associated.</i></span></span>
+      </p>
+      <div id=prtz2>
+        <span class=Apple-style-span id=prtz3 style=border-collapse:collapse><br id=prtz4>
+        </span>
+      </div>
+      <p id=lyrp3>
+      </p>
+    </div>
+  </div>
+</div></body>
+</html>
