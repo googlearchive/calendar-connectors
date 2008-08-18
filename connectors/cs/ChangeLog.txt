@@ -3,16 +3,24 @@ Google Calendar Connectors Changelog
 ====================================
 v1.2 []
 ------------------
-* FEATURE: Removed the need from a template user; the FB messages are created from scratch now
-* FEATURE: The Exchange FB for the GCalendar users now allows tentative status
-* BUG FIX: Only one WebDAV requess needed to create a FB message
-* BUG FIX: Diagnosics page can be made only available from localhost (option in XML config)
+* FEATURE: Removed the need for a template user. The f/b messages are created
+  from scratch now.
+* FEATURE: When Exchange f/b is viewed from GCalendar, users now properly see
+  the meeting status (e.g., "Tentative").
+* FEATURE: Added support for one-time write of appointment details when using
+  "Appointment" mode in the sync service. (Experimental)
+* FEATURE: Added support to customize appointment placeholder text.
+* BUG FIX: Optiimized to use a single WebDAV request to create an FB message.
+* BUG FIX: Diagnosics page is now only available from the local machine. (This
+  can be disabled with a config option.)
 * BUG FIX: GCal events marked "Available" are now free in Exchange
-* BUG FIX: XML config values (e.g. "true", "scheduleplus") are now case-insensitive
-* BUG FIX: Default to SSL if we can't determine the schema to access GCal
-* BUG FIX: Small tweaks to the diagnostics page
-* BUG FIX: Various performance optimizations
-* CLEANUP: Remove unneeded GetMailboxUrl utility function
+* BUG FIX: Values in the config files (e.g. "true", "scheduleplus") are now
+  case-insensitive.
+* BUG FIX: Default to SSL for Exchange free/busy responses if we can't
+  determine the schema used to access GCalendar.
+* BUG FIX: Small UI and form submission tweaks to the diagnostics page.
+* BUG FIX: Various performance optimizations.
+* CLEANUP: Remove unneeded GetMailboxUrl utility function.
 
 v1.1 [14-May-2008]
 ------------------
