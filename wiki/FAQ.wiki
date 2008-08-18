@@ -1,0 +1,190 @@
+#labels Featured
+=Frequently Asked Questions=
+
+This FAQ contains common questions and answers about the Google Calendar Connectors.
+
+----
+
+*What are the technical requirements for running the Google Calendar Connectors in my environment?*
+
+  * Windows Server 2003
+  * Exchange 2003 SP2 or Exchange 2003/2007 Mixed Mode environment with a public free/busy store.
+    * A single Active Directory Forest.
+    * .NET 2.0 runtime on the servers running the Web and Sync Services.
+
+* Are the Google Calendar Connectors secure?*
+ * Role Accounts allow customers to define permission levels
+ * Authenticated HTTPS GData feeds to talk to Google Apps
+ * HTTPS support when interacting with HTTPS Google Calendar
+ * TLS support for talking to LDAP
+ * Configuration files support encryption
+
+  The Google Calendar Connectors use role accounts to interact with your customer's Microsoft Exchange environment.  This allows the customer to decide what minimum level of privileges to grant the services in their environment.
+
+  The Google Calendar Connectors also uses the authenticated GData feeds to retrieve free/busy information from Google Calendar.
+
+  Google Calendar Connector Web Service uses HTTPS to communicate with Google Calendar when it detects Google Calendar is using HTTPS.  This means the Google Calendar Connector Web Service can operate in HTTP or HTTPS mode, depending on whether Google Calendar is in HTTP or HTTPS.  In general, Google recommends running Google Calendar and the Google Calendar Connectors in a mutual level of security; either both in HTTPS or both in HTTP.  
+
+  The Google Calendar Connector Web Service does *NOT* provide an authentication layer for choosing which requests for free/busy information and appointment details to allow or dis-allow.  Anyone who knows the URL address of your Web Service and has network access to its URL would theoretically be able to perform Microsoft Exchange free/busy look ups and, if enabled, retrieve appointment details to the same degree as any user of your Google Apps domain.
+
+* What is the Google Calendar Connector Web Service URL? *
+  * This is the url that Google Calendar posts the free/busy lookup requests to get Exchange user free/busy data. (i.e. https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx). This URL must be defined in your Google Apps domain before Google Calendar can retrieve Exchange free/busy data. 
+
+
+* How do I register a Google Calendar Connector Web Service URL? *
+
+ As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Apps Support. Google Apps Support will ensure your domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
+
+  To have your Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
+
+ * Use the Contact us online link that can be found in your Google Apps control panel Domain Settings | Account Information | Admin support
+ * Select the button: "If you issue is not covered above, report it via email"
+
+  Complete the support request form:
+
+ ** Problem you're having: Enabling or verifying services
+ ** Brief Summary: Please enable my domain for Calendar interoperability with Exchange.  
+ ** Full Description:
+
+  I would like to have my Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange.
+
+  Here are the configuration details you need: 
+ # Google Apps Domain Name to enable service on: for example: acme.com
+ # Google Calendar Connector Web Service URI: for example:  https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Refer to the project FAQ for more details)
+ # Google Calendar Connector Web Service Domain Name value: for example: acme.com (Refer to the project FAQ for more details)
+
+  Customer PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
+  Support PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
+
+*How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
+
+  * There is a setting !SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
+  * The connector reads the Primary SMTP address of the Exchange user account or contact   object. We use this e-mail address as the key between Exchange and Google Apps and vice verse.
+
+
+*My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
+
+ _Google Calendar Connector Web Service:_
+  * Use the !GoogleApps.GCal.!DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+
+ _Google Calendar Connector Sync Service:_
+  * Use the !GoogleApps.GCal.!DomainMapping setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name.
+
+
+ _Google Calendar Connector Pug-in:_
+  * Use the ldap.domainMap setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name. Using this setting in conjunction with ldap.whitelist and ldap.blacklist lets you control what users are in scope of the Google Calendar Connector Plug-in. 
+
+
+*What servers does the Google Calendar Connector need to connect to within my company?*
+
+ _Web Service:_
+    * If enabled to return appointment detail every server that hosts a mailbox. Make sure if you have IP whitelisting configured that the sever running the Google Calendar connectors is also include in that whitelist.
+    * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
+    * If not returning appointment detail the Web service only needs to talk to the Exchange servers configured in the web.config file.
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+
+ _Sync Service:_
+    * If you are running the sync service in Appointment mode, the sync service will need to communicate to every server that hosts a mailbox you are syncing.
+    * If you are running the sync service in !SchedulePlus mode,  the Sync service only needs to talk to the Exchange servers configured in the GoogleGCalExhangeSync.Service.exe.config file.
+    * The web service will need to communicate via LDAP/GC to the domain controller configured in the web.config.
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+ _Plug-In:_
+    * The plug-in runs on the Exchange server which has the Novell !GroupWise connector for Microsoft Exchange installed. 
+    * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
+    * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
+
+*Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
+
+  No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
+
+  If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server.
+
+*Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
+
+  No, the Google Calendar Sync service only is designed to synchronize Google Calendar free/busy data into your Exchange environment. It does not sync appointment details or other meeting data, just free/busy status for the meeting time.
+
+  There is functionally with the Google Calender Connector Web service to retrieve in real time Exchange free/busy data within Google Calendar.
+
+  A separate Google product: Google Calendar Sync is a client desktop application that syncs Outlook Calendar with a Google Calendar. This tool runs on an end user client desktop. For more information go here: http://www.google.com/support/calendar/bin/answer.py?answer=89955.
+
+*I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
+
+  * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting: the Google Calendar Connector Web Service Domain Name value needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration domain setting in Google Apps. If the domain name does not match, the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration.
+
+  By default the value will match Google Apps domain name i..e "acme.com". To allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service. 
+
+  If you have other domains that are children of acme.com like child.acme.com or child-acme.com the domain value will not need to be updated as the sanity check will still match. If the child domain is acme-child.com this will not match on the value "acme.com" so you would want to configure the value to ".".
+
+  * You also might need to configure multiple domain mapping values as well depending on your Exchange configuration. 
+
+*I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
+
+  * The sync service does not support running in both a !SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
+
+
+*I have users configured in both Google Calendar and Exchange. What free/busy data will be displayed?*
+
+  * The first service to respond to the free/busy request is displayed. If the user is a Google Apps user then Google apps data will be displayed. If there is a no Google Apps user or the account is disabled, Exchange data will be displayed. If the user is both a Google Apps user and Exchange user, only Google Apps free/busy data will be displayed. 
+
+
+*How do I force a complete re-sync of the Google Calendar Sync Service?*
+
+  * Delete the file !UserModifiedTimes.xml from C:\google\data and restart the Google Calendar Sync Service. This will force a full re-sync for each user.
+
+*Can the Google Calendar Connectors sync a Google Calendar Resource's free/busy data from Google Apps into Exchange?
+
+  Yes if using the Google Calendar Sync Service! _NOTE: The Google Calendar Plugin does not currently support Google Calendar resources_. 
+
+  # Create an Exchange contact with the e-mail address of the Google Apps Calendar Resource.
+  # Define a timezone for the Resource calendar. To set the timezone login as an Admin of the Gooogle Apps domain and load Google Calendar. Added the Resource calendar to your "My Calendars" by entering the e-mail address for the resource. Click on Settings | Calendars | click on the Resource calendar. Under "Calendar Time Zone:" select a timezone and click Save.
+  # Configure the Google Calendar Connector Sync service using !SchedulePlus mode. Ensure the contact object is in scope of the sync service. 
+
+*How is the free busy status mapped from the Google Calendar to Exchange?*
+
+The GCal meetings can have 5 possible statuses:
+ # Cancelled.
+ # Confirmed. 
+ # Tentative. 
+ # Not set. 
+ # Any unknown value. 
+
+The attendees of a meeting in GCal can have 6 possible statuses:
+ # Accepted.
+ # Declined.
+ # Invited.
+ # Tentative.
+ # Not set.
+ # Any unknown value.
+
+The combination of those (event status X attendee status) are mapped to the following Exchange free busy statuses:
+ # Free.
+ # Busy.
+ # Tentative.
+ # OOF.
+
+First several special cases:
+ # Nothing is mapped to the Exchange OOF, since no such information is available from GCal.
+ # The meeting status is not set when the projection is just free busy. In such case, it is considered same as Confirmed.
+ # The attendee status is not set when the projection is just free busy. In such case, it is considered same as Accepted.
+ # Unknown value for meeting status is treated as Confirmed. There is no perfect match here, but this should not happen unless calendar introduces new status.
+ # Unknown value for attendee status is treaded as Accepted. Same logic as above.
+
+So here are the rules
+ # If the meeting is Cancelled, regardless of the attendee status, the time is considered Free.
+ # If the attendee status is declined, regardless of the meeting status, the time is considered Free.
+ # If the meeting is not Cancelled, and the attendee status is Invited, the time is considered Tentative (to match Exchange/Outlook behavior).
+ # If the meeting is Tentative, and the attendee status is not declined, the time is considered Tentative.
+ # If the meeting is Confirmed and the attendee status is accepted, the time is considered Busy.
+ # If the meeting is Confirmed and the attendee status is tentative, the time is considered Tentative.
+
+Here is the mapping in table format:
+
+|| ||Confirmed ||Not set ||Unknown ||Tentative ||Cancelled ||
+||Accepted ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Not set ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Unknown ||Busy ||Busy ||Busy ||Tentative ||Free ||
+||Invited ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
+||Tentative ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
+||Declined ||Free ||Free ||Free ||Free ||Free ||
