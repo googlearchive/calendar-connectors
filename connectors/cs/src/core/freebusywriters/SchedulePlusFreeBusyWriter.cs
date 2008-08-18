@@ -37,7 +37,6 @@ namespace Google.GCalExchangeSync.Library
         protected static readonly log4net.ILog _log =
           log4net.LogManager.GetLogger( typeof( SchedulePlusFreeBusyWriter ) );
 
-        private string _adminGroup;
         private string _exchangeServerUrl;
 
         /// <summary>
@@ -45,7 +44,6 @@ namespace Google.GCalExchangeSync.Library
         /// </summary>
         public SchedulePlusFreeBusyWriter()
         {
-            _adminGroup = ConfigCache.AdminServerGroup;
             _exchangeServerUrl = ConfigCache.ExchangeFreeBusyServerUrl;
         }
 
