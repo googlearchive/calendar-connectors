@@ -61,7 +61,6 @@ namespace GCalExchangeLookup
 
             LabelExchAdminUser.Text = ConfigCache.ExchangeAdminLogin;
 
-            LabelAdminGroup.Text = ConfigCache.AdminServerGroup;
             LabelMachineName.Text = Environment.MachineName;
 
             Server.ScriptTimeout = 600; // 10 mins

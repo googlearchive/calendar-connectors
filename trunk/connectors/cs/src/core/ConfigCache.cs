@@ -241,13 +241,6 @@ namespace Google.GCalExchangeSync.Library
             ConfigurationManager.AppSettings["SyncService.PlaceHolderMessage"] ?? "GCal Free/Busy Placeholder";
 
         /// <summary>
-        /// Group to use for Exchange public folder subject
-        /// Only necessary with SchedulePlus FreeBusyWriter
-        /// </summary>
-        public static readonly string AdminServerGroup =
-            ConfigurationManager.AppSettings["SyncService.FreeBusy.AdminGroup"];
-
-        /// <summary>
         /// Allow keep alive connections when syncing with Google Calendar
         /// </summary>
         public static readonly bool EnableKeepAlive =
