@@ -692,7 +692,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.0.289"
+        "ProductVersion" = "8:1.2.289"
         "Manufacturer" = "8:Google"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
