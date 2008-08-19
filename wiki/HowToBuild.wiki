@@ -15,7 +15,7 @@ The Google Web Service and Sync Service are built using the _!GoogleCalendarConn
   * *!GoogleCalendarConnectorWebService.installer* - Builds the Web Service Installer
   * *unittests* - Builds the unit tests for all of the connectors. To run the unit tests, load the _/connectors/cs/src/VS2005/!UnitTests/unittest.nunit_ config file into the NUnit GUI.
 
-The documentation in _/connectors/cs/docs_ is built with Microsoft's Sandcastle help file builder, and the Sandcastle Help File Builder GUI.  The config file is connectors/cs/src/VS2005/MakeDocs.shfb_.
+The documentation in _/connectors/cs/docs_ is built with Microsoft's Sandcastle help file builder, and the Sandcastle Help File Builder GUI.  The config file is connectors/cs/src/VS2005/!MakeDocs.shfb_.
 
 == Building Google Calendar Connector Plugin==
 
