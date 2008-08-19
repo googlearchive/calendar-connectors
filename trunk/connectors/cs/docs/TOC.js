@@ -2,7 +2,7 @@
 // System  : Sandcastle Help File Builder
 // File    : TOC.js
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/04/2008
+// Updated : 04/11/2008
 // Note    : Copyright 2006-2008, Eric Woodruff, All rights reserved
 // Compiler: JavaScript
 //
@@ -11,15 +11,11 @@
 // load tree nodes on demand.  It also contains the script necessary to do
 // full-text searches.
 //
-// This code may be used in compiled form in any way you desire.  This file
-// may be redistributed unmodified by any means PROVIDING it is not sold
-// for profit without the author's written consent.  This notice, the
+// This code is published under the Microsoft Public License (Ms-PL).  A copy
+// of the license should be distributed with the code.  It can also be found
+// at the project website: http://www.CodePlex.com/SHFB.   This notice, the
 // author's name, and all copyright notices must remain intact in all
 // applications, documentation, and source files.
-//
-// This code is provided "as is" with no warranty either express or implied.
-// The author accepts no liability for any damage or loss of business that
-// this product may cause.
 //
 // Version     Date     Who  Comments
 // ============================================================================
@@ -27,6 +23,9 @@
 // 1.4.0.2  06/15/2007  EFW  Reworked to get rid of frame set and to add
 //                           support for Ajax to load tree nodes on demand.
 // 1.5.0.0  06/24/2007  EFW  Added full-text search capabilities
+// 1.6.0.7  04/01/2008  EFW  Merged changes from Ferdinand Prantl to add a
+//                           website keyword index.  Added support for "topic"
+//                           query string option.
 //=============================================================================
 
 // IE flag
@@ -37,10 +36,14 @@ var minWidth = 100;
 
 // Elements and sizing info
 var divTOC, divSizer, topicContent, divNavOpts, divSearchOpts, divSearchResults,
-    divTree, docBody, maxWidth, offset, txtSearchText, chkSortByTitle;
+    divIndexOpts, divIndexResults, divTree, docBody, maxWidth, offset,
+    txtSearchText, chkSortByTitle;
 
 // Last node selected
-var lastNode, lastSearchNode;
+var lastNode, lastSearchNode, lastIndexNode;
+
+// Last page with keyword index
+var currentIndexPage = 0;
 
 //============================================================================
 
@@ -54,16 +57,35 @@ function Initialize()
     divNavOpts = document.getElementById("divNavOpts");
     divSearchOpts = document.getElementById("divSearchOpts");
     divSearchResults = document.getElementById("divSearchResults");
+    divIndexOpts = document.getElementById("divIndexOpts");
+    divIndexResults = document.getElementById("divIndexResults");
     divTree = document.getElementById("divTree");
     txtSearchText = document.getElementById("txtSearchText");
     chkSortByTitle = document.getElementById("chkSortByTitle");
 
     // The sizes are bit off in FireFox
     if(!isIE)
-        divNavOpts.style.width = divSearchOpts.style.width = 292;
+        divNavOpts.style.width = divSearchOpts.style.width =
+            divIndexOpts.style.width = 292;
 
     ResizeTree();
     SyncTOC();
+
+    // Use an alternate default page if a topic is specified in
+    // the query string.
+    var queryString = document.location.search;
+
+    if(queryString != "")
+    {
+        var idx, options = queryString.split(/[\?\=\&]/);
+
+        for(idx = 0; idx < options.length; idx++)
+            if(options[idx] == "topic" && idx + 1 < options.length)
+            {
+                topicContent.src = options[idx + 1];
+                break;
+            }
+    }
 }
 
 //============================================================================
@@ -417,6 +439,13 @@ function ResizeTree()
 
     divSearchResults.style.height = newHeight;
 
+    newHeight = y - parseInt(divIndexOpts.style.height, 10) - 6;
+
+    if(newHeight < 25)
+        newHeight = 25;
+
+    divIndexResults.style.height = newHeight;
+
     // Resize the content div
     ResizeContent();
 }
@@ -494,12 +523,13 @@ function OnMouseMove(event)
         (event.clientX < minWidth) ? minWidth : event.clientX;
 
     divTOC.style.width = divSearchResults.style.width =
-        divTree.style.width = pos;
+        divIndexResults.style.width = divTree.style.width = pos;
 
     if(!isIE)
         pos -= 8;
 
-    divNavOpts.style.width = divSearchOpts.style.width = pos;
+    divNavOpts.style.width = divSearchOpts.style.width =
+        divIndexOpts.style.width = pos;
 
     // Resize the content div to fit in the remaining space
     ResizeContent();
@@ -578,11 +608,14 @@ function PerformSearch()
 
             lastSearchNode = divSearchResults.childNodes[0].childNodes[1];
 
-            if(lastSearchNode.tagName != "A")
-                lastSearchNode = lastSearchNode.nextSibling;
+            if(lastSearchNode != null)
+            {
+                if(lastSearchNode.tagName != "A")
+                    lastSearchNode = lastSearchNode.nextSibling;
 
-            SelectSearchNode(lastSearchNode);
-            topicContent.src = lastSearchNode.href;
+                SelectSearchNode(lastSearchNode);
+                topicContent.src = lastSearchNode.href;
+            }
         }
     }
 
@@ -599,4 +632,97 @@ function SelectSearchNode(node)
     lastSearchNode = node;
 
     return true;
+}
+
+//============================================================================
+// KeyWordIndex code
+
+function ShowHideIndex(show)
+{
+    if(show)
+    {
+        PopulateIndex(currentIndexPage);
+
+        divNavOpts.style.display = divTree.style.display = "none";
+        divIndexOpts.style.display = divIndexResults.style.display = "";
+    }
+    else
+    {
+        divIndexOpts.style.display = divIndexResults.style.display = "none";
+        divNavOpts.style.display = divTree.style.display = "";
+    }
+}
+
+// Populate keyword index
+function PopulateIndex(startIndex)
+{
+    var xmlHttp = GetXmlHttpRequest(), now = new Date();
+    var firstNode;
+
+    if(xmlHttp == null)
+    {
+        divIndexResults.innerHTML = "<b>XML HTTP request not supported!</b>";
+        return;
+    }
+
+    divIndexResults.innerHTML = "<span class=\"PaddedText\">Loading " +
+        "keyword index...</span>";
+
+    // Add a unique hash to ensure it doesn't use cached results
+    xmlHttp.open("GET", "LoadIndexKeywords.aspx?StartIndex=" + startIndex +
+      "&hash=" + now.getTime(), true);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState == 4)
+        {
+            divIndexResults.innerHTML = xmlHttp.responseText;
+
+            if(startIndex > 0)
+            {
+                firstNode = divIndexResults.childNodes[1];
+
+                if(firstNode != null && !firstNode.innerHTML)
+                    firstNode = divIndexResults.childNodes[2];
+            }
+            else
+                firstNode = divIndexResults.childNodes[0];
+
+            if(firstNode != null)
+                lastIndexNode = firstNode.childNodes[0];
+
+            if(lastIndexNode != null)
+            {
+                if(lastIndexNode.tagName != "A")
+                    lastIndexNode = lastIndexNode.nextSibling;
+
+                SelectIndexNode(lastIndexNode);
+                topicContent.src = lastIndexNode.href;
+            }
+
+            currentIndexPage = startIndex;
+        }
+    }
+
+    xmlHttp.send(null)
+}
+
+// Set the style of the specified keyword index node to "selected"
+function SelectIndexNode(node)
+{
+    if(lastIndexNode != null)
+        lastIndexNode.className = "UnselectedNode";
+
+    node.className = "SelectedNode";
+    lastIndexNode = node;
+
+    return true;
+}
+
+// Changes the current page with keyword index forward or backward
+function ChangeIndexPage(direction)
+{
+    PopulateIndex(currentIndexPage + direction);
+
+    return false;
 }

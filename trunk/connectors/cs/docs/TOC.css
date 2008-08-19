@@ -137,6 +137,26 @@ a.UnselectedNode:hover, a.SelectedNode:hover
     width: 300px;
 }
 
+.IndexOpts
+{
+    padding: 5px 5px 0px 5px;
+    background-color: lightgrey;
+    color: black;
+    width: 300px;
+}
+
+.IndexItem
+{
+    white-space: nowrap;
+    margin: 2px 2px 2px 2px;
+}
+
+.IndexSubItem
+{
+    white-space: nowrap;
+    margin: 2px 2px 2px 12px;
+}
+
 .PaddedText
 {
     margin: 10px 10px 10px 10px;
