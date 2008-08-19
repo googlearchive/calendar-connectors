@@ -1,7 +1,7 @@
 
 Google Calendar Connectors Changelog
 ====================================
-v1.2 []
+v1.2 [19-Jun-2008]
 ------------------
 * FEATURE: Removed the need for a template user. The f/b messages are created
   from scratch now.
