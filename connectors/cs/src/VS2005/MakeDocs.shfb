@@ -1,4 +1,4 @@
-﻿<project schemaVersion="1.6.0.2">
+﻿<project schemaVersion="1.6.0.7">
     <assemblies>
         <assembly assemblyPath=".\core\bin\Debug\Google.GCalExchangeSync.Library.dll" xmlCommentsPath=".\core\bin\Debug\Google.GCalExchangeSync.Library.XML" commentsOnly="False" />
     </assemblies>
@@ -13,21 +13,20 @@
         <dependencyItem depPath=".\core\bin\Debug\*.*" />
     </dependencies>
     <ProjectSummary />
-    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace</MissingTags>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>
     <VisibleItems>ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <HtmlHelp1xCompilerPath path="" />
     <HtmlHelp2xCompilerPath path="" />
     <OutputPath>..\..\docs\</OutputPath>
-    <SandcastlePath path="C:\program files\sandcastle\" />
+    <SandcastlePath path="" />
     <WorkingPath path="" />
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>True</KeepLogFile>
+    <BuildLogFile path="" />
     <HelpFileFormat>Website</HelpFileFormat>
-    <PurgeDuplicateTopics>True</PurgeDuplicateTopics>
     <CppCommentsFixup>False</CppCommentsFixup>
     <FrameworkVersion>2.0.50727</FrameworkVersion>
-    <BinaryTOC>True</BinaryTOC>
-    <IncludeFavorites>False</IncludeFavorites>
+    <IndentHtml>False</IndentHtml>
     <Preliminary>False</Preliminary>
     <RootNamespaceContainer>False</RootNamespaceContainer>
     <RootNamespaceTitle />
@@ -37,6 +36,7 @@
     <CopyrightHref />
     <CopyrightText />
     <FeedbackEMailAddress />
+    <FeedbackEMailLinkText />
     <HeaderText />
     <FooterText />
     <ProjectLinkType>Local</ProjectLinkType>
@@ -46,7 +46,11 @@
     <NamingMethod>MemberName</NamingMethod>
     <SyntaxFilters>CSharp, VisualBasic</SyntaxFilters>
     <ShowFeedbackControl>False</ShowFeedbackControl>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <HelpFileVersion>1.2.0.0</HelpFileVersion>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
-    <ContentSiteMap path="" />
-    <TopicFileTransform path="" />
 </project>
