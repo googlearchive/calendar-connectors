@@ -1,0 +1,15 @@
+Libaries supporting ANT tasks
+=============================
+Download the latest version of jsmooth from http://jsmooth.sourceforge.net and place the following items in this folder:
+
+- jsmoothgen-ant.jar (a custom ant task to create windows executables)
+- skeletons (a folder from the same jsmooth archive)
+
+Both the jar file and the skeletons-folder are part of one single download from the web page.
+
+WARNING:
+THIS IS AN OPTIONAL STEP IN THE BUILD PROCESS AND ONLY REQUIRED IF YOU NEED WINDOWS EXECUTABLES. IT IS INCLUDED FOR
+CONVENIENCE ONLY. EVERYTHING IN THE BUILD SCRIPT EXCEPT THE TASKS "jsmoothgen", "exe " AND "dist" WILL WORK JUST AS
+WELL. COMMENT OUT THOSE THREE TASKS IF YOU DO NOT INTEND TO USE THEM.
+
+IF YOU DECIDE TO USE JSMOOTH, PLEASE CHECK THE LICENSE AGREEMENT AT http://jsmooth.sourceforge.net/license.php .

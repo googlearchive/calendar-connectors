@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="stylesheet" type="text/css" href="dev_docs.css"> 
+<link rel="stylesheet" type="text/css" href="local_extensions.css"><title>Developer's Guide</title> 
+
+
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 { /*keep headings with the text that belongs with them*/
+	page-break-after: avoid;
+	}
+	
+#sidenav { /* don't show page navigation */
+	visibility:hidden;
+	position:absolute;
+	}
+	
+#pagecontent{  /* nudge page content over to fill page */
+	float:left;
+	position:relative;
+	top:0;
+	left:-175px;
+	width:100%;
+	}
+	
+#doc_title{  /* add another border since bg-color doesn't show */
+	border-bottom:1px solid;
+	padding-bottom:2px;
+	}
+
+pre {
+  overflow: visible;
+  text-wrap: unrestricted;
+  white-space: -moz-pre-wrap; /* Moz */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: pre-wrap; /* CSS3  */
+  word-wrap: break-word; /* IE 5.5+ */
+}
+	
+.backtotop, #date{ 
+	visibility:hidden;
+	}
+
+}
+</style></head><body id="stylesheet_guide">
+<a name="top" id="top"></a>
+
+
+
+<!-- ########## PAGE HEADER ########## -->
+
+<div id="header">
+  <div id="logo"><div id="footerlogo" style="background-image:url(http://code.google.com/images/sprites.gif);background-position:-28px -136px;width:153px;height:55px;"/> </div></div>
+  <h1 id="doc_title">Google Calendar Connector Plugin</h1>
+</div>
+<!-- ########## END PAGE HEADER ########## -->
+
+
+
+<!-- ########## PAGE CONTENT ########## -->
+
+
+
+
+
+<div id="pagecontent"> <a name="bodytop" id="bodytop"></a>
+<h1 id="page_title">Developer's Guide</h1>
+<p>
+The Google Calendar Connector Plugin is a framework to connect a Microsoft Exchange 2003 server to other Mail and Calendaring systems.
+While getting information out of Exchange is a well documented process, there has not really been a cookie-cutter way to make the
+server query for external information, such as free/busy information of another Calendaring system. This document describes an
+approach to resolving this issue.
+</p>
+
+
+
+<h2>Contents</h2>
+<ol class="toc">
+  <li><a href="#architecture">Architecture</a>
+    <ol class="toc">
+	<li><a href="#idea">General idea</a></li>
+	<li><a href="#details">Detailed Design</a> </li>
+    </ol>
+   </li>
+  <li><a href="#implementation">Implementation Details</a>
+    <ol class="toc">
+	<li><a href="#thirdparty">Third party libraries</a></li>
+	<li><a href="#newconnect">Connecting to a new system</a> </li>
+    </ol>
+   </li>
+</ol>
+      <h1><a name="intro" id="intro"></a>About This Document</h1>
+      <h2><a name="audience" id="audience"></a>Audience </h2>
+      <p>This document is for developers. To make best use of its content, a basic familarity with UML and Java 5 concepts is recommended.</p>
+ 
+  
+  <h2><a name="information" id="information"></a>For More Information</h2>
+  <p>To get more information about the Groupwise API, please take a look at the <a href="http://www.novell.com/documentation/gw55/index.html?page=/documentation/gw55/gw55api/data/a20gkue.html">
+  Novell Groupwise 5.5 Administration Guide.</a> For additional inspiration on how this software could be used in real business environments, please see also this great
+  <a href="http://www.microsoft.com/technet/prodtechnol/exchange/2000/plan/fabrikam.mspx">Exchange 2000 and Novell GroupWise Coexistence and Migration</a> paper from Microsoft.</p>
+
+  <h1><a name="architecture" id="architecture"></a>Architecture</h1>
+<p>&nbsp;</p>
+
+<h2><a name="idea" id="idea"></a>General idea</h2>
+<p>
+Microsoft's connector uses the <a href="http://www.novell.com/documentation/gw55/index.html?page=/documentation/gw55/gw55api/data/a20gkue.html">Novell Groupwise API</a> to communicate with the external server. This API is openly documented and is based on a file-based protocol. If a 
+consumer of the API has a request, he or she writes the request into a human-readable textfile and stores that in a particular folder. If the request requires any additional data, such as mail attachments for outgoing mails, these are also uploaded to a special folder. Groupwise scans the incoming folder for new commands, executes them and store the result (again in human readable form) in an outgoing folder. The consumer of the service scans that folder for responses and does with them whatever he or she wants.
+</p>
+<p>
+Originally, it looked as if the file communication had to happen through an Novell directory server (NDS), but it turned out that Exchange could be configured to use a local directory on the file system instead. Once that fact was established, it was just a matter of implementing a program that scans the folder for incoming commands and returns the responses in the format that the
+Exchange side expects. Also, by doing some additional configuration tweaks on the Exchange side, it was possible to reduce the necessary messages exchanged for the initial implementation: only &quot;fetch user list&quot; and free/busy inquiries were necessary, since invite passing and email communication could be handled via SMTP.
+</p>
+
+<h2><a name="details" id="details"></a>Detailed Design</h2>
+
+<p>
+The overall objective is relatively simple: we have to write a program that runs on a single server,
+scans the incoming folders, processes the messages, and writes the responses. Since the software is supposed to run in environments with
+many thousand users, high concurrency and efficiency is key. It is assumed that none of the posted requests were dependent on each other
+(in other words, they could be executed out of sequence and in parallel). Also, there are several operations that are I/O dependent (scan the folder,
+read the commands, interface to the external system, write the responses), so we have to make sure that a temporary slowness in any of these dependencies will not
+hold up the other processes.
+</p>
+<p>
+Considering these requirements, a <a href="http://en.wikipedia.org/wiki/Staged_event-driven_architecture">SEDA architecture</a>
+was chosen. SEDA allows the programmer to divide request processing into separate Stages. Each stage takes the result of a previous stage, processes it and hands it over to its successor. The following image shows how the Google-Calendar-Connector-Plugin was split up:
+<br/>
+<img src="connector_stages.jpg" alt="image missing"/>
+<br/>
+At the top of the assembly line, a class called InputScanner monitors the incoming folder for new files. If it finds a new file, it enters the filename into the first stage. The InputScanner does not parse the file or loads it over the network -- it is the only process that cannot be parallelized and therefore should do as little as possible. In this design. the queue that holds the elements for the following stage is called a Sink. A Sink is always used by two stakeholders: the object feeding it with events to process and the stage processing the events. Like most objects in this design, Sinks are generic and can function on any object type. However, the type of a sink always needs to match the type of event expected by the particular stage.
+</p>
+<p>
+There are four stages within the code:
+<ul>
+<li>The <i>parsing stage</i> loads the incoming commands from the file system, interprets them and converts them into an object structure (GwCommand).</li>
+<li>The <i>processing stage</i> converts the command objects into API (or web) calls of the system we connect to (e.g. Google Apps) and converts the result back
+  into a result digestible by the Exchange connector (class Response). It is anticipated that this stage will usually take the longest time (communication over the internet), so it should be given the most resources (threads) to handle the load.</li>
+<li>The <i>responding stage</i> converts the response objects into strings and writes them into the outgoing folder. It then forwards the original command into the final stage.</li>
+<li>The <i>cleanup stage</i> determines from the original command the location of all submitted incoming files and deletes them from the file system.</li>
+</ul>
+</p>
+<p>
+The final stage does not return any result worth processing. The sink its results are fed in is therefore a &quot;null-sink&quot;, comparable to the terminator at the end of a daisy chain of SCSI devices.
+</p>
+
+<p>
+While implementing the design idea, the main goals is to keep the structure very simple while maximizing testibility.
+The following image shows the general approach:
+<br/>
+<img src="connector_objectModel.jpg" alt="image missing"/>
+<br/>
+The main participants of the design are
+<ul>
+<li>The GwIo interface, an abstraction of file based operations.</li>
+<li>The Sink interface for enquing messages (accept-method) and retrieving them from the queue (checkOut-method). Once a message has been processed, the sink is
+notified by invoking reportSuccess(). If message processing failed, for example due to network problem, reportFailure() is called instead. The Sink may then decide to put the event back into the queue. Concrete implementations may decide to either return null if no event exists or to block the requesting Thread until a new event becomes available. The SimpleSink does the latter. Any implementation should however never block a Thread trying to put an object <i>into</i> the sink.</li>
+<li>The Function interface (part of the <a href="http://code.google.com/p/google-collections/">Google Collections Library</a>) that acts as a strategy to transform events from its original status into its new status. Functions are supposed to be free of side-effects, thus allowing to invoke the same function object many times in parallel. In this context, we neither consider I/O operations (such as reading files) nor changes to the mail server due to a function call a side effect.</li>
+<li>The Stage class that takes two sinks and a function and contains the logic for performing a single transformation. Concrete subclasses (SimpleStage) add the logic of handling many events in parallel.</li>
+</ul>
+
+Except for the abstract Stage class, every major stakeholder in this design is represented by an interface. This makes unit testing very easy, since interfaces can be conveniently mocked by automated tools. It also speeds up intial development, since we can start with relatively naive implementations of each object and replace them when more sophistication is required.
+</p>
+<p>
+When the framework was designed, we kept in mind that Google Calendar would only be one of many potential clients to connect to. 
+The initial implementation was split in two stages: the first stage, a fake in-memory mail server communicated with the Exchange connector, thus ensuring that there was no implicit dependency on
+the Google backend. In the second stage, the fake server was replaced by the proper communication with Google apps through the <a href="http://code.google.com/p/gdata-java-client/">GData API</a>. 
+Both implementations are part of the open-sourced code and can be found in subpackages of <code>com.google.calendar.interoperability.connectorplugin.impl</code>.
+To minimize the effort in supporting different implementations, it is paramount that the amount of wasted code is minimized. For instance, if we put considerable effort into getting the free/busy response format right, we do not want to have to redo that effort, but rather make it generally available. For that reason, the processing was modelled as shown in the following image:
+<br/>
+<img src="connector_messageProcessing.jpg" alt="image missing"/>
+</p>
+<p>
+Incoming commands are expressed by a hierarchical object structure. A general class called CommandHandler manages the logic of 
+processing them by dispatching them by type to a set of registered subhandlers. These subhandlers are the only classes that are
+specific to the concrete implementation (mock vs gdata) and thus can be easily exchanged. The subhandlers will return an instance of
+GwResponse or their subclasses. The contract of a GwResponse essentially states that it needs to provide the ability to
+<ul>
+<li>return the original GwCommand it was created for</li>
+<li>be able to render its content in a way that the Exchange connector understands, or advise not to be rendered</li>
+<li>be able to render its content in a way that can be logged as a file</li>
+</ul>
+<br/>
+Most response implementations are a subclass of TemplateResponse, a class that provides a very simple templating language to format
+the response. As a general rule, if additional data has to be provided to populate a response, this has to be done in an implementation-agnostic way. For instance, the FreeBusyResponse has a method that accepts a time interval in UTC to model blockout times. How these times are computed is up to the conrete implementation. How these times are <i>formatted</i> however stays the same in all cases.
+</p>
+
+  <h1><a name="implementation" id="implementation"></a>Implementation Details</h1>
+<p>&nbsp;</p>
+
+<h2><a name="thirdparty" id="thirdparty"></a>Third party libraries</h2>
+<p>
+The Google Calendar Connector Plugin uses the following external libraries and tools, either directly or as part of the build process:
+<ul>
+<li><a href="http://code.google.com/p/gdata-java-client/">GData Java Client</a> is used to implement the connection to Google Calendar. It is not needed when connecting to a different system.</li>
+<li><a href="http://code.google.com/p/google-collections/">Google Collections Library</a> contains some basic tool classes and interfaces that come in handy. In particular, we use
+the <a href="http://google-collections.googlecode.com/svn/trunk/javadoc/com/google/common/base/Function.html">Function interface</a>, the <a href="http://google-collections.googlecode.com/svn/trunk/javadoc/com/google/common/base/Nullable.html">Nullable annotation</a> and the <a href="http://google-collections.googlecode.com/svn/trunk/javadoc/com/google/common/base/Preconditions.html">Preconditions class</a> (for checking null conditions on input parameters).</li>
+<li><a href="http://junit.org">JUnit</a> classes are only used in the <code>javatests</code> subfolder. The application itself compiles without them, but they are the foundation of running all the unit tests.</li>
+<li><a href="http://jmock.org">JMock</a> is a mocking framework that is extensively used in our unit tests. This is possible since most of our classes rather depend on interfaces than concrete classes and thus can be tested very well in isolation. Like Junit, the application itself compiles without them.</li>
+<li><a href="http://ant.apache.org">Ant</a> is the tool we have chosen for our build scripts. It is not directly used by the code, but good luck trying to build the project without it.</li>
+<li><a href="http://jsmooth.sourceforge.net">JSmooth</a> is like ant another tool used in the build process. It provides an ant task that can be used to wrap a java executable into a
+windows binary. JSmooth is used to wrap the compiled code into a Windows Service, thus making the installation easier for the end user. The code itself has no direct dependency on JSmooth
+and can be used perfectly fine without it.</li>
+</ul>
+</p>
+
+<h2><a name="newconnect" id="newconnect"></a>Connecting to a new system</h2>
+<p>
+Making use of an open source package, especially if it is not a general purpose library, sometimes require a lot of up-front work to
+understand the intrinsics of the code. We tried our best to make this part as transparent as possible by limiting the classes most developers would need
+to touch to a minimum.
+</p>
+<p>
+Connecting to a new system, for example a different Calendar server, is not very hard. All that is needed is to create a processor (an implementation
+of <code>Function&lt;GwCommand, GwResponse&gt;)</code>  and replace the appropriate SEDA stage with it. See the code after the &quot;Building Stage 2&quot; comment in
+class <code>com.google.calendar.interoperability.connectorplugin.Main</code> for more details.
+</p>
+<p>
+To make life easier, we have created a class called <code>CommandHandler</code> that can be used as a registry to build processors from a set of utilities.
+For free/busy inquiries, there is also an abstract base class called <code>BasicSearchHandler</code>. These classes can all be found in the package
+<code>com.google.calendar.interoperability.connectorplugin.base</code>. They are used by both connection implementations shipped with the sources
+(see packages <code>com.google.calendar.interoperability.connectorplugin.impl.google</code> and <code>com.google.calendar.interoperability.connectorplugin.impl.mock</code>).
+</p>
+</p>
+
+
+
+<p class="backtotop"><a href="#top">Back to top</a></p>
+</div>
+
+<!-- ########## PAGE FOOTER ########## -->
+
+<div id="footer">
+  <div id="footerlogo" style="background-image:url(http://code.google.com/images/sprites.gif);background-position:-28px -28px;width:143px;height:53px;"/> </div>
+  <div id="copyright">
+<p>
+      Google, Google Calendar, Google Calendar Connector, Google Calendar Connector Web Service, Google Calendar Connector Sync Service are trademarks of Google, Inc.<br/>
+All other company and product names may be trademarks of the respective companies with which they are associated.
+
+</p>
+    <p>©2007 Google - <a href="http://www.google.com/privacy.html">Privacy Policy</a> - <a href="http://www.google.com/terms_of_service.html">Terms and Conditions</a> - <a href="http://www.google.com/about.html">About Google</a></p>
+
+  </div>
+</div>
+<!-- ########## END PAGE FOOTER ########## -->
+
+</div></body></html>
