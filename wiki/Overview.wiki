@@ -36,9 +36,9 @@ The easy answer is that there are scenarios where each service might provide a b
 
 The diagrams below illustrates the similarities and differences between the components of the Google Calendar Connector Kit:
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/comparison.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/comparison.png
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/features.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/features.png
 
 *_NOTE: The option of writing Google Calendar free/busy data into an Exchange
 mailbox is possible, but is not the recommended configuration. The
@@ -51,7 +51,7 @@ The Google Calendar Connector Web Service allows Google Apps users to retrieve f
 
 Below is a diagram illustrating the operation of the Web Service:
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/web_service.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/web_service.png
 
 The following is a step-by-step process overview of the Web Service:
 
@@ -86,7 +86,7 @@ The Google Calendar Connector Sync Service allows Microsoft Exchange users to se
 
 When a Microsoft Exchange user looks up free/busy information for a Google Apps user, the Exchange server accesses the local free/busy information written by the sync service. The Google Calendar Connector Sync Service should be installed on a server that has network access to your Active Directory server and your Microsoft Exchange server.
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/sync_service.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/sync_service.png
 
 Google Calendar Connector Sync Service process overview:
 
@@ -114,9 +114,9 @@ Notes about data security and access permissions:
 
 The Google Calendar Connector Plug-In allows Microsoft Exchange users to request, in real-time, free/busy information for Google Apps users. The Plug-In is a Java Windows service (with a supplemental .NET executable) that handles free/busy requests from the Novell !!GroupWise Calendar Connector for Microsoft Exchange.  When a Microsoft Exchange user looks up free/busy information for a Google Apps user, Exchange issues a free/busy request that is serviced by the Google Calendar Connector Plug-In.  The Google Calendar Connector Plug-in translates the request and queries Google Apps using the Google Calendar GData API. The free/busy data is then returned to Microsoft Exchange for it to present to the requesting user. The Google Calendar Connector Plug-In should be installed on the same server as the Novell !!GroupWise Calendar Connector for Microsoft Exchange.
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/free_busy_request.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/free_busy_request.png
 
-http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/images/plugin_user_sync.png
+http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/plugin_user_sync.png
 
 The following is a process overview of the Google Calendar Connector Plug-In: Google Calendar Connector Plug-in free/busy request:
 
