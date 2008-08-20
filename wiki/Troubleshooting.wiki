@@ -158,9 +158,9 @@
 
  Please follow the instructions to enable logging via Exchange System Manager found here: http://support.microsoft.com/kb/295307/en-us.
 
-* Some browsers might cause you not to be able to see Exchange Calendar data in Google Calendar? You will get the error "Calendar doesn't exist or isn't shared". When reviewing the webservice.log file there are no errors. However, you might notice the `GCalExchangeLookup.ExchangeQuerier - Referrer URL` is empty.
+* If your Google Apps domain is setup to use SSL but the Google Calendar Connector web service is configured for HTTP you will get error an error when requesting free/busy data "Calendar doesn't exist or isn't shared". When reviewing the webservice.log file there are no errors. However, you might notice the `GCalExchangeLookup.ExchangeQuerier - Referrer URL` is empty.
 
- Some browsers do not always properly set the referrer header. We use the referrer header to know if you are using Google Calendar via HTTP or HTTPS. By default if no referrer header is found we use the HTTP as the default URL for Google Calendar. 
+ The browser does not pass the referrer URL when it is passed from a secure enabled site to a none secure site. We use the referrer header to know if you are using Google Calendar via HTTP or HTTPS. By default in v 1.1 if no referrer header is found we use the HTTP as the default URL for Google Calendar. 
 
  This behavior is fixed in the Google Calendar Connector Web Service 1.2 release.
 
