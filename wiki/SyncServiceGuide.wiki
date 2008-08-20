@@ -1,4 +1,4 @@
-== Google Calendar Connector Sync Service Installation and Configuration Guide ==
+= Google Calendar Connector Sync Service Installation and Configuration Guide 1.2.0.289 =
 
 The Google Calendar Connector Sync Service provides data flow from Google Calendar. The Sync Service periodically polls Google Calendar for free/busy data and appointment data, which includes the name, place, and attendees of events.
 
