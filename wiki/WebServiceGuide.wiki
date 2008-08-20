@@ -1,4 +1,4 @@
-= Google Calendar Connector Web Service Installation and Configuration Guide= 
+= Google Calendar Connector Web Service Installation and Configuration Guide 1.2.0.289 = 
 
 In the Google Calendar Connector framework, data flow from Exchange is provided by the Google Calendar Connector Web Service. Google Calendar connects to the Web Service to query Exchange servers for free/busy data and appointment data, which includes the name, place, and attendees of events.  This document provides instructions for installing and configuring the Google Calendar Connector Web Service.
 Contents
