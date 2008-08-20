@@ -14,9 +14,9 @@ The wiki page shows the release notes for the current binary download, the subve
 
 ----
 
-== 1.2.0.289 ==
-
 == Release Notes ==
+
+== 1.2.0.289 ==
 
 === Google Calendar Sync Service: ===
 
