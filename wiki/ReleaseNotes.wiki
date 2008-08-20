@@ -111,6 +111,7 @@ _NOTE: The option of writing Google Calendar free/busy data into an Exchange mai
 
  This feature implements a sleep state when a network or server error is recieved. For example, if the server responds with an error the Plugin will sleep for 10ms (± 25%) then try to connect again. If another error condition is received the sleep value will increase to 20ms (± 25%) and grow exponentially up to a max of 40 seconds (± 25%). Once any successful response is received the sleep value is reset to 10ms. 
 
+----
 
 == Upgrade Guide ==
 
