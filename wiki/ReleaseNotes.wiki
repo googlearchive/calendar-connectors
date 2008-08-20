@@ -115,6 +115,8 @@ _NOTE: The option of writing Google Calendar free/busy data into an Exchange mai
 
 == Upgrade Guide ==
 
+== 1.2.0.289 ==
+
 === Google Calendar Connector Web & Sync Service ===
 
 1) Make a backup of the current .config files.
