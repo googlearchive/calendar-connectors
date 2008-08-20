@@ -164,6 +164,8 @@ The Google Calendar Connector Web Service does NOT provide an authentication lay
 
  * Using a private Web Service URL in your company's internal network that is not accessible outside of your company's VPN / Firewall.
 
+The Google Calendar Connector Web Service contains a diagnostics.aspx which can query Active Directory for user accounts and Exchange user free/busy data. By default starting with version 1.2.0.289 access to this page is restricted to the localhost of the server running the Google Calendar Connector Web Service. If you disable this localhost access you could leak sensitive user information. We recommend you always ensure this restriction is enforced.
+
 == Transport security ==
 
   * *Google Calendar Connector Web Service:* The Web Service supports passing free/busy information using HTTP or HTTPS. To enable HTTPS mode, perform the following steps:
