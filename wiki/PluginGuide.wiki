@@ -1,4 +1,4 @@
-= Google Calendar Connector Plug-in Installation and Configuration Guide =
+= Google Calendar Connector Plug-in Installation and Configuration Guide 1.2 =
 
 The Google Calendar Connector Plug-in utilizes the Novell !GroupWise Connector for Microsoft Exchange and retrieves Google Calendar free/busy data in real-time.
 This document gives instructions for installing and configuring the Google Calendar Connector Plug-in.
