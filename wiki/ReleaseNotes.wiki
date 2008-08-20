@@ -12,7 +12,7 @@ The wiki page shows the release notes for the current binary download, the subve
 
 [#Google_Calendar_Connectors_1.2_Upgrade_Guide Google Calendar Connectors 1.2 Upgrade Guide]
 
-[#Release Notes:_1.2.0.289 Release Notes]
+[#Release_Notes:_1.2.0.289 Release Notes]
 
 == Release Notes: 1.2.0.289 ==
 
@@ -152,4 +152,3 @@ _NOTE: If you encrypted the file you can review the settings of the file in IIS 
 
 == 1.1.0 ==
 - Initial Release -
-
