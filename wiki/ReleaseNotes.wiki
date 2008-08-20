@@ -8,18 +8,148 @@ The wiki page shows the release notes for the current binary download, the subve
 
 = Details =
 
+----
+
+[#Google_Calendar_Connectors_1.2_Upgrade_Guide Google Calendar Connectors 1.2 Upgrade Guide]
+
+[#Release Notes:_1.2.0.289 Release Notes]
+
+== Release Notes: 1.2.0.289 ==
+
+=== Google Calendar Sync Service: ===
+
+1) Added a new feature to retrieve a full detailed calendar feed to display a more detailed free/busy view. This allows Google Calendar "Maybe" responses to be displayed as "Tentative" in Exchange.
+
+ Default Value: Full
+
+ !GoogleCalendarSyncService.exe.config changes:
+{{{
+<!-- Free/Busy detail level settings --> 
+<!-- Setting it to Full enables distinguishing between tentative and busy in the Free Busy look ups -->
+<!-- Setting it to Basic treats tentative and busy as busy in the Free Busy look ups -->
+<add key="SyncService.FreeBusy.DetailLevel" value="Full" />
+}}}
+
+2) Customize "Appointment" sync placeholder text
+
+_NOTE: This only applies to only new placeholder appointments being created. It will no go back and rewrite existing placeholder values._
+
+ Default Value: "GCal Free/Busy Placeholder"
+
+ !GoogleCalendarSyncService.exe.config changes:
+{{{
+ <!-- Customize Appointment placeholder message text -->
+ <!-- <add key="SyncService.PlaceHolderMessage" value="GCal Free/Busy Placeholder" /> -->
+}}}
+
+3) Experimental Feature Update: Write meeting details when syncing in "Appointment" mode.
+
+_NOTE: The option of writing Google Calendar free/busy data into an Exchange mailbox is possible, but is not the recommended configuration. The appointment writer has very limited functionality and is considered an experimental feature._
+
+ This feature only writes the appointment details when it creates the placeholder appointment on the Exchange calendar for the very first time. This means if the appointment placeholder already exists no changes such as subject, description etc will not be updated on future syncs. If however, the meeting time changes a new meeting invite is created at a new time and therefore the details of the meeting will be written when the new entry is created.
+
+ Default Value: False
+
+ To enable add the following to !GoogleCalendarSyncService.exe.config:
+{{{
+<add key="SyncService.SyncAppointmentDetails" value="true" />
+}}}
+
+4) Added connectivity back off algorithm for error conditions.
+
+ This feature implements a sleep state when a network or server error is received. For example, if the server responds with an error the sync service will sleep for 1000ms (± 33%) then try to connect again. If another error condition is received the sleep value will increase to 2000ms (± 33%) and continues to grow exponentially up to a max of ~30 minutes. Once any successful response is received the sleep value is reset to 1000ms.
+
+
+5) Removed the need for a Exchange free/busy template user. Free/busy messages are created from scratch now.
+
+ _*Deprecated Web.Config Values:*_
+{{{
+ <add key="SyncService.FreeBusy.AdminGroup" value="/o=GooLab/ou=First Administrative Group" />
+ <add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate" />
+}}}
+
+
+=== Google Calendar Web Service: ===
+
+1) Added security feature to by default only allow access to the Diagnostics page from the local machine.
+
+ Default Value: True
+
+ Web.config changes:
+{{{
+<!-- Allow diagnostics page to be accessible from location other than localhost -->
+<add key="WebService.RequireLocalAccessforDiagnostics" value="true"/>
+}}}
+{{{
+<system.web>
+   <customErrors mode="RemoteOnly" defaultRedirect="errors/errors.htm">
+   <error statusCode="403" redirect="errors/403.htm"/>
+   </customErrors>
+ </system.web>
+}}}
+
+2) Added Encrypt web.config button to diagnostics page. Removed the option from web.config
+
+ _*Deprecated Web.Config Value:*_
+{{{
+<add key ="Configuration.EncryptOnNextRun" value="false"/>
+}}}
+
+3) Removed the need for a Exchange free/busy template user. Free/busy messages are created from scratch now.
+
+ _*Deprecated Web.Config Values:*_
+{{{
+<add key="SyncService.FreeBusy.AdminGroup" value="/o=GooLab/ou=First Administrative Group" />
+<add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate" />
+}}}
+
+
+=== Google Calendar Connector Plugin: ===
+
+1) Added connectivity back off algorithm for error conditions.
+
+ This feature implements a sleep state when a network or server error is recieved. For example, if the server responds with an error the Plugin will sleep for 10ms (± 25%) then try to connect again. If another error condition is received the sleep value will increase to 20ms (± 25%) and grow exponentially up to a max of 40 seconds (± 25%). Once any successful response is received the sleep value is reset to 10ms. 
+
+
+== Google Calendar Connectors 1.2 Upgrade Guide ==
+
+=== Google Calendar Connector Web & Sync Service ===
+
+1) Make a backup of the current .config files.
+ * Web Service: web.config
+ * Sync Servce: !GoogleCalendarSyncService.exe.config
+
+2) Install the new versions of the Google Calendar Web Service and Google Calendar Sync Service from the .msi packages.
+
+3) Edit the newly installed web.config using your backup copy as a guide. Since there are new settings and some old settings have been deprecated, please do not simply replace the newly installed .config file with your backup copy. 
+
+_NOTE: If you encrypted the file you can review the settings of the file in IIS Manager by viewing the Properties of the virtual web directory where you installed the Google Calendar Web Service._
+
+4) Edit the newly installed !GoogleCalendarSyncService.exe.config using your backup copy as a guide. Since there are new settings and some old settings have been deprecated, please do not simply replace the newly installed .config file with your backup copy. 
+
+5) Verify that all the Web Service Diagnostics.aspx tests pass successfully.
+
+6) Verify that an Exchange user free/busy look up from within Google Calendar works successfully.
+
+7) Start the Google Calendar Connector Sync Service and verify that no errors are reported in the !SyncService.Log.
+
+8) The user account configured as !SyncService.!FreeBusy.!TemplateUserName is no longer required. If you created a specific user for this purpose, you can delete this account's Active Directory user and Exchange mailbox.
+
+=== Google Calendar Connector Plugin: ===
+
+1) Backup your current config.txt.
+
+2) Stop the Google Calendar Connector Plug-In service.
+
+3) Replace the bin install directory with the new binary files.
+
+4) Replace the config.txt with your backup copy.
+
+5) Start the Google Calendar Connector Plug-In service.
+
+
+----
+
 == 1.1.0 ==
-- Initial Release
-
-
-
-
-
-
-
-
-
-
-
-
+- Initial Release -
 
