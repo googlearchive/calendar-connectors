@@ -105,8 +105,6 @@ _NOTE: The option of writing Google Calendar free/busy data into an Exchange mai
 <add key="SyncService.FreeBusy.TemplateUserName" value="GCalExchangeTemplate" />
 }}}
 
-== Upgrade Guide ==
-
 === Google Calendar Connector Plugin: ===
 
 1) Added connectivity back off algorithm for error conditions.
