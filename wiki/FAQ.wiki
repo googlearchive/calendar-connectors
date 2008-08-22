@@ -215,51 +215,6 @@ Here is the mapping in table format:
 
 *Can I run multiple instances of the Google Calendar Connectors on the same server?*
 
- Yes, its a few folder copies and running a few system tools.
-
- * *Sync Service Setup:*
-
- # Install the Google Calendar Sync Service
- # Copy the default install of the Sync Service to a new folder, for example "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com"
- # Run the sc command to create a new service entry for the new path and exe _NOTE: There is a single space after binpath= and start= _
- {{{ 
- %WINDIR%\System32\sc.exe create "Google Calendar Sync Service - domain.com" binpath= "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com\GoogleCalendarSyncService.exe" start= auto
-}}}
- # Create new logging folder paths
- {{{
- mkdir C:\google\logs\Domain.com
- mkdir C:\google\data\Domain.com
-}}}
- # Configure new logging paths: Update the new config file for the new domain with the following in the GoogleCalendarSyncService.exe.config adding the domain.com directory to each logging path
- {{{
- <add key="GoogleApps.GCal.LogDirectory" value="C:\google\logs\domain.com\"/>
- <add key="SyncService.XmlStorageDirectory" value="C:\Google\data\domain.com\" />
- <file value="C:\Google\logs\domain.com\SyncService.log" />
- initializeData="c:\google\logs\domain.com\SyncNetTrace.log"
-}}}
- # Update the specific Google Apps Domain Values
-{{{
- <add key="GoogleApps.DomainName" value="domain.com" />
- <add key="GoogleApps.AdminUser.Login" value="user" />
- <add key="GoogleApps.AdminUser.Password" value="password" />
-}}}
-
- * * Web Service Setup: *
-
- # Install the Google Calendar Web Service
- # Copy the default install of the Web Service to a new folder, for example: C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com
- # Create new IIS Virtual Web Directory for the copy for domain.com on the default web site
-{{{
-cscript %WINDIR%\SYSTEM32\iisvdir.vbs /create w3svc/1/ROOT "GcalExchangeLookup-domain.com" "C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com"
-}}}
- # Configure new logging paths: Edit the web.config and update the following log path values
-{{{
- <file value="C:\Google\logs\domain.com\WebService.log" />
- initializeData="c:\google\logs\domain.com\WebNetTrace.log"
-}}}
- # Update the specific Google Apps Domain Values
-{{{
- <add key="GoogleApps.DomainName" value="domain.com" />
- <add key="GoogleApps.AdminUser.Login" value="user" />
- <add key="GoogleApps.AdminUser.Password" value="password" />
-}}}
+ * [http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide#Multiple_Sync_Service_Instances Running Multiple Sync Service Instances]
+ 
+ * [http://code.google.com/p/google-calendar-connectors/wiki/WebServiceGuide#Multiple_Web_Service_Instances Running Multiple Web Service Instances]
