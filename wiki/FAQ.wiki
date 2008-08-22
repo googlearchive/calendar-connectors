@@ -12,6 +12,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
     * A single Active Directory Forest.
     * .NET 2.0 runtime on the servers running the Web and Sync Services.
 
+----
+
 * Are the Google Calendar Connectors secure?*
  * Role Accounts allow customers to define permission levels
  * Authenticated HTTPS GData feeds to talk to Google Apps
@@ -27,9 +29,12 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   The Google Calendar Connector Web Service does *NOT* provide an authentication layer for choosing which requests for free/busy information and appointment details to allow or dis-allow.  Anyone who knows the URL address of your Web Service and has network access to its URL would theoretically be able to perform Microsoft Exchange free/busy look ups and, if enabled, retrieve appointment details to the same degree as any user of your Google Apps domain.
 
+----
+
 * What is the Google Calendar Connector Web Service URL? *
   * This is the url that Google Calendar posts the free/busy lookup requests to get Exchange user free/busy data. (i.e. https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx). This URL must be defined in your Google Apps domain before Google Calendar can retrieve Exchange free/busy data. 
 
+----
 
 * How do I register a Google Calendar Connector Web Service URL? *
 
@@ -56,11 +61,14 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   Customer PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
   Support PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
 
+----
+
 *How does Google Calendar Connectors determine which Exchange users map to Google Apps user?*
 
   * There is a setting !SyncService.LDAPUserFilter that controls what Active Directory users/contacts are in scope of the sync service.
   * The connector reads the Primary SMTP address of the Exchange user account or contact   object. We use this e-mail address as the key between Exchange and Google Apps and vice verse.
 
+----
 
 *My Exchange primary SMTP address is different than my Google Apps SMTP address. How do I setup the connector to understand this?*
 
@@ -74,6 +82,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
  _Google Calendar Connector Pug-in:_
   * Use the ldap.domainMap setting in the configuration file to specify your internal SMTP domain name and your Google Apps domain name. Using this setting in conjunction with ldap.whitelist and ldap.blacklist lets you control what users are in scope of the Google Calendar Connector Plug-in. 
 
+----
 
 *What servers does the Google Calendar Connector need to connect to within my company?*
 
@@ -95,13 +104,17 @@ This FAQ contains common questions and answers about the Google Calendar Connect
     * The plug-in will need to communicate via LDAP/GC to the domain controller configured in the config.txt if using ldap.whitelist or ldap.blacklist settings
     * If you have configured a proxy server the sync service will need to be able to talk to the configured server. 
 
-*Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
+----
+
+* Do I need to setup the Google Calendar Connector Web Service in the DMZ and open ports so that Google can communicate with the Google Calendar Connector Web Service service?*
 
   No. The communication to the web service is between the client web browser and the Google Calendar Connector Web service, not a Google cloud server and the web service. The URL to this server can be an intranet only based DNS address.
 
   If you want Google Calendar Exchange free/busy to work outside your intranet, via the Internet, then you can setup the server in a DMZ and open the firewall to access this server. The DNS address for this server should be accessible and the same for the intranet and Internet clients. For security reasons you should ensure the web service is running over SSL and only port 443 is open on your firewall to this server.
 
-*Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
+----
+
+* Does the Google Calendar Connector Sync service synchronize existing Exchange Calendar data into users Google Calendar?*
 
   No, the Google Calendar Sync service only is designed to synchronize Google Calendar free/busy data into your Exchange environment. It does not sync appointment details or other meeting data, just free/busy status for the meeting time.
 
@@ -109,7 +122,9 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   A separate Google product: Google Calendar Sync is a client desktop application that syncs Outlook Calendar with a Google Calendar. This tool runs on an end user client desktop. For more information go here: http://www.google.com/support/calendar/bin/answer.py?answer=89955.
 
-*I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
+----
+
+* I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
 
   * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting: the Google Calendar Connector Web Service Domain Name value needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration domain setting in Google Apps. If the domain name does not match, the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration.
 
@@ -119,15 +134,19 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
   * You also might need to configure multiple domain mapping values as well depending on your Exchange configuration. 
 
+----
+
 *I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
 
   * The sync service does not support running in both a !SchedulePlus and Appointment mode at the same time. We recommend you install the sync service on two separate servers. Configure each server for one of the respective sync modes.
 
+----
 
 *I have users configured in both Google Calendar and Exchange. What free/busy data will be displayed?*
 
   * The first service to respond to the free/busy request is displayed. If the user is a Google Apps user then Google apps data will be displayed. If there is a no Google Apps user or the account is disabled, Exchange data will be displayed. If the user is both a Google Apps user and Exchange user, only Google Apps free/busy data will be displayed. 
 
+----
 
 *How do I force a complete re-sync of the Google Calendar Sync Service?*
 
@@ -140,6 +159,8 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   # Create an Exchange contact with the e-mail address of the Google Apps Calendar Resource.
   # Define a timezone for the Resource calendar. To set the timezone login as an Admin of the Gooogle Apps domain and load Google Calendar. Added the Resource calendar to your "My Calendars" by entering the e-mail address for the resource. Click on Settings | Calendars | click on the Resource calendar. Under "Calendar Time Zone:" select a timezone and click Save.
   # Configure the Google Calendar Connector Sync service using !SchedulePlus mode. Ensure the contact object is in scope of the sync service. 
+
+----
 
 *How is the free busy status mapped from the Google Calendar to Exchange?*
 
@@ -188,3 +209,57 @@ Here is the mapping in table format:
 ||Invited ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
 ||Tentative ||Tentative ||Tentative ||Tentative ||Tentative ||Free ||
 ||Declined ||Free ||Free ||Free ||Free ||Free ||
+
+
+----
+
+*Can I run multiple instances of the Google Calendar Connectors on the same server?*
+
+ Yes, its a few folder copies and running a few system tools.
+
+ * *Sync Service Setup:*
+
+ # Install the Google Calendar Sync Service
+ # Copy the default install of the Sync Service to a new folder, for example "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com"
+ # Run the sc command to create a new service entry for the new path and exe _NOTE: There is a single space after binpath= and start= _
+ {{{ 
+ %WINDIR%\System32\sc.exe create "Google Calendar Sync Service - domain.com" binpath= "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com\GoogleCalendarSyncService.exe" start= auto
+}}}
+ # Create new logging folder paths
+ {{{
+ mkdir C:\google\logs\Domain.com
+ mkdir C:\google\data\Domain.com
+}}}
+ # Configure new logging paths: Update the new config file for the new domain with the following in the GoogleCalendarSyncService.exe.config adding the domain.com directory to each logging path
+ {{{
+ <add key="GoogleApps.GCal.LogDirectory" value="C:\google\logs\domain.com\"/>
+ <add key="SyncService.XmlStorageDirectory" value="C:\Google\data\domain.com\" />
+ <file value="C:\Google\logs\domain.com\SyncService.log" />
+ initializeData="c:\google\logs\domain.com\SyncNetTrace.log"
+}}}
+ # Update the specific Google Apps Domain Values
+{{{
+ <add key="GoogleApps.DomainName" value="domain.com" />
+ <add key="GoogleApps.AdminUser.Login" value="user" />
+ <add key="GoogleApps.AdminUser.Password" value="password" />
+}}}
+
+ * * Web Service Setup: *
+
+ # Install the Google Calendar Web Service
+ # Copy the default install of the Web Service to a new folder, for example: C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com
+ # Create new IIS Virtual Web Directory for the copy for domain.com on the default web site
+{{{
+cscript %WINDIR%\SYSTEM32\iisvdir.vbs /create w3svc/1/ROOT "GcalExchangeLookup-domain.com" "C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com"
+}}}
+ # Configure new logging paths: Edit the web.config and update the following log path values
+{{{
+ <file value="C:\Google\logs\domain.com\WebService.log" />
+ initializeData="c:\google\logs\domain.com\WebNetTrace.log"
+}}}
+ # Update the specific Google Apps Domain Values
+{{{
+ <add key="GoogleApps.DomainName" value="domain.com" />
+ <add key="GoogleApps.AdminUser.Login" value="user" />
+ <add key="GoogleApps.AdminUser.Password" value="password" />
+}}}
