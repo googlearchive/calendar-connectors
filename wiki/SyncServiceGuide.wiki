@@ -16,6 +16,7 @@ Contents
   # [#Installation_Checklist Installation Checklist]
  # [#3_Installing_the_Google_Calendar_Connector_Sync_Service Installing the Google Calendar Connector Sync Service]
   # [#MSI_Installation MSI Installation]
+  # [#Multiple_Sync_Service_Instances Multiple Sync Service Instances]
  # [#4_Configuring_the_Google_Calendar_Connector_Sync_Service Configuring the Google Calendar Connector Sync Service]
   # [#Editing_the_Configuration_File Editing the Configuration File]
   # [#Encrypting_the_Configuration_File Encrypting the Configuration File]
@@ -157,6 +158,37 @@ To install the Sync Service:
  # In the *Select Installation Folder* dialog, select the desired folder or accept the default value.
  # In the *Select Installation Folder* dialog use the radio buttons at the bottom of the dialog to determine whether to install the service only for yourself, or for all users, and click *Next*.
  # Click *Next* to begin the installation, and then Close when the dialog displays the message "Installation Complete".
+
+=== Multiple Sync Service Instances === 
+
+If you need to sync more than one domain with the Google Calendar Sync Service you can use the following instructions for setting up multiple instances of the Google Calendar Sync Service on a single server.
+
+ # Install the Google Calendar Sync Service
+ # Copy the default installation of the Google Calendar Sync Service to a new folder, for example "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com"
+ # Run the sc command to create a new service entry for the new path and exe
+ _NOTE: There is a single space after binpath= and start= _
+ {{{ 
+ %WINDIR%\System32\sc.exe create "Google Calendar Sync Service - domain.com" binpath= "C:\Program Files\Google\Google Calendar Connector Sync Service - domain.com\GoogleCalendarSyncService.exe" start= auto
+}}}
+ # Create new logging folder paths
+ {{{
+ mkdir C:\google\logs\Domain.com
+ mkdir C:\google\data\Domain.com
+}}}
+ # Configure new logging paths:  Update the new config file for the new domain with the following in the !GoogleCalendarSyncService.exe.config adding the domain.com directory to each logging path
+ {{{
+ <add key="GoogleApps.GCal.LogDirectory" value="C:\google\logs\domain.com\"/>
+ <add key="SyncService.XmlStorageDirectory" value="C:\Google\data\domain.com\" />
+ <file value="C:\Google\logs\domain.com\SyncService.log" />
+ initializeData="c:\google\logs\domain.com\SyncNetTrace.log"
+}}}
+ # Update the specific Google Apps Domain Values
+{{{
+ <add key="GoogleApps.DomainName" value="domain.com" />
+ <add key="GoogleApps.AdminUser.Login" value="user" />
+ <add key="GoogleApps.AdminUser.Password" value="password" />
+}}}
+
 
 == 4 Configuring the Google Calendar Connector Sync Service ==
 
