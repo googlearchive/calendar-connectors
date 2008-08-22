@@ -13,6 +13,7 @@ Contents
    # [#Installation_Checklist Installation Checklist]
   # [#3_Installing_the_Google_Calendar_Connector_Web_Service Installing the Google Calendar Connector Web Service] 
    # [#MSI_Installation MSI Installation]
+   # [#Multiple_Web_Service_Instances Multiple Web Service Instances]
    # [#File_Permissions File Permissions]
   # [#4_Configuring_the_Google_Calendar_Connector_Web_Service Configuring the Google Calendar Connector Web Service]
    # [#Editing_the_Configuration_File Editing the Configuration File]
@@ -188,6 +189,29 @@ To install the Web Service:
   * Right click on the Web Site and select *Properties*.
   * Select the *ASP.NET* tab and set the ASP.NET version to 2.0.
   * Click *OK* to close the *Properties* dialog.
+
+
+=== Multiple Web Service Instances ===
+
+If you need to setup more than one domain with the Google Calendar Web Service you can use the following instructions for setting up multiple instances of the Google Calendar Web Service on a single server. 
+
+ # Install the Google Calendar Web Service
+ # Copy the default install of the Web Service to a new folder, for example: C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com
+ # Create new IIS Virtual Web Directory for the copy for domain.com on the default web site
+{{{
+cscript %WINDIR%\SYSTEM32\iisvdir.vbs /create w3svc/1/ROOT "GcalExchangeLookup-domain.com" "C:\Inetpub\wwwroot\GCalExchangeLookup-domain.com"
+}}}
+ # Configure new logging paths: Edit the web.config and update the following log path values
+{{{
+ <file value="C:\Google\logs\domain.com\WebService.log" />
+ initializeData="c:\google\logs\domain.com\WebNetTrace.log"
+}}}
+ # Update the specific Google Apps Domain Values
+{{{
+ <add key="GoogleApps.DomainName" value="domain.com" />
+ <add key="GoogleApps.AdminUser.Login" value="user" />
+ <add key="GoogleApps.AdminUser.Password" value="password" />
+}}}
 
 === File Permissions ===
 
