@@ -179,5 +179,4 @@ to be sent over an unencrypted connection and could easily be read by a third pa
 
  You can either enable GWISE addressing in the default recipient policy or manually add a GWISE proxy address to the System Attendant account. An example would be: (GWISE:domain.com..systemattendant@domain.com)
 
- You can verify the proxy addresses of the System Attendant service using the ADSI Edit snap-in. Start ADSI Edit, connect to the configuration naming context of a domain controller, and then browse to the following object:
-CN=Microsoft System Attendant,CN=Your Server Name,CN=Servers,CN=Your Administrative Group,CN=Administrative Groups,CN=Your Organization Name,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=Your Domain,DC=com 
+ You can verify the proxy addresses of the System Attendant service using the ADSI Edit snap-in. Start ADSI Edit, connect to the configuration naming context of a domain controller, and then browse to the following object: CN=Microsoft System Attendant,CN=Your Server Name,CN=Servers,CN=Your Administrative Group,CN=Administrative Groups,CN=Your Organization Name,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=Your Domain,DC=com 
