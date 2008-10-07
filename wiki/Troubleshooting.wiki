@@ -170,3 +170,14 @@
 to be sent over an unencrypted connection and could easily be read by a third party. Are you sure you want to continue sending this information?" How can I fix this?
 
  This is due to the fact your are accessing Google Calendar via HTTPS and the URL defined for your Google Calendar Connector Web service is HTTP. When you enter the e-mail address to look up free/busy data, Google Calendar will send an HTTP or HTTPS request to the URL you defined as your web service URL. Since your URL is configured for HTTP and not HTTPS the browser will notify you are submitting and unencrypted request from a secure page. 
+
+* Google Calendar Connector Plug-in is working with OWA so you can not see any free/busy data, all that is displayed is hash marks?
+
+ This can be caused by the System Attendant not being configured for a proxy address for the Groupwise domain. You will see an error if you run calcon.exe in a cmd window manually. You will see the message "Unable to find requestor in the directory"  The problem is caused by the System Attendant account not having any GroupWise addressing.
+
+ The root cause of this problem is the System Attendant account does not contain a proxy address that corresponds to the GWISE proxy address configuration. This typically occurs if you removed the GWISE addressing from the default recipient policy configuration for Exchange 2003.
+
+ You can either enable GWISE addressing in the default recipient policy or manually add a GWISE proxy address to the System Attendant account. An example would be: (GWISE:domain.com..systemattendant@domain.com)
+
+ You can verify the proxy addresses of the System Attendant service using the ADSI Edit snap-in. Start ADSI Edit, connect to the configuration naming context of a domain controller, and then browse to the following object:
+CN=Microsoft System Attendant,CN=Your Server Name,CN=Servers,CN=Your Administrative Group,CN=Administrative Groups,CN=Your Organization Name,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=Your Domain,DC=com 
