@@ -40,7 +40,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
  As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Apps Support. Google Apps Support will ensure your domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
 
-  To have your Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
+  To have your Google Apps Premier or Education domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
 
  * Use the Contact us online link that can be found in your Google Apps control panel Domain Settings | Account Information | Admin support
  * Select the button: "If you issue is not covered above, report it via email"
@@ -51,7 +51,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
  ** Brief Summary: Please enable my domain for Calendar interoperability with Exchange.  
  ** Full Description:
 
-  I would like to have my Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange.
+  I would like to have my Google Apps Premier or Education domain enabled for the Google Calendar Connectors interoperability with Exchange.
 
   Here are the configuration details you need: 
  # Google Apps Domain Name to enable service on: for example: acme.com
