@@ -64,7 +64,7 @@ Before you install and configure the Google Calendar Connector Web Service, make
 
 === Prerequisites ===
   
- * Google Apps Premier Edition domain
+ * Google Apps Premier or Education Edition domain
        
 To support the Web Service, your Windows environment must meet these prerequisites:
  * Microsoft Windows Server 2003
@@ -78,28 +78,15 @@ To prepare Google Calendar for sharing free/busy data, you must perform these ta
 
 ==== Specify the Google Calendar Connector Web Service URL. ====
 
- As part of your pre-installation planning, determine where to install and run the Web Service in IIS. You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your domain settings on the Google Calendar server.  It is important to understand the implications of using a private or publicly accessible Web Service URL.  Using a publicly accessible URL would potentially allow other domains to perform free/busy lookups against your users.  For this reason, providing a private URL which is only accessible to users of your domain may be preferred.
-
-To have your Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange please complete the follow steps:
-
- * Use the Contact us online link that can be found in your Google Apps control panel Domain Settings | Account Information | Admin support
- * Select the button: "If you issue is not covered above, report it via email"
-
-Complete the support request form:
-
- ** Problem you're having: Enabling or verifying services
- ** Brief Summary: Please enable my domain for Calendar interoperability with Exchange.  
- ** Full Description:
-
-I would like to have my Google Apps Premier domain enabled for the Google Calendar Connectors interoperability with Exchange.
-
-Here are the configuration details you need: 
- # Google Apps Domain Name to enable service on: for example: acme.com
- # Google Calendar Connector Web Service URI: for example:  https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Refer to the project FAQ for more details)
- # Google Calendar Connector Web Service Domain Name value: for example: acme.com (Refer to the project FAQ for more details)
-
-Customer PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
-Support PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information
+ * Login to your Google Apps Domain control pannel
+ [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
+  
+  # Select Advanced Tools
+  # Scroll down to Free/Busy service
+  # Click on Set up Calendar to use your free/busy web service
+  # Select I am using a free/busy service at this URI:
+  # Enter the URI for the Calendar Connector Web Service   
+ For example: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Please review the project [FAQ http://code.google.com/p/google-calendar-connectors/wiki/FAQ] for more details and common questions)       
 
 ==== Create dedicated Google Apps service account and perform an initial login. ====
 
