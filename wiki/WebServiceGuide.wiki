@@ -78,7 +78,7 @@ To prepare Google Calendar for sharing free/busy data, you must perform these ta
 
 ==== Specify the Google Calendar Connector Web Service URL. ====
 
- # Login to your Google Apps Domain control pannel. [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
+ # Login to your Google Apps Domain control panel. [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
  # Select Advanced Tools
  # Scroll down to Free/Busy service
  # Click on Set up Calendar to use your free/busy web service
