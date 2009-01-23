@@ -78,14 +78,12 @@ To prepare Google Calendar for sharing free/busy data, you must perform these ta
 
 ==== Specify the Google Calendar Connector Web Service URL. ====
 
- * Login to your Google Apps Domain control pannel
- [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
-  
-  # Select Advanced Tools
-  # Scroll down to Free/Busy service
-  # Click on Set up Calendar to use your free/busy web service
-  # Select I am using a free/busy service at this URI:
-  # Enter the URI for the Calendar Connector Web Service   
+ # Login to your Google Apps Domain control pannel. [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
+ # Select Advanced Tools
+ # Scroll down to Free/Busy service
+ # Click on Set up Calendar to use your free/busy web service
+ # Select I am using a free/busy service at this URI:
+ # Enter the URI for the Calendar Connector Web Service   
  For example: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Please review the project [FAQ http://code.google.com/p/google-calendar-connectors/wiki/FAQ] for more details and common questions)       
 
 ==== Create dedicated Google Apps service account and perform an initial login. ====
