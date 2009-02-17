@@ -8,10 +8,17 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 *What are the technical requirements for running the Google Calendar Connectors in my environment?*
 
   * Google Apps Premier or Google Apps Education Edition
-  * Windows Server 2003
-  * Exchange 2003 SP2 or Exchange 2003/2007 Mixed Mode environment with a public free/busy store.
-    * A single Active Directory Forest.
-    * .NET 2.0 runtime on the servers running the Web and Sync Services.
+  * Exchange Server 2000, Exchange 2003 or Exchange 2003/2007 Mixed Mode
+   * Exchange 2000 Server:
+    * Windows Server 2000 SP4
+    * Exchange 2003 SP3
+      * A single Active Directory Forest.
+      * .NET 2.0 runtime on the servers running the Web and Sync Services.
+   * Exchange 2003 Server:
+    * Windows Server 2003
+     * Exchange 2003 SP2 or Exchange 2003/2007 Mixed Mode environment with a public free/busy store.
+      * A single Active Directory Forest.
+      * .NET 2.0 runtime on the servers running the Web and Sync Services.
 
 ----
 
