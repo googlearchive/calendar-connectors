@@ -1,0 +1,162 @@
+<project name="GoogleCalendarConnectorPlugin" default="compile" basedir=".">
+    <description>
+        Builds the Google Calendar Connector Plug-in
+    </description>
+
+  <!-- Global settings -->
+  <property name="src" location="src/java"/>
+  <property name="testsrc" location="src/javatests"/>
+  <property name="jsmoothsrc" location="src/jsmooth"/>
+  <property name="winsrc" location="src/misc_windows"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="tmp"  location="${build}/tmp"/>
+  <property name="docs" location="docs"/>
+  
+  <!-- Dervied settings, must not be changed!!! -->
+  <property name="smalljar" location="${dist}/google-calendar-connector.jar"/>
+  <property name="bigjar" location="${dist}/google-calendar-connector-complete.jar"/>
+  <path id="classpath.build">
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+  </path>
+  <path id="classpath.test">
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+    <fileset dir="testlib">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+    <pathelement location="${smalljar}"/>
+  </path>
+
+  <!-- Remove files and directories created by this build -->
+  <target name="clean"
+        description="clean up" >
+    <delete dir="${tmp}"/>
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+  <!-- Initialization (make sure directories exist) -->
+  <target name="mkdir">
+    <mkdir dir="${dist}"/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/java"/>
+    <mkdir dir="${build}/dependencies"/>
+    <mkdir dir="${build}/javatests"/>
+    <mkdir dir="${build}/testreports"/>
+    <mkdir dir="${tmp}"/>
+    <mkdir dir="${docs}"/>
+    <mkdir dir="${docs}/api"/>
+  </target>
+
+  <!-- Compile production code and create small jar-file -->
+  <target name="compile" depends="mkdir"
+        description="compile the source and deploy a small jar" >
+    <javac srcdir="${src}" destdir="${build}/java" debug="true">
+      <classpath refid="classpath.build"/>
+    </javac>
+    <jar jarfile="${smalljar}" basedir="${build}/java"/>
+  </target>
+
+  <!-- Create a big jar that contains production code plus dependencies -->
+  <target name="makejar" depends="compile"
+        description="wrap up the compiled code and all dependencies into one huge jar" >
+    <unjar dest="${build}/dependencies">
+      <fileset dir="lib">
+        <include name="**/*.jar"/>
+        <include name="**/*.zip"/>
+      </fileset>
+    </unjar>
+    <delete dir="${build}/dependencies/META-INF"/>
+    <jar jarfile="${bigjar}">
+      <fileset dir="build/java">
+        <include name="**"/>
+      </fileset>
+      <fileset dir="build/dependencies">
+        <include name="**"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- Compile and execute the unit tests -->
+  <target name="test" depends="compile"
+        description="compile and execute unit tests" >
+    <javac srcdir="${testsrc}" destdir="${build}/javatests">
+      <classpath refid="classpath.test"/>
+    </javac>
+    <junit printsummary="yes" haltonfailure="yes" tempdir="${build}/tmp">
+      <classpath>
+        <pathelement path="${build}/javatests"/>
+        <path refid="classpath.test"/>
+      </classpath>    
+      <formatter type="plain"/>	  
+      <batchtest todir="${build}/testreports">
+        <fileset dir="${testsrc}">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+  
+  <!-- Compile documentation -->
+  <target name="doc" depends="compile">
+    <javadoc sourcepath="${src}" destdir="${docs}/api" classpathref="classpath.build">
+	  <link offline="false" href="http://java.sun.com/javase/6/docs/api/"/>
+	  <link offline="false" href="http://code.google.com/apis/gdata/javadoc/"/>
+	  <link offline="false" href="http://google-collections.googlecode.com/svn/trunk/javadoc/"/>
+    </javadoc>
+  </target>
+
+  <!-- Zips up this folder without any of the depending libraries or built files. -->
+  <target name="zipsrc" depends="clean">
+    <mkdir dir="${dist}"/>
+   <tstamp/>
+    <zip destfile="${dist}/google-calendar-connector-plugin-src-${DSTAMP}.zip" basedir="." excludes="**/*.zip,**/*.jar,antlib/skeletons/**,**/*~"/>
+  </target>
+
+<!-- ==== START DELETING HERE IF YOU WILL NOT USE JSMOOTH -->
+
+  <!-- Create the windows service and selftest executable using JSmooth.
+       PLEASE CHECK THE LICENSE AGREEMENT FOR JSMOOTH
+    -->    
+  <taskdef name="jsmoothgen" 
+     classname="net.charabia.jsmoothgen.ant.JSmoothGen"
+     classpath="antlib/jsmoothgen-ant.jar"/>
+
+  <target name="exe" depends="makejar"
+        description="compile and execute unit tests" >    
+	<copy todir="${tmp}">
+	  <fileset dir="${jsmoothsrc}">
+          <include name="*.jsmooth"/>
+      </fileset>
+	</copy>
+	<copy file="${bigjar}" todir="${tmp}"/>
+	<jsmoothgen project="${tmp}/service.jsmooth" skeletonroot="antlib/skeletons"/> 
+	<jsmoothgen project="${tmp}/selftest.jsmooth" skeletonroot="antlib/skeletons"/> 
+	<copy todir="${dist}">
+	  <fileset dir="${tmp}">
+          <include name="*.exe"/>
+      </fileset>
+	</copy>
+  </target>
+  
+  <!-- Zips up the generated executable plus the batch-files and a sample config into one zip file -->
+  <target name="dist" depends="exe">
+    <tstamp/>
+    <zip destfile="${dist}/google-calendar-connector-plugin-install-${DSTAMP}.zip">
+      <zipfileset dir="${winsrc}" includes="*.bat"/>
+      <zipfileset dir="${winsrc}" includes="*.exe"/>
+      <zipfileset dir="${dist}" includes="*.exe"/>
+      <zipfileset dir="${src}/com/google/calendar/interoperability/connectorplugin" includes="config.txt"/> 
+    </zip>
+  </target>
+
+<!-- ==== END OF JSMOOTH SECTION -->
+
+</project>

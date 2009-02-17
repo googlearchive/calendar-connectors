@@ -1,0 +1,1635 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>Table of Content</title>
+<link rel="stylesheet" href="TOC.css">
+<script type="text/javascript" src="TOC.js"></script>
+</head>
+
+<body onload="javascript: Initialize();" onresize="javascript: ResizeTree();">
+<form id="IndexForm" runat="server">
+
+<div id="TOCDiv" class="TOCDiv">
+
+<div id="divSearchOpts" class="SearchOpts" style="height: 100px; display: none;">
+<img class="TOCLink" onclick="javascript: ShowHideSearch(false);"
+    src="CloseSearch.png" height="16" width="16" alt="Hide search" style="float: right;"/>
+Keyword(s) for which to search:
+<input id="txtSearchText" type="text" style="width: 100%;"
+  onkeypress="javascript: return OnSearchTextKeyPress(event);" /><br />
+<input id="chkSortByTitle" type="checkbox" /><label for="chkSortByTitle">&nbsp;Sort results by title</label><br />
+<input type="button" value="Search" onclick="javascript: return PerformSearch();" />
+</div>
+
+<div id="divIndexOpts" class="IndexOpts" style="height: 25px; display: none;">
+<img class="TOCLink" onclick="javascript: ShowHideIndex(false);"
+    src="CloseSearch.png" height="17" width="17" alt="Hide index" style="float: right;"/>
+Keyword Index
+</div>
+
+<div id="divNavOpts" class="NavOpts" style="height: 20px;">
+    <img class="TOCLink" onclick="javascript: SyncTOC();" src="SyncTOC.gif"
+        height="16" width="16" alt="Sync to TOC"/>
+    <img class="TOCLink" onclick="javascript: ExpandOrCollapseAll(true);"
+        src="ExpandAll.bmp" height="16" width="16" alt="Expand all "/>
+    <img class="TOCLink" onclick="javascript: ExpandOrCollapseAll(false);"
+        src="CollapseAll.bmp" height="16" width="16" alt="Collapse all" />
+</div>
+
+<div class="Tree" id="divSearchResults" style="display: none;"
+    onselectstart="javascript: return false;">
+</div>
+
+<div class="Tree" id="divIndexResults" style="display: none;"
+    onselectstart="javascript: return false;">
+</div>
+
+<div class="Tree" id="divTree" onselectstart="javascript: return false;">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/N_Google_GCalExchangeSync_Library.htm" target="TopicContent">Google.GCalExchangeSync.Library Namespace</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ActiveDirectoryService.htm" target="TopicContent">ActiveDirectoryService Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService__ctor.htm" target="TopicContent">ActiveDirectoryService Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_Dispose.htm" target="TopicContent">Dispose Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_GetUser.htm" target="TopicContent">GetUser Method (userName)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ActiveDirectoryService_LDAPServerUrl.htm" target="TopicContent">LDAPServerUrl Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ActiveDirectoryService_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_SearchDirectory.htm" target="TopicContent">SearchDirectory Method (ldapFilter)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_SearchDirectoryByAttribute.htm" target="TopicContent">SearchDirectoryByAttribute Method (attribute, terms)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_UserExists.htm" target="TopicContent">UserExists Method (email)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_AppointmentCollection.htm" target="TopicContent">AppointmentCollection Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentCollection__ctor.htm" target="TopicContent">AppointmentCollection Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentCollection_Add.htm" target="TopicContent">Add Method (a)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentCollection_Get.htm" target="TopicContent">Get Method (r)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_AppointmentService.htm" target="TopicContent">AppointmentService Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentService__ctor.htm" target="TopicContent">AppointmentService Constructor (exchangeServer, webdav)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentService_DeleteAppointments.htm" target="TopicContent">DeleteAppointments Method (user, appointments)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_AppointmentService_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentService_Lookup.htm" target="TopicContent">Lookup Method (user, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentService_UpdateAppointments.htm" target="TopicContent">UpdateAppointments Method (user, appointments)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentService_WriteAppointments.htm" target="TopicContent">WriteAppointments Method (user, appointments)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_AppointmentWriter.htm" target="TopicContent">AppointmentWriter Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentWriter__ctor.htm" target="TopicContent">AppointmentWriter Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_AssignOwnership.htm" target="TopicContent">AssignOwnership Method (appt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_SyncUser.htm" target="TopicContent">SyncUser Method (user, googleAppsFeed, exchangeGateway, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_ValidateOwnership.htm" target="TopicContent">ValidateOwnership Method (appt)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ConfigCache.htm" target="TopicContent">ConfigCache Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache__ctor.htm" target="TopicContent">ConfigCache Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache_AddDomainMap.htm" target="TopicContent">AddDomainMap Method (external, local)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_DefaultGCalSSL.htm" target="TopicContent">DefaultGCalSSL Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainController.htm" target="TopicContent">DomainController Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainUserLogin.htm" target="TopicContent">DomainUserLogin Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainUserPassword.htm" target="TopicContent">DomainUserPassword Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableAppointmentLookup.htm" target="TopicContent">EnableAppointmentLookup Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableHttpCompression.htm" target="TopicContent">EnableHttpCompression Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableKeepAlive.htm" target="TopicContent">EnableKeepAlive Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache_EncryptAppSettings.htm" target="TopicContent">EncryptAppSettings Method (config)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_EncryptOnNextRun.htm" target="TopicContent">EncryptOnNextRun Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeAdminLogin.htm" target="TopicContent">ExchangeAdminLogin Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeAdminPassword.htm" target="TopicContent">ExchangeAdminPassword Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeDefaultDomain.htm" target="TopicContent">ExchangeDefaultDomain Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeFreeBusyServerUrl.htm" target="TopicContent">ExchangeFreeBusyServerUrl Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeMaxConnections.htm" target="TopicContent">ExchangeMaxConnections Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeServerUrl.htm" target="TopicContent">ExchangeServerUrl Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeUserLogin.htm" target="TopicContent">ExchangeUserLogin Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeUserPassword.htm" target="TopicContent">ExchangeUserPassword Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_FreeBusyDetailLevel.htm" target="TopicContent">FreeBusyDetailLevel Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_FreeBusyWriter.htm" target="TopicContent">FreeBusyWriter Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalAddress.htm" target="TopicContent">GCalAddress Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalLogDirectory.htm" target="TopicContent">GCalLogDirectory Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalPostUrl.htm" target="TopicContent">GCalPostUrl Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalSyncWindow.htm" target="TopicContent">GCalSyncWindow Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsDomain.htm" target="TopicContent">GoogleAppsDomain Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsLogin.htm" target="TopicContent">GoogleAppsLogin Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsPassword.htm" target="TopicContent">GoogleAppsPassword Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache_LoadConfiguration.htm" target="TopicContent">LoadConfiguration Method (config)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache_MapToExternalDomain.htm" target="TopicContent">MapToExternalDomain Method (email)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConfigCache_MapToLocalDomain.htm" target="TopicContent">MapToLocalDomain Method (email)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_PlaceHolderMessage.htm" target="TopicContent">PlaceHolderMessage Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_RequireDiagnosticsLocalAccess.htm" target="TopicContent">RequireDiagnosticsLocalAccess Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceErrorCountThreshold.htm" target="TopicContent">ServiceErrorCountThreshold Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceLDAPUserFilter.htm" target="TopicContent">ServiceLDAPUserFilter Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceModifiedXmlFileName.htm" target="TopicContent">ServiceModifiedXmlFileName Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceModifiedXmlStorageDirectory.htm" target="TopicContent">ServiceModifiedXmlStorageDirectory Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceRefreshMinutes.htm" target="TopicContent">ServiceRefreshMinutes Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceThreadCount.htm" target="TopicContent">ServiceThreadCount Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ConfigCache_SyncAppointmentDetails.htm" target="TopicContent">SyncAppointmentDetails Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ConnectionThrottle.htm" target="TopicContent">ConnectionThrottle Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor.htm" target="TopicContent">ConnectionThrottle Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor.htm" target="TopicContent">ConnectionThrottle Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor_1.htm" target="TopicContent">ConnectionThrottle Constructor (desiredMinDelay, desiredMaxDelay, desiredMultiplier)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_ReportFailure.htm" target="TopicContent">ReportFailure Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_ReportSuccess.htm" target="TopicContent">ReportSuccess Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_WaitBeforeNewConnection.htm" target="TopicContent">WaitBeforeNewConnection Method </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ExchangeService.htm" target="TopicContent">ExchangeService Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService__ctor.htm" target="TopicContent">ExchangeService Constructor (exchangeServer, networkLogin, networkPassword)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeService_Appointments.htm" target="TopicContent">Appointments Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_DoesUrlExist.htm" target="TopicContent">DoesUrlExist Method (url)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeService_ExchangeServerUrl.htm" target="TopicContent">ExchangeServerUrl Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeService_FreeBusy.htm" target="TopicContent">FreeBusy Property </a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser.htm" target="TopicContent">GetCalendarInfoForUser Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser.htm" target="TopicContent">GetCalendarInfoForUser Method (exchangeUser)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser_1.htm" target="TopicContent">GetCalendarInfoForUser Method (user, window)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUsers.htm" target="TopicContent">GetCalendarInfoForUsers Method (users, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ExchangeService_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_MergeFreeBusyWithAppointments.htm" target="TopicContent">MergeFreeBusyWithAppointments Method (exchangeUser, freeBusy, appointments, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_QueryActiveDirectory.htm" target="TopicContent">QueryActiveDirectory Method (ldapFilter)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_RetrieveAllExchangeUsers.htm" target="TopicContent">RetrieveAllExchangeUsers Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_Search.htm" target="TopicContent">Search Method (ldapAttribute, utcRange, searchTerms)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeService_SearchByEmail.htm" target="TopicContent">SearchByEmail Method (utcRange, searchTerms)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeService_WebDavQuery.htm" target="TopicContent">WebDavQuery Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ExchangeUser.htm" target="TopicContent">ExchangeUser Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_ExchangeUser__ctor.htm" target="TopicContent">ExchangeUser Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUser__ctor.htm" target="TopicContent">ExchangeUser Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUser__ctor_1.htm" target="TopicContent">ExchangeUser Constructor (properties)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_AccessLevel.htm" target="TopicContent">AccessLevel Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_AccountName.htm" target="TopicContent">AccountName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_BusyTimes.htm" target="TopicContent">BusyTimes Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_CommonName.htm" target="TopicContent">CommonName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_DisplayName.htm" target="TopicContent">DisplayName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_Email.htm" target="TopicContent">Email Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUser_Equals.htm" target="TopicContent">Equals Method (obj)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_FreeBusyCommonName.htm" target="TopicContent">FreeBusyCommonName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUser_GetHashCode.htm" target="TopicContent">GetHashCode Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_HaveAppointmentDetail.htm" target="TopicContent">HaveAppointmentDetail Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_IsValid.htm" target="TopicContent">IsValid Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_LegacyExchangeDN.htm" target="TopicContent">LegacyExchangeDN Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_ExchangeUser_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_MailNickname.htm" target="TopicContent">MailNickname Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_ExchangeUser_ProxyAddresses.htm" target="TopicContent">ProxyAddresses Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUser_ToString.htm" target="TopicContent">ToString Method </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_ExchangeUserDict.htm" target="TopicContent">ExchangeUserDict Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict__ctor.htm" target="TopicContent">ExchangeUserDict Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_AddExchangeUser.htm" target="TopicContent">AddExchangeUser Method (email, user)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_Contains.htm" target="TopicContent">Contains Method (email)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_FindUser.htm" target="TopicContent">FindUser Method (email)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_FreeBusyCollection.htm" target="TopicContent">FreeBusyCollection Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyCollection__ctor.htm" target="TopicContent">FreeBusyCollection Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_FreeBusyCollection_Appointments.htm" target="TopicContent">Appointments Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_FreeBusyConverter.htm" target="TopicContent">FreeBusyConverter Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter__ctor.htm" target="TopicContent">FreeBusyConverter Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_CompareRangesByStartThenEnd.htm" target="TopicContent">CompareRangesByStartThenEnd Method (x, y)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_CondenseFreeBusyTimes.htm" target="TopicContent">CondenseFreeBusyTimes Method (freeBusyTimes)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertBase64StringsToDateTimeBlocks.htm" target="TopicContent">ConvertBase64StringsToDateTimeBlocks Method (exchangeMonthValue, base64FreeBusyData)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertDateTimeBlocksToBase64String.htm" target="TopicContent">ConvertDateTimeBlocksToBase64String Method (startDate, endDate, freeBusyRanges, monthData, base64FreeBusyData)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertRasterToFreeBusy.htm" target="TopicContent">ConvertRasterToFreeBusy Method (raster)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertToSysTime.htm" target="TopicContent">ConvertToSysTime Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_GetFreeBusyMonthValue.htm" target="TopicContent">GetFreeBusyMonthValue Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_GetFreeBusyTimeValue.htm" target="TopicContent">GetFreeBusyTimeValue Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_FreeBusyConverter_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_MergeFreeBusyLists.htm" target="TopicContent">MergeFreeBusyLists Method (left, right)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ParseFreeBusyMonthValue.htm" target="TopicContent">ParseFreeBusyMonthValue Method (exchangeMonth)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ParseRasterFreeBusy.htm" target="TopicContent">ParseRasterFreeBusy Method (baseTime, freeBusyInterval, freeBusyRaster, freeBusy)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_FreeBusyService.htm" target="TopicContent">FreeBusyService Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyService__ctor.htm" target="TopicContent">FreeBusyService Constructor (exchangeServer, webdav, queryBuilder)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyService_CreateFreeBusyMessage.htm" target="TopicContent">CreateFreeBusyMessage Method (targetUrl, targetUsername, busyMonths, busyDailyData, tentativeMonths, tentativeDailyData, startDate, endDate)</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes.htm" target="TopicContent">LookupFreeBusyTimes Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes.htm" target="TopicContent">LookupFreeBusyTimes Method (user, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes_1.htm" target="TopicContent">LookupFreeBusyTimes Method (users, window)</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_FreeBusyTimeBlock.htm" target="TopicContent">FreeBusyTimeBlock Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor.htm" target="TopicContent">FreeBusyTimeBlock Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor.htm" target="TopicContent">FreeBusyTimeBlock Constructor (r)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor_1.htm" target="TopicContent">FreeBusyTimeBlock Constructor (start, end)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_Appointments.htm" target="TopicContent">Appointments Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_CompareTo.htm" target="TopicContent">CompareTo Method (obj)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_EndDate.htm" target="TopicContent">EndDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_Range.htm" target="TopicContent">Range Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_StartDate.htm" target="TopicContent">StartDate Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_FreeBusyWriterFactory.htm" target="TopicContent">FreeBusyWriterFactory Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyWriterFactory__ctor.htm" target="TopicContent">FreeBusyWriterFactory Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_FreeBusyWriterFactory_GetWriter.htm" target="TopicContent">GetWriter Method (users)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_GCalAccessLevel.htm" target="TopicContent">GCalAccessLevel Enumeration</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_GCalBusyStatus.htm" target="TopicContent">GCalBusyStatus Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalErrorResponse.htm" target="TopicContent">GCalErrorResponse Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor.htm" target="TopicContent">GCalErrorResponse Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor.htm" target="TopicContent">GCalErrorResponse Constructor (request, exception)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor_1.htm" target="TopicContent">GCalErrorResponse Constructor (exception)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse_GenerateResponse.htm" target="TopicContent">GenerateResponse Method </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_GCalExchangeErrorCode.htm" target="TopicContent">GCalExchangeErrorCode Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalExchangeException.htm" target="TopicContent">GCalExchangeException Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_GCalExchangeException__ctor.htm" target="TopicContent">GCalExchangeException Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor.htm" target="TopicContent">GCalExchangeException Constructor (errorCode)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor_1.htm" target="TopicContent">GCalExchangeException Constructor (errorCode, message)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor_2.htm" target="TopicContent">GCalExchangeException Constructor (errorCode, message, innerException)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalExchangeException_ErrorCode.htm" target="TopicContent">ErrorCode Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_GCalExchangeException_log.htm" target="TopicContent">log Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalFreeBusyRequest.htm" target="TopicContent">GCalFreeBusyRequest Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyRequest__ctor.htm" target="TopicContent">GCalFreeBusyRequest Constructor (rawInput)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_EndDate.htm" target="TopicContent">EndDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_ExchangeUsers.htm" target="TopicContent">ExchangeUsers Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_MessageId.htm" target="TopicContent">MessageId Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_Since.htm" target="TopicContent">Since Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_StartDate.htm" target="TopicContent">StartDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_TimeZone.htm" target="TopicContent">TimeZone Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_UTCEndDate.htm" target="TopicContent">UTCEndDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_UTCStartDate.htm" target="TopicContent">UTCStartDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_VersionNumber.htm" target="TopicContent">VersionNumber Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalFreeBusyResponse.htm" target="TopicContent">GCalFreeBusyResponse Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyResponse__ctor.htm" target="TopicContent">GCalFreeBusyResponse Constructor (request)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_GenerateResponse.htm" target="TopicContent">GenerateResponse Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_Request.htm" target="TopicContent">Request Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalGateway.htm" target="TopicContent">GCalGateway Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalGateway__ctor.htm" target="TopicContent">GCalGateway Constructor (login, password, domain, throttler)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalGateway_QueryGCal.htm" target="TopicContent">QueryGCal Method (email, visibility, projection, modifiedSince, window)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_GCalProjection.htm" target="TopicContent">GCalProjection Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_GCalSyncProcess.htm" target="TopicContent">GCalSyncProcess Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor.htm" target="TopicContent">GCalSyncProcess Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor.htm" target="TopicContent">GCalSyncProcess Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor_1.htm" target="TopicContent">GCalSyncProcess Constructor (googleAppsLogin, googleAppsPassword, googleAppsDomain, exchangeServer, networkLogin, networkPassword)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_GCalSyncProcess_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess.htm" target="TopicContent">RunSyncProcess Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess.htm" target="TopicContent">RunSyncProcess Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess_1.htm" target="TopicContent">RunSyncProcess Method (threadCount)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_SyncUsers.htm" target="TopicContent">SyncUsers Method </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_GCalVisibility.htm" target="TopicContent">GCalVisibility Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_IConnectionThrottle.htm" target="TopicContent">IConnectionThrottle Interface</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_ReportFailure.htm" target="TopicContent">ReportFailure Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_ReportSuccess.htm" target="TopicContent">ReportSuccess Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_WaitBeforeNewConnection.htm" target="TopicContent">WaitBeforeNewConnection Method </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_IFreeBusyWriter.htm" target="TopicContent">IFreeBusyWriter Interface</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_IFreeBusyWriter_SyncUser.htm" target="TopicContent">SyncUser Method (user, googleAppsFeed, exchangeGateway, window)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter.htm" target="TopicContent">SchedulePlusFreeBusyWriter Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter__ctor.htm" target="TopicContent">SchedulePlusFreeBusyWriter Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter_SyncUser.htm" target="TopicContent">SyncUser Method (user, googleAppsFeed, exchangeGateway, window)</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/N_Google_GCalExchangeSync_Library_Scheduling.htm" target="TopicContent">Google.GCalExchangeSync.Library.Scheduling Namespace</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker.htm" target="TopicContent">BaseWorker Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker__ctor.htm" target="TopicContent">BaseWorker Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Scheduling_BaseWorker__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_DoWork.htm" target="TopicContent">DoWork Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_Execute.htm" target="TopicContent">Execute Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkComplete.htm" target="TopicContent">OnWorkComplete Event</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkFailed.htm" target="TopicContent">OnWorkFailed Event</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkStart.htm" target="TopicContent">OnWorkStart Event</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkCompleteEventHandler.htm" target="TopicContent">BaseWorker.OnWorkCompleteEventHandler Delegate</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkFailedEventHandler.htm" target="TopicContent">BaseWorker.OnWorkFailedEventHandler Delegate</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkStartEventHandler.htm" target="TopicContent">BaseWorker.OnWorkStartEventHandler Delegate</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_Sentinel.htm" target="TopicContent">Sentinel Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel__ctor.htm" target="TopicContent">Sentinel Constructor (frequency, workerType)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_ActiveThreads.htm" target="TopicContent">ActiveThreads Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_AddActiveThread.htm" target="TopicContent">AddActiveThread Method (threadIdentifier)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Enabled.htm" target="TopicContent">Enabled Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_MultiThreaded.htm" target="TopicContent">MultiThreaded Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_RemoveActiveThread.htm" target="TopicContent">RemoveActiveThread Method (threadIdentifier)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Start.htm" target="TopicContent">Start Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Stop.htm" target="TopicContent">Stop Method </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_Sentinel_ThreadPoolSpawnWorkerHandler.htm" target="TopicContent">Sentinel.ThreadPoolSpawnWorkerHandler Delegate</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory.htm" target="TopicContent">SentinelFactory Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory__ctor.htm" target="TopicContent">SentinelFactory Constructor (frequency, workerType)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory_StartSentinel.htm" target="TopicContent">StartSentinel Method </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/N_Google_GCalExchangeSync_Library_Util.htm" target="TopicContent">Google.GCalExchangeSync.Library.Util Namespace</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_BlockTimer.htm" target="TopicContent">BlockTimer Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_BlockTimer__ctor.htm" target="TopicContent">BlockTimer Constructor (name)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_BlockTimer_Dispose.htm" target="TopicContent">Dispose Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_BlockTimer_log.htm" target="TopicContent">log Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_ConversionsUtil.htm" target="TopicContent">ConversionsUtil Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil__ctor.htm" target="TopicContent">ConversionsUtil Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_ConversionsUtil__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertBusyStatusToGoogleResponse.htm" target="TopicContent">ConvertBusyStatusToGoogleResponse Method (busyStatus)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertExchangeResponseToGoogleResponse.htm" target="TopicContent">ConvertExchangeResponseToGoogleResponse Method (resp)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertGoogleEventStatus.htm" target="TopicContent">ConvertGoogleEventStatus Method (status)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertParticipantStatus.htm" target="TopicContent">ConvertParticipantStatus Method (user, googleAppsEvent)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_EscapeNonAlphaNumeric.htm" target="TopicContent">EscapeNonAlphaNumeric Method (input, result)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_GetUserStatusForEvent.htm" target="TopicContent">GetUserStatusForEvent Method (user, googleAppsEvent)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_GoogleEventIsTransparent.htm" target="TopicContent">GoogleEventIsTransparent Method (googleAppsEvent)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ParseBusyStatus.htm" target="TopicContent">ParseBusyStatus Method (busyStatus)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetContent.htm" target="TopicContent">SafeGetContent Method (content)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetText.htm" target="TopicContent">SafeGetText Method (textConstruct)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetValue.htm" target="TopicContent">SafeGetValue Method (enumConstruct)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_DateTimeRange.htm" target="TopicContent">DateTimeRange Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange__ctor.htm" target="TopicContent">DateTimeRange Constructor (start, end)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_CompareTo.htm" target="TopicContent">CompareTo Method (obj)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Contains.htm" target="TopicContent">Contains Method (range)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_DateTimeRange_End.htm" target="TopicContent">End Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Equals.htm" target="TopicContent">Equals Method (obj)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_DateTimeRange_Full.htm" target="TopicContent">Full Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_GetHashCode.htm" target="TopicContent">GetHashCode Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_InRange.htm" target="TopicContent">InRange Method (t)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Overlaps.htm" target="TopicContent">Overlaps Method (range)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_DateTimeRange_Start.htm" target="TopicContent">Start Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_ToString.htm" target="TopicContent">ToString Method </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_DateUtil.htm" target="TopicContent">DateUtil Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil__ctor.htm" target="TopicContent">DateUtil Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_DateUtil__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForDASL.htm" target="TopicContent">FormatDateForDASL Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForExchange.htm" target="TopicContent">FormatDateForExchange Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForGoogle.htm" target="TopicContent">FormatDateForGoogle Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForISO8601.htm" target="TopicContent">FormatDateForISO8601 Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateTimeForGoogle.htm" target="TopicContent">FormatDateTimeForGoogle Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_IsWithinRange.htm" target="TopicContent">IsWithinRange Method (dateToCompare, startDate, endDate)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_DateUtil_NowUtc.htm" target="TopicContent">NowUtc Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_ParseDateToUtc.htm" target="TopicContent">ParseDateToUtc Method (dateString)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_ParseGoogleDate.htm" target="TopicContent">ParseGoogleDate Method (dateString)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_RoundRangeToInterval.htm" target="TopicContent">RoundRangeToInterval Method (range, minutes)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_StartOfMonth.htm" target="TopicContent">StartOfMonth Method (dt)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_StartOfNextMonth.htm" target="TopicContent">StartOfNextMonth Method (dt)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility.htm" target="TopicContent">EmbeddedResourceUtility Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility_GetTextDocument.htm" target="TopicContent">GetTextDocument Method (resourceName)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility_GetXmlDocument.htm" target="TopicContent">GetXmlDocument Method (resourceName)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_ExchangeUtil.htm" target="TopicContent">ExchangeUtil Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil__ctor.htm" target="TopicContent">ExchangeUtil Constructor </a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl.htm" target="TopicContent">GetDefaultCalendarUrl Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl.htm" target="TopicContent">GetDefaultCalendarUrl Method (exchangeServer, user)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl_1.htm" target="TopicContent">GetDefaultCalendarUrl Method (exchangeServer, email)</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_FreeBusyUrl.htm" target="TopicContent">FreeBusyUrl Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl__ctor.htm" target="TopicContent">FreeBusyUrl Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateAdminGroupUrl.htm" target="TopicContent">GenerateAdminGroupUrl Method (exchangeServerUrl, adminGroup)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateAdminGroupUrlFromDN.htm" target="TopicContent">GenerateAdminGroupUrlFromDN Method (exchangeServerUrl, legacyExchangeDN)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateFreeBusyLookupUrl.htm" target="TopicContent">GenerateFreeBusyLookupUrl Method (exchangeServer, users, range, interval)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateUrl.htm" target="TopicContent">GenerateUrl Method (exchangeServerUrl, adminGroup, userAlias)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateUrlFromDN.htm" target="TopicContent">GenerateUrlFromDN Method (exchangeServerUrl, legacyExchangeDN)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_Future.htm" target="TopicContent">Future Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_Future__ctor.htm" target="TopicContent">Future Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_Future_Dispose.htm" target="TopicContent">Dispose Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_Future_doTask.htm" target="TopicContent">doTask Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_Future_start.htm" target="TopicContent">start Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_Future_TaskName.htm" target="TopicContent">TaskName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_Future_waitForCompletion.htm" target="TopicContent">waitForCompletion Method </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Util_GCalResponseStatus.htm" target="TopicContent">GCalResponseStatus Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_IntervalTree_1.htm" target="TopicContent">IntervalTree(T) Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1__ctor.htm" target="TopicContent">IntervalTree(T) Constructor </a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll.htm" target="TopicContent">FindAll Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll.htm" target="TopicContent">FindAll Method (range)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll_1.htm" target="TopicContent">FindAll Method (range, match)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindExact.htm" target="TopicContent">FindExact Method (range)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_GetNodeList.htm" target="TopicContent">GetNodeList Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_Insert.htm" target="TopicContent">Insert Method (range, data)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_IntervalTree_1_MaxDepth.htm" target="TopicContent">MaxDepth Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_IntervalTree_1_NumNodes.htm" target="TopicContent">NumNodes Property </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_Util_IntervalTreeMatch.htm" target="TopicContent">IntervalTreeMatch Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil.htm" target="TopicContent">ModifiedDateUtil Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil__ctor.htm" target="TopicContent">ModifiedDateUtil Constructor (modifiedXMLFileName)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_GetModifiedDateForUser.htm" target="TopicContent">GetModifiedDateForUser Method (login)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_LoadModifiedTimes.htm" target="TopicContent">LoadModifiedTimes Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_ModifiedXMLFileName.htm" target="TopicContent">ModifiedXMLFileName Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_PersistModifiedTimes.htm" target="TopicContent">PersistModifiedTimes Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_UpdateUserModifiedTime.htm" target="TopicContent">UpdateUserModifiedTime Method (login, timeStamp)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_Util_OlsonUtil.htm" target="TopicContent">OlsonUtil Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil__ctor.htm" target="TopicContent">OlsonUtil Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_OlsonUtil__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC.htm" target="TopicContent">ConvertFromUTC Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC.htm" target="TopicContent">ConvertFromUTC Method (srcTime, dstName)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC_1.htm" target="TopicContent">ConvertFromUTC Method (srcTime, dstZone)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone.htm" target="TopicContent">ConvertToTimeZone Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone.htm" target="TopicContent">ConvertToTimeZone Method (src, srcName, dstTname)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone_1.htm" target="TopicContent">ConvertToTimeZone Method (src, srcZone, dstZone)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC.htm" target="TopicContent">ConvertToUTC Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC.htm" target="TopicContent">ConvertToUTC Method (srcTime, srcName)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC_1.htm" target="TopicContent">ConvertToUTC Method (srcTime, srcZone)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_Util_OlsonUtil_DefaultTimeZone.htm" target="TopicContent">DefaultTimeZone Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_GetTimeZone.htm" target="TopicContent">GetTimeZone Method (name)</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/N_Google_GCalExchangeSync_Library_WebDav.htm" target="TopicContent">Google.GCalExchangeSync.Library.WebDav Namespace</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_Appointment.htm" target="TopicContent">Appointment Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_Appointment__ctor.htm" target="TopicContent">Appointment Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_AllDayEvent.htm" target="TopicContent">AllDayEvent Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Body.htm" target="TopicContent">Body Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_BusyStatus.htm" target="TopicContent">BusyStatus Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Comment.htm" target="TopicContent">Comment Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Created.htm" target="TopicContent">Created Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_EndDate.htm" target="TopicContent">EndDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_HRef.htm" target="TopicContent">HRef Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_InstanceType.htm" target="TopicContent">InstanceType Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_IsPrivate.htm" target="TopicContent">IsPrivate Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Location.htm" target="TopicContent">Location Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_MeetingStatus.htm" target="TopicContent">MeetingStatus Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Organizer.htm" target="TopicContent">Organizer Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_Range.htm" target="TopicContent">Range Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_ResponseStatus.htm" target="TopicContent">ResponseStatus Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_StartDate.htm" target="TopicContent">StartDate Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Subject.htm" target="TopicContent">Subject Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_Appointment_ToString.htm" target="TopicContent">ToString Method </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_BusyStatus.htm" target="TopicContent">BusyStatus Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_FreeBusy.htm" target="TopicContent">FreeBusy Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_FreeBusy__ctor.htm" target="TopicContent">FreeBusy Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_All.htm" target="TopicContent">All Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_Busy.htm" target="TopicContent">Busy Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_OutOfOffice.htm" target="TopicContent">OutOfOffice Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_Tentative.htm" target="TopicContent">Tentative Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_User.htm" target="TopicContent">User Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty.htm" target="TopicContent">FreeBusyProperty Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty__ctor.htm" target="TopicContent">FreeBusyProperty Constructor (name, nameSpace, type)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_BusyEvents.htm" target="TopicContent">BusyEvents Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_BusyMonths.htm" target="TopicContent">BusyMonths Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_DisableFullFidelity.htm" target="TopicContent">DisableFullFidelity Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_EndOfPublishedRange.htm" target="TopicContent">EndOfPublishedRange Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_FreeBusyRangeTimestamp.htm" target="TopicContent">FreeBusyRangeTimestamp Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_LocaleId.htm" target="TopicContent">LocaleId Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MergedEvents.htm" target="TopicContent">MergedEvents Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MergedMonths.htm" target="TopicContent">MergedMonths Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MessageLocaleId.htm" target="TopicContent">MessageLocaleId Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_OutOfOfficeEvents.htm" target="TopicContent">OutOfOfficeEvents Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_OutOfOfficeMonths.htm" target="TopicContent">OutOfOfficeMonths Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_ScheduleInfoResourceType.htm" target="TopicContent">ScheduleInfoResourceType Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_StartOfPublishedRange.htm" target="TopicContent">StartOfPublishedRange Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_TentativeEvents.htm" target="TopicContent">TentativeEvents Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_TentativeMonths.htm" target="TopicContent">TentativeMonths Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_Type.htm" target="TopicContent">Type Property </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_HttpHeader.htm" target="TopicContent">HttpHeader Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_HttpHeader__ctor.htm" target="TopicContent">HttpHeader Constructor (headerName, headerValue)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_HttpHeader_Name.htm" target="TopicContent">Name Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_HttpHeader_Value.htm" target="TopicContent">Value Property </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_InstanceType.htm" target="TopicContent">InstanceType Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_IXmlRequest.htm" target="TopicContent">IXmlRequest Interface</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_IXmlRequest_IssueRequest.htm" target="TopicContent">IssueRequest Method (url, method, body, headers)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_MeetingStatus.htm" target="TopicContent">MeetingStatus Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_MessageProperty.htm" target="TopicContent">MessageProperty Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_MessageProperty__ctor.htm" target="TopicContent">MessageProperty Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_ConversationTopic.htm" target="TopicContent">ConversationTopic Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_NormalizedSubject.htm" target="TopicContent">NormalizedSubject Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_Subject.htm" target="TopicContent">Subject Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_SubjectPrefix.htm" target="TopicContent">SubjectPrefix Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_Method.htm" target="TopicContent">Method Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_Method__ctor.htm" target="TopicContent">Method Constructor (name)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BCOPY.htm" target="TopicContent">BCOPY Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BDELETE.htm" target="TopicContent">BDELETE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BMOVE.htm" target="TopicContent">BMOVE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BPROPFIND.htm" target="TopicContent">BPROPFIND Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BPROPPATCH.htm" target="TopicContent">BPROPPATCH Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_COPY.htm" target="TopicContent">COPY Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_DELETE.htm" target="TopicContent">DELETE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_GET.htm" target="TopicContent">GET Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_HEAD.htm" target="TopicContent">HEAD Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_LOCK.htm" target="TopicContent">LOCK Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_MKCOL.htm" target="TopicContent">MKCOL Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_MOVE.htm" target="TopicContent">MOVE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Method_Name.htm" target="TopicContent">Name Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_NOTIFY.htm" target="TopicContent">NOTIFY Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_POLL.htm" target="TopicContent">POLL Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_POST.htm" target="TopicContent">POST Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PROPFIND.htm" target="TopicContent">PROPFIND Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PROPPATCH.htm" target="TopicContent">PROPPATCH Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PUT.htm" target="TopicContent">PUT Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_SEARCH.htm" target="TopicContent">SEARCH Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_SUBSCRIBE.htm" target="TopicContent">SUBSCRIBE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_UNLOCK.htm" target="TopicContent">UNLOCK Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_UNSUBSCRIBE.htm" target="TopicContent">UNSUBSCRIBE Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_Method_X_MS_ENUMATTS.htm" target="TopicContent">X_MS_ENUMATTS Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_Property.htm" target="TopicContent">Property Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_Property__ctor.htm" target="TopicContent">Property Constructor (name, nameSpace)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Property_Name.htm" target="TopicContent">Name Property </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_Property_NameSpace.htm" target="TopicContent">NameSpace Property </a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_ResponseStatus.htm" target="TopicContent">ResponseStatus Enumeration</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavQuery.htm" target="TopicContent">WebDavQuery Class</a>
+<div class="Hidden">
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor.htm" target="TopicContent">WebDavQuery Constructor </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor.htm" target="TopicContent">WebDavQuery Constructor (credentials, requestor)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor_1.htm" target="TopicContent">WebDavQuery Constructor (credentials, group)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__log.htm" target="TopicContent">_log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_Copy.htm" target="TopicContent">Copy Method (source, destination)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_CreateAppointment.htm" target="TopicContent">CreateAppointment Method (mailboxUrl, appointment)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_Delete.htm" target="TopicContent">Delete Method (itemUrl)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/P_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IsLogToFileEnabled.htm" target="TopicContent">IsLogToFileEnabled Property </a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest.htm" target="TopicContent">IssueRequest Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest.htm" target="TopicContent">IssueRequest Method (url, method, body)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest_1.htm" target="TopicContent">IssueRequest Method (url, method, body, headers)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestAndFetchReponse.htm" target="TopicContent">IssueRequestAndFetchReponse Method (url, method, body)</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse.htm" target="TopicContent">IssueRequestIgnoreResponse Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse.htm" target="TopicContent">IssueRequestIgnoreResponse Method (url, method, body)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse_1.htm" target="TopicContent">IssueRequestIgnoreResponse Method (url, method, body, headers)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_LoadAppointments.htm" target="TopicContent">LoadAppointments Method (folderUrl, start, end)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_LoadFreeBusy.htm" target="TopicContent">LoadFreeBusy Method (exchangeServerUrl, users, window)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_RemoveProperty.htm" target="TopicContent">RemoveProperty Method (url, propName, nameSpace)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateAppointment.htm" target="TopicContent">UpdateAppointment Method (mailboxUrl, appointment)</a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty.htm" target="TopicContent">UpdateFreeBusyProperty Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty.htm" target="TopicContent">UpdateFreeBusyProperty Method (destination, property, propertyValues)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty_1.htm" target="TopicContent">UpdateFreeBusyProperty Method (destination, property, propertyValue)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateProperty.htm" target="TopicContent">UpdateProperty Method (destination, property, propertyValue)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder.htm" target="TopicContent">WebDavQueryBuilder Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder__ctor.htm" target="TopicContent">WebDavQueryBuilder Constructor </a>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty.htm" target="TopicContent">AddRemoveProperty Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty.htm" target="TopicContent">AddRemoveProperty Method (property)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty_1.htm" target="TopicContent">AddRemoveProperty Method (propertyName, propertyNamespace)</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty.htm" target="TopicContent">AddUpdateProperty Method </a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty.htm" target="TopicContent">AddUpdateProperty Method (property, propertyValues)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_1.htm" target="TopicContent">AddUpdateProperty Method (property, propertyValue)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_2.htm" target="TopicContent">AddUpdateProperty Method (property, propertyValue)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_3.htm" target="TopicContent">AddUpdateProperty Method (propertyName, propertyNamespace, propertyValue)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_4.htm" target="TopicContent">AddUpdateProperty Method (propertyName, propertyNamespace, propertyType, propertyValues)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_5.htm" target="TopicContent">AddUpdateProperty Method (propertyName, propertyNamespace, propertyType, propertyValue)</a>
+</div>
+</div>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_BuildQueryBody.htm" target="TopicContent">BuildQueryBody Method </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_log.htm" target="TopicContent">log Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_Reset.htm" target="TopicContent">Reset Method </a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources.htm" target="TopicContent">WebDavXmlResources Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources__ctor.htm" target="TopicContent">WebDavXmlResources Constructor </a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_CreateAppointment.htm" target="TopicContent">CreateAppointment Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_FindAppointments.htm" target="TopicContent">FindAppointments Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_FindItemUrls.htm" target="TopicContent">FindItemUrls Field</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_GetText.htm" target="TopicContent">GetText Method (resourceAddress, formatArgs)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_LoadFreeBusy.htm" target="TopicContent">LoadFreeBusy Field</a>
+</div>
+</div>
+</div>
+<div class="TreeNode">
+<img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="Collapsed.gif"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="html/T_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl.htm" target="TopicContent">XmlRequestImpl Class</a>
+<div class="Hidden">
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl__ctor.htm" target="TopicContent">XmlRequestImpl Constructor (credentials, group)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/M_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl_IssueRequest.htm" target="TopicContent">IssueRequest Method (url, method, body, headers)</a>
+</div>
+<div class="TreeItem">
+<img src="Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="html/F_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl_log.htm" target="TopicContent">log Field</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="TOCSizer" class="TOCSizer" onmousedown="OnMouseDown(event)" onselectstart="javascript: return false;"></div>
+
+<iframe id="TopicContent" name="TopicContent" class="TopicContent" src="html/R_Project.htm">
+This page uses an IFRAME but your browser does not support it.
+</iframe>
+
+</form>
+
+</body>
+
+</html>

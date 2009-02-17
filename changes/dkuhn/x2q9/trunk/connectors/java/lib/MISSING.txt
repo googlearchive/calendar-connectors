@@ -1,0 +1,10 @@
+LIBRARIES USED BY THE PROGRAM
+=============================
+
+Download the following libraries and add their jar files here:
+
+- Google Collections (from http://code.google.com/p/google-collections/)
+- GData Java Client (from http://code.google.com/p/gdata-java-client/)
+- Anything GData absolutely depends on (nothing at the time of this writing)
+
+If the latest version comes in an archive (zip-file), just take all the jar files the archive contains and put them here.

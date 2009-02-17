@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<D:propertyupdate xmlns:ns0="http://schemas.microsoft.com/exchange/" xmlns:ns1="http://schemas.microsoft.com/mapi/" xmlns:ns2="http://schemas.microsoft.com/mapi/proptag/" xmlns:ns3="http://schemas.microsoft.com/mapi/id/{{00062008-0000-0000-C000-000000000046}}/" xmlns:ns4="urn:schemas:calendar:" xmlns:ns5="http://schemas.microsoft.com/mapi/id/{{00062002-0000-0000-C000-000000000046}}/" xmlns:D="DAV:">
+  <D:set>
+    <D:prop>
+      <ns0:outlookmessageclass>IPM.Appointment</ns0:outlookmessageclass>
+      <ns1:subject>{0}</ns1:subject>
+      <ns2:x1000001e>{1}</ns2:x1000001e>
+      <D:comment>{2}</D:comment>
+      <h11:0x8506 xmlns:h11="http://schemas.microsoft.com/mapi/id/{{00062008-0000-0000-C000-000000000046}}/" xmlns:b="urn:uuid:C2F41010-65B3-11d1-A29F-00AA00C14882/" b:dt="boolean">{3}</h11:0x8506>
+      <ns4:alldayevent>{4}</ns4:alldayevent>
+      <ns4:busystatus>{12}</ns4:busystatus>
+      <ns4:dtend>{5}</ns4:dtend>
+      <ns4:dtstart>{6}</ns4:dtstart>
+      <ns4:instancetype>{7}</ns4:instancetype>
+      <ns4:location>{8}</ns4:location>
+      <ns4:meetingstatus>{9}</ns4:meetingstatus>
+      <ns5:0x8218>{10}</ns5:0x8218>
+      <ns4:organizer>{11}</ns4:organizer>
+    </D:prop>
+  </D:set>
+</D:propertyupdate>

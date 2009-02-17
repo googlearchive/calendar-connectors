@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="287b6565-d1cb-4c8a-83db-c3a72b6c3168" Title="Google.GCalExchangeSync.Library Namespace" Url="html/N_Google_GCalExchangeSync_Library.htm">
+    <HelpTOCNode Id="664abdd3-7150-46fe-b3ee-087d4dedb12a" Title="ActiveDirectoryService Class" Url="html/T_Google_GCalExchangeSync_Library_ActiveDirectoryService.htm">
+      <HelpTOCNode Title="ActiveDirectoryService Constructor " Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService__ctor.htm" />
+      <HelpTOCNode Title="Dispose Method " Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_Dispose.htm" />
+      <HelpTOCNode Title="GetUser Method (userName)" Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_GetUser.htm" />
+      <HelpTOCNode Title="LDAPServerUrl Property " Url="html/P_Google_GCalExchangeSync_Library_ActiveDirectoryService_LDAPServerUrl.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_ActiveDirectoryService_log.htm" />
+      <HelpTOCNode Title="SearchDirectory Method (ldapFilter)" Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_SearchDirectory.htm" />
+      <HelpTOCNode Title="SearchDirectoryByAttribute Method (attribute, terms)" Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_SearchDirectoryByAttribute.htm" />
+      <HelpTOCNode Title="UserExists Method (email)" Url="html/M_Google_GCalExchangeSync_Library_ActiveDirectoryService_UserExists.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2d8ddf42-562d-487a-8823-2b208312eace" Title="AppointmentCollection Class" Url="html/T_Google_GCalExchangeSync_Library_AppointmentCollection.htm">
+      <HelpTOCNode Title="AppointmentCollection Constructor " Url="html/M_Google_GCalExchangeSync_Library_AppointmentCollection__ctor.htm" />
+      <HelpTOCNode Title="Add Method (a)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentCollection_Add.htm" />
+      <HelpTOCNode Title="Get Method (r)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentCollection_Get.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="e2e362d5-d257-48a2-bba1-38b7806b60ce" Title="AppointmentService Class" Url="html/T_Google_GCalExchangeSync_Library_AppointmentService.htm">
+      <HelpTOCNode Title="AppointmentService Constructor (exchangeServer, webdav)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentService__ctor.htm" />
+      <HelpTOCNode Title="DeleteAppointments Method (user, appointments)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentService_DeleteAppointments.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_AppointmentService_log.htm" />
+      <HelpTOCNode Title="Lookup Method (user, window)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentService_Lookup.htm" />
+      <HelpTOCNode Title="UpdateAppointments Method (user, appointments)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentService_UpdateAppointments.htm" />
+      <HelpTOCNode Title="WriteAppointments Method (user, appointments)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentService_WriteAppointments.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c8919536-ac03-46ac-a69f-d2228b755420" Title="AppointmentWriter Class" Url="html/T_Google_GCalExchangeSync_Library_AppointmentWriter.htm">
+      <HelpTOCNode Title="AppointmentWriter Constructor " Url="html/M_Google_GCalExchangeSync_Library_AppointmentWriter__ctor.htm" />
+      <HelpTOCNode Title="AssignOwnership Method (appt)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_AssignOwnership.htm" />
+      <HelpTOCNode Title="SyncUser Method (user, googleAppsFeed, exchangeGateway, window)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_SyncUser.htm" />
+      <HelpTOCNode Title="ValidateOwnership Method (appt)" Url="html/M_Google_GCalExchangeSync_Library_AppointmentWriter_ValidateOwnership.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="6250f3c6-ac5a-4f7b-ba62-264a112c3b31" Title="ConfigCache Class" Url="html/T_Google_GCalExchangeSync_Library_ConfigCache.htm">
+      <HelpTOCNode Title="ConfigCache Constructor " Url="html/M_Google_GCalExchangeSync_Library_ConfigCache__ctor.htm" />
+      <HelpTOCNode Title="AddDomainMap Method (external, local)" Url="html/M_Google_GCalExchangeSync_Library_ConfigCache_AddDomainMap.htm" />
+      <HelpTOCNode Title="DefaultGCalSSL Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_DefaultGCalSSL.htm" />
+      <HelpTOCNode Title="DomainController Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainController.htm" />
+      <HelpTOCNode Title="DomainUserLogin Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainUserLogin.htm" />
+      <HelpTOCNode Title="DomainUserPassword Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_DomainUserPassword.htm" />
+      <HelpTOCNode Title="EnableAppointmentLookup Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableAppointmentLookup.htm" />
+      <HelpTOCNode Title="EnableHttpCompression Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableHttpCompression.htm" />
+      <HelpTOCNode Title="EnableKeepAlive Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_EnableKeepAlive.htm" />
+      <HelpTOCNode Title="EncryptAppSettings Method (config)" Url="html/M_Google_GCalExchangeSync_Library_ConfigCache_EncryptAppSettings.htm" />
+      <HelpTOCNode Title="EncryptOnNextRun Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_EncryptOnNextRun.htm" />
+      <HelpTOCNode Title="ExchangeAdminLogin Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeAdminLogin.htm" />
+      <HelpTOCNode Title="ExchangeAdminPassword Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeAdminPassword.htm" />
+      <HelpTOCNode Title="ExchangeDefaultDomain Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeDefaultDomain.htm" />
+      <HelpTOCNode Title="ExchangeFreeBusyServerUrl Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeFreeBusyServerUrl.htm" />
+      <HelpTOCNode Title="ExchangeMaxConnections Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeMaxConnections.htm" />
+      <HelpTOCNode Title="ExchangeServerUrl Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeServerUrl.htm" />
+      <HelpTOCNode Title="ExchangeUserLogin Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeUserLogin.htm" />
+      <HelpTOCNode Title="ExchangeUserPassword Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ExchangeUserPassword.htm" />
+      <HelpTOCNode Title="FreeBusyDetailLevel Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_FreeBusyDetailLevel.htm" />
+      <HelpTOCNode Title="FreeBusyWriter Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_FreeBusyWriter.htm" />
+      <HelpTOCNode Title="GCalAddress Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalAddress.htm" />
+      <HelpTOCNode Title="GCalLogDirectory Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalLogDirectory.htm" />
+      <HelpTOCNode Title="GCalPostUrl Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalPostUrl.htm" />
+      <HelpTOCNode Title="GCalSyncWindow Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GCalSyncWindow.htm" />
+      <HelpTOCNode Title="GoogleAppsDomain Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsDomain.htm" />
+      <HelpTOCNode Title="GoogleAppsLogin Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsLogin.htm" />
+      <HelpTOCNode Title="GoogleAppsPassword Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_GoogleAppsPassword.htm" />
+      <HelpTOCNode Title="LoadConfiguration Method (config)" Url="html/M_Google_GCalExchangeSync_Library_ConfigCache_LoadConfiguration.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_log.htm" />
+      <HelpTOCNode Title="MapToExternalDomain Method (email)" Url="html/M_Google_GCalExchangeSync_Library_ConfigCache_MapToExternalDomain.htm" />
+      <HelpTOCNode Title="MapToLocalDomain Method (email)" Url="html/M_Google_GCalExchangeSync_Library_ConfigCache_MapToLocalDomain.htm" />
+      <HelpTOCNode Title="PlaceHolderMessage Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_PlaceHolderMessage.htm" />
+      <HelpTOCNode Title="RequireDiagnosticsLocalAccess Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_RequireDiagnosticsLocalAccess.htm" />
+      <HelpTOCNode Title="ServiceErrorCountThreshold Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceErrorCountThreshold.htm" />
+      <HelpTOCNode Title="ServiceLDAPUserFilter Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceLDAPUserFilter.htm" />
+      <HelpTOCNode Title="ServiceModifiedXmlFileName Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceModifiedXmlFileName.htm" />
+      <HelpTOCNode Title="ServiceModifiedXmlStorageDirectory Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceModifiedXmlStorageDirectory.htm" />
+      <HelpTOCNode Title="ServiceRefreshMinutes Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceRefreshMinutes.htm" />
+      <HelpTOCNode Title="ServiceThreadCount Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_ServiceThreadCount.htm" />
+      <HelpTOCNode Title="SyncAppointmentDetails Field" Url="html/F_Google_GCalExchangeSync_Library_ConfigCache_SyncAppointmentDetails.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="fd9ab35a-ca0d-4418-9a48-808b36d6d579" Title="ConnectionThrottle Class" Url="html/T_Google_GCalExchangeSync_Library_ConnectionThrottle.htm">
+      <HelpTOCNode Id="d0f8fd01-916b-481e-9095-3a5ee444376a" Title="ConnectionThrottle Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor.htm">
+        <HelpTOCNode Title="ConnectionThrottle Constructor " Url="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor.htm" />
+        <HelpTOCNode Title="ConnectionThrottle Constructor (desiredMinDelay, desiredMaxDelay, desiredMultiplier)" Url="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ReportFailure Method " Url="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_ReportFailure.htm" />
+      <HelpTOCNode Title="ReportSuccess Method " Url="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_ReportSuccess.htm" />
+      <HelpTOCNode Title="WaitBeforeNewConnection Method " Url="html/M_Google_GCalExchangeSync_Library_ConnectionThrottle_WaitBeforeNewConnection.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="3a0c1199-cdd6-4fc9-9868-7568e1029bb5" Title="ExchangeService Class" Url="html/T_Google_GCalExchangeSync_Library_ExchangeService.htm">
+      <HelpTOCNode Title="ExchangeService Constructor (exchangeServer, networkLogin, networkPassword)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService__ctor.htm" />
+      <HelpTOCNode Title="Appointments Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeService_Appointments.htm" />
+      <HelpTOCNode Title="DoesUrlExist Method (url)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_DoesUrlExist.htm" />
+      <HelpTOCNode Title="ExchangeServerUrl Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeService_ExchangeServerUrl.htm" />
+      <HelpTOCNode Title="FreeBusy Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeService_FreeBusy.htm" />
+      <HelpTOCNode Id="c234cf1f-da33-4000-817b-df75f4c6381e" Title="GetCalendarInfoForUser Method " Url="html/Overload_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser.htm">
+        <HelpTOCNode Title="GetCalendarInfoForUser Method (exchangeUser)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser.htm" />
+        <HelpTOCNode Title="GetCalendarInfoForUser Method (user, window)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUser_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="GetCalendarInfoForUsers Method (users, window)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_GetCalendarInfoForUsers.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_ExchangeService_log.htm" />
+      <HelpTOCNode Title="MergeFreeBusyWithAppointments Method (exchangeUser, freeBusy, appointments, window)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_MergeFreeBusyWithAppointments.htm" />
+      <HelpTOCNode Title="QueryActiveDirectory Method (ldapFilter)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_QueryActiveDirectory.htm" />
+      <HelpTOCNode Title="RetrieveAllExchangeUsers Method " Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_RetrieveAllExchangeUsers.htm" />
+      <HelpTOCNode Title="Search Method (ldapAttribute, utcRange, searchTerms)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_Search.htm" />
+      <HelpTOCNode Title="SearchByEmail Method (utcRange, searchTerms)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeService_SearchByEmail.htm" />
+      <HelpTOCNode Title="WebDavQuery Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeService_WebDavQuery.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2a29210e-9b53-4c53-b608-7d22981d7e6e" Title="ExchangeUser Class" Url="html/T_Google_GCalExchangeSync_Library_ExchangeUser.htm">
+      <HelpTOCNode Id="039d7294-1359-46b8-b225-f438150828a1" Title="ExchangeUser Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_ExchangeUser__ctor.htm">
+        <HelpTOCNode Title="ExchangeUser Constructor " Url="html/M_Google_GCalExchangeSync_Library_ExchangeUser__ctor.htm" />
+        <HelpTOCNode Title="ExchangeUser Constructor (properties)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeUser__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="AccessLevel Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_AccessLevel.htm" />
+      <HelpTOCNode Title="AccountName Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_AccountName.htm" />
+      <HelpTOCNode Title="BusyTimes Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_BusyTimes.htm" />
+      <HelpTOCNode Title="CommonName Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_CommonName.htm" />
+      <HelpTOCNode Title="DisplayName Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_DisplayName.htm" />
+      <HelpTOCNode Title="Email Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_Email.htm" />
+      <HelpTOCNode Title="Equals Method (obj)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeUser_Equals.htm" />
+      <HelpTOCNode Title="FreeBusyCommonName Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_FreeBusyCommonName.htm" />
+      <HelpTOCNode Title="GetHashCode Method " Url="html/M_Google_GCalExchangeSync_Library_ExchangeUser_GetHashCode.htm" />
+      <HelpTOCNode Title="HaveAppointmentDetail Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_HaveAppointmentDetail.htm" />
+      <HelpTOCNode Title="IsValid Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_IsValid.htm" />
+      <HelpTOCNode Title="LegacyExchangeDN Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_LegacyExchangeDN.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_ExchangeUser_log.htm" />
+      <HelpTOCNode Title="MailNickname Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_MailNickname.htm" />
+      <HelpTOCNode Title="ProxyAddresses Property " Url="html/P_Google_GCalExchangeSync_Library_ExchangeUser_ProxyAddresses.htm" />
+      <HelpTOCNode Title="ToString Method " Url="html/M_Google_GCalExchangeSync_Library_ExchangeUser_ToString.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="d15ff5e7-087a-4a1e-8173-ff5f1905630f" Title="ExchangeUserDict Class" Url="html/T_Google_GCalExchangeSync_Library_ExchangeUserDict.htm">
+      <HelpTOCNode Title="ExchangeUserDict Constructor " Url="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict__ctor.htm" />
+      <HelpTOCNode Title="AddExchangeUser Method (email, user)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_AddExchangeUser.htm" />
+      <HelpTOCNode Title="Contains Method (email)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_Contains.htm" />
+      <HelpTOCNode Title="FindUser Method (email)" Url="html/M_Google_GCalExchangeSync_Library_ExchangeUserDict_FindUser.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="9094755f-d1d2-4e66-9fab-8b845e94e4ef" Title="FreeBusyCollection Class" Url="html/T_Google_GCalExchangeSync_Library_FreeBusyCollection.htm">
+      <HelpTOCNode Title="FreeBusyCollection Constructor " Url="html/M_Google_GCalExchangeSync_Library_FreeBusyCollection__ctor.htm" />
+      <HelpTOCNode Title="Appointments Property " Url="html/P_Google_GCalExchangeSync_Library_FreeBusyCollection_Appointments.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="11b343f0-c344-4297-b4f0-4d63109d6d10" Title="FreeBusyConverter Class" Url="html/T_Google_GCalExchangeSync_Library_FreeBusyConverter.htm">
+      <HelpTOCNode Title="FreeBusyConverter Constructor " Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter__ctor.htm" />
+      <HelpTOCNode Title="CompareRangesByStartThenEnd Method (x, y)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_CompareRangesByStartThenEnd.htm" />
+      <HelpTOCNode Title="CondenseFreeBusyTimes Method (freeBusyTimes)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_CondenseFreeBusyTimes.htm" />
+      <HelpTOCNode Title="ConvertBase64StringsToDateTimeBlocks Method (exchangeMonthValue, base64FreeBusyData)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertBase64StringsToDateTimeBlocks.htm" />
+      <HelpTOCNode Title="ConvertDateTimeBlocksToBase64String Method (startDate, endDate, freeBusyRanges, monthData, base64FreeBusyData)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertDateTimeBlocksToBase64String.htm" />
+      <HelpTOCNode Title="ConvertRasterToFreeBusy Method (raster)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertRasterToFreeBusy.htm" />
+      <HelpTOCNode Title="ConvertToSysTime Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ConvertToSysTime.htm" />
+      <HelpTOCNode Title="GetFreeBusyMonthValue Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_GetFreeBusyMonthValue.htm" />
+      <HelpTOCNode Title="GetFreeBusyTimeValue Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_GetFreeBusyTimeValue.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_FreeBusyConverter_log.htm" />
+      <HelpTOCNode Title="MergeFreeBusyLists Method (left, right)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_MergeFreeBusyLists.htm" />
+      <HelpTOCNode Title="ParseFreeBusyMonthValue Method (exchangeMonth)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ParseFreeBusyMonthValue.htm" />
+      <HelpTOCNode Title="ParseRasterFreeBusy Method (baseTime, freeBusyInterval, freeBusyRaster, freeBusy)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyConverter_ParseRasterFreeBusy.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="52031881-25ca-4f01-821c-190a4c8ab4a7" Title="FreeBusyService Class" Url="html/T_Google_GCalExchangeSync_Library_FreeBusyService.htm">
+      <HelpTOCNode Title="FreeBusyService Constructor (exchangeServer, webdav, queryBuilder)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyService__ctor.htm" />
+      <HelpTOCNode Title="CreateFreeBusyMessage Method (targetUrl, targetUsername, busyMonths, busyDailyData, tentativeMonths, tentativeDailyData, startDate, endDate)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyService_CreateFreeBusyMessage.htm" />
+      <HelpTOCNode Id="a40794bc-04b3-44bc-b75d-61168df30158" Title="LookupFreeBusyTimes Method " Url="html/Overload_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes.htm">
+        <HelpTOCNode Title="LookupFreeBusyTimes Method (user, window)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes.htm" />
+        <HelpTOCNode Title="LookupFreeBusyTimes Method (users, window)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyService_LookupFreeBusyTimes_1.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="177209a4-baa9-4b43-9888-91c3553ad2cd" Title="FreeBusyTimeBlock Class" Url="html/T_Google_GCalExchangeSync_Library_FreeBusyTimeBlock.htm">
+      <HelpTOCNode Id="33c72001-bd64-4098-88e5-311f0e5d5fc5" Title="FreeBusyTimeBlock Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor.htm">
+        <HelpTOCNode Title="FreeBusyTimeBlock Constructor (r)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor.htm" />
+        <HelpTOCNode Title="FreeBusyTimeBlock Constructor (start, end)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Appointments Property " Url="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_Appointments.htm" />
+      <HelpTOCNode Title="CompareTo Method (obj)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_CompareTo.htm" />
+      <HelpTOCNode Title="EndDate Property " Url="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_EndDate.htm" />
+      <HelpTOCNode Title="Range Property " Url="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_Range.htm" />
+      <HelpTOCNode Title="StartDate Property " Url="html/P_Google_GCalExchangeSync_Library_FreeBusyTimeBlock_StartDate.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="d089637e-2783-4200-84ab-8773e2442eb7" Title="FreeBusyWriterFactory Class" Url="html/T_Google_GCalExchangeSync_Library_FreeBusyWriterFactory.htm">
+      <HelpTOCNode Title="FreeBusyWriterFactory Constructor " Url="html/M_Google_GCalExchangeSync_Library_FreeBusyWriterFactory__ctor.htm" />
+      <HelpTOCNode Title="GetWriter Method (users)" Url="html/M_Google_GCalExchangeSync_Library_FreeBusyWriterFactory_GetWriter.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="GCalAccessLevel Enumeration" Url="html/T_Google_GCalExchangeSync_Library_GCalAccessLevel.htm" />
+    <HelpTOCNode Title="GCalBusyStatus Enumeration" Url="html/T_Google_GCalExchangeSync_Library_GCalBusyStatus.htm" />
+    <HelpTOCNode Id="5e7696df-c67c-4f73-b14f-1203b5604683" Title="GCalErrorResponse Class" Url="html/T_Google_GCalExchangeSync_Library_GCalErrorResponse.htm">
+      <HelpTOCNode Id="a6781f6d-e330-41e9-be5f-015922a1523b" Title="GCalErrorResponse Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor.htm">
+        <HelpTOCNode Title="GCalErrorResponse Constructor (request, exception)" Url="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor.htm" />
+        <HelpTOCNode Title="GCalErrorResponse Constructor (exception)" Url="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="GenerateResponse Method " Url="html/M_Google_GCalExchangeSync_Library_GCalErrorResponse_GenerateResponse.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="GCalExchangeErrorCode Enumeration" Url="html/T_Google_GCalExchangeSync_Library_GCalExchangeErrorCode.htm" />
+    <HelpTOCNode Id="e302a688-4d89-4e29-b8d3-b87eafaac9fe" Title="GCalExchangeException Class" Url="html/T_Google_GCalExchangeSync_Library_GCalExchangeException.htm">
+      <HelpTOCNode Id="6fb6ab45-5cde-406a-b728-049b87e61282" Title="GCalExchangeException Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_GCalExchangeException__ctor.htm">
+        <HelpTOCNode Title="GCalExchangeException Constructor (errorCode)" Url="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor.htm" />
+        <HelpTOCNode Title="GCalExchangeException Constructor (errorCode, message)" Url="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor_1.htm" />
+        <HelpTOCNode Title="GCalExchangeException Constructor (errorCode, message, innerException)" Url="html/M_Google_GCalExchangeSync_Library_GCalExchangeException__ctor_2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ErrorCode Property " Url="html/P_Google_GCalExchangeSync_Library_GCalExchangeException_ErrorCode.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_GCalExchangeException_log.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b510123e-4daa-4873-9746-eb6c38dc31de" Title="GCalFreeBusyRequest Class" Url="html/T_Google_GCalExchangeSync_Library_GCalFreeBusyRequest.htm">
+      <HelpTOCNode Title="GCalFreeBusyRequest Constructor (rawInput)" Url="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyRequest__ctor.htm" />
+      <HelpTOCNode Title="EndDate Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_EndDate.htm" />
+      <HelpTOCNode Title="ExchangeUsers Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_ExchangeUsers.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_log.htm" />
+      <HelpTOCNode Title="MessageId Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_MessageId.htm" />
+      <HelpTOCNode Title="Since Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_Since.htm" />
+      <HelpTOCNode Title="StartDate Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_StartDate.htm" />
+      <HelpTOCNode Title="TimeZone Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_TimeZone.htm" />
+      <HelpTOCNode Title="UTCEndDate Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_UTCEndDate.htm" />
+      <HelpTOCNode Title="UTCStartDate Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_UTCStartDate.htm" />
+      <HelpTOCNode Title="VersionNumber Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyRequest_VersionNumber.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b152f330-0f86-466f-b49f-b10a290f1a79" Title="GCalFreeBusyResponse Class" Url="html/T_Google_GCalExchangeSync_Library_GCalFreeBusyResponse.htm">
+      <HelpTOCNode Title="GCalFreeBusyResponse Constructor (request)" Url="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyResponse__ctor.htm" />
+      <HelpTOCNode Title="GenerateResponse Method " Url="html/M_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_GenerateResponse.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_log.htm" />
+      <HelpTOCNode Title="Request Property " Url="html/P_Google_GCalExchangeSync_Library_GCalFreeBusyResponse_Request.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b3f4438a-4a3e-4889-98d4-b2d501acc8dd" Title="GCalGateway Class" Url="html/T_Google_GCalExchangeSync_Library_GCalGateway.htm">
+      <HelpTOCNode Title="GCalGateway Constructor (login, password, domain, throttler)" Url="html/M_Google_GCalExchangeSync_Library_GCalGateway__ctor.htm" />
+      <HelpTOCNode Title="QueryGCal Method (email, visibility, projection, modifiedSince, window)" Url="html/M_Google_GCalExchangeSync_Library_GCalGateway_QueryGCal.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="GCalProjection Enumeration" Url="html/T_Google_GCalExchangeSync_Library_GCalProjection.htm" />
+    <HelpTOCNode Id="0e904ba4-6059-4324-b120-b8ce5adf56da" Title="GCalSyncProcess Class" Url="html/T_Google_GCalExchangeSync_Library_GCalSyncProcess.htm">
+      <HelpTOCNode Id="63f8a9f1-af70-430c-a8f8-d08b869ef6cc" Title="GCalSyncProcess Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor.htm">
+        <HelpTOCNode Title="GCalSyncProcess Constructor " Url="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor.htm" />
+        <HelpTOCNode Title="GCalSyncProcess Constructor (googleAppsLogin, googleAppsPassword, googleAppsDomain, exchangeServer, networkLogin, networkPassword)" Url="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_GCalSyncProcess_log.htm" />
+      <HelpTOCNode Id="0f3d727b-e42a-4f66-aba3-df6bbce315c8" Title="RunSyncProcess Method " Url="html/Overload_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess.htm">
+        <HelpTOCNode Title="RunSyncProcess Method " Url="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess.htm" />
+        <HelpTOCNode Title="RunSyncProcess Method (threadCount)" Url="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_RunSyncProcess_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="SyncUsers Method " Url="html/M_Google_GCalExchangeSync_Library_GCalSyncProcess_SyncUsers.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="GCalVisibility Enumeration" Url="html/T_Google_GCalExchangeSync_Library_GCalVisibility.htm" />
+    <HelpTOCNode Id="19213c1c-d673-483a-9b13-e60446d9385d" Title="IConnectionThrottle Interface" Url="html/T_Google_GCalExchangeSync_Library_IConnectionThrottle.htm">
+      <HelpTOCNode Title="ReportFailure Method " Url="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_ReportFailure.htm" />
+      <HelpTOCNode Title="ReportSuccess Method " Url="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_ReportSuccess.htm" />
+      <HelpTOCNode Title="WaitBeforeNewConnection Method " Url="html/M_Google_GCalExchangeSync_Library_IConnectionThrottle_WaitBeforeNewConnection.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="269bca9e-1607-44aa-bc9b-aed2d106095c" Title="IFreeBusyWriter Interface" Url="html/T_Google_GCalExchangeSync_Library_IFreeBusyWriter.htm">
+      <HelpTOCNode Title="SyncUser Method (user, googleAppsFeed, exchangeGateway, window)" Url="html/M_Google_GCalExchangeSync_Library_IFreeBusyWriter_SyncUser.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="08d30458-af1c-4e69-8da7-a5bdce6cb36d" Title="SchedulePlusFreeBusyWriter Class" Url="html/T_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter.htm">
+      <HelpTOCNode Title="SchedulePlusFreeBusyWriter Constructor " Url="html/M_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter__ctor.htm" />
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter__log.htm" />
+      <HelpTOCNode Title="SyncUser Method (user, googleAppsFeed, exchangeGateway, window)" Url="html/M_Google_GCalExchangeSync_Library_SchedulePlusFreeBusyWriter_SyncUser.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="06f1c448-e54e-4996-9f9e-0209dd72889b" Title="Google.GCalExchangeSync.Library.Scheduling Namespace" Url="html/N_Google_GCalExchangeSync_Library_Scheduling.htm">
+    <HelpTOCNode Id="54be6cce-4cd8-4bc6-a8fe-444eda3eee9f" Title="BaseWorker Class" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker.htm">
+      <HelpTOCNode Title="BaseWorker Constructor " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker__ctor.htm" />
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_Scheduling_BaseWorker__log.htm" />
+      <HelpTOCNode Title="DoWork Method " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_DoWork.htm" />
+      <HelpTOCNode Title="Execute Method " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_Execute.htm" />
+      <HelpTOCNode Title="OnWorkComplete Event" Url="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkComplete.htm" />
+      <HelpTOCNode Title="OnWorkFailed Event" Url="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkFailed.htm" />
+      <HelpTOCNode Title="OnWorkStart Event" Url="html/E_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkStart.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="BaseWorker.OnWorkCompleteEventHandler Delegate" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkCompleteEventHandler.htm" />
+    <HelpTOCNode Title="BaseWorker.OnWorkFailedEventHandler Delegate" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkFailedEventHandler.htm" />
+    <HelpTOCNode Title="BaseWorker.OnWorkStartEventHandler Delegate" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_BaseWorker_OnWorkStartEventHandler.htm" />
+    <HelpTOCNode Id="b07e784d-07a8-405e-a8e4-8a4896c849e8" Title="Sentinel Class" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_Sentinel.htm">
+      <HelpTOCNode Title="Sentinel Constructor (frequency, workerType)" Url="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel__ctor.htm" />
+      <HelpTOCNode Title="ActiveThreads Field" Url="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_ActiveThreads.htm" />
+      <HelpTOCNode Title="AddActiveThread Method (threadIdentifier)" Url="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_AddActiveThread.htm" />
+      <HelpTOCNode Title="Enabled Field" Url="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Enabled.htm" />
+      <HelpTOCNode Title="MultiThreaded Field" Url="html/F_Google_GCalExchangeSync_Library_Scheduling_Sentinel_MultiThreaded.htm" />
+      <HelpTOCNode Title="RemoveActiveThread Method (threadIdentifier)" Url="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_RemoveActiveThread.htm" />
+      <HelpTOCNode Title="Start Method " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Start.htm" />
+      <HelpTOCNode Title="Stop Method " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_Sentinel_Stop.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="Sentinel.ThreadPoolSpawnWorkerHandler Delegate" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_Sentinel_ThreadPoolSpawnWorkerHandler.htm" />
+    <HelpTOCNode Id="fa12c0c7-60bf-4448-9574-86493a4e1b66" Title="SentinelFactory Class" Url="html/T_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory.htm">
+      <HelpTOCNode Title="SentinelFactory Constructor (frequency, workerType)" Url="html/M_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory__ctor.htm" />
+      <HelpTOCNode Title="StartSentinel Method " Url="html/M_Google_GCalExchangeSync_Library_Scheduling_SentinelFactory_StartSentinel.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="d301ad4a-bce3-4636-8ad1-cfa0bf40ddd3" Title="Google.GCalExchangeSync.Library.Util Namespace" Url="html/N_Google_GCalExchangeSync_Library_Util.htm">
+    <HelpTOCNode Id="582debcf-4797-4ed0-832f-bbaf8b5c91a3" Title="BlockTimer Class" Url="html/T_Google_GCalExchangeSync_Library_Util_BlockTimer.htm">
+      <HelpTOCNode Title="BlockTimer Constructor (name)" Url="html/M_Google_GCalExchangeSync_Library_Util_BlockTimer__ctor.htm" />
+      <HelpTOCNode Title="Dispose Method " Url="html/M_Google_GCalExchangeSync_Library_Util_BlockTimer_Dispose.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_Util_BlockTimer_log.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="650eac8c-d2ba-4486-a6dc-25066e02c8ce" Title="ConversionsUtil Class" Url="html/T_Google_GCalExchangeSync_Library_Util_ConversionsUtil.htm">
+      <HelpTOCNode Title="ConversionsUtil Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil__ctor.htm" />
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_Util_ConversionsUtil__log.htm" />
+      <HelpTOCNode Title="ConvertBusyStatusToGoogleResponse Method (busyStatus)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertBusyStatusToGoogleResponse.htm" />
+      <HelpTOCNode Title="ConvertExchangeResponseToGoogleResponse Method (resp)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertExchangeResponseToGoogleResponse.htm" />
+      <HelpTOCNode Title="ConvertGoogleEventStatus Method (status)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertGoogleEventStatus.htm" />
+      <HelpTOCNode Title="ConvertParticipantStatus Method (user, googleAppsEvent)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ConvertParticipantStatus.htm" />
+      <HelpTOCNode Title="EscapeNonAlphaNumeric Method (input, result)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_EscapeNonAlphaNumeric.htm" />
+      <HelpTOCNode Title="GetUserStatusForEvent Method (user, googleAppsEvent)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_GetUserStatusForEvent.htm" />
+      <HelpTOCNode Title="GoogleEventIsTransparent Method (googleAppsEvent)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_GoogleEventIsTransparent.htm" />
+      <HelpTOCNode Title="ParseBusyStatus Method (busyStatus)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_ParseBusyStatus.htm" />
+      <HelpTOCNode Title="SafeGetContent Method (content)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetContent.htm" />
+      <HelpTOCNode Title="SafeGetText Method (textConstruct)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetText.htm" />
+      <HelpTOCNode Title="SafeGetValue Method (enumConstruct)" Url="html/M_Google_GCalExchangeSync_Library_Util_ConversionsUtil_SafeGetValue.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="55edc6a4-b94f-4a05-89a9-fbf42a491851" Title="DateTimeRange Class" Url="html/T_Google_GCalExchangeSync_Library_Util_DateTimeRange.htm">
+      <HelpTOCNode Title="DateTimeRange Constructor (start, end)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange__ctor.htm" />
+      <HelpTOCNode Title="CompareTo Method (obj)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_CompareTo.htm" />
+      <HelpTOCNode Title="Contains Method (range)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Contains.htm" />
+      <HelpTOCNode Title="End Property " Url="html/P_Google_GCalExchangeSync_Library_Util_DateTimeRange_End.htm" />
+      <HelpTOCNode Title="Equals Method (obj)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Equals.htm" />
+      <HelpTOCNode Title="Full Field" Url="html/F_Google_GCalExchangeSync_Library_Util_DateTimeRange_Full.htm" />
+      <HelpTOCNode Title="GetHashCode Method " Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_GetHashCode.htm" />
+      <HelpTOCNode Title="InRange Method (t)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_InRange.htm" />
+      <HelpTOCNode Title="Overlaps Method (range)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_Overlaps.htm" />
+      <HelpTOCNode Title="Start Property " Url="html/P_Google_GCalExchangeSync_Library_Util_DateTimeRange_Start.htm" />
+      <HelpTOCNode Title="ToString Method " Url="html/M_Google_GCalExchangeSync_Library_Util_DateTimeRange_ToString.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b0012ba9-6aa6-4db7-a405-9c3880304df3" Title="DateUtil Class" Url="html/T_Google_GCalExchangeSync_Library_Util_DateUtil.htm">
+      <HelpTOCNode Title="DateUtil Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil__ctor.htm" />
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_Util_DateUtil__log.htm" />
+      <HelpTOCNode Title="FormatDateForDASL Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForDASL.htm" />
+      <HelpTOCNode Title="FormatDateForExchange Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForExchange.htm" />
+      <HelpTOCNode Title="FormatDateForGoogle Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForGoogle.htm" />
+      <HelpTOCNode Title="FormatDateForISO8601 Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateForISO8601.htm" />
+      <HelpTOCNode Title="FormatDateTimeForGoogle Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_FormatDateTimeForGoogle.htm" />
+      <HelpTOCNode Title="IsWithinRange Method (dateToCompare, startDate, endDate)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_IsWithinRange.htm" />
+      <HelpTOCNode Title="NowUtc Property " Url="html/P_Google_GCalExchangeSync_Library_Util_DateUtil_NowUtc.htm" />
+      <HelpTOCNode Title="ParseDateToUtc Method (dateString)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_ParseDateToUtc.htm" />
+      <HelpTOCNode Title="ParseGoogleDate Method (dateString)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_ParseGoogleDate.htm" />
+      <HelpTOCNode Title="RoundRangeToInterval Method (range, minutes)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_RoundRangeToInterval.htm" />
+      <HelpTOCNode Title="StartOfMonth Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_StartOfMonth.htm" />
+      <HelpTOCNode Title="StartOfNextMonth Method (dt)" Url="html/M_Google_GCalExchangeSync_Library_Util_DateUtil_StartOfNextMonth.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="503466a7-3b92-4f89-a298-9ac68375893d" Title="EmbeddedResourceUtility Class" Url="html/T_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility.htm">
+      <HelpTOCNode Title="GetTextDocument Method (resourceName)" Url="html/M_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility_GetTextDocument.htm" />
+      <HelpTOCNode Title="GetXmlDocument Method (resourceName)" Url="html/M_Google_GCalExchangeSync_Library_Util_EmbeddedResourceUtility_GetXmlDocument.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2bdc484b-3594-488c-8168-74333ea21b3e" Title="ExchangeUtil Class" Url="html/T_Google_GCalExchangeSync_Library_Util_ExchangeUtil.htm">
+      <HelpTOCNode Title="ExchangeUtil Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil__ctor.htm" />
+      <HelpTOCNode Id="27fdb8cf-6597-4c16-aa03-bc1a02d544ea" Title="GetDefaultCalendarUrl Method " Url="html/Overload_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl.htm">
+        <HelpTOCNode Title="GetDefaultCalendarUrl Method (exchangeServer, user)" Url="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl.htm" />
+        <HelpTOCNode Title="GetDefaultCalendarUrl Method (exchangeServer, email)" Url="html/M_Google_GCalExchangeSync_Library_Util_ExchangeUtil_GetDefaultCalendarUrl_1.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d92c90a3-e4b0-430e-a49b-8dbb21552eeb" Title="FreeBusyUrl Class" Url="html/T_Google_GCalExchangeSync_Library_Util_FreeBusyUrl.htm">
+      <HelpTOCNode Title="FreeBusyUrl Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl__ctor.htm" />
+      <HelpTOCNode Title="GenerateAdminGroupUrl Method (exchangeServerUrl, adminGroup)" Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateAdminGroupUrl.htm" />
+      <HelpTOCNode Title="GenerateAdminGroupUrlFromDN Method (exchangeServerUrl, legacyExchangeDN)" Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateAdminGroupUrlFromDN.htm" />
+      <HelpTOCNode Title="GenerateFreeBusyLookupUrl Method (exchangeServer, users, range, interval)" Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateFreeBusyLookupUrl.htm" />
+      <HelpTOCNode Title="GenerateUrl Method (exchangeServerUrl, adminGroup, userAlias)" Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateUrl.htm" />
+      <HelpTOCNode Title="GenerateUrlFromDN Method (exchangeServerUrl, legacyExchangeDN)" Url="html/M_Google_GCalExchangeSync_Library_Util_FreeBusyUrl_GenerateUrlFromDN.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="214d5cee-ac30-4a2f-be10-c8056aecf384" Title="Future Class" Url="html/T_Google_GCalExchangeSync_Library_Util_Future.htm">
+      <HelpTOCNode Title="Future Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_Future__ctor.htm" />
+      <HelpTOCNode Title="Dispose Method " Url="html/M_Google_GCalExchangeSync_Library_Util_Future_Dispose.htm" />
+      <HelpTOCNode Title="doTask Method " Url="html/M_Google_GCalExchangeSync_Library_Util_Future_doTask.htm" />
+      <HelpTOCNode Title="start Method " Url="html/M_Google_GCalExchangeSync_Library_Util_Future_start.htm" />
+      <HelpTOCNode Title="TaskName Property " Url="html/P_Google_GCalExchangeSync_Library_Util_Future_TaskName.htm" />
+      <HelpTOCNode Title="waitForCompletion Method " Url="html/M_Google_GCalExchangeSync_Library_Util_Future_waitForCompletion.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="GCalResponseStatus Enumeration" Url="html/T_Google_GCalExchangeSync_Library_Util_GCalResponseStatus.htm" />
+    <HelpTOCNode Id="4022f510-1168-44b8-9cfa-60b7f7a4c468" Title="IntervalTree(T) Class" Url="html/T_Google_GCalExchangeSync_Library_Util_IntervalTree_1.htm">
+      <HelpTOCNode Title="IntervalTree(T) Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1__ctor.htm" />
+      <HelpTOCNode Id="92f40356-edbf-474f-9790-5a2be2f0ce76" Title="FindAll Method " Url="html/Overload_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll.htm">
+        <HelpTOCNode Title="FindAll Method (range)" Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll.htm" />
+        <HelpTOCNode Title="FindAll Method (range, match)" Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindAll_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="FindExact Method (range)" Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_FindExact.htm" />
+      <HelpTOCNode Title="GetNodeList Method " Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_GetNodeList.htm" />
+      <HelpTOCNode Title="Insert Method (range, data)" Url="html/M_Google_GCalExchangeSync_Library_Util_IntervalTree_1_Insert.htm" />
+      <HelpTOCNode Title="MaxDepth Property " Url="html/P_Google_GCalExchangeSync_Library_Util_IntervalTree_1_MaxDepth.htm" />
+      <HelpTOCNode Title="NumNodes Property " Url="html/P_Google_GCalExchangeSync_Library_Util_IntervalTree_1_NumNodes.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="IntervalTreeMatch Enumeration" Url="html/T_Google_GCalExchangeSync_Library_Util_IntervalTreeMatch.htm" />
+    <HelpTOCNode Id="59488b0d-782c-40da-a0b2-9c4103e9553e" Title="ModifiedDateUtil Class" Url="html/T_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil.htm">
+      <HelpTOCNode Title="ModifiedDateUtil Constructor (modifiedXMLFileName)" Url="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil__ctor.htm" />
+      <HelpTOCNode Title="GetModifiedDateForUser Method (login)" Url="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_GetModifiedDateForUser.htm" />
+      <HelpTOCNode Title="LoadModifiedTimes Method " Url="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_LoadModifiedTimes.htm" />
+      <HelpTOCNode Title="ModifiedXMLFileName Property " Url="html/P_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_ModifiedXMLFileName.htm" />
+      <HelpTOCNode Title="PersistModifiedTimes Method " Url="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_PersistModifiedTimes.htm" />
+      <HelpTOCNode Title="UpdateUserModifiedTime Method (login, timeStamp)" Url="html/M_Google_GCalExchangeSync_Library_Util_ModifiedDateUtil_UpdateUserModifiedTime.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="0c5c0fbe-2b55-4aed-a121-c6a8649636b7" Title="OlsonUtil Class" Url="html/T_Google_GCalExchangeSync_Library_Util_OlsonUtil.htm">
+      <HelpTOCNode Title="OlsonUtil Constructor " Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil__ctor.htm" />
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_Util_OlsonUtil__log.htm" />
+      <HelpTOCNode Id="bb539a73-25a0-44b3-8ea8-b1fa1a4ac812" Title="ConvertFromUTC Method " Url="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC.htm">
+        <HelpTOCNode Title="ConvertFromUTC Method (srcTime, dstName)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC.htm" />
+        <HelpTOCNode Title="ConvertFromUTC Method (srcTime, dstZone)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertFromUTC_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e944d27c-23bb-4182-ba89-ce68a11b8aa3" Title="ConvertToTimeZone Method " Url="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone.htm">
+        <HelpTOCNode Title="ConvertToTimeZone Method (src, srcName, dstTname)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone.htm" />
+        <HelpTOCNode Title="ConvertToTimeZone Method (src, srcZone, dstZone)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToTimeZone_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c03a7d31-d516-42bc-99b4-ad045acace52" Title="ConvertToUTC Method " Url="html/Overload_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC.htm">
+        <HelpTOCNode Title="ConvertToUTC Method (srcTime, srcName)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC.htm" />
+        <HelpTOCNode Title="ConvertToUTC Method (srcTime, srcZone)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_ConvertToUTC_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="DefaultTimeZone Field" Url="html/F_Google_GCalExchangeSync_Library_Util_OlsonUtil_DefaultTimeZone.htm" />
+      <HelpTOCNode Title="GetTimeZone Method (name)" Url="html/M_Google_GCalExchangeSync_Library_Util_OlsonUtil_GetTimeZone.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="27bdf3b5-e94b-4b5f-b0e7-6b6c1c6f7b11" Title="Google.GCalExchangeSync.Library.WebDav Namespace" Url="html/N_Google_GCalExchangeSync_Library_WebDav.htm">
+    <HelpTOCNode Id="cd3d9423-4378-4b96-828a-7ac4332281f2" Title="Appointment Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_Appointment.htm">
+      <HelpTOCNode Title="Appointment Constructor " Url="html/M_Google_GCalExchangeSync_Library_WebDav_Appointment__ctor.htm" />
+      <HelpTOCNode Title="AllDayEvent Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_AllDayEvent.htm" />
+      <HelpTOCNode Title="Body Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Body.htm" />
+      <HelpTOCNode Title="BusyStatus Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_BusyStatus.htm" />
+      <HelpTOCNode Title="Comment Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Comment.htm" />
+      <HelpTOCNode Title="Created Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Created.htm" />
+      <HelpTOCNode Title="EndDate Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_EndDate.htm" />
+      <HelpTOCNode Title="HRef Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_HRef.htm" />
+      <HelpTOCNode Title="InstanceType Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_InstanceType.htm" />
+      <HelpTOCNode Title="IsPrivate Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_IsPrivate.htm" />
+      <HelpTOCNode Title="Location Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Location.htm" />
+      <HelpTOCNode Title="MeetingStatus Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_MeetingStatus.htm" />
+      <HelpTOCNode Title="Organizer Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Organizer.htm" />
+      <HelpTOCNode Title="Range Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_Range.htm" />
+      <HelpTOCNode Title="ResponseStatus Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_ResponseStatus.htm" />
+      <HelpTOCNode Title="StartDate Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Appointment_StartDate.htm" />
+      <HelpTOCNode Title="Subject Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Appointment_Subject.htm" />
+      <HelpTOCNode Title="ToString Method " Url="html/M_Google_GCalExchangeSync_Library_WebDav_Appointment_ToString.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="BusyStatus Enumeration" Url="html/T_Google_GCalExchangeSync_Library_WebDav_BusyStatus.htm" />
+    <HelpTOCNode Id="31eb0a6e-825e-46ed-a9c6-67fcd7bd5eb9" Title="FreeBusy Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_FreeBusy.htm">
+      <HelpTOCNode Title="FreeBusy Constructor " Url="html/M_Google_GCalExchangeSync_Library_WebDav_FreeBusy__ctor.htm" />
+      <HelpTOCNode Title="All Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_All.htm" />
+      <HelpTOCNode Title="Busy Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_Busy.htm" />
+      <HelpTOCNode Title="OutOfOffice Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_OutOfOffice.htm" />
+      <HelpTOCNode Title="Tentative Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_Tentative.htm" />
+      <HelpTOCNode Title="User Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusy_User.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="8042b735-4f44-4ce7-8353-6fb82833ba93" Title="FreeBusyProperty Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty.htm">
+      <HelpTOCNode Title="FreeBusyProperty Constructor (name, nameSpace, type)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty__ctor.htm" />
+      <HelpTOCNode Title="BusyEvents Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_BusyEvents.htm" />
+      <HelpTOCNode Title="BusyMonths Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_BusyMonths.htm" />
+      <HelpTOCNode Title="DisableFullFidelity Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_DisableFullFidelity.htm" />
+      <HelpTOCNode Title="EndOfPublishedRange Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_EndOfPublishedRange.htm" />
+      <HelpTOCNode Title="FreeBusyRangeTimestamp Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_FreeBusyRangeTimestamp.htm" />
+      <HelpTOCNode Title="LocaleId Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_LocaleId.htm" />
+      <HelpTOCNode Title="MergedEvents Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MergedEvents.htm" />
+      <HelpTOCNode Title="MergedMonths Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MergedMonths.htm" />
+      <HelpTOCNode Title="MessageLocaleId Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_MessageLocaleId.htm" />
+      <HelpTOCNode Title="OutOfOfficeEvents Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_OutOfOfficeEvents.htm" />
+      <HelpTOCNode Title="OutOfOfficeMonths Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_OutOfOfficeMonths.htm" />
+      <HelpTOCNode Title="ScheduleInfoResourceType Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_ScheduleInfoResourceType.htm" />
+      <HelpTOCNode Title="StartOfPublishedRange Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_StartOfPublishedRange.htm" />
+      <HelpTOCNode Title="TentativeEvents Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_TentativeEvents.htm" />
+      <HelpTOCNode Title="TentativeMonths Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_TentativeMonths.htm" />
+      <HelpTOCNode Title="Type Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_FreeBusyProperty_Type.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="23c87ab8-974e-45b8-9457-2255c9de618f" Title="HttpHeader Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_HttpHeader.htm">
+      <HelpTOCNode Title="HttpHeader Constructor (headerName, headerValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_HttpHeader__ctor.htm" />
+      <HelpTOCNode Title="Name Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_HttpHeader_Name.htm" />
+      <HelpTOCNode Title="Value Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_HttpHeader_Value.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="InstanceType Enumeration" Url="html/T_Google_GCalExchangeSync_Library_WebDav_InstanceType.htm" />
+    <HelpTOCNode Id="50ce0bdf-8c31-40d0-adcf-abd3d88a04ca" Title="IXmlRequest Interface" Url="html/T_Google_GCalExchangeSync_Library_WebDav_IXmlRequest.htm">
+      <HelpTOCNode Title="IssueRequest Method (url, method, body, headers)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_IXmlRequest_IssueRequest.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="MeetingStatus Enumeration" Url="html/T_Google_GCalExchangeSync_Library_WebDav_MeetingStatus.htm" />
+    <HelpTOCNode Id="1f6fc605-3cc7-4a64-9c18-4b209a0ae2ee" Title="MessageProperty Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_MessageProperty.htm">
+      <HelpTOCNode Title="MessageProperty Constructor " Url="html/M_Google_GCalExchangeSync_Library_WebDav_MessageProperty__ctor.htm" />
+      <HelpTOCNode Title="ConversationTopic Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_ConversationTopic.htm" />
+      <HelpTOCNode Title="NormalizedSubject Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_NormalizedSubject.htm" />
+      <HelpTOCNode Title="Subject Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_Subject.htm" />
+      <HelpTOCNode Title="SubjectPrefix Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_MessageProperty_SubjectPrefix.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="061bb106-4c4f-4051-9005-39aca3742965" Title="Method Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_Method.htm">
+      <HelpTOCNode Title="Method Constructor (name)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_Method__ctor.htm" />
+      <HelpTOCNode Title="BCOPY Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BCOPY.htm" />
+      <HelpTOCNode Title="BDELETE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BDELETE.htm" />
+      <HelpTOCNode Title="BMOVE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BMOVE.htm" />
+      <HelpTOCNode Title="BPROPFIND Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BPROPFIND.htm" />
+      <HelpTOCNode Title="BPROPPATCH Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_BPROPPATCH.htm" />
+      <HelpTOCNode Title="COPY Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_COPY.htm" />
+      <HelpTOCNode Title="DELETE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_DELETE.htm" />
+      <HelpTOCNode Title="GET Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_GET.htm" />
+      <HelpTOCNode Title="HEAD Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_HEAD.htm" />
+      <HelpTOCNode Title="LOCK Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_LOCK.htm" />
+      <HelpTOCNode Title="MKCOL Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_MKCOL.htm" />
+      <HelpTOCNode Title="MOVE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_MOVE.htm" />
+      <HelpTOCNode Title="Name Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Method_Name.htm" />
+      <HelpTOCNode Title="NOTIFY Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_NOTIFY.htm" />
+      <HelpTOCNode Title="POLL Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_POLL.htm" />
+      <HelpTOCNode Title="POST Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_POST.htm" />
+      <HelpTOCNode Title="PROPFIND Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PROPFIND.htm" />
+      <HelpTOCNode Title="PROPPATCH Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PROPPATCH.htm" />
+      <HelpTOCNode Title="PUT Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_PUT.htm" />
+      <HelpTOCNode Title="SEARCH Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_SEARCH.htm" />
+      <HelpTOCNode Title="SUBSCRIBE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_SUBSCRIBE.htm" />
+      <HelpTOCNode Title="UNLOCK Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_UNLOCK.htm" />
+      <HelpTOCNode Title="UNSUBSCRIBE Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_UNSUBSCRIBE.htm" />
+      <HelpTOCNode Title="X_MS_ENUMATTS Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_Method_X_MS_ENUMATTS.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b1357638-48ee-4874-ac1f-eb9b6f412214" Title="Property Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_Property.htm">
+      <HelpTOCNode Title="Property Constructor (name, nameSpace)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_Property__ctor.htm" />
+      <HelpTOCNode Title="Name Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Property_Name.htm" />
+      <HelpTOCNode Title="NameSpace Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_Property_NameSpace.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="ResponseStatus Enumeration" Url="html/T_Google_GCalExchangeSync_Library_WebDav_ResponseStatus.htm" />
+    <HelpTOCNode Id="ca81c14f-266e-438b-b314-4facf3ac22f6" Title="WebDavQuery Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavQuery.htm">
+      <HelpTOCNode Id="1c1f3a72-f710-4b57-aa98-3b2a0555581f" Title="WebDavQuery Constructor " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor.htm">
+        <HelpTOCNode Title="WebDavQuery Constructor (credentials, requestor)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor.htm" />
+        <HelpTOCNode Title="WebDavQuery Constructor (credentials, group)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="_log Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavQuery__log.htm" />
+      <HelpTOCNode Title="Copy Method (source, destination)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_Copy.htm" />
+      <HelpTOCNode Title="CreateAppointment Method (mailboxUrl, appointment)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_CreateAppointment.htm" />
+      <HelpTOCNode Title="Delete Method (itemUrl)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_Delete.htm" />
+      <HelpTOCNode Title="IsLogToFileEnabled Property " Url="html/P_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IsLogToFileEnabled.htm" />
+      <HelpTOCNode Id="20d7e5df-d38e-46cf-82d6-ac052e7d389a" Title="IssueRequest Method " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest.htm">
+        <HelpTOCNode Title="IssueRequest Method (url, method, body)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest.htm" />
+        <HelpTOCNode Title="IssueRequest Method (url, method, body, headers)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequest_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="IssueRequestAndFetchReponse Method (url, method, body)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestAndFetchReponse.htm" />
+      <HelpTOCNode Id="ff5a3a5b-278c-4ee7-9847-428396b1da24" Title="IssueRequestIgnoreResponse Method " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse.htm">
+        <HelpTOCNode Title="IssueRequestIgnoreResponse Method (url, method, body)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse.htm" />
+        <HelpTOCNode Title="IssueRequestIgnoreResponse Method (url, method, body, headers)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_IssueRequestIgnoreResponse_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="LoadAppointments Method (folderUrl, start, end)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_LoadAppointments.htm" />
+      <HelpTOCNode Title="LoadFreeBusy Method (exchangeServerUrl, users, window)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_LoadFreeBusy.htm" />
+      <HelpTOCNode Title="RemoveProperty Method (url, propName, nameSpace)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_RemoveProperty.htm" />
+      <HelpTOCNode Title="UpdateAppointment Method (mailboxUrl, appointment)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateAppointment.htm" />
+      <HelpTOCNode Id="7e4e06fa-cb75-423e-ba78-308d7cd6f7ad" Title="UpdateFreeBusyProperty Method " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty.htm">
+        <HelpTOCNode Title="UpdateFreeBusyProperty Method (destination, property, propertyValues)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty.htm" />
+        <HelpTOCNode Title="UpdateFreeBusyProperty Method (destination, property, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateFreeBusyProperty_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="UpdateProperty Method (destination, property, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQuery_UpdateProperty.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="4dac8878-235d-466d-ab6a-55cecf11d00a" Title="WebDavQueryBuilder Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder.htm">
+      <HelpTOCNode Title="WebDavQueryBuilder Constructor " Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder__ctor.htm" />
+      <HelpTOCNode Id="cf0776f5-18bb-4bfa-8d7b-e5089daf9f60" Title="AddRemoveProperty Method " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty.htm">
+        <HelpTOCNode Title="AddRemoveProperty Method (property)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty.htm" />
+        <HelpTOCNode Title="AddRemoveProperty Method (propertyName, propertyNamespace)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddRemoveProperty_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e53c8548-bcce-4a6b-b4e3-954c6a9ef286" Title="AddUpdateProperty Method " Url="html/Overload_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty.htm">
+        <HelpTOCNode Title="AddUpdateProperty Method (property, propertyValues)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty.htm" />
+        <HelpTOCNode Title="AddUpdateProperty Method (property, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_1.htm" />
+        <HelpTOCNode Title="AddUpdateProperty Method (property, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_2.htm" />
+        <HelpTOCNode Title="AddUpdateProperty Method (propertyName, propertyNamespace, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_3.htm" />
+        <HelpTOCNode Title="AddUpdateProperty Method (propertyName, propertyNamespace, propertyType, propertyValues)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_4.htm" />
+        <HelpTOCNode Title="AddUpdateProperty Method (propertyName, propertyNamespace, propertyType, propertyValue)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_AddUpdateProperty_5.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="BuildQueryBody Method " Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_BuildQueryBody.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_log.htm" />
+      <HelpTOCNode Title="Reset Method " Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavQueryBuilder_Reset.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="32fab21e-5be2-438d-b771-b94d67541159" Title="WebDavXmlResources Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources.htm">
+      <HelpTOCNode Title="WebDavXmlResources Constructor " Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources__ctor.htm" />
+      <HelpTOCNode Title="CreateAppointment Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_CreateAppointment.htm" />
+      <HelpTOCNode Title="FindAppointments Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_FindAppointments.htm" />
+      <HelpTOCNode Title="FindItemUrls Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_FindItemUrls.htm" />
+      <HelpTOCNode Title="GetText Method (resourceAddress, formatArgs)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_GetText.htm" />
+      <HelpTOCNode Title="LoadFreeBusy Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_WebDavXmlResources_LoadFreeBusy.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="0d831dc5-14c9-46fa-9926-7193367a0ce2" Title="XmlRequestImpl Class" Url="html/T_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl.htm">
+      <HelpTOCNode Title="XmlRequestImpl Constructor (credentials, group)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl__ctor.htm" />
+      <HelpTOCNode Title="IssueRequest Method (url, method, body, headers)" Url="html/M_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl_IssueRequest.htm" />
+      <HelpTOCNode Title="log Field" Url="html/F_Google_GCalExchangeSync_Library_WebDav_XmlRequestImpl_log.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

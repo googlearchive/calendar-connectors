@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<D:searchrequest xmlns:D="DAV:">
+	<D:sql>
+		SELECT
+			"DAV:contentclass",
+			"DAV:creationdate",
+			"DAV:comment",
+			"urn:schemas:calendar:dtstart",
+			"urn:schemas:calendar:dtend",
+			"urn:schemas:calendar:alldayevent",
+			"urn:schemas:calendar:busystatus",
+			"urn:schemas:calendar:instancetype",
+			"urn:schemas:calendar:busystatus",
+			"urn:schemas:calendar:instancetype",
+			"urn:schemas:calendar:location",
+			"urn:schemas:calendar:meetingstatus",
+			"urn:schemas:calendar:organizer",
+			"urn:schemas:mailheader:subject",
+			"http://schemas.microsoft.com/mapi/proptag/x1000001e",
+			"http://schemas.microsoft.com/mapi/id/{{00062008-0000-0000-C000-000000000046}}/0x8506",
+			"http://schemas.microsoft.com/mapi/id/{{00062002-0000-0000-C000-000000000046}}/0x8218"
+		FROM 
+			SCOPE(&apos;shallow traversal of "{0}"&apos;) 
+		WHERE 
+			("DAV:contentclass" = 'urn:content-classes:appointment') AND
+			(("urn:schemas:calendar:dtstart" &gt;= '{1}' AND
+			"urn:schemas:calendar:dtstart" &lt;= '{2}') OR
+			("urn:schemas:calendar:dtend" &gt;= '{1}' AND
+			"urn:schemas:calendar:dtend" &lt;= '{2}'))
+	</D:sql>
+</D:searchrequest>
