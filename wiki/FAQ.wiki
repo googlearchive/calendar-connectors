@@ -49,13 +49,13 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   Login to your Google Apps Domain control pannel
 
   [https://www.google.com/a/*yourdomain.com* https://www.google.com/a/yourdomain.com]     
-  
-  # Select Advanced Tools
-  # Scroll down to Free/Busy service
-  # Click on Set up Calendar to use your free/busy web service
-  # Select I am using a free/busy service at this URI:
-  # Enter the URI of the installed Calendar Connector Web Service   
-    For example: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Please review the project [FAQ http://code.google.com/p/google-calendar-connectors/wiki/FAQ] for more details and common questions)       
+ 
+ # In the "Service settings" drop-down, select "Calendar"
+ # Scroll down to Free/Busy service
+ # Click on "Set up Calendar to use your free/busy web service"
+ # Select I am using a free/busy service at this URI:
+ # Enter the URI of the installed Calendar Connector Web Service 
+ For example: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx (Please review the project [FAQ http://code.google.com/p/google-calendar-connectors/wiki/FAQ] for more details and common questions)       
 
 ----
 
