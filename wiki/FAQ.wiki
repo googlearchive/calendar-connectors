@@ -11,7 +11,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
   * Exchange Server 2000, Exchange 2003 or Exchange 2003/2007 Mixed Mode
    * Exchange 2000 Server:
     * Windows Server 2000 SP4
-    * Exchange 2003 SP3
+    * Exchange 2000 SP3
       * A single Active Directory Forest.
       * .NET 2.0 runtime on the servers running the Web and Sync Services.
    * Exchange 2003 Server:
