@@ -20,7 +20,7 @@ Before proceeding to install the Google Calendar Connector Kit, please read and 
 
 = Overview =
 
-The Google Calendar Connector Kit contains three separate services, but only two need to be installed and configured in order to provide two-way free/busy scheduling.  The three services are:
+The Google Calendar Connector Kit contains two separate services, which need to be installed and configured in order to provide two-way free/busy scheduling.  The three services are:
 
   * The Google Calendar Connector Web Service
   * The Google Calendar Connector Sync Service
