@@ -196,7 +196,7 @@ namespace Google.GCalExchangeSync.Library
 
             try
             {
-                string[] parts = legacyDN.ToUpper().Split('/');
+                string[] parts = legacyDN.ToUpperInvariant().Split('/');
                 int partsLength = parts.Length;
 
                 if (partsLength < 2)
@@ -205,7 +205,16 @@ namespace Google.GCalExchangeSync.Library
                     return string.Empty;
                 }
 
-                return string.Format("USER-/{0}/{1}", parts[partsLength - 2], parts[partsLength - 1]);
+                string allCNs = "";
+                foreach (string ldapPathElement in parts)
+                {
+                    if (ldapPathElement.StartsWith("CN="))
+                    {
+                        allCNs += "/" + ldapPathElement;
+                    }
+                }
+
+                return string.Format("USER-{0}", allCNs);
             }
             catch (Exception e)
             {
