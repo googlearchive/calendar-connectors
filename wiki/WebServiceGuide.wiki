@@ -51,8 +51,6 @@ This document is part of the Google Calendar Connector document set, which inclu
   
   * *[http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide Sync Service Installation and Configuration Guide]*. Provides instructions for installing and configuring the Sync Service to provide free/busy data flow from Google Calendar to Exchange.
 
-  * *[http://code.google.com/p/google-calendar-connectors/wiki/PluginGuide Plug-In Installation and Configuration Guide]*. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
-
 For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
 
 For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
