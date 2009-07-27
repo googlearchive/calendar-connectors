@@ -153,11 +153,6 @@
   * Unable to find Requestor in Directory
   * !HrProcessNextTransaction Failed
 
-
-* How can I enable logging for the Microsoft Exchange Connectivity Controller Connectors to troubleshoot issues with the Google Calendar Connector Plugin?
-
- Please follow the instructions to enable logging via Exchange System Manager found here: http://support.microsoft.com/kb/295307/en-us.
-
 * If your Google Apps domain is setup to use SSL but the Google Calendar Connector Web Service is configured for HTTP you will get the error: "Calendar doesn't exist or isn't shared" when requesting free/busy data for an Exchange user. When reviewing the webservice.log file there are no errors. However, you might notice the `GCalExchangeLookup.ExchangeQuerier - Referrer URL` is empty.
 
  The web browser does not pass the referrer URL when it is passed from a secure enabled site to a none secure site. We use the referrer header to know if you are using Google Calendar via HTTP or HTTPS. By default in v 1.1 if no referrer header is found we use the HTTP as the default URL for Google Calendar. 
