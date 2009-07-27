@@ -1,4 +1,11 @@
 #labels Deprecated
+
+= This Plugin Guide is Deprecated. The Groupwise Plugin Is NOT supported. Use the [http://code.google.com/p/google-calendar-connectors/wiki/SyncServiceGuide Google Calendar Sync Service]. =
+
+
+
+
+
 = Google Calendar Connector Plug-in Installation and Configuration Guide 1.2 =
 
 The Google Calendar Connector Plug-in utilizes the Novell !GroupWise Connector for Microsoft Exchange and retrieves Google Calendar free/busy data in real-time.
