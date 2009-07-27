@@ -51,8 +51,6 @@ This document is part of the Google Calendar Connector document set, which inclu
 
  * [http://code.google.com/p/google-calendar-connectors/wiki/WebServiceGuide Web Service Installation and Configuration Guide]. Provides instructions for installing and configuring the Web Service, which provides Exchange free/busy data flow to Google Calendar.
 
- * [http://code.google.com/p/google-calendar-connectors/wiki/PluginGuide Plug-In Installation and Configuration Guide]. Provides instructions for installing and configuring the Plug-In to provide real-time free/busy data flow from Google Calendar to Exchange.
-
 For background or general information on Google Apps, see the [http://www.google.com/support/a/ Google Apps for Administrators Help Center].
 
 For background or general information on Windows administration, see [http://technet.microsoft.com/ Microsoft TechNet].
@@ -268,7 +266,7 @@ _*Important Note: Please carefully consider whether your Microsoft Exchange serv
 === Start the Google Calendar Connector Sync Service ===
 
  # Open the Windows Services Management console.
- # Select the "Microsoft Exchange connector for Novell !GroupWise" and right-click for properties.
+ # Select the "Google Calendar Sync Service" and right-click for properties.
  # Click "Start" if the service is not already started.
  # Browse to log file path as defined by !GoogleApps.GCal.!LogDirectory (i.e. C:\google\logs)
  # Review the log file !SyncService.log and verify success messages
