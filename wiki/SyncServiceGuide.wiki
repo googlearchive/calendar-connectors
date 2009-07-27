@@ -67,7 +67,7 @@ Before you install and configure the connector, make sure your Windows environme
  * Microsoft Advanced Server 2003
  * Internet Information Services (IIS) 6.0
  * Microsoft Exchange Server 2003 SP2
- & Exchange 2003 Native Mode or 2007/2003 Mix Mode Environment
+ * Exchange 2003 Native Mode or 2007/2003 Mix Mode Environment
  * ASP.NET 2.0 runtime
 
 === Google Calendar Account Setup ===
