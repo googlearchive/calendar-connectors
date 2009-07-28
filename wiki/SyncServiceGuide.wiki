@@ -76,7 +76,7 @@ Create a dedicated Google Apps Administrator account and perform an initial logi
 
 === Exchange User Mapping ===
 
-Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object. Whether you choose to map Google Apps users to contact objects or user objects depends upon whether you have chosen the !AppointmentWriter or !SchedulePlus writer for synchronizing user data.
+Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object. Whether you choose to map Google Apps users to contact objects or user objects depends upon whether you have chosen the SchedulePlus writer or AppointmentWriter respectively, for synchronizing user data.
 
 See the [http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide] for more information.
 
