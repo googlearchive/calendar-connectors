@@ -15,16 +15,6 @@ The wiki page shows the release notes for the current binary download, the subve
 ----
 
 == Release Notes ==
-== 1.3.0.0 ==
-
-=== Google Calendar Web Service: ===
-1) Added support for free busy lookup from Exchange 2007 server.
-
-=== Google Calendar Web Service and Sync Service: ===
-1) Added support for backup active directory serves for ldap lookup.
-
-----
-
 == 1.2.0.289 ==
 
 === Google Calendar Sync Service: ===
