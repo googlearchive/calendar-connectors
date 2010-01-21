@@ -20,6 +20,7 @@ The wiki page shows the release notes for the current binary download, the subve
 === Google Calendar Web Service: ===
 1.) Added support for Free busy lookup for Exchange 2007 server.
 
+----
 
 == 1.2.0.289 ==
 
