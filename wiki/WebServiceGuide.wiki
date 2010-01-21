@@ -1,4 +1,4 @@
-= Google Calendar Connector Web Service Installation and Configuration Guide 1.2.0.289 = 
+= Google Calendar Connector Web Service Installation and Configuration Guide 1.3.0.0 = 
 
 In the Google Calendar Connector framework, data flow from Exchange is provided by the Google Calendar Connector Web Service. Google Calendar connects to the Web Service to query Exchange servers for free/busy data and appointment data, which includes the name, place, and attendees of events.  This document provides instructions for installing and configuring the Google Calendar Connector Web Service.
 Contents
@@ -67,7 +67,7 @@ Before you install and configure the Google Calendar Connector Web Service, make
 To support the Web Service, your Windows environment must meet these prerequisites:
  * Microsoft Windows Server 2003
  * Internet Information Services (IIS) 6.0
- * Microsoft Exchange Server 2003 SP2
+ * Microsoft Exchange Server 2003 SP2 or Microsoft Exchange Server 2007 SP1 or SP2
  * ASP.NET 2.
 
 === Google Calendar Account Setup ===
@@ -107,7 +107,9 @@ The Web Service requires dedicated Active Directory user accounts for performing
 
  The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy or appointments in Exchange.
 
- To configure the permissions for the query admin user: 
+ To configure the permissions for the query admin user:
+
+ Exchange 2003:
   # Start Registry Editor (regedit).
   # Navigate to the following key: HKEY_CURRENT_USER\Software\Microsoft\Exchange\!ExAdmin
   # On the *Edit* menu, click *Add Value*, and then add the following registry value:
@@ -123,6 +125,12 @@ The Web Service requires dedicated Active Directory user accounts for performing
   # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click OK
   # Check the *Allow* box for the permission "*Receive As*" and click *OK*
 
+ Exchange 2007:
+  # Allow "*Receive As*" permissions to *Exchange Query Admin* role account to write appointments into respective users' mailboxes.
+  {{{
+  Add-ADPermission -Identity _Mailbox folder_ -User _Exchange Query Admin_ -ExtendedRights Receive-As
+  Example: Add-ADPermission -Identity "Mailbox Database" -User syncuser -ExtendedRights Receive-As
+  }}}
 
 == Remounting the Exchange Information Stores ==
 
@@ -231,7 +239,7 @@ The "appSettings" section of _web.config_, located in the Web Service virtual di
 || !ActiveDirectory.!DomainController || Specify the fully qualified domain name of a domain controller for your Windows Active Directory domain. This server is used for LDAP queries to retrieve user login and Exchange user attributes. For queries directly against a domain controller, prefix the machine name with LDAP://. For queries against the Global Catalog, prefix the machine name with GC://. For example: `<add key="ActiveDirectory.DomainController" value="LDAP://HQAD1.corp.acme.com"/> ` || ||
 || !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the web service to perform Active Directory lookups. [#Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>` || ||
 || !ActiveDirectory.!DomainUser.Password || The password for the user account used by the web service to perform Active Directory lookups. || ||
-|| Exchange.!ServerName || The full qualified domain name of the target Exchange for the web service to communicate with. If this server does not host a copy of the Free/Busy Public Information store you must specify the setting: Exchange.!FreeBusyServerName. For example: `<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>` || ||
+|| Exchange.!ServerName || The full qualified domain name of the target Exchange for the web service to communicate with. If this server does not host a copy of the Free/Busy Public Information store, you must specify the setting: Exchange.!FreeBusyServerName. For example: `<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>`|| ||
 || Exchange.GCalQueryUser.Login || The userPrincipalName of the user account used to query Exchange for free/busy data. [#Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@corp.acme.com"/>` || ||
 || Exchange.GCalQueryUser.Password || The password for the Active Directory user account used to query Exchange for free/busy data. Exchange. || ||
 || Exchange.GCalQueryAdmin.Login ||The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users' calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@corp.acme.com"/>` This account is also used to write appointments to calendars in Exchange when using the appointment writer. || ||
@@ -239,7 +247,10 @@ The "appSettings" section of _web.config_, located in the Web Service virtual di
 || Exchange.!DefaultDomain || This setting prevents Exchange !WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: `<add key="Exchange.DefaultDomain" value=".corp.acme.com"/>` || DISABLED ||
 || Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the !SchedulePlus  Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: `<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>` || DISABLED || 
 || Exchange.!EnableAppointmentLookup || This setting controls if the free/busy lookup should also retrieve and return appointment details. To enable appointment details to be returned set the value to True. For Example: `<add key="Exchange.EnableAppointmentLookup" value="True"/>` _NOTE: See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on how to grant access to read appointment data for the service accounts_. || false ||
+|| Exchange.LDAPQuery || This setting specifies the LDAP query that returns unique ActiveDirectory user object based on the identity passed in. In most cases, the passed in identity is a user's primary SMTP email address and therefore, the LDAP query string in most cases is "(mail={0})" (the _{0}_ is replaced with the identity while querying LDAP). However, in the cases when users are identified by other primary fields, the value of this key should be set to appropriate LDAP query string. For example, to uniquely identify users by userPrincipalName, set the value to (userPrincipalName={0}) || (mail={0}) ||
 || Exchange.!MaxConnections || This setting defines the maximum number of  concurrent connections that can be made to configured Exchange server. To enable this setting remove comments and and define the max number of connections. For Example: `<add key="Exchange.MaxConnections" value="50"/>` || ||
+|| Exchange.ExchangeAPI || This setting determines which API is used by Web Service to query for free/busy data. There are two supported options "WebDAV" and "EWS". For Exchange 2003 environments, only "WebDAV" is supported. For Exchange 2007 environments "EWS" is the preferred method as this API provides real-time free/busy data from Google Apps along with appointment details. The "WebDAV" options is still fully supported for Exchange 2007 however, this API method only provides free/busy data and does not support appointment details. The free/busy data for the "WebDAV" API option is updated only periodically by the Sync Service. || WebDAV ||
+|| Exchange.EWSURLPath || The URL path to Exchange Web Services on an Exchange Client Access Server. For example: `<add key="Exchange.EWSURLPath" value="/EWS/Exchange.asmx"/>` || /EWS/Exchange.asmx ||
 || !GoogleApps.!DomainName || The domain name used by Google Apps. For example: `<add key="GoogleApps.DomainName" value="acme.com" />` || ||
 || !GoogleApps.!AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: `<add key="GoogleApps.AdminUser.Login" value="gcc_websvc" />` || ||
 || !GoogleApps.!AdminUser.Password ||The password for the Google Apps user account used for querying Google Calendar. || ||
