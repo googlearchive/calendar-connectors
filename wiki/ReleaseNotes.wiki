@@ -15,6 +15,67 @@ The wiki page shows the release notes for the current binary download, the subve
 ----
 
 == Release Notes ==
+== 1.3.0.0 ==
+
+=== Google Calendar Sync Service: ===
+
+1) Added support for Exchange 2007. Additional configuration steps are required during installation. Please refer to SyncServiceGuide.wiki for details.
+
+2) Bug fixes -
+
+2.1) The Sync Service uses WebDAV to write calendar info from Google Calendar to Exchange. A typical URL for calendar web access looks like _http://[Exchange.ServerName]/exchange/[user's primary email]/calendar/. However, when running localized versions of Exchange the trailing URI _calendar_ is specific to the localized language and it must be customized to match the localized string. (e.g. _Calend%C3%A1rio_ on a Portuguese Exchange Server).
+
+ To address this issue, the trailing URI was made configurable. The following key's value should contain the trailing component of the URI (e.g. _Calend%C3%A1rio_):
+
+ !GoogleCalendarSyncService.exe.config changes:
+{{{
+ <!-- <add key="Exchange.MailboxURITrailingPath" value="calendar"/> -->
+}}}
+
+ Default Value: "calendar"
+
+2.2) The Sync Service was found to be timing out and in deployment environments, unresponsive/hanging after a period of time in some customers' environments. COM exceptions were logged and memory leaks were found in most of those cases.
+
+ COM exceptions were addressed and a few memory leaks were identified and fixed. Additionally, one possible causes of hanging was identified to be the logic around Active Directory search and this was fixed by adding timeouts to the code. The timeout value is customizable via the config:
+
+ !GoogleCalendarSyncService.exe.config changes:
+{{{
+ <!-- <add key="!SyncService.DirectorySearch.TimeoutInSeconds" value="300"/> -->
+}}}
+
+ Default Value: 300 (seconds).
+
+=== Google Calendar Web Service: ===
+
+1) Added Exchange 2007 support. Further, the free/busy fetch can be configured to be done either using the legacy WebDAV API or using the Exchange Web Services (EWS) API. The latter is highly recommended by Microsoft and the free/busy results retrieved are up-to-date (while the former API returns Free/Busy from public folders which are updated only periodically).
+
+ The choice of API is set by using the following config key (in web.config):
+{{{
+  <!-- API to be used to interact with Exchange -
+       "EWS" for Exchange 2007 or "WebDAV" (default value) for legacy Exchange -->
+  <add key="Exchange.ExchangeAPI" value="WebDAV"/>
+}}}
+
+ Default Value: "WebDAV"
+
+ NOTE: "WebDAV" is the only option available for Exchange 2003 environments.
+
+2) Added support for querying/uniquely identifying users by specifying a configurable LDAP query.
+
+ In the earlier releases, users were identified by their primary SMTP email id. However, with at least one customer, primary SMTP was formatted in a not-so-friendly way and they wanted their users to be identified by a user-friendly SMTP alias. To support such scenarios (and various other), the LDAP query was made customizable:
+
+{{{
+  <!-- Custom LDAP query for Active Directory lookup -->
+  <!-- <add key="Exchange.LDAPQuery" value="(mail={0})"/> -->
+}}}
+
+ Default Value: (mail={0})
+ Note that the above LDAP filter is equivalent to querying for users by their primary SMTP addresses - the default behaviour so far.
+ Example 1: If the users have unique UPNs, the filter has to be set to "(userPrincipalName={0})".
+ Example 2: If the users can be identified either by their UPN or by their email, the filter should be set to "(|(userPrincipalName={0})(mail={0}))"
+
+----
+
 == 1.2.0.289 ==
 
 === Google Calendar Sync Service: ===
