@@ -64,7 +64,7 @@ Before you install and configure the connector, make sure your Windows environme
  * A Google Apps Premier or Education Edition domain
 
  To support the Sync Service, your Windows environment must meet these prerequisites:
- * Microsoft Advanced Server 2003
+ * Microsoft Windows Server 2003
  * Internet Information Services (IIS) 6.0
  * Microsoft Exchange Server 2003 SP2 or Microsoft Exchange Server 2007 SP1 or SP2
  * Exchange 2003 Native Mode or 2007/2003 Mix Mode Environment or 2007 Native mode with addition of public folders
