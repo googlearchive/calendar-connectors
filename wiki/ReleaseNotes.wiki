@@ -15,6 +15,15 @@ The wiki page shows the release notes for the current binary download, the subve
 ----
 
 == Release Notes ==
+== 1.3.1.0 ==
+This release is done only for Web Service.
+
+=== Google Calendar Web Service: ===
+1) Multiple login support. This is an internal change and there is no change required in the configuration file to use this binary.
+
+Users who have upgraded their calendar to multi login, they have to update their GCC Web Service to version 1.3.1.0
+
+----
 == 1.3.0.0 ==
 
 === Google Calendar Sync Service: ===
