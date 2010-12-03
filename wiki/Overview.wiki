@@ -37,11 +37,6 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/
 
 http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/features.png
 
-*_NOTE: The option of writing Google Calendar free/busy data into an Exchange
-mailbox is possible, but is not the recommended configuration. The
-appointment writer has very limited functionality and is considered an
-experimental feature._*
-
 = Google Calendar Connector Web Service =
 
 The Google Calendar Connector Web Service allows Google Apps users to retrieve free/busy information for Microsoft Exchange users. This tool is an ASP.NET web application that queries the Microsoft Exchange free/busy store in real-time, on behalf of Google Calendar. The ASP.NET web application should be installed on a system that has access to your Exchange server and Active Directory.
@@ -78,8 +73,6 @@ Notes about data security and access permissions:
 = Google Calendar Connector Sync Service =
 
 The Google Calendar Connector Sync Service allows Microsoft Exchange users to see free/busy information for Google Apps users. The sync service is a Windows service written in C# that periodically queries Google Apps for updated free/busy information and writes the changes directly into Exchange. The changes are written directly into the Exchange free/busy store. 
-
-*_NOTE: For users that have both a Google Apps and Exchange mailbox free/busy data from Google Calendar can be written into a user's calendar as a placeholder appointment (an empty appointment that represents the free/busy information from Google Calendar). The Appointment writer option is an experimental option as it supports a very limited set of functionality and is NOT an appointment/data synchronization utility._*
 
 When a Microsoft Exchange user looks up free/busy information for a Google Apps user, the Exchange server accesses the local free/busy information written by the sync service. The Google Calendar Connector Sync Service should be installed on a server that has network access to your Active Directory server and your Microsoft Exchange server.
 
