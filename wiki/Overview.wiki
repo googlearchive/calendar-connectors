@@ -83,8 +83,7 @@ Google Calendar Connector Sync Service process overview:
   # On a configurable and periodic basis (default 15 minutes), the Google Calendar Connector Sync Service queries Active Directory using LDAP for the list of users who are defined as Google Calendar users. This list of users is defined by an custom LDAP filter in the Google Calendar Connector Sync Service configuration file. *(_See Security Note_)*
   # Active Directory returns to the Google Calendar Connector Sync Service each user and their e-mail address that matches the LDAP query.
   # The Google Calendar Connector Sync Service uses the Google Calendar GData API (HTTP/XML) to request free/busy information from Google Calendar for the users match by the LDAP query. *(_See Security Note_)*
-  # The Google Calendar Connector Sync Service writes new free/busy messages to the Exchange free/busy store via WebDAV for non-Exchange users. For Exchange users the Google Calendar Connector Sync Service writes a new placeholder appointment to the user's calendar. *(_See Security Note_)*
-  # If an appointment is created in Step 4, Exchange will populate the free/busy store with an appropriate free/busy message. *(_See Security Note_)*
+  # The Google Calendar Connector Sync Service writes new free/busy messages to the Exchange free/busy store via WebDAV.
   # The Google Calendar Connector Sync Service generates an XML file that contains the last time each user was synchronized. On the next scheduled synchronization a check is performed to determine if the user's calendar data has changed or not. If no changes are detected no data is downloaded for that user.
 
 Typical use case:
@@ -98,7 +97,6 @@ Notes about data security and access permissions:
   * 1. The Google Calendar Connector Sync Service needs access to an LDAP login and password with standard "Domain User" privileges.
   * 3. The Google Calendar Connector Sync Service authenticates using a Google Apps Administrator account to retrieve the GData free/busy feeds.
   * 4. The Google Calendar Connector Sync Service writes free/busy messages to the free/busy store using an Active Directory account with write permission to the free/busy store for other users. This requires an Exchange account with Admin privileges.
-  * 5. If the Appointment writer is used instead of the !SchedulePlus writer, the Google Calendar Connector Sync Service must use an Active Directory account with write permission to the Exchange users' calendar.
 
 = Security Considerations =
 
