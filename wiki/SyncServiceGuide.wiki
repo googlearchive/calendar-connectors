@@ -88,7 +88,7 @@ Run the following cmdlet in Exchange PowerShell to configure free/busy for Googl
 
 === Exchange User Mapping ===
 
-Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object. Whether you choose to map Google Apps users to contact objects or user objects depends upon whether you have chosen the !SchedulePlus writer or !AppointmentWriter respectively, for synchronizing user data.
+Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object.
 
 See the [http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide] for more information.
 
@@ -159,7 +159,7 @@ To restart the service Microsoft Exchange Information Store:
 
 || *Task* || *Completed?* || *Notes* ||
 || Verify that Windows environment prerequisites are met || || ||
-|| Create user mailboxes (Appointment writer) or contact objects (!SchedulePlus writer) for Google Apps users in Exchange. || || ||
+|| Create contact objects for Google Apps users in Exchange. || || ||
 ||Create dedicated Google Apps Sync Service user || ||User name and password: ||
 ||Create dedicated Active Directory user|| ||User name and password: ||
 ||Create dedicated Exchange Query user|| ||User name and password: ||
@@ -234,7 +234,7 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
 || Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users' calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>` This account is also used to write appointments to calendars in Exchange when using the !SyncService.!FreeBusy.Writer in Appointment mode. || ||
 || Exchange.GCalQueryAdmin.Password || The password for the user account used to create appointments. || ||
 || Exchange.MailboxURITrailingPath || This key changes the trailing URI when accessing an Exchange user's calendar. Typical URL for calendar web access looks like _http://[Exchange.ServerName]/exchange/[user's primary email]/calendar/. However, when running localized versions of Exchange the trailing URI _calendar_ is specific to the localized language and the value must be customized to match the localized string. (Ex. _Calend%C3%A1rio_ on a Portuguese Exchange Server). Value of this key should be given the value of the trailing URI string (i.e. _Calend%C3%A1rio_). This key may need modification in only rare cases. || calendar ||
-|| Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the !SchedulePlus Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: `<<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>` || DISABLED ||
+|| Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: `<<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>` || DISABLED ||
 || !GoogleApps.!DomainName || The domain name used by Google Apps. For example: `<add key="GoogleApps.DomainName" value="acme.com" />` || ||
 || !GoogleApps.!AdminUser.Login || The Google Apps user account name used for querying Google Calendar. This account must be a dedicated account in Google Apps setup for use with the Google Calendar Connector. For example: `<add key="GoogleApps.AdminUser.Login" value="gcc_syncsvc"/>` || ||
 || !GoogleApps.!AdminUser.Password || The password for the Google user account used for querying Google Apps and Google Calendar. || ||
@@ -248,7 +248,6 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
 || !SyncService.!ThreadCount || This setting specifies the number of threads to create when performing a synchronization from Google Calendar in to Exchange. The more threads the fast the sync will complete. NOTE: The more threads the more system and network resources the sync service will utilize. `<add key="SyncService.ThreadCount" value="10"/>` || 1 ||
 || !SyncService.!XmlStorageDirectory || This setting specifies where the service stores data cached as XML documents. _NOTE: The service needs write access to this directory._ `<add key="SyncService.XmlStorageDirectory" value="C:\Google\data"/>` || C:\Google\data\ ||
 || !SyncService.!DirectorySearch.!TimeoutInSeconds || This setting specifies the LDAP query timeout for Active Directory queries, in seconds. || 300 ||
-|| !SyncService.!FreeBusy.Writer || This setting determines the write mode for how free/busy information is populated in Exchange. Valid values are !SchedulePlus or Appointment. The Appointment option is *experimental* as it supports a very limited set of functionality. The Appointment writer is a one-way sync of free/busy data into Exchange mailboxes that creates empty meeting placeholders based on free/busy data from Google Calendar. It is NOT designed to perform full appointment/data synchronization. For Example: `<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>` If set to !SchedulePlus the service will only write free/busy data to the !SchedulePlus Free/Busy Information Store. This mode only works for contact or mail enabled objects that do not have Exchange an  mailbox. If set to Appointment the service will create a calendar placeholder appointment for each Google Calendar event in the calendar of the user's Exchange mailbox. This mode only works if the user has a Exchange mailbox. _NOTE: The service can only be configured in a single mode. If you wish to run the sync for both contacts and mailbox enabled users you will need to install the sync service on two separate servers_. || !SchedulePlus ||
 || Configuration.!EncryptOnNextRun || If set to “true”, the configuration file is automatically encrypted the next time the application runs. See [#Encrypting_the_Configuration_File Encrypting the Configuration File] for more information. || false ||
 || !SyncService.!FreeBusy.!DetailLevel || If set to "Full", enables distinguishing between tentative and busy in the Free/Busy lookups. Setting it to "Basic" treats both tentative and busy as busy. || Full ||
 || !SyncService.!PlaceHolderMessage || This setting allows for customization of the subject text placed in each calendar placeholder appointment when running the Sync service !SyncService.!FreeBusy.Writer in Appointment mode. For example: `<add key="SyncService.PlaceHolderMessage" value="GCal Free/Busy Placeholder"/>` _NOTE: This property only applies to only new placeholder appointments being created. It will no go back and rewrite existing placeholder values._ || GCal Free/Busy Placeholder ||
@@ -262,7 +261,7 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
 
 To edit the configuration file:
  # Using your preferred XML or text editor, open _GoogleGCalExhangeSync.Service.exe.config_. The default location is C:\Program Files\Google\Google Calendar Connector Sync Service\.
- # Scroll to the appSettings section and enter appropriate values for each of the required values shown in the table above. For example, if you are using the !SchedulePlus writer  option instead of the Appointment writer, specify it in the `SyncService.FreeBusy.Writer` key: `<add key="SyncService.FreeBusy.Writer" value="SchedulePlus"/>`
+ # Scroll to the appSettings section and enter appropriate values for each of the required values shown in the table above.
  # Save the file.
  # Save or copy a backup copy of the file to a secure location.
 
