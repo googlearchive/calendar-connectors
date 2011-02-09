@@ -175,3 +175,12 @@ to be sent over an unencrypted connection and could easily be read by a third pa
  You can either enable GWISE addressing in the default recipient policy or manually add a GWISE proxy address to the System Attendant account. An example would be: (GWISE:domain.com..systemattendant@domain.com)
 
  You can verify the proxy addresses of the System Attendant service using the ADSI Edit snap-in. Start ADSI Edit, connect to the configuration naming context of a domain controller, and then browse to the following object: CN=Microsoft System Attendant,CN=Your Server Name,CN=Servers,CN=Your Administrative Group,CN=Administrative Groups,CN=Your Organization Name,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=Your Domain,DC=com 
+
+* Web service logs show 404 error while getting free\busy for an Exchange user.
+
+ If you are using IIS 7 and IIS logs show 404.11 error, you need to allow double escaping. Please see http://support.microsoft.com/kb/942076 to know how to allow double escaping.
+
+* I am getting "Invalid post back url" error while running Google Calendar Web Service.
+
+ To resolve this you need to specify a regular expression in config file which matches the url being reported as invalid. Add following parameter in the config file.
+ <add key="WebService.PostBackUrlRegEx" value="^https?://www.google.com/calendar/([a-zA-Z0-9/_\\.\\-]+/)?mailslot$" />
