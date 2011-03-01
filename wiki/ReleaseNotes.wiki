@@ -15,6 +15,15 @@ The wiki page shows the release notes for the current binary download, the subve
 ----
 
 == Release Notes ==
+
+=== Google Calendar Web Service v1.3.3 and Google Calendar Sync Service v1.3.1: ===
+1) AppointmentWriter option is no more supported. 
+
+2) Updated GData calendar library to v1.7
+
+----
+
+== Release Notes ==
 == 1.3.1.0 ==
 This release is done only for Web Service.
 
