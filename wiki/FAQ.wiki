@@ -5,6 +5,12 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 ----
 
+*Do the Google Calendar Connectors support Exchange 2010?*
+
+  A native Exchange 2010 environment is not support due to the removal of WebDAV with Exchange 2010. If there is an active Exchange 2003 or 2007 server in the Exchange organization it is still possible to use the Google Calendar Connectors by write free/busy data using the WebDAV services on the older Exchange server.
+
+----
+
 *What are the technical requirements for running the Google Calendar Connectors in my environment?*
 
   * Google Apps Premier or Google Apps Education Edition
