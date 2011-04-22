@@ -37,6 +37,8 @@ http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/
 
 http://google-calendar-connectors.googlecode.com/svn/trunk/connectors/docs/wiki/features.png
 
+*NOTE:* A native Exchange 2010 environment is not support due to the removal of WebDAV with Exchange 2010. If there is an active Exchange 2003 or 2007 server in the Exchange organization it is still possible to use the Google Calendar Connectors by write free/busy data using the WebDAV services on the older Exchange server.
+
 = Google Calendar Connector Web Service =
 
 The Google Calendar Connector Web Service allows Google Apps users to retrieve free/busy information for Microsoft Exchange users. This tool is an ASP.NET web application that queries the Microsoft Exchange free/busy store in real-time, on behalf of Google Calendar. The ASP.NET web application should be installed on a system that has access to your Exchange server and Active Directory.
