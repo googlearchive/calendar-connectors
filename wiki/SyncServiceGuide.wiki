@@ -110,25 +110,28 @@ Create a dedicated user for performing Active Directory LDAP queries. The user n
 
 === Exchange Query Admin User ===
 
-Create a dedicated user for the Sync Service to read and write free/busy or appointments against Exchange. The user name and password are required later when you populate `Exchange.GCalQueryAdmin.Login` and `Password` parameters in the Sync Service configuration file.
+Create a dedicated user for the Sync Service to read and write free/busy against Exchange. The user name and password are required later when you populate `Exchange.GCalQueryAdmin.Login` and `Password` parameters in the Sync Service configuration file.
 
-Exchange 2003: the *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy and appointments in Exchange. To configure the permissions for the query admin user:
- # Start Registry Editor (regedit).
- # Navigate to the following key: `HKEY_CURRENT_USER\Software\Microsoft\Exchange\ExAdmin`
- # On the *Edit* menu, click *Add Value*, and then add the following registry value:
-  * Value Name : *!ShowSecurityPage*
-  * Data Type : *REG_DWORD*
-  * Value : *1*
- # Close Registry Editor.
- # Start the *Exchange System Manager*.
- # Right Click on your *Exchange Organization Name* and select *Properties*
- # Select the *Security* Tab
- # Click the *Advanced* button
- # Click *Add*
- # In the *Select Users, Computers, or Groups* dialog enter the user name of the query admin user and click *OK*
- # Check the *Allow* box for the permission "*Receive As*" and click *OK*
+The *Exchange Query Admin* user needs permissions to be able to read and write to the free/busy Public folder store. To configure the permissions for the query admin user:
 
-Exchange 2007:
+*Exchange 2003*
+
+ # Open Exchange System Manager 
+ # Browse to Folders | Public Folders
+ # Right Click and select show View System Folders
+ # Expand SCHEDULE+ FREE BUSY
+ # Right Click on the EX:/o=First Organization/ou=First Administrative Group/ (This name may vary based on your setup)
+ # Select the Permissions tab
+ # Select Client Permissions
+ # Click Add
+ # Select the  query admin user account you created
+ # Select Roles: Owner
+ # Click Ok
+ # Click OK
+
+NOTE: In the past "Receive As" permission was required for a GCC feature that is now depreciated, and thus no longer necessary.
+
+*Exchange 2007*
  # Allow access to *Exchange Query Admin* role account to write free/busy into public folders (NOTE: the value of _Identity_ flag may be different for different organizations)
  {{{
  Add-PublicFolderClientPermission -Identity _Public Folder Identity_ -User _Exchange Query Admin_ -AccessRights Owner
