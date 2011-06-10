@@ -114,6 +114,8 @@ Create a dedicated user for the Sync Service to read and write free/busy against
 
 The *Exchange Query Admin* user needs permissions to be able to read and write to the free/busy Public folder store. To configure the permissions for the query admin user:
 
+NOTE: In the past "Receive As" permission was required for a GCC feature that is now depreciated, and thus no longer necessary.
+
 *Exchange 2003*
 
  # Open Exchange System Manager 
@@ -129,21 +131,13 @@ The *Exchange Query Admin* user needs permissions to be able to read and write t
  # Click Ok
  # Click OK
 
-NOTE: In the past "Receive As" permission was required for a GCC feature that is now depreciated, and thus no longer necessary.
-
 *Exchange 2007*
  # Allow access to *Exchange Query Admin* role account to write free/busy into public folders (NOTE: the value of _Identity_ flag may be different for different organizations)
  {{{
  Add-PublicFolderClientPermission -Identity _Public Folder Identity_ -User _Exchange Query Admin_ -AccessRights Owner
  Example: Add-PublicFolderClientPermission -Identity "\NON_IPM_SUBTREE\SCHEDULE+ FREE BUSY\EX:/o=First Organization/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)" -User syncuser -AccessRights Owner
  }}}
- # Allow "*Receive As*" permissions to *Exchange Query Admin* role account to write appointments into respective users' mailboxes.
- {{{
- Add-ADPermission -Identity _Mailbox folder_ -User _Exchange Query Admin_ -ExtendedRights Receive-As
- Example: Add-ADPermission -Identity "Mailbox Database" -User syncuser -ExtendedRights Receive-As
- }}}
-
-
+ 
 === Remounting the Exchange Information Stores === 
 
 The Exchange Information store caches permissions data. To flush the cache immediately after setting new permissions, dismount and remount the appropriate information store or restart the Information Store service. Otherwise the changes will not take effect until Exchange rebuilds the permissions cache.
