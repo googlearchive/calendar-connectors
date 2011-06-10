@@ -134,7 +134,6 @@ The Google Calendar Connectors generally require a Google Apps account to access
   # Google Apps user account.
   # Active Directory user with standard DOMAIN USER privileges.
   # Active Directory user with Read-Access to the free/busy store (retrieving free/busy).
-  # Active Directory user with Exchange extended "Receive As" privileges to read user's appointment details.
   # The Windows System account NETWORK SERVICE is used by ASP.NET and needs MODIFY privileges to:
    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}
    * C:\Inetpub\wwwroot\{Virtual Web Application Directory}\Web.config
@@ -144,7 +143,7 @@ The Google Calendar Connectors generally require a Google Apps account to access
 
   # Google Apps user account.
   # Active Directory user with standard DOMAIN USER privileges.
-  # Active Directory user with Exchange extended "Receive As" privileges for writing free/busy or appointment details.
+  # Active Directory user with Exchange extended "owner" privileges for writing free/busy to the Public Folder store.
   # The Windows System account SYSTEM requires:
    * MODIFY privileges for !SyncServiceXmlStorageDirectory
    * MODIFY privileges for the install directory
