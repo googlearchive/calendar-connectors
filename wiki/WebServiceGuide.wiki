@@ -100,14 +100,14 @@ The Web Service requires dedicated Active Directory user accounts for performing
  ==== *Exchange Query User* ====
  Create a dedicated user for the connector web service to use for retrieving free/busy data. The user name and password are required later when you populate the _Exchange.GCalQueryUser.Login_ and _Password_ parameters in the configuration process.
 
- _NOTE: If you want to include appointment detail along with free/busy data, the Exchange Query User will need to be granted "Receive As" permission for all mailboxes. Refer to the Exchange Query Admin User for details on how to delegate this permission._
+ _NOTE: If you want to include appointment detail along with free/busy data, the Exchange Query User will need to be granted "Receive As" permission for all mailboxes. Refer to the Exchange Query User for details on how to delegate this permission._
 
  ==== *Exchange Query Admin User* ====
  Create a dedicated user for the connector web service to use for running diagnostic tests. The user name and password are required later when you populate _Exchange.GCalQueryAdmin.Login_ and _Password_ parameters in the configuration process. This account is also used by the Google Calendar Connector Sync Service if it is installed in the same environment. 
 
- The *Exchange Query Admin* user needs the extended "*Receive As*" permissions to be able to read and write both free/busy or appointments in Exchange.
+ The *Exchange Query User* user needs the extended "*Receive As*" permissions to be able to read appointment data for all Exchange users. Without setting this permission it gets the default Exchange permissions which typically only shows only free/busy data and no appointment detail.
 
- To configure the permissions for the query admin user:
+ To configure the permissions for the *Recieve As*:
 
  Exchange 2003:
   # Start Registry Editor (regedit).
@@ -126,9 +126,9 @@ The Web Service requires dedicated Active Directory user accounts for performing
   # Check the *Allow* box for the permission "*Receive As*" and click *OK*
 
  Exchange 2007:
-  # Allow "*Receive As*" permissions to *Exchange Query Admin* role account to write appointments into respective users' mailboxes.
+  # Allow "*Receive As*" permissions to *Exchange Query User* role account to read appointments details of a users' mailboxes.
   {{{
-  Add-ADPermission -Identity _Mailbox folder_ -User _Exchange Query Admin_ -ExtendedRights Receive-As
+  Add-ADPermission -Identity _Mailbox folder_ -User Exchange.GCalQueryUser.Login -ExtendedRights Receive-As
   Example: Add-ADPermission -Identity "Mailbox Database" -User syncuser -ExtendedRights Receive-As
   }}}
 
@@ -242,7 +242,7 @@ The "appSettings" section of _web.config_, located in the Web Service virtual di
 || Exchange.!ServerName || The full qualified domain name of the target Exchange for the web service to communicate with. If this server does not host a copy of the Free/Busy Public Information store, you must specify the setting: Exchange.!FreeBusyServerName. For example: `<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>`|| ||
 || Exchange.GCalQueryUser.Login || The userPrincipalName of the user account used to query Exchange for free/busy data. [#Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@corp.acme.com"/>` || ||
 || Exchange.GCalQueryUser.Password || The password for the Active Directory user account used to query Exchange for free/busy data. Exchange. || ||
-|| Exchange.GCalQueryAdmin.Login ||The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users' calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@corp.acme.com"/>`. || ||
+|| Exchange.GCalQueryAdmin.Login ||The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to write data to the public folder free busy store. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin.Login" value="GCalQueryAdmin@corp.acme.com"/>`. || ||
 || Exchange.GCalQueryAdmin.Password || The password for the user account used in running diagnostic tests for the web service. || ||
 || Exchange.!DefaultDomain || This setting prevents Exchange !WebDav redirects to servers outside of the DNS domain defined. Enable this feature if the connector should not redirect Exchange server outside of this DNS domain. For example: `<add key="Exchange.DefaultDomain" value=".corp.acme.com"/>` || DISABLED ||
 || Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: `<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>` || DISABLED || 
