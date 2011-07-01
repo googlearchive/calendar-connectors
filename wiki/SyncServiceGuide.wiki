@@ -81,8 +81,8 @@ Sync Service uses public folders to store free/busy information of Google Calend
 Run the following cmdlet in Exchange PowerShell to configure free/busy for Google Calendar users
  * Indicate to Exchange 2007 that the free/busy information for all Google Calendar users should be queried from public folders
  {{{
- Add-AvailabilityAddressSpace -ForestName _Google Domain_ -AccessMethod PublicFolder
- Example: Add-AvailabilityAddressSpace -ForestName _foo.com_ -AccessMethod PublicFolder
+ Add-AvailabilityAddressSpace -ForestName domain.com -AccessMethod PublicFolder
+ Example: Add-AvailabilityAddressSpace -ForestName pilot.domain.com -AccessMethod PublicFolder
  }}}
  If the free/busy information of other common calendar resources (like room resources) on Google Calendar need be provisioned on Exchange, the above cmdlet should be run with the _ForestName_ value set to the SMTP domain of the resource's email. Typically, this value would be _resource.calendar.google.com_. An additional Sync service instance also should be configured to publish these resources' free/busy on Exchange (see *Multiple Sync Service Instances* section below for details on how to configure multiple instances of Sync service).
 
@@ -134,7 +134,7 @@ NOTE: In the past "Receive As" permission was required for a GCC feature that is
 *Exchange 2007*
  # Allow access to *Exchange Query Admin* role account to write free/busy into public folders (NOTE: the value of _Identity_ flag may be different for different organizations)
  {{{
- Add-PublicFolderClientPermission -Identity _Public Folder Identity_ -User _Exchange Query Admin_ -AccessRights Owner
+ Add-PublicFolderClientPermission -Identity _Public Folder Identity_ -User Exchange.GCalQueryAdmin.Login -AccessRights Owner
  Example: Add-PublicFolderClientPermission -Identity "\NON_IPM_SUBTREE\SCHEDULE+ FREE BUSY\EX:/o=First Organization/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)" -User syncuser -AccessRights Owner
  }}}
  
@@ -228,8 +228,10 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
 || !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the sync service to perform Active Directory lookups. [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>` || ||
 || !ActiveDirectory.!DomainUser.Password || The password for the user account used by the sync service to perform Active Directory lookups. || ||
 || Exchange.!ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: `<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>` || ||
-|| Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used in running diagnostic tests for the web service. This must be an Active Directory user with rights to create appointments on other users' calendars. See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>` This account is also used to write appointments to calendars in Exchange when using the !SyncService.!FreeBusy.Writer in Appointment mode. || ||
-|| Exchange.GCalQueryAdmin.Password || The password for the user account used to create appointments. || ||
+|| Exchange.GCalQueryUser.Login || The userPrincipalName of the user account used to query Exchange for free/busy data. [#Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@corp.acme.com"/>` || ||
+|| Exchange.GCalQueryUser.Password || The password for the Active Directory user account used to query Exchange for free/busy data. Exchange. || ||
+|| Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used when writing data to the public folder free/busy store.  See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>`|| ||
+|| Exchange.GCalQueryAdmin.Password || The password for the user account used to write free/busy data to the public folder store. || ||
 || Exchange.MailboxURITrailingPath || This key changes the trailing URI when accessing an Exchange user's calendar. Typical URL for calendar web access looks like _http://[Exchange.ServerName]/exchange/[user's primary email]/calendar/. However, when running localized versions of Exchange the trailing URI _calendar_ is specific to the localized language and the value must be customized to match the localized string. (Ex. _Calend%C3%A1rio_ on a Portuguese Exchange Server). Value of this key should be given the value of the trailing URI string (i.e. _Calend%C3%A1rio_). This key may need modification in only rare cases. || calendar ||
 || Exchange.!FreeBusyServerName || This setting allows the definition of a specific Exchange server to use when reading and writing free/busy data. By default the value Exchange.!ServerName is used. Use this value if the default Exchange server does not host a replica of the Free/Busy Information Store. To enable this setting remove comments and define the fully qualified domain name of the server to use. For Example: `<<add key="Exchange.FreeBusyServerName" value="http://HQEXCH2.corp.acme.com"/>` || DISABLED ||
 || !GoogleApps.!DomainName || The domain name used by Google Apps. For example: `<add key="GoogleApps.DomainName" value="acme.com" />` || ||
