@@ -159,7 +159,6 @@ To restart the service Microsoft Exchange Information Store:
 || Create contact objects for Google Apps users in Exchange. || || ||
 ||Create dedicated Google Apps Sync Service user || ||User name and password: ||
 ||Create dedicated Active Directory user|| ||User name and password: ||
-||Create dedicated Exchange Query user|| ||User name and password: ||
 ||Create dedicated Exchange Admin user|| ||User name and password: ||
 ||Set Exchange permissions for Query and Admin users || || ||
    	  
@@ -228,8 +227,6 @@ The configuration file _GoogleGCalExhangeSync.Service.exe.config_ is located in 
 || !ActiveDirectory.!DomainUser.Login || The userPrincipalName for the user account used by the sync service to perform Active Directory lookups. [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="ActiveDirectory.DomainUser.Login" value="ADDomainUser@corp.acme.com"/>` || ||
 || !ActiveDirectory.!DomainUser.Password || The password for the user account used by the sync service to perform Active Directory lookups. || ||
 || Exchange.!ServerName || The full qualified domain name of the Exchange server that hosts a copy of the Public Free/Busy Information Store. For example: `<add key="Exchange.ServerName" value="HQEXCH1.corp.acme.com"/>` || ||
-|| Exchange.GCalQueryUser.Login || The userPrincipalName of the user account used to query Exchange for free/busy data. [#Dedicated_Windows_Service_Accounts See Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryUser.Login" value="GCalQueryUser@corp.acme.com"/>` || ||
-|| Exchange.GCalQueryUser.Password || The password for the Active Directory user account used to query Exchange for free/busy data. Exchange. || ||
 || Exchange.GCalQueryAdmin.Login || The userPrincipalName of the user account used when writing data to the public folder free/busy store.  See [#Dedicated_Windows_Service_Accounts Dedicated Windows Service Accounts] for more information on this user account. For example: `<add key="Exchange.GCalQueryAdmin" value="GCalQueryAdmin@corp.acme.com"/>`|| ||
 || Exchange.GCalQueryAdmin.Password || The password for the user account used to write free/busy data to the public folder store. || ||
 || Exchange.MailboxURITrailingPath || This key changes the trailing URI when accessing an Exchange user's calendar. Typical URL for calendar web access looks like _http://[Exchange.ServerName]/exchange/[user's primary email]/calendar/. However, when running localized versions of Exchange the trailing URI _calendar_ is specific to the localized language and the value must be customized to match the localized string. (Ex. _Calend%C3%A1rio_ on a Portuguese Exchange Server). Value of this key should be given the value of the trailing URI string (i.e. _Calend%C3%A1rio_). This key may need modification in only rare cases. || calendar ||
