@@ -74,6 +74,15 @@ Before you install and configure the connector, make sure your Windows environme
 
 Create a dedicated Google Apps account and perform an initial login. The user name and password are required later when you populate the !GoogleApps.!AdminUser.Login and Password parameters in the configuration process. NOTE: This account does NOT need admin access to the Google Apps domain. Before this account can be used with the Sync service you must login to Google Apps account and accept the standard terms of service agreement for the user account. 
 
+
+=== Instructions applicable when running IIS 7 ===
+
+If you are using a server OS using IIS 7 you will need to configure the /public website to accept double escaped content. 
+
+This needs to be performed on the server which is configured as the Free/Busy server. This server is by default defined by the setting Exchange.!ServerName or Exchange.!FreeBusyServerName value.
+
+For details on how to allow double escaped content review this Microsoft Support KB article: http://support.microsoft.com/kb/942076/
+
 === Instructions applicable only for Exchange 2007 ===
 
 Sync Service uses public folders to store free/busy information of Google Calendar users in Exchange. If Exchange 2007 doesn't already have public folders added and attached to mailbox databases, they should be added.
