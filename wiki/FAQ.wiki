@@ -11,7 +11,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 ----
 
-*I am getting an error "HTTP Error 404.11 – URL_DOUBLE_ESCAPED" when trying to write free/busy data via WebDav when running IIS7.
+*I am getting an error "HTTP Error 404.11 – URL_DOUBLE_ESCAPED" when trying to write free/busy data via WebDAV when running IIS7.
 
   * Microsoft has included in IIS 7 filter rules that by default prevent double escaping in the URL. However double escapes are used in the WebDAV calls for free/busy. For how to remove this filter option please review the following Microsoft KB Article: http://support.microsoft.com/kb/942076
 
