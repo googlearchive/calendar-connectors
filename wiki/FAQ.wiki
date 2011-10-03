@@ -5,6 +5,12 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 ----
 
+*What is the scope of the free/busy projection from Google Calendar that is written into the Exchange Free/Busy Store?
+
+  The free/busy projection is a total of 90 days of free/busy data. We store 30 days in the past and 60 days in the future.
+
+----
+
 *Do the Google Calendar Connectors support Exchange 2010?*
 
   A native Exchange 2010 environment is not supported due to the removal of WebDAV with Exchange 2010. If there is an active Exchange 2003 or 2007 server in the Exchange organization it is still possible to use the Google Calendar Connectors by writing free/busy data using the WebDAV services on the older Exchange server.
