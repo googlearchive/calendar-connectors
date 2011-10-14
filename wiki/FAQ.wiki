@@ -3,6 +3,13 @@
 
 This FAQ contains common questions and answers about the Google Calendar Connectors.
 
+
+----
+
+*How does Exchange resolve free/busy data for different clients (i.e. Legacy Outlook 2003 on Exchange 2007).
+
+  The Microsoft blog post: http://blogs.technet.com/b/exchange/archive/2006/10/23/3395177.aspx explains the different paths clients resolve free/busy data from the public folder or mailbox using different APIs based on the Exchange platform.
+
 ----
 
 *What is the scope of the free/busy projection from Google Calendar that is written into the Exchange Free/Busy Store?
