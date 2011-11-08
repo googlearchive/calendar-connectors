@@ -57,7 +57,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
      * Exchange 2003 SP2 or Exchange 2003/2007 Mixed Mode environment with a public free/busy store.
       * A single Active Directory Forest.
       * .NET 2.0 runtime on the servers running the Web and Sync Services.
-  * Exchange 2007 Server:
+   * Exchange 2007 Server:
     * Windows Server 2003 Server 64 Bit / Windows 2003 R2 64 Bit or Windows 2008 Server 64 Bit
      *  Exchange Server 2007 SP1 with a public folder database.
       * A single Active Directory Forest.
