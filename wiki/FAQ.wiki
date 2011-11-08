@@ -4,6 +4,18 @@
 This FAQ contains common questions and answers about the Google Calendar Connectors.
 
 
+
+----
+
+*Do the Google Calendar Connectors support a native Exchange 2007 environment?
+
+  Yes, you might be required to create a public folder as by default Exchange 2007 will not create one unless you enable support for legacy clients. Also please read the FAQ if running IIS 7 on Windows 2008 for how to configure IIS for webdav support when writing free/busy data. 
+
+  To create the public folder follow these instructions: http://technet.microsoft.com/en-us/library/bb123687(EXCHG.80).aspx
+
+----
+
+
 ----
 
 *How does Exchange resolve free/busy data for different clients (i.e. Legacy Outlook 2003 on Exchange 2007).
