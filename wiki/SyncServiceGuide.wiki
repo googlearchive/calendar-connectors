@@ -99,7 +99,7 @@ NOTE: If there is no default public folder database in Exchange 2007 follow thes
 
 === Exchange User Mapping ===
 
-Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled user object.
+Each Google Calendar user must have a corresponding mail-enabled Active Directory user, contact object or mailbox-enabled  (Exchange 2003 only) user object.
 
 See the [http://code.google.com/p/google-calendar-connectors/wiki/Overview Overview Guide] for more information.
 
