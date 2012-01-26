@@ -161,11 +161,11 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 * I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
 
- * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special setting: the Google Calendar Connector Web Service Domain Name value needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matching it to a configuration domain setting in Google Apps. If the domain name does not match, the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration by a Google Enterprise Support Engineer.
+ * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special Google backend setting need to be updated by Google Support: Google Calendar Connector Web Service Domain Name value needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matches to a configuration domain setting in Google Apps. If the domain name does not match, the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration by a Google Enterprise Support Engineer.
 
- * By default the value will match Google Apps domain name i..e "acme.com". To allow any domain name look ups this value needs to be changed to ".". This in effect matches any domain name and allows every look up to be passed to the Web service. 
+ * By default the value will match any domain name. You can limit to a specific domain name or domain names. However Google Support would need to assist in making this change. 
 
-  If you have other domains that are children of acme.com like child.acme.com or child-acme.com the domain value will not need to be updated as the sanity check will still match. If the child domain is acme-child.com this will not match on the value "acme.com" so you would want to configure the value to ".".
+  If you restrict what domains can be used note that children of a domain acme.com like child.acme.com will not need to be updated as the sanity check will still match as it contains acme.com. If the child domain is acme-child.com this will not match on the value "acme.com" so you would want to configure the value to ".".
 
  * You also might need to configure multiple domain mapping values as well depending on your Exchange configuration.
 
