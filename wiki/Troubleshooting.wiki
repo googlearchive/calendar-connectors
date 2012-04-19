@@ -1,5 +1,27 @@
 = Troubleshooting =
 
+* I am not able to resolve free/busy data from an Exchange account on Exchange 2007? 
+
+  Check the event logs on the CAS servers for issues related the Availability Service, Event IDs 4003,4004.
+
+  The most common issues related to 4003 errors is related to IIS configurations. The Availability Service always uses HTTP to request free/busy data from the public folder store. If you have only a single Exchange server this always happens as the Exchange server is hosting both the CAS and Mailbox roles.
+
+  There are two possible solutions: 
+  Change the require SSL option to not require SSL (assume the risk of traffic being sent over HTTP) 
+
+ NOTE: *As part of this change you should consider blocking all port 80 traffic from the Internet for security purposes.*
+
+ Setup a second Exchange 2007 server to host the Public Folder store. Configure IIS on the secondary server so that the /Public IIS web directory allows traffic via HTTP
+
+ For more details please refer to the Exchange Team Blog post:  http://blogs.technet.com/b/exchange/archive/2008/12/04/3406595.aspx
+
+
+ Event 4004 Details: http://www.microsoft.com/technet/support/ee/transform.aspx?ProdName=Exchange&ProdVer=08.00.0632.000&EvtID=4004&EvtSrc=MSExchange+Availability&LCID=1033
+
+  Event 4003 Details:
+  http://www.microsoft.com/technet/support/ee/transform.aspx?ProdName=Exchange&ProdVer=08.00.0632.000&EvtID=4003&EvtSrc=MSExchange+Availability&LCID=1033
+
+
 * I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
 
   * Have you provided Google Enterprise support with the your URL of the server hosting the Web Service? You must provide the web service URL to the Google Enterprise Support Organization (ESO). ESO will ensure your Google Apps domain is configured for the Google Calendar Connector interoperability and that the URL is properly entered in your account settings on the Google Calendar server. (Example URL value: https://mywebserver.acme.com/GCalExchangeLookup/Exchangequerier.aspx)
