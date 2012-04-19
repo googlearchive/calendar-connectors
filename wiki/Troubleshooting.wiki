@@ -15,11 +15,11 @@
 
  For more details please refer to the Exchange Team Blog post:  http://blogs.technet.com/b/exchange/archive/2008/12/04/3406595.aspx
 
+Event 4003 Details:
+  http://www.microsoft.com/technet/support/ee/transform.aspx?ProdName=Exchange&ProdVer=08.00.0632.000&EvtID=4003&EvtSrc=MSExchange+Availability&LCID=1033
 
  Event 4004 Details: http://www.microsoft.com/technet/support/ee/transform.aspx?ProdName=Exchange&ProdVer=08.00.0632.000&EvtID=4004&EvtSrc=MSExchange+Availability&LCID=1033
 
-  Event 4003 Details:
-  http://www.microsoft.com/technet/support/ee/transform.aspx?ProdName=Exchange&ProdVer=08.00.0632.000&EvtID=4003&EvtSrc=MSExchange+Availability&LCID=1033
 
 
 * I am not able to retrieve any free/busy data from Google Calendar for my Exchange users?*
