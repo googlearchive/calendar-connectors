@@ -294,6 +294,7 @@ To look up an Exchange user's free/busy information from Google Calendar:
  # Click *Create Event* to open an event page.
  # Click *Check guest and resource availability* to open the resource scheduler.
  # Enter the e-mail address of the chosen Exchange user and click "*Add*".
+ # Click Refresh all
  # *Verify* that the free/busy information displayed in the resource scheduler matches the known information.
 
 If the Web Service does not work as expected, diagnostics should be run to identify any issues.
