@@ -161,27 +161,7 @@ This FAQ contains common questions and answers about the Google Calendar Connect
 
 * I host more than a single SMTP domain in my Exchange environment. How do I enable these other SMTP domains hosted in Exchange so that free/busy can be seen in Google Calendar?*
 
- * If you host more than a one SMTP domain within your Exchange environment and want to look up free/busy data from Google Calendar for more than one domain, a special Google backend setting need to be updated by Google Support: Google Calendar Connector Web Service Domain Name value needs to be configured in your Google Apps domain. A sanity checking mechanism verifies the domain of the e-mail address, matches to a configuration domain setting in Google Apps. If the domain name does not match, the request is not passed to the Web service for a free/busy look up. If you want to have multiple domains passed to the web service this value will need to be modified in the Google Apps configuration by a Google Enterprise Support Engineer.
-
- * By default the value will match any domain name. You can limit to a specific domain name or domain names. However Google Support would need to assist in making this change. 
-
-  If you restrict what domains can be used note that children of a domain acme.com like child.acme.com will not need to be updated as the sanity check will still match as it contains acme.com. If the child domain is acme-child.com this will not match on the value "acme.com" so you would want to configure the value to ".".
-
- * You also might need to configure multiple domain mapping values as well depending on your Exchange configuration.
-
-* How to contact Google Support *
-	
- # Use the Contact us online link that can be found in your Google Apps control panel Domain Settings | Account Information | Admin support
- # Select the button: "If you issue is not covered above, report it via email"   
- # Complete the support request form: 
-   * Problem you're having: Enabling or verifying services
-   * Brief Summary: Please enable my domain for Calendar interoperability with Exchange.
-   * Full Description: (Please provide either the value "." for all domains. Or provide a list of the domains you would like to include.
-
-   Update my Google Apps domain enabled for the Google Calendar Connectors with a special domain sanity checking value! 
-
-   Customer PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information Support PIN: Please enter the value which can be retrieved from the Google Apps control panel Domain Settings | Account Information	
-                                                                                                                            
+ * We match all domain names so all SMTP addresses will be passed to the connector.                                                            
 ----
 
 *I need to sync both Exchange mailboxes and contacts/mail enabled users. How do I setup the sync service to run in both modes?*
