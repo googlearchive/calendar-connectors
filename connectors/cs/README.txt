@@ -2,9 +2,7 @@ Copyright Notices
 
 Library and license attributions are provided to conform with the Apache 
 License, Version 2.0. A copy of the Apache License, Version 2.0 can be 
-found at http://www.apache.org/licenses/LICENSE-2.0.html.  Copies of
-both the Apache License Version 2.0 and the GNU LPGL Version 2.1 are
-included as text files in the root directory of this distribution. 
+found at http://www.apache.org/licenses/LICENSE-2.0.html.
 
 The following licenses and libraries are used in the Google Calendar
 Connector Web Service: 
@@ -37,4 +35,16 @@ A. Vorontsov or Copyright (c) 2000-2002 Philip A. Craig
 
 
 
+4. NUnit 2.4.3 released under the NUnit license
 
+Project: http://www.nunit.org/
+License: http://www.nunit.org/nuget/license.html
+
+Portions Copyright © 2002-2012 Charlie Poole or Copyright © 2002-2004 James W. Newkirk, Michael C. Two, Alexei A. Vorontsov or Copyright © 2000-2002 Philip A. Craig 
+
+
+
+5. zlib 1.2.2 released under zlib license
+
+Project: http://www.zlib.net/
+License: http://www.zlib.net/zlib_license.html
