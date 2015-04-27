@@ -2,8 +2,8 @@
 {
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
-"IsWebType" = "8:FALSE"
-"ProjectName" = "8:GoogleCalendarConnectorSyncService.installer"
+"IsWebType" = "8:TRUE"
+"ProjectName" = "8:GoogleCalendarConnectorWebService.installer"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,200 +15,230 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "OwnerKey" = "8:_7334639280FD2B5637C0C7B11CD1594E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "OwnerKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "OwnerKey" = "8:_B9BA9E0B67E1159667304A03768A46D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_7334639280FD2B5637C0C7B11CD1594E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_B9BA9E0B67E1159667304A03768A46D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33994E0B34A40E48918D4541636B01B1"
-        "OwnerKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4492BCE299D24FDCA07BFDEABC6326F8"
+        "MsmKey" = "8:_4127E9257D0447BBA1F5D0B296580957"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
+        "MsmKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
+        "OwnerKey" = "8:_D944AF4BF1EF96B549EBD9F730142073"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "MsmKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
+        "OwnerKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5DA0965F3383D6D3FA1B072F9179B610"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
+        "MsmKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5DA0965F3383D6D3FA1B072F9179B610"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "MsmKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7334639280FD2B5637C0C7B11CD1594E"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7334639280FD2B5637C0C7B11CD1594E"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "MsmKey" = "8:_4E28DF1E20DD47AE804CBEF9E8C16FBC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_96BE52B239CCB8D4936AE0119267691F"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "MsmKey" = "8:_53B1F8CC5D120260EF87036C903D7050"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_96BE52B239CCB8D4936AE0119267691F"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
+        "MsmKey" = "8:_53B1F8CC5D120260EF87036C903D7050"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9BA9E0B67E1159667304A03768A46D1"
-        "OwnerKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
+        "MsmKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
+        "OwnerKey" = "8:_D944AF4BF1EF96B549EBD9F730142073"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9BA9E0B67E1159667304A03768A46D1"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "MsmKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
+        "OwnerKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
+        "OwnerKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7BBC015802B94A97B3E0F0CFA4F817DF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
+        "OwnerKey" = "8:_AD81E94ECBBE4567A1A148F329FEBE12"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_987760971C93487EB9C283092AAC3E78"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AD81E94ECBBE4567A1A148F329FEBE12"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AF349F32C23A496389A52829CCE59D95"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B227308F9679408687B1135A849E22B6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D944AF4BF1EF96B549EBD9F730142073"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D944AF4BF1EF96B549EBD9F730142073"
+        "OwnerKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EA71427C89DB9E40AD0F654A7126BC27"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EA71427C89DB9E40AD0F654A7126BC27"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
+        "OwnerKey" = "8:_AD81E94ECBBE4567A1A148F329FEBE12"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F69D596BDB054D0C923BC51723909CAB"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
+        "OwnerKey" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7ADB594392DC5024F8393A57EC12217B"
+        "OwnerKey" = "8:_6E4D58E1228004ABA3CFAD127A92CBA9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5DA0965F3383D6D3FA1B072F9179B610"
+        "OwnerKey" = "8:_495CD7646B09730E59DCD1C47CA97ABD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5161D1A318A94B1A22091FDCCFCD75BF"
+        "OwnerKey" = "8:_D944AF4BF1EF96B549EBD9F730142073"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B9BA9E0B67E1159667304A03768A46D1"
+        "OwnerKey" = "8:_F019239AC8368E2364D0067BF8DFE65E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7334639280FD2B5637C0C7B11CD1594E"
+        "OwnerKey" = "8:_EA71427C89DB9E40AD0F654A7126BC27"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_205C58EFFBE06130CEFAFF05F7988D53"
+        "OwnerKey" = "8:_53B1F8CC5D120260EF87036C903D7050"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_33994E0B34A40E48918D4541636B01B1"
+        "OwnerKey" = "8:_8B1AB319BA82714B48C6ED2D9DA9296F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_96BE52B239CCB8D4936AE0119267691F"
+        "OwnerKey" = "8:_AD81E94ECBBE4567A1A148F329FEBE12"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -219,7 +249,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\GoogleCalendarConnectorSyncService.msi"
+        "OutputFilename" = "8:Debug\\GoogleCalendarConnectorWebService.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -251,7 +281,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\GoogleCalendarConnectorSyncService.msi"
+        "OutputFilename" = "8:Release\\GoogleCalendarConnectorWebService.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -283,59 +313,59 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_051D12F90D454312BD3ECA32A3EB028F"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0CA1317037364C7EB1D0665523EADA02"
             {
-            "Name" = "8:Primary output from GoogleCalendarConnectorSyncService (Active)"
+            "Name" = "8:Primary output from GoogleCalendarConnectorWebservice (Active)"
             "Condition" = "8:"
-            "Object" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-            "FileType" = "3:2"
+            "Object" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+            "FileType" = "3:1"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_36D6EEFE_070E_45F9_B170_B2911E28C447"
+            "Identifier" = "8:_510E91F1_B608_4FD9_AE74_96D89564C840"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_64141AA233254716B46DF1332D20A459"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_58F1DF62C82B41FA993836C4FA86E311"
             {
-            "Name" = "8:Primary output from GoogleCalendarConnectorSyncService (Active)"
+            "Name" = "8:Primary output from GoogleCalendarConnectorWebservice (Active)"
             "Condition" = "8:"
-            "Object" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_975880AE_A033_4C09_A9EE_AB412AC04440"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B89B4104FCDB4BBBB6CA2243F91DE02B"
-            {
-            "Name" = "8:Primary output from GoogleCalendarConnectorSyncService (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_548BA5A9_E102_4A23_8C52_9922A5A07B12"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F1BFF527E8E94D24B1E80D714C27A03A"
-            {
-            "Name" = "8:Primary output from GoogleCalendarConnectorSyncService (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_947B8B43D262480DB33761C4CC1DF1EE"
-            "FileType" = "3:2"
+            "Object" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+            "FileType" = "3:1"
             "InstallAction" = "3:3"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_21F1F902_5215_4714_8474_2C27E1F09C9E"
+            "Identifier" = "8:_4FDC91C4_4B36_4D4C_A106_BF05625C4FD2"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_892C9FC538334B90A4BFB7F556315FC8"
+            {
+            "Name" = "8:Primary output from GoogleCalendarConnectorWebservice (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_06A5C092_E83A_42E1_8F66_4F3657B05150"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_995AE0E7315641A3924D98600DC83FA0"
+            {
+            "Name" = "8:Primary output from GoogleCalendarConnectorWebservice (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_8B44D0F3E63C4636AB6B0959918F1EBD"
+            "FileType" = "3:1"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_C47DBD5F_8815_4E87_AA22_7E12B58A3BB8"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -350,11 +380,11 @@
         {
             "LaunchCondition"
             {
-                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_53E772D7240C4C439EA5D600E975E3CD"
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_F92D80221B2F4673A0B57C435D0F5B97"
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:2.0.50727"
+                "FrameworkVersion" = "8:2.0.50727 "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
                 }
@@ -362,74 +392,12 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_205C58EFFBE06130CEFAFF05F7988D53"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4127E9257D0447BBA1F5D0B296580957"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GData.Extensions, Version=1.1.2.27395, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_205C58EFFBE06130CEFAFF05F7988D53"
-                    {
-                    "Name" = "8:Google.GData.Extensions.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Google.GData.Extensions.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\GoogleCalendarConnectorWebService\\ExchangeQuerier.aspx"
+            "TargetName" = "8:ExchangeQuerier.aspx"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_33994E0B34A40E48918D4541636B01B1"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GData.Client, Version=1.1.2.27395, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_33994E0B34A40E48918D4541636B01B1"
-                    {
-                    "Name" = "8:Google.GData.Client.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Google.GData.Client.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4492BCE299D24FDCA07BFDEABC6326F8"
-            {
-            "SourcePath" = "8:..\\..\\..\\lib\\zlib.x86.dll"
-            "TargetName" = "8:zlib.x86.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_50F2BDC69B984099A6F11445EC7E7EE9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -444,23 +412,18 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5161D1A318A94B1A22091FDCCFCD75BF"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_495CD7646B09730E59DCD1C47CA97ABD"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GData.Calendar, Version=1.1.2.27397, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Google.GData.Extensions, Version=1.1.3.7212, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5161D1A318A94B1A22091FDCCFCD75BF"
-                    {
-                    "Name" = "8:Google.GData.Calendar.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:Google.GData.Calendar.dll"
+            "SourcePath" = "8:Google.GData.Extensions.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -475,23 +438,38 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5DA0965F3383D6D3FA1B072F9179B610"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E28DF1E20DD47AE804CBEF9E8C16FBC"
+            {
+            "SourcePath" = "8:..\\GoogleCalendarConnectorWebService\\Global.asax"
+            "TargetName" = "8:Global.asax"
+            "Tag" = "8:"
+            "Folder" = "8:_50F2BDC69B984099A6F11445EC7E7EE9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_53B1F8CC5D120260EF87036C903D7050"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:TZ4Net, Version=3.0.2.0, Culture=neutral"
                 "ScatterAssemblies"
                 {
-                    "_5DA0965F3383D6D3FA1B072F9179B610"
-                    {
-                    "Name" = "8:TZ4Net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:TZ4Net.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -506,23 +484,18 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7334639280FD2B5637C0C7B11CD1594E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6E4D58E1228004ABA3CFAD127A92CBA9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GData.Apps, Version=1.1.2.27397, Culture=neutral, PublicKeyToken=e6feebfe441b89cb, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Google.GData.Client, Version=1.1.3.7211, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7334639280FD2B5637C0C7B11CD1594E"
-                    {
-                    "Name" = "8:Google.GData.Apps.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:Google.GData.Apps.dll"
+            "SourcePath" = "8:Google.GData.Client.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -537,23 +510,38 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7ADB594392DC5024F8393A57EC12217B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7BBC015802B94A97B3E0F0CFA4F817DF"
+            {
+            "SourcePath" = "8:..\\..\\webservice\\Web.template.config"
+            "TargetName" = "8:Web.template.config"
+            "Tag" = "8:"
+            "Folder" = "8:_50F2BDC69B984099A6F11445EC7E7EE9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8B1AB319BA82714B48C6ED2D9DA9296F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GCalExchangeSync.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Google.GCalExchangeSync.Library, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7ADB594392DC5024F8393A57EC12217B"
-                    {
-                    "Name" = "8:Google.GCalExchangeSync.Library.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Google.GCalExchangeSync.Library.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -568,23 +556,130 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_96BE52B239CCB8D4936AE0119267691F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_987760971C93487EB9C283092AAC3E78"
+            {
+            "SourcePath" = "8:..\\GoogleCalendarConnectorWebService\\Diagnostics.aspx"
+            "TargetName" = "8:Diagnostics.aspx"
+            "Tag" = "8:"
+            "Folder" = "8:_50F2BDC69B984099A6F11445EC7E7EE9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AD81E94ECBBE4567A1A148F329FEBE12"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:tests.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AF349F32C23A496389A52829CCE59D95"
+            {
+            "SourcePath" = "8:..\\..\\webservice\\errors\\403.htm"
+            "TargetName" = "8:403.htm"
+            "Tag" = "8:"
+            "Folder" = "8:_A1CE4806ED974D26BDA1ADAAE8C5190A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B227308F9679408687B1135A849E22B6"
+            {
+            "SourcePath" = "8:..\\..\\webservice\\errors\\errors.htm"
+            "TargetName" = "8:errors.htm"
+            "Tag" = "8:"
+            "Folder" = "8:_A1CE4806ED974D26BDA1ADAAE8C5190A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D944AF4BF1EF96B549EBD9F730142073"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Google.GData.AccessControl, Version=1.1.3.7212, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:Google.GData.AccessControl.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EA71427C89DB9E40AD0F654A7126BC27"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.10.0, Culture=neutral"
                 "ScatterAssemblies"
                 {
-                    "_96BE52B239CCB8D4936AE0119267691F"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -599,23 +694,18 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9BA9E0B67E1159667304A03768A46D1"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F019239AC8368E2364D0067BF8DFE65E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Google.GData.AccessControl, Version=1.1.2.27396, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Google.GData.Calendar, Version=1.1.3.7214, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B9BA9E0B67E1159667304A03768A46D1"
-                    {
-                    "Name" = "8:Google.GData.AccessControl.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:Google.GData.AccessControl.dll"
+            "SourcePath" = "8:Google.GData.Calendar.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -628,6 +718,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F69D596BDB054D0C923BC51723909CAB"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\third_party\\cslib\\zlib\\zlib.x86.dll"
+            "TargetName" = "8:zlib.x86.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -636,58 +746,121 @@
         }
         "Folder"
         {
-            "{1525181F-901A-416C-8A58-119130FE478E}:_16DAABF9B702414983EC2027ACDC3186"
+            "{80453C8E-1031-40EC-8E7A-9762B297303A}:_50F2BDC69B984099A6F11445EC7E7EE9"
             {
-            "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:ProgramMenuFolder"
-                "Folders"
+            "VirtualDirectory" = "8:GCalExchangeLookup"
+            "Port" = "3:80"
+            "IsApplication" = "11:TRUE"
+            "AllowScriptSourceAccess" = "11:FALSE"
+            "AllowReadAccess" = "11:TRUE"
+            "AllowWriteAccess" = "11:FALSE"
+            "AllowDirectoryBrowse" = "11:FALSE"
+            "LogVisits" = "11:TRUE"
+            "Index" = "11:TRUE"
+            "ExecutePermissions" = "3:2"
+            "DefaultDocument" = "8:default.aspx"
+            "ApplicationProtection" = "3:2"
+                "ApplicationMappings"
                 {
                 }
-            }
-            "{3C67513D-01DD-4637-8A68-80971EB9504F}:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
-            {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-            "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "Name" = "8:#1926"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_9CD27BE3F0B045C58F8E677FDE7B4386"
-            {
-            "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:DesktopFolder"
-                "Folders"
-                {
+                    "{4C6F2762-250E-4E7D-82DC-65B304135C98}:_307FB5E5352E4D7A912AAD8F77D2C0BB"
+                    {
+                    "AllowScriptSourceAccess" = "11:FALSE"
+                    "AllowReadAccess" = "11:FALSE"
+                    "AllowWriteAccess" = "11:FALSE"
+                    "AllowDirectoryBrowse" = "11:FALSE"
+                    "LogVisits" = "11:TRUE"
+                    "Index" = "11:TRUE"
+                    "ExecutePermissions" = "3:2"
+                    "Name" = "8:bin"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_512CDCEDBECA4DE48885DD387CF5300C"
+                        "Folders"
+                        {
+                            "{4C6F2762-250E-4E7D-82DC-65B304135C98}:_95FD712E9E62480AB3A2DF66B279556A"
+                            {
+                            "AllowScriptSourceAccess" = "11:FALSE"
+                            "AllowReadAccess" = "11:FALSE"
+                            "AllowWriteAccess" = "11:FALSE"
+                            "AllowDirectoryBrowse" = "11:FALSE"
+                            "LogVisits" = "11:TRUE"
+                            "Index" = "11:TRUE"
+                            "ExecutePermissions" = "3:2"
+                            "Name" = "8:bin"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_D6A605F76CF0438A8E7C6E0CEB9B9ED2"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
+                    "{4C6F2762-250E-4E7D-82DC-65B304135C98}:_A1CE4806ED974D26BDA1ADAAE8C5190A"
+                    {
+                    "AllowScriptSourceAccess" = "11:FALSE"
+                    "AllowReadAccess" = "11:TRUE"
+                    "AllowWriteAccess" = "11:FALSE"
+                    "AllowDirectoryBrowse" = "11:FALSE"
+                    "LogVisits" = "11:TRUE"
+                    "Index" = "11:TRUE"
+                    "ExecutePermissions" = "3:2"
+                    "Name" = "8:errors"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_4A01C852F0E6438DBEF3A7C40A816E1B"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
         "LaunchCondition"
         {
+            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_DF1CA2119CD64D4B94CE993CF1624ACE"
+            {
+            "Name" = "8:IIS Condition"
+            "Condition" = "8:IISVERSION >= \"#4\""
+            "Message" = "8:[VSDIISMSG]"
+            "InstallUrl" = "8:"
+            }
         }
         "Locator"
         {
+            "{CF66B7F7-B7DA-4B08-A67A-233430638C9C}:_04904C1EB41D4AEB868E336FBFF3FDF9"
+            {
+            "Name" = "8:Search for IIS"
+            "Root" = "2:1"
+            "RegKey" = "8:SYSTEM\\CurrentControlSet\\Services\\W3SVC\\Parameters"
+            "Value" = "8:MajorVersion"
+            "Property" = "8:IISVERSION"
+            }
         }
         "MsiBootstrapper"
         {
         "LangId" = "3:1033"
+        "RequiresElevation" = "11:TRUE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Google Calendar Connector Sync Service"
-        "ProductCode" = "8:{16E92975-7C0E-4396-99E1-095AC601CDEF}"
-        "PackageCode" = "8:{14AC2352-8F7A-49F5-89C7-6499489A8E7C}"
-        "UpgradeCode" = "8:{B0C1A950-3FB3-4175-9737-D6B7D134BF0F}"
+        "ProductName" = "8:Google Calendar Connector Web Service"
+        "ProductCode" = "8:{E4770369-42AE-4F52-A7D9-D1F855B92C5C}"
+        "PackageCode" = "8:{88C09DC2-A73D-407C-8C05-E15471D366AC}"
+        "UpgradeCode" = "8:{3FE7C5C8-EA06-414E-B356-76C9FA33D1D0}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
@@ -696,7 +869,7 @@
         "Manufacturer" = "8:Google"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Google Calendar Connector Sync Service"
+        "Title" = "8:GoogleCalendarConnectorWebService.installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Google"
         "Keywords" = "8:"
@@ -717,68 +890,12 @@
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_A6C27582FE3E4C6C968B60AAC0FFE370"
-                    {
-                    "Name" = "8:Software"
-                    "Condition" = "8:"
-                    "AlwaysCreate" = "11:FALSE"
-                    "DeleteAtUninstall" = "11:FALSE"
-                    "Transitive" = "11:FALSE"
-                        "Keys"
-                        {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_647A1769D2F44CECB09969B5C2B08C45"
-                            {
-                            "Name" = "8:[Manufacturer]"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                        }
-                        "Values"
-                        {
-                        }
-                    }
                 }
             }
             "HKCU"
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_6FF646A6F3AA4CA59222588611D8D878"
-                    {
-                    "Name" = "8:Software"
-                    "Condition" = "8:"
-                    "AlwaysCreate" = "11:FALSE"
-                    "DeleteAtUninstall" = "11:FALSE"
-                    "Transitive" = "11:FALSE"
-                        "Keys"
-                        {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_5215AE0C704C487EB47E5983A57C30A7"
-                            {
-                            "Name" = "8:[Manufacturer]"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                        }
-                        "Values"
-                        {
-                        }
-                    }
                 }
             }
             "HKCR"
@@ -808,14 +925,95 @@
         }
         "UserInterface"
         {
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_03275B6E4A95406C8193DA96F9234D17"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_104A7C2BC15B4053B6043E56AF33B5C1"
+            {
+            "Name" = "8:#1902"
+            "Sequence" = "3:2"
+            "Attributes" = "3:3"
+                "Dialogs"
+                {
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_83CCB95AFCAD4AC095500802DF6C531C"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Finished"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_2D9465C0CABC464489FC5743EB5911E1"
+            {
+            "Name" = "8:#1901"
+            "Sequence" = "3:1"
+            "Attributes" = "3:2"
+                "Dialogs"
+                {
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_450B0790A64543CAB9DE54DF19B1C677"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Progress"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ShowProgress"
+                            {
+                            "Name" = "8:ShowProgress"
+                            "DisplayName" = "8:#1009"
+                            "Description" = "8:#1109"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_401EF98B16774C28A7D048FC6D9B4FFA"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdUserInterface.wim"
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_59EB9C8E41244658A1A5B4DFF31BCB59"
             {
             "Name" = "8:#1901"
             "Sequence" = "3:2"
             "Attributes" = "3:2"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6916D56D69B34E3FA768168F7B48C852"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_3808951FB21148B68E1E1751111D5AD6"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Progress"
@@ -852,45 +1050,14 @@
                     }
                 }
             }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_5672B05F90AF4100A28AB1F164006F7F"
-            {
-            "Name" = "8:#1902"
-            "Sequence" = "3:2"
-            "Attributes" = "3:3"
-                "Dialogs"
-                {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_19641DD531174E7094EE3537F3897FD9"
-                    {
-                    "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                }
-            }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_8BFCE897E8EE4EDBA029C648BECAC974"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_B5EB06F97909445CAAFCB9A78F2C6E30"
             {
             "Name" = "8:#1902"
             "Sequence" = "3:1"
             "Attributes" = "3:3"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_34F1C340C5834845AA691D58C72136AC"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_FFB7745AFD3641B8BE87EE5FB2806D99"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Finished"
@@ -927,36 +1094,20 @@
                     }
                 }
             }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_A92F7E607CFC489D9C78EA4BD1C59E42"
+            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_C7F70BE655AC439388D5DB3825D3B36A"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdBasicDialogs.wim"
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_DDA51647388B41F6BAAD87CDA9796DDB"
             {
             "Name" = "8:#1900"
             "Sequence" = "3:2"
             "Attributes" = "3:1"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_91A0D8D6F9DD41F4BA70C9F277B3EF69"
-                    {
-                    "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_C027A9EDEDF44A9FBF010E66097A32C1"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_5805D72BC54D43D295FFCE13208077DC"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Welcome"
@@ -1004,13 +1155,35 @@
                             }
                         }
                     }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_EAA040F7B1BF43B0B67919FAC3BF908C"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_AB77C0567143411A8301627ABA1A8889"
+                    {
+                    "Sequence" = "3:300"
+                    "DisplayName" = "8:Confirm Installation"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_B9E2133CCBF34EF28E367C33CD39E5DE"
                     {
                     "Sequence" = "3:200"
-                    "DisplayName" = "8:Installation Folder"
+                    "DisplayName" = "8:Installation Address"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWebFolderDlg.wid"
                         "Properties"
                         {
                             "BannerBitmap"
@@ -1028,64 +1201,36 @@
                     }
                 }
             }
-            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_AA67827512274EECBA818A15D632B3EF"
-            {
-            "UseDynamicProperties" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:<VsdDialogDir>\\VsdUserInterface.wim"
-            }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_BB97DD7204C4445ABAAE2CA5383FAEB2"
-            {
-            "Name" = "8:#1901"
-            "Sequence" = "3:1"
-            "Attributes" = "3:2"
-                "Dialogs"
-                {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_ED2218FAE9CC471395A2B8F715BE70BE"
-                    {
-                    "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "ShowProgress"
-                            {
-                            "Name" = "8:ShowProgress"
-                            "DisplayName" = "8:#1009"
-                            "Description" = "8:#1109"
-                            "Type" = "3:5"
-                            "ContextData" = "8:1;True=1;False=0"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:0"
-                            "Value" = "3:1"
-                            "DefaultValue" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                }
-            }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_C58473F12A10485B96CED6861CE5E0B2"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_F727CC3FD6064F6EBD077A85EA03FB37"
             {
             "Name" = "8:#1900"
             "Sequence" = "3:1"
             "Attributes" = "3:1"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F728C81DFF134169A9C9FF96F6BFDF00"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_68102E11835442D59C0935377E703C6B"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Installation Address"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdWebFolderDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_A9079EFE71C847DB9DC88A162313B4CA"
                     {
                     "Sequence" = "3:300"
                     "DisplayName" = "8:Confirm Installation"
@@ -1107,7 +1252,7 @@
                             }
                         }
                     }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F9B59E6005314FCDA01A07E2C8A8264C"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F807FCBE3B8C4308A7D9A783C87A14EF"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Welcome"
@@ -1155,48 +1300,7 @@
                             }
                         }
                     }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_FB5BD9F48C29493DAA5D9101D62EC670"
-                    {
-                    "Sequence" = "3:200"
-                    "DisplayName" = "8:Installation Folder"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdFolderDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "InstallAllUsersVisible"
-                            {
-                            "Name" = "8:InstallAllUsersVisible"
-                            "DisplayName" = "8:#1059"
-                            "Description" = "8:#1159"
-                            "Type" = "3:5"
-                            "ContextData" = "8:1;True=1;False=0"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:0"
-                            "Value" = "3:1"
-                            "DefaultValue" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
                 }
-            }
-            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_F6C50F321B8D415AA7876C5D46503737"
-            {
-            "UseDynamicProperties" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:<VsdDialogDir>\\VsdBasicDialogs.wim"
             }
         }
         "MergeModule"
@@ -1204,12 +1308,12 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_947B8B43D262480DB33761C4CC1DF1EE"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8B44D0F3E63C4636AB6B0959918F1EBD"
             {
-            "SourcePath" = "8:..\\GoogleCalendarConnectorSyncService\\obj\\Release\\GoogleCalendarSyncService.exe"
+            "SourcePath" = "8:..\\GoogleCalendarConnectorWebService\\obj\\Release\\GCalExchangeLookup.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_66E9FFBABAA643E18EC1BD25A2C4B7E6"
+            "Folder" = "8:_307FB5E5352E4D7A912AAD8F77D2C0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1226,15 +1330,12 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{1E6E0432-2DC4-419D-81B9-05EB356294BB}"
+            "OutputProjectGuid" = "8:{7E8199AE-9372-4EB9-834C-EA365E30BC1B}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-        }
-        "VJSharpPlugin"
-        {
         }
     }
 }

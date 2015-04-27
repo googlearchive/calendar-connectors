@@ -1,53 +1,21 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{50ADBE30-B2B5-407A-B6C0-4460822132F2}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{848B8C92-447C-492E-BFF9-6B3E31967EC6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCalendarConnectorSyncService", "GoogleCalendarConnectorSyncService\GoogleCalendarConnectorSyncService.csproj", "{1E6E0432-2DC4-419D-81B9-05EB356294BB}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GoogleCalendarConnectorSyncService.installer", "GoogleCalendarConnectorSyncService.installer\GoogleCalendarConnectorSyncService.installer.vdproj", "{C0AFD3D7-4862-4A76-98A3-BF482BB5B6C9}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCalendarConnectorWebservice", "GoogleCalendarConnectorWebService\GoogleCalendarConnectorWebservice.csproj", "{7E8199AE-9372-4EB9-834C-EA365E30BC1B}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GoogleCalendarConnectorWebService.installer", "GoogleCalendarConnectorWebService.installer\GoogleCalendarConnectorWebService.installer.vdproj", "{E1224D23-1779-4165-ACC8-B35D4E4891B6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C31D51F5-49BB-4C80-842A-3B67274426A0}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeBusyBuilder", "..\FreeBusyBuilder\FreeBusyBuilder.csproj", "{F2794A9E-7CD3-4327-850B-A760266F98A8}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
