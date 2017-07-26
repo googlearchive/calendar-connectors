@@ -60,11 +60,11 @@ Note that the JSON '''must''' be valid. Specifically, use double quotes to denot
       [
         "<user1>","<email>","<accessLevel>", // for each user
           [
-            ["<subject>","<start>","<end>","<location>","<organizer>","<status>"] // for each appointment
+            ["<subject>","<start>","<end>","<location>","<organizer>",<status>] // for each appointment
           ],
        "<user2>","<email>","<accessLevel>", // for each user
           [
-            ["<subject>","<start>","<end>","<location>","<organizer>","<status>"] // for each appointment
+            ["<subject>","<start>","<end>","<location>","<organizer>",<status>] // for each appointment
           ]
       ]
     ]
@@ -85,7 +85,7 @@ Where:
 * '''&lt;end&gt;''': End date time for the free busy block (as YYMMDDTHHMMSS) 
 * '''&lt;location&gt;''': Location of the event (if available)
 * '''&lt;organizer&gt;''': Organizer of the event
-* '''&lt;status&gt;''': Free/Busy status
+* '''&lt;status&gt;''': Free/Busy status (number)
 
 <u>Note:</u> All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
 
