@@ -1,4 +1,3 @@
-#labels Featured
 = Google Calendar Web Service Protocol =
 
 == Introduction ==
@@ -10,25 +9,25 @@ The Google Calendar Connector Web Service relies on a feature in Google Calendar
 When the Google Calendar client needs free/busy information for a user whose calendar does not reside in Google Calendar, a POST request will be made to the URL configured for the domain. 
 
 === Request ===
-{{{
+<pre>
 POST /free-busy-endpoint HTTP/1.1
 Host: example.org
 Content-type: application/x-www-form-urlencoded
 ...
 text=[<version>,<messageId>,[<emails>],<start>/<end>,<since>,<tz>]
-}}}
+</pre>
 
 where:
-  * *<version>*: Version # - currently 1
-  * *<messageId>*: ID for the request
-  * *<emails>*: comma separated list of emails to get free/busy info for
-  * *<start>*: Start of range to get free/busy info for (as YYYYMMDD)
-  * *<end>*: End of range to get free/busy info for (as YYYMMDD)
-  * *<since>*: Return free/busy info modified since this time (as YYMMDDTHHMMSS)
-  * *<tz>*: Timezone for the request as an [http://www.twinsun.com/tz/tz-link.htm Olson Time zone]
+* '''&lt;version&gt;''': Version # - currently 1
+* '''&lt;messageId&gt;''': ID for the request
+* '''&lt;emails&gt;''': comma separated list of emails to get free/busy info for
+* '''&lt;start&gt;''': Start of range to get free/busy info for (as YYYYMMDD)
+* '''&lt;end&gt;''': End of range to get free/busy info for (as YYYMMDD)
+* '''&lt;since&gt;''': Return free/busy info modified since this time (as YYMMDDTHHMMSS)
+* '''&lt;tz&gt;''': Timezone for the request as an [http://www.twinsun.com/tz/tz-link.htm Olson Time zone]
 
 === Response ===
-{{{
+<pre>
 HTTP/1.1 200 OK
 Content-type: text/html
 ...
@@ -46,47 +45,48 @@ Content-type: text/html
   </script>
 </body>
 </html>
-}}}
+</pre>
 
-where:
-  * *<submitUrl>*: URL for a Google Apps domain specific mailslot URL
-  * *<freeBusyResponse>*: A free/busy response JSON expression.
+Where:
+* '''&lt;submitUrl&gt;''': URL for a Google Apps domain specific mailslot URL
+* '''&lt;freeBusyResponse&gt;''': A free/busy response JSON expression.
   
 === Free/Busy JSON Expression ===
+Note that the JSON '''must''' be valid. Specifically, use double quotes to denote strings, not single quotes.
 
-{{{
+<pre>
   [<version>,<messageId>,
-    ['_ME_AddData', '<start>/<end>','<since>',
+    ["_ME_AddData", "<start>/<end>","<since>",
       [
-        <user1>,<email>,<accessLevel>, // for each user
+        "<user1>","<email>","<accessLevel>", // for each user
           [
-            [<subject>,<start>,<end>,<location>,<organizer>,<status>] // for each appointment
+            ["<subject>","<start>","<end>","<location>","<organizer>","<status>"] // for each appointment
           ],
-       <user2>,<email>,<accessLevel>, // for each user
+       "<user2>","<email>","<accessLevel>", // for each user
           [
-            [<subject>,<start>,<end>,<location>,<organizer>,<status>] // for each appointment
+            ["<subject>","<start>","<end>","<location>","<organizer>","<status>"] // for each appointment
           ]
       ]
     ]
   ]
-}}}
+</pre>
 
-where:
-  * *<version>*: Version # - currently 1
-  * *<messageId>*: ID from the request
-  * *<start>*: Start of range for free/busy request (as YYYYMMDD)
-  * *<end>*: End of range for free/busy request (as YYYMMDD)
-  * *<since>*: Since time from the request (as YYMMDDTHHMMSS)
-  * *<userName>*: Display name of the user the Free/Busy results are for
-  * *<email>*: Email address of the user the Free/Busy results are for
-  * *<accessLevel>*: Access level the user has (not currently used)
-  * *<subject>*: Subject of the event (if available)
-  * *<start>*: Start date time for the free busy block (as YYMMDDTHHMMSS) 
-  * *<end>*: End date time for the free busy block (as YYMMDDTHHMMSS) 
-  * *<location>*: Location of the event (if available)
-  * *<organizer>*: Organizer of the event
-  * *<status>*: Free/Busy status
+Where:
+* '''&lt;version&gt;''': Version # - currently 1
+* '''&lt;messageId&gt;''': ID from the request
+* '''&lt;start&gt;''': Start of range for free/busy request (as YYYYMMDD)
+* '''&lt;end&gt;''': End of range for free/busy request (as YYYMMDD)
+* '''&lt;since&gt;''': Since time from the request (as YYMMDDTHHMMSS)
+* '''&lt;userName&gt;''': Display name of the user the Free/Busy results are for
+* '''&lt;email&gt;''': Email address of the user the Free/Busy results are for
+* '''&lt;accessLevel&gt;''': Access level the user has (not currently used)
+* '''&lt;subject&gt;''': Subject of the event (if available)
+* '''&lt;start&gt;''': Start date time for the free busy block (as YYMMDDTHHMMSS) 
+* '''&lt;end&gt;''': End date time for the free busy block (as YYMMDDTHHMMSS) 
+* '''&lt;location&gt;''': Location of the event (if available)
+* '''&lt;organizer&gt;''': Organizer of the event
+* '''&lt;status&gt;''': Free/Busy status
 
-_Note:_ All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
+<u>Note:</u> All times in the response should be in the same timezone specified in the request. Some information is only available if the Web Service is configured to return appointment detail AND the event is not marked as private.
 
 
