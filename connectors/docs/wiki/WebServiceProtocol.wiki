@@ -22,8 +22,8 @@ where:
 * '''&lt;messageId&gt;''': ID for the request
 * '''&lt;emails&gt;''': comma separated list of emails to get free/busy info for
 * '''&lt;start&gt;''': Start of range to get free/busy info for (as YYYYMMDD)
-* '''&lt;end&gt;''': End of range to get free/busy info for (as YYYMMDD)
-* '''&lt;since&gt;''': Return free/busy info modified since this time (as YYMMDDTHHMMSS)
+* '''&lt;end&gt;''': End of range to get free/busy info for (as YYYYMMDD)
+* '''&lt;since&gt;''': Return free/busy info modified since this time (as YYYYMMDDTHHMMSS)
 * '''&lt;tz&gt;''': Timezone for the request as an [http://www.twinsun.com/tz/tz-link.htm Olson Time zone]
 
 === Response ===
