@@ -1,7 +1,7 @@
 #### calendar-connectors
 Automatically exported from code.google.com/p/google-calendar-connectors
 
-#####IMPORTANT UPDATE: Posted on 2014-11-18 
+#### IMPORTANT UPDATE: Posted on 2014-11-18 
 
 <b>Google Calendar Connector Sync Service relies on a deprecated version of the Google Calendar API and worked with Exchange 2003, a product that is no longer supported by Microsoft. On November 17th 2014, Google stopped servicing the deprecated Calendar API's requests causing this product to stop working. As a result, we have removed the Sync Service, however the Web Service should remain functional. Users that need Sync Service functionality should take one of the following options:
  - Update to use the Calendar Interop functionality built into the Google Apps Admin Console with a supported version of Microsoft Exchange, or
